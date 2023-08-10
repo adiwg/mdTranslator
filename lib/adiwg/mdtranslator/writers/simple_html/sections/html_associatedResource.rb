@@ -11,7 +11,7 @@ require_relative 'html_citation'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_AssociatedResource
 
@@ -46,9 +46,9 @@ module ADIWG
 
                   # associated resource - resource citation {citation}
                   unless hResource[:resourceCitation].empty?
-                     @html.details do
-                        @html.summary('Resource citation', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Resource citation', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            citationClass.writeHtml(hResource[:resourceCitation])
                         end
                      end
@@ -56,9 +56,9 @@ module ADIWG
 
                   # associated resource - metadata citation
                   unless hResource[:metadataCitation].empty?
-                     @html.details do
-                        @html.summary('Metadata citation', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Metadata citation', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            citationClass.writeHtml(hResource[:metadataCitation])
                         end
                      end

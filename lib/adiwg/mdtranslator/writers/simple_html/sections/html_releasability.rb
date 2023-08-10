@@ -9,7 +9,7 @@ require_relative 'html_responsibility'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_Releasability
 
@@ -32,20 +32,20 @@ module ADIWG
                   # releasability - statement
                   unless hRelease[:statement].nil?
                      @html.em('Statement: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hRelease[:statement])
                      end
                   end
 
                   # releasability - addressee [] {responsibility}
                   unless hRelease[:addressee].empty?
-                     @html.details do
-                        @html.summary('Applies to', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Applies to', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            hRelease[:addressee].each do |hAddressee|
-                              @html.details do
-                                 @html.summary(hAddressee[:roleName], 'class' => 'h5')
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div(hAddressee[:roleName], 'class' => 'h5')
+                                 @html.div(:class => 'block') do
                                     responsibilityClass.writeHtml(hAddressee)
                                  end
                               end

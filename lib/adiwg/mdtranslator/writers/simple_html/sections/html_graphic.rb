@@ -11,7 +11,7 @@ require_relative 'html_constraint'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_Graphic
                     
@@ -48,9 +48,9 @@ module ADIWG
 
                   # graphic - uri [] {onlineResource}
                   hGraphic[:graphicURI].each do |hOnline|
-                     @html.details do
-                        @html.summary('Online Link ', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Online Link ', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            onlineClass.writeHtml(hOnline)
                         end
                      end
@@ -58,9 +58,9 @@ module ADIWG
 
                   # graphic - constraint [] {constraint}
                   hGraphic[:graphicConstraints].each do |hConstraint|
-                     @html.details do
-                        @html.summary('Constraint', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Constraint', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            constraintClass.writeHtml(hConstraint)
                         end
                      end

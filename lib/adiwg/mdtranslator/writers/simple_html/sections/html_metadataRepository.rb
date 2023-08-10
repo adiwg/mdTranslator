@@ -10,7 +10,7 @@ require_relative 'html_citation'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_Repository
 
@@ -39,9 +39,9 @@ module ADIWG
 
                   # metadata repository - citation
                   unless hRepository[:citation].empty?
-                     @html.details do
-                        @html.summary('Citation', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Citation', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            citationClass.writeHtml(hRepository[:citation])
                         end
                      end

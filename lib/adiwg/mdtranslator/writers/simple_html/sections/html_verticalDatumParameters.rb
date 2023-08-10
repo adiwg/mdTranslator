@@ -10,7 +10,7 @@ require_relative 'html_identifier'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_VerticalDatumParameters
 
@@ -33,9 +33,9 @@ module ADIWG
 
                   # vertical datum parameters - vertical datum identifier
                   unless hDatum[:datumIdentifier].empty?
-                     @html.details do
-                        @html.summary('Vertical Datum Identifier', {'id' => 'datum-identifier', 'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Vertical Datum Identifier', {'id' => 'datum-identifier', 'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            identifierClass.writeHtml(hDatum[:datumIdentifier])
                         end
                      end

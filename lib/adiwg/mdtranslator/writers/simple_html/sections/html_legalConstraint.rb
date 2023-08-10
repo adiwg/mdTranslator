@@ -8,7 +8,7 @@
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_LegalConstraint
 
@@ -35,7 +35,7 @@ module ADIWG
                   # legal constraint - other constraints
                   hLegalCon[:otherCons].each do |constraint|
                      @html.em('Other Constraint: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(constraint)
                      end
                   end

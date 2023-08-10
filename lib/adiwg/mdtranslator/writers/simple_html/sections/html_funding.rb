@@ -11,7 +11,7 @@ require_relative 'html_temporalExtent'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_Funding
 
@@ -28,7 +28,7 @@ module ADIWG
                   # funding - description
                   unless hFunding[:description].nil?
                      @html.em('Description:')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hFunding[:description])
                      end
                   end
@@ -43,9 +43,9 @@ module ADIWG
 
                   # funding - allocations [] {allocation}
                   hFunding[:allocations].each do |hAllocation|
-                     @html.details do
-                        @html.summary('Allocation', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Allocation', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            allocationClass.writeHtml(hAllocation)
                         end
                      end

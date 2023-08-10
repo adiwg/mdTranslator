@@ -12,7 +12,7 @@ require_relative 'html_featureCollection'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_GeographicElement
 
@@ -31,37 +31,37 @@ module ADIWG
                   # geographic element - geometry objects
                   case hElement[:type]
                      when 'Point', 'LineString', 'Polygon', 'MultiPoint', 'MultiLineString', 'MultiPolygon'
-                        @html.details do
-                           @html.summary(hElement[:type], 'class' => 'h5')
-                           @html.section(:class => 'block') do
+                        @html.div do
+                           @html.div(hElement[:type], 'class' => 'h5')
+                           @html.div(:class => 'block') do
                               geometryClass.writeHtml(hElement)
                            end
                         end
 
                      when 'GeometryCollection'
-                        @html.details do
-                           @html.summary('Geometry Collection', 'class' => 'h5')
-                           @html.section(:class => 'block') do
+                        @html.div do
+                           @html.div('Geometry Collection', 'class' => 'h5')
+                           @html.div(:class => 'block') do
                               geoCollectionClass.writeHtml(hElement)
                            end
                         end
 
                      when 'Feature'
-                        @html.details do
+                        @html.div do
                            title = 'Feature'
                            unless hElement[:id].nil?
                               title += ': '+hElement[:id].to_s
                            end
-                           @html.summary(title, 'class' => 'h5')
-                           @html.section(:class => 'block') do
+                           @html.div(title, 'class' => 'h5')
+                           @html.div(:class => 'block') do
                               featureClass.writeHtml(hElement)
                            end
                         end
 
                      when 'FeatureCollection'
-                        @html.details do
-                           @html.summary(hElement[:type], 'class' => 'h5')
-                           @html.section(:class => 'block') do
+                        @html.div do
+                           @html.div(hElement[:type], 'class' => 'h5')
+                           @html.div(:class => 'block') do
                               featCollectionClass.writeHtml(hElement)
                            end
                         end

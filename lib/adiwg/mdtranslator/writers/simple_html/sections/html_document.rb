@@ -14,7 +14,7 @@ require_relative 'html_body'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_Document
 

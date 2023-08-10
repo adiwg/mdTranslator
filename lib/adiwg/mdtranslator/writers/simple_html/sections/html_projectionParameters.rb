@@ -11,7 +11,7 @@ require_relative 'html_obliqueLinePoint'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_ProjectionParameters
 
@@ -27,9 +27,9 @@ module ADIWG
 
                   # projection parameters - projection identifier
                   unless hProjection[:projectionIdentifier].empty?
-                     @html.details do
-                        @html.summary('Projection Identifier', {'id' => 'projection-identifier', 'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Projection Identifier', {'id' => 'projection-identifier', 'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            identifierClass.writeHtml(hProjection[:projectionIdentifier])
                         end
                      end
@@ -37,9 +37,9 @@ module ADIWG
 
                   # projection parameters - grid system identifier
                   unless hProjection[:gridIdentifier].empty?
-                     @html.details do
-                        @html.summary('Grid System Identifier', {'id' => 'grid-system-identifier', 'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Grid System Identifier', {'id' => 'grid-system-identifier', 'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            identifierClass.writeHtml(hProjection[:gridIdentifier])
                         end
                      end
@@ -204,7 +204,7 @@ module ADIWG
                      # local description
                      unless hLocal[:description].nil?
                         @html.em('Local Coordinate System Description: ')
-                        @html.section(:class => 'block') do
+                        @html.div(:class => 'block') do
                            @html.text!(hLocal[:description])
                         end
                      end
@@ -212,7 +212,7 @@ module ADIWG
                      # local georeference
                      unless hLocal[:georeference].nil?
                         @html.em('Local Coordinate System Georeference: ')
-                        @html.section(:class => 'block') do
+                        @html.div(:class => 'block') do
                            @html.text!(hLocal[:georeference])
                         end
                      end
@@ -223,7 +223,7 @@ module ADIWG
                # # projection parameters - local planar description
                   # unless hProjection[:localPlanarDescription].nil?
                   #    @html.em('Local Planar Description: ')
-                  #    @html.section(:class => 'block') do
+                  #    @html.div(:class => 'block') do
                   #       @html.text!(hProjection[:localPlanarDescription])
                   #    end
                   # end
@@ -231,7 +231,7 @@ module ADIWG
                   # # projection parameters - local planar georeference
                   # unless hProjection[:localPlanarGeoreference].nil?
                   #    @html.em('Local Planar Georeference: ')
-                  #    @html.section(:class => 'block') do
+                  #    @html.div(:class => 'block') do
                   #       @html.text!(hProjection[:localPlanarGeoreference])
                   #    end
                   # end
@@ -239,7 +239,7 @@ module ADIWG
                   # # projection parameters - other grid description
                   # unless hProjection[:otherGridDescription].nil?
                   #    @html.em('Other Grid Description: ')
-                  #    @html.section(:class => 'block') do
+                  #    @html.div(:class => 'block') do
                   #       @html.text!(hProjection[:otherGridDescription])
                   #    end
                   # end
@@ -247,7 +247,7 @@ module ADIWG
                   # # projection parameters - other projection description
                   # unless hProjection[:otherProjectionDescription].nil?
                   #    @html.em('Other Projection Description: ')
-                  #    @html.section(:class => 'block') do
+                  #    @html.div(:class => 'block') do
                   #       @html.text!(hProjection[:otherProjectionDescription])
                   #    end
                   # end

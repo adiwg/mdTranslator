@@ -9,7 +9,7 @@ require_relative 'html_citation'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_Algorithm
 
@@ -31,9 +31,9 @@ module ADIWG
 
                   # algorithm - citation {citation}
                   unless hAlgorithm[:citation].empty?
-                     @html.details do
-                        @html.summary('Algorithm citation', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Algorithm citation', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            citationClass.writeHtml(hAlgorithm[:citation])
                         end
                      end

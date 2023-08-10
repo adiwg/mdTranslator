@@ -16,7 +16,7 @@ require_relative 'html_entity'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_DataDictionary
 
@@ -36,7 +36,7 @@ module ADIWG
                   # dictionary -  description
                   unless hDictionary[:description].nil?
                      @html.em('Dictionary Description:')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hDictionary[:description])
                      end
                   end
@@ -50,9 +50,9 @@ module ADIWG
 
                   # dictionary - domains [] {domain}
                   unless hDictionary[:domains].empty?
-                     @html.details do
-                        @html.summary('Domains', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Domains', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            domainClass.writeHtml(hDictionary[:domains])
                         end
                      end
@@ -60,9 +60,9 @@ module ADIWG
 
                   # dictionary - entities [] {entity}
                   unless hDictionary[:entities].empty?
-                     @html.details do
-                        @html.summary('Entities', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Entities', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            entityClass.writeHtml(hDictionary[:entities])
                         end
                      end
@@ -70,9 +70,9 @@ module ADIWG
 
                   # dictionary - citation {citation}
                   unless hDictionary[:citation].empty?
-                     @html.details do
-                        @html.summary('Citation', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Citation', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            citationClass.writeHtml(hDictionary[:citation])
                         end
                      end
@@ -80,9 +80,9 @@ module ADIWG
 
                   # dictionary - locales {locale}
                   hDictionary[:locales].each do |hLocale|
-                     @html.details do
-                        @html.summary('Locale', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Locale', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            localeClass.writeHtml(hLocale)
                         end
                      end
@@ -90,9 +90,9 @@ module ADIWG
 
                   # dictionary - responsible party {responsibility}
                   unless hDictionary[:responsibleParty].empty?
-                     @html.details do
-                        @html.summary(hDictionary[:responsibleParty][:roleName], {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div(hDictionary[:responsibleParty][:roleName], {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            responsibilityClass.writeHtml(hDictionary[:responsibleParty])
                         end
                      end

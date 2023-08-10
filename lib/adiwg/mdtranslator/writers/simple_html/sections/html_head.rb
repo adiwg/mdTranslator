@@ -11,7 +11,7 @@
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_Head
                def initialize(html)

@@ -19,7 +19,7 @@ require_relative 'html_processReport'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_ProcessStep
 
@@ -48,7 +48,7 @@ module ADIWG
                   # process step - description
                   unless hStep[:description].nil?
                      @html.em('Description: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hStep[:description])
                      end
                   end
@@ -56,16 +56,16 @@ module ADIWG
                   # process step - step rationale
                   unless hStep[:rationale].nil?
                      @html.em('Rationale: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hStep[:rationale])
                      end
                   end
 
                   # process step - time period {timePeriod}
                   unless hStep[:timePeriod].empty?
-                     @html.details do
-                        @html.summary('Time Period', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Time Period', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            temporalClass.writeHtml(hStep[:timePeriod])
                         end
                      end
@@ -73,13 +73,13 @@ module ADIWG
 
                   # process step - references [] {citation}
                   unless hStep[:references].empty?
-                     @html.details do
-                        @html.summary('Step References', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Step References', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            hStep[:references].each do |hCitation|
-                              @html.details do
-                                 @html.summary(hCitation[:title], {'class' => 'h5'})
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div(hCitation[:title], {'class' => 'h5'})
+                                 @html.div(:class => 'block') do
                                     citationClass.writeHtml(hCitation)
                                  end
                               end
@@ -90,13 +90,13 @@ module ADIWG
 
                   # process step - step sources [] {source}
                   unless hStep[:stepSources].empty?
-                     @html.details do
-                        @html.summary('Step Source Datasets', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Step Source Datasets', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            hStep[:stepSources].each do |hSource|
-                              @html.details do
-                                 @html.summary('Data Source', {'class' => 'h5'})
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div('Data Source', {'class' => 'h5'})
+                                 @html.div(:class => 'block') do
                                     sourceClass.writeHtml(hSource)
                                  end
                               end
@@ -107,13 +107,13 @@ module ADIWG
 
                   # process step - step products [] {source}
                   unless hStep[:stepProducts].empty?
-                     @html.details do
-                        @html.summary('Step Product Datasets', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Step Product Datasets', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            hStep[:stepProducts].each do |hSource|
-                              @html.details do
-                                 @html.summary('Data Product', {'class' => 'h5'})
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div('Data Product', {'class' => 'h5'})
+                                 @html.div(:class => 'block') do
                                     sourceClass.writeHtml(hSource)
                                  end
                               end
@@ -124,9 +124,9 @@ module ADIWG
 
                   # process step - processors [] {responsibility}
                   hStep[:processors].each do |hResponsibility|
-                     @html.details do
-                        @html.summary(hResponsibility[:roleName], {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div(hResponsibility[:roleName], {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            responsibilityClass.writeHtml(hResponsibility)
                         end
                      end
@@ -134,9 +134,9 @@ module ADIWG
 
                   # process step - scope {scope}
                   unless hStep[:scope].empty?
-                     @html.details do
-                        @html.summary('Scope', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Scope', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            scopeClass.writeHtml(hStep[:scope])
                         end
                      end
@@ -144,9 +144,9 @@ module ADIWG
 
                   # process step - processing information {processingInformation}
                   unless hStep[:processingInformation].empty?
-                     @html.details do
-                        @html.summary('Processing Information', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Processing Information', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            processingClass.writeHtml(hStep[:processingInformation])
                         end
                      end
@@ -154,9 +154,9 @@ module ADIWG
 
                   # process step - report [] {processStepReport}
                   hStep[:reports].each do |hReport|
-                     @html.details do
-                        @html.summary(hReport[:name], {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div(hReport[:name], {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            reportClass.writeHtml(hReport)
                         end
                      end

@@ -11,7 +11,7 @@ require_relative 'html_citation'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_AdditionalDocumentation
 
@@ -32,9 +32,9 @@ module ADIWG
 
                   # additional documentation - citation [] {citation}
                   hAddDoc[:citation].each do |hCitation|
-                     @html.details do
-                        @html.summary(hCitation[:title], {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div(hCitation[:title], {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            citationClass.writeHtml(hCitation)
                         end
                      end

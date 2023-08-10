@@ -9,7 +9,7 @@ require_relative 'html_classedDataItem'
 module ADIWG
     module Mdtranslator
         module Writers
-            module Html
+            module SimpleHtml
 
                 class MdHtmlClassedData
                     def initialize(html)
@@ -32,9 +32,9 @@ module ADIWG
                         # classed data - data items
                         aClassItems = hClassD[:classedDataItems]
                         aClassItems.each do |hClassItem|
-                            @html.details do
-                                @html.summary(hClassItem[:className], {'class'=>'h5'})
-                                @html.section(:class=>'block') do
+                            @html.div do
+                                @html.div(hClassItem[:className], {'class'=>'h5'})
+                                @html.div(:class=>'block') do
                                     htmlClassItem.writeHtml(hClassItem)
                                 end
                             end

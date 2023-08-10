@@ -12,7 +12,7 @@ require_relative 'html_imageInfo'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_CoverageInfo
 
@@ -37,16 +37,16 @@ module ADIWG
                   # coverage - description
                   unless hCoverage[:coverageDescription].nil?
                      @html.em('Description: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hCoverage[:coverageDescription])
                      end
                   end
 
                   # coverage - process level code
                   unless hCoverage[:processingLevelCode].empty?
-                     @html.details do
-                        @html.summary('Processing Level Code', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Processing Level Code', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            identifierClass.writeHtml(hCoverage[:processingLevelCode])
                         end
                      end
@@ -54,9 +54,9 @@ module ADIWG
 
                   # coverage - attribute group [] {attributeGroup}
                   hCoverage[:attributeGroups].each do |hAttGroup|
-                     @html.details do
-                        @html.summary('Attribute Group', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Attribute Group', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            attGroupClass.writeHtml(hAttGroup)
                         end
                      end
@@ -64,9 +64,9 @@ module ADIWG
 
                   # coverage - image description {imageInfo}
                   unless hCoverage[:imageDescription].empty?
-                     @html.details do
-                        @html.summary('Image Description', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Image Description', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            imageClass.writeHtml(hCoverage[:imageDescription])
                         end
                      end

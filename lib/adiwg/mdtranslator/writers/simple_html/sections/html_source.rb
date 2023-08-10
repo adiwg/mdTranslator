@@ -18,7 +18,7 @@ require_relative 'html_nominalResolution'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_Source
 
@@ -47,16 +47,16 @@ module ADIWG
                   # source - description
                   unless hSource[:description].nil?
                      @html.em('Description: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hSource[:description])
                      end
                   end
 
                   # source - citation {citation}
                   unless hSource[:sourceCitation].empty?
-                     @html.details do
-                        @html.summary('Source Citation', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Source Citation', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            citationClass.writeHtml(hSource[:sourceCitation])
                         end
                      end
@@ -64,13 +64,13 @@ module ADIWG
 
                   # source - metadata citation [] {citation}
                   unless hSource[:metadataCitations].empty?
-                     @html.details do
-                        @html.summary('Metadata Citations', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Metadata Citations', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            hSource[:metadataCitations].each do |hCitation|
-                              @html.details do
-                                 @html.summary(hCitation[:title], {'class' => 'h5'})
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div(hCitation[:title], {'class' => 'h5'})
+                                 @html.div(:class => 'block') do
                                     citationClass.writeHtml(hCitation)
                                  end
                               end
@@ -81,9 +81,9 @@ module ADIWG
 
                   # source - spatial resolution {resolution}
                   unless hSource[:spatialResolution].empty?
-                     @html.details do
-                        @html.summary('Resolution', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Resolution', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            resolutionClass.writeHtml(hSource[:spatialResolution])
                         end
                      end
@@ -91,9 +91,9 @@ module ADIWG
 
                   # source - reference system {spatialReference}
                   unless hSource[:referenceSystem].empty?
-                     @html.details do
-                        @html.summary('Spatial Reference System', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Spatial Reference System', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            referenceClass.writeHtml(hSource[:referenceSystem])
                         end
                      end
@@ -101,13 +101,13 @@ module ADIWG
 
                   # source - process steps [] {processStep}
                   unless hSource[:sourceSteps].empty?
-                     @html.details do
-                        @html.summary('Source Processing Steps', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Source Processing Steps', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            hSource[:sourceSteps].each do |hStep|
-                              @html.details do
-                                 @html.summary('Process Step', {'class' => 'h5'})
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div('Process Step', {'class' => 'h5'})
+                                 @html.div(:class => 'block') do
                                     stepClass.writeHtml(hStep)
                                  end
                               end
@@ -118,9 +118,9 @@ module ADIWG
 
                   # source - scope {scope}
                   unless hSource[:scope].empty?
-                     @html.details do
-                        @html.summary('Scope', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Scope', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            scopeClass.writeHtml(hSource[:scope])
                         end
                      end
@@ -128,9 +128,9 @@ module ADIWG
 
                   # source - processed level {identifier}
                   unless hSource[:processedLevel].empty?
-                     @html.details do
-                        @html.summary('Processed Level', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Processed Level', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            identifierClass.writeHtml(hSource[:processedLevel])
                         end
                      end
@@ -138,9 +138,9 @@ module ADIWG
 
                   # source - resolution {nominal resolution}
                   unless hSource[:resolution].empty?
-                     @html.details do
-                        @html.summary('Nominal Resolution', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Nominal Resolution', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            nominalClass.writeHtml(hSource[:resolution])
                         end
                      end

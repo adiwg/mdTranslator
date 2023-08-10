@@ -14,7 +14,7 @@ require_relative 'html_taxonomyClass'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_Taxonomy
 
@@ -32,7 +32,7 @@ module ADIWG
                   # taxonomy - taxonomic general scope
                   unless hTaxonomy[:generalScope].nil?
                      @html.em('General scope: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hTaxonomy[:generalScope])
                      end
                   end
@@ -40,7 +40,7 @@ module ADIWG
                   # taxonomy - identification procedures
                   unless hTaxonomy[:idProcedure].nil?
                      @html.em('Identification Procedures: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hTaxonomy[:idProcedure])
                      end
                   end
@@ -48,16 +48,16 @@ module ADIWG
                   # taxonomy - completeness
                   unless hTaxonomy[:idCompleteness].nil?
                      @html.em('Identification Completeness Statement: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hTaxonomy[:idCompleteness])
                      end
                   end
 
                   # taxonomy - taxonomic classification []
                   hTaxonomy[:taxonClasses].each do |hClassification|
-                     @html.details do
-                        @html.summary('Taxonomic Classification', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Taxonomic Classification', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            taxonomicClass.writeHtml(hClassification)
                         end
                      end
@@ -65,14 +65,14 @@ module ADIWG
 
                   # taxonomy - taxonomic classification system [] {citation}
                   hTaxonomy[:taxonSystem].each do |hSystem|
-                     @html.details do
-                        @html.summary('Classification System', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Classification System', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
 
                            # classification system citation
-                           @html.details do
-                              @html.summary(hSystem[:citation][:title], {'class' => 'h5'})
-                              @html.section(:class => 'block') do
+                           @html.div do
+                              @html.div(hSystem[:citation][:title], {'class' => 'h5'})
+                              @html.div(:class => 'block') do
                                  citationClass.writeHtml(hSystem[:citation])
                               end
                            end
@@ -80,7 +80,7 @@ module ADIWG
                            # modifications
                            unless hSystem[:modifications].nil?
                               @html.em('Modifications to Classification System:')
-                              @html.section(:class => 'block') do
+                              @html.div(:class => 'block') do
                                  @html.text!(hSystem[:modifications])
                               end
                            end
@@ -91,9 +91,9 @@ module ADIWG
 
                   # taxonomy - identification references
                   hTaxonomy[:idReferences].each do |hReference|
-                     @html.details do
-                        @html.summary('Non-Authoritative Identification Reference', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Non-Authoritative Identification Reference', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            citationClass.writeHtml(hReference)
                         end
                      end
@@ -101,13 +101,13 @@ module ADIWG
 
                   # taxonomy - observers {responsibility}
                   unless hTaxonomy[:observers].empty?
-                     @html.details do
-                        @html.summary('Observers', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Observers', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            hTaxonomy[:observers].each do |hObserver|
-                              @html.details do
-                                 @html.summary(hObserver[:roleName], 'class' => 'h5')
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div(hObserver[:roleName], 'class' => 'h5')
+                                 @html.div(:class => 'block') do
                                     responsibilityClass.writeHtml(hObserver)
                                  end
                               end
@@ -118,9 +118,9 @@ module ADIWG
 
                   # taxonomy - voucher []
                   unless hTaxonomy[:observers].empty?
-                     @html.details do
-                        @html.summary('Specimen Repositories', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Specimen Repositories', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            hTaxonomy[:vouchers].each do |hVoucher|
 
                               # voucher - specimen
@@ -132,10 +132,10 @@ module ADIWG
 
                               # voucher - repository {responsibility}
                               unless hVoucher[:repository].empty?
-                                 @html.section(:class => 'block') do
-                                    @html.details do
-                                       @html.summary(hVoucher[:repository][:roleName], {'class' => 'h5'})
-                                       @html.section(:class => 'block') do
+                                 @html.div(:class => 'block') do
+                                    @html.div do
+                                       @html.div(hVoucher[:repository][:roleName], {'class' => 'h5'})
+                                       @html.div(:class => 'block') do
                                           responsibilityClass.writeHtml(hVoucher[:repository])
                                        end
                                     end

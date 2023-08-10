@@ -31,7 +31,7 @@ require_relative 'html_extent'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_ResourceInfo
 
@@ -75,9 +75,9 @@ module ADIWG
 
                   # resource - citation {citation}
                   unless hResource[:citation].empty?
-                     @html.details do
-                        @html.summary('Citation', {'id' => 'resourceInfo-citation', 'class' => 'h3'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Citation', {'id' => 'resourceInfo-citation', 'class' => 'h3'})
+                        @html.div(:class => 'block') do
                            citationClass.writeHtml(hResource[:citation])
                         end
                      end
@@ -85,14 +85,14 @@ module ADIWG
 
                   # resource - abstract
                   unless hResource[:abstract].nil? && hResource[:shortAbstract].nil?
-                     @html.details do
-                        @html.summary('Abstract', {'id' => 'resourceInfo-abstract', 'class' => 'h3'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Abstract', {'id' => 'resourceInfo-abstract', 'class' => 'h3'})
+                        @html.div(:class => 'block') do
 
                            # short abstract
                            unless hResource[:shortAbstract].nil?
                               @html.em('Short Abstract:')
-                              @html.section(:class => 'block') do
+                              @html.div(:class => 'block') do
                                  @html.text!(hResource[:shortAbstract])
                               end
                               @html.br
@@ -101,7 +101,7 @@ module ADIWG
                            # full abstract
                            unless hResource[:abstract].nil?
                               @html.em('Full Abstract:')
-                              @html.section(:class => 'block') do
+                              @html.div(:class => 'block') do
                                  @html.text!(hResource[:abstract])
                               end
                               @html.br
@@ -114,14 +114,14 @@ module ADIWG
 
                   # resource - purpose
                   unless hResource[:purpose].nil? && hResource[:resourceUsages].empty?
-                     @html.details do
-                        @html.summary('Purpose, Usage, and Limitations', {'id' => 'resourceInfo-purpose', 'class' => 'h3'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Purpose, Usage, and Limitations', {'id' => 'resourceInfo-purpose', 'class' => 'h3'})
+                        @html.div(:class => 'block') do
 
                            # purpose
                            unless hResource[:purpose].nil?
                               @html.em('Purpose:')
-                              @html.section(:class => 'block') do
+                              @html.div(:class => 'block') do
                                  @html.text!(hResource[:purpose])
                               end
                               @html.br
@@ -132,9 +132,9 @@ module ADIWG
                               counter = 0
                               hResource[:resourceUsages].each do |hUsage|
                                  counter += 1
-                                 @html.details do
-                                    @html.summary('Usage and Limitation '+counter.to_s, {'class' => 'h5'})
-                                    @html.section(:class => 'block') do
+                                 @html.div do
+                                    @html.div('Usage and Limitation '+counter.to_s, {'class' => 'h5'})
+                                    @html.div(:class => 'block') do
                                        usageClass.writeHtml(hUsage)
                                     end
                                  end
@@ -147,15 +147,15 @@ module ADIWG
 
                   # resource - graphic overview [] {graphicOverview}
                   unless hResource[:graphicOverviews].empty?
-                     @html.details do
-                        @html.summary('Graphic Overviews', {'id' => 'resourceInfo-overview', 'class' => 'h3'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Graphic Overviews', {'id' => 'resourceInfo-overview', 'class' => 'h3'})
+                        @html.div(:class => 'block') do
                            counter = 0
                            hResource[:graphicOverviews].each do |hGraphic|
                               counter += 1
-                              @html.details do
-                                 @html.summary('Overview '+counter.to_s, 'class' => 'h5')
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div('Overview '+counter.to_s, 'class' => 'h5')
+                                 @html.div(:class => 'block') do
                                     graphicClass.writeHtml(hGraphic)
                                  end
                               end
@@ -166,15 +166,15 @@ module ADIWG
 
                   # resource - point of contact [] {responsibility}
                   unless hResource[:pointOfContacts].empty? && hResource[:credits].empty?
-                     @html.details do
-                        @html.summary('Resource Contacts', {'id' => 'resourceInfo-contacts', 'class' => 'h3'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Resource Contacts', {'id' => 'resourceInfo-contacts', 'class' => 'h3'})
+                        @html.div(:class => 'block') do
 
                            # contacts - responsibility
                            hResource[:pointOfContacts].each do |hContact|
-                              @html.details do
-                                 @html.summary(hContact[:roleName], 'class' => 'h5')
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div(hContact[:roleName], 'class' => 'h5')
+                                 @html.div(:class => 'block') do
                                     responsibilityClass.writeHtml(hContact)
                                  end
                               end
@@ -182,9 +182,9 @@ module ADIWG
 
                            # contacts - credits
                            unless hResource[:credits].empty?
-                              @html.details do
-                                 @html.summary('Other Credits', 'class' => 'h5')
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div('Other Credits', 'class' => 'h5')
+                                 @html.div(:class => 'block') do
                                     hResource[:credits].each do |credit|
                                        @html.em('Credit: ')
                                        @html.text!(credit)
@@ -200,9 +200,9 @@ module ADIWG
 
                   # resource - temporal information
                   unless hResource[:timePeriod].empty? && hResource[:temporalResolutions].empty?
-                     @html.details do
-                        @html.summary('Temporal Information', {'id' => 'resourceInfo-temporal', 'class' => 'h3'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Temporal Information', {'id' => 'resourceInfo-temporal', 'class' => 'h3'})
+                        @html.div(:class => 'block') do
 
                            # time period {timePeriod}
                            unless hResource[:timePeriod].empty?
@@ -215,9 +215,9 @@ module ADIWG
                            # temporal resolution [] {resolution}
                            unless hResource[:temporalResolutions].empty?
                               hResource[:temporalResolutions].each do |hResolution|
-                                 @html.details do
-                                    @html.summary('Resolution', 'class' => 'h5')
-                                    @html.section(:class => 'block') do
+                                 @html.div do
+                                    @html.div('Resolution', 'class' => 'h5')
+                                    @html.div(:class => 'block') do
                                        durationClass.writeHtml(hResolution)
                                     end
                                  end
@@ -233,9 +233,9 @@ module ADIWG
                      hResource[:spatialRepresentationTypes].empty?
                      hResource[:spatialRepresentations].empty?
                      hResource[:spatialResolutions].empty?
-                     @html.details do
-                        @html.summary('Spatial Information', {'id' => 'resourceInfo-spatial', 'class' => 'h3'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Spatial Information', {'id' => 'resourceInfo-spatial', 'class' => 'h3'})
+                        @html.div(:class => 'block') do
 
                            # representation type [] {spatialRepresentation}
                            hResource[:spatialRepresentationTypes].each do |hRepType|
@@ -246,9 +246,9 @@ module ADIWG
 
                            # spatial resolution [] {resolution}
                            unless hResource[:spatialResolutions].empty?
-                              @html.details do
-                                 @html.summary('Spatial Resolutions', {'class' => 'h5'})
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div('Spatial Resolutions', {'class' => 'h5'})
+                                 @html.div(:class => 'block') do
 
                                     # keep like resolution types together
                                     # find all scale factors
@@ -292,9 +292,9 @@ module ADIWG
 
                            # reference system [] {spatialReference}
                            hResource[:spatialReferenceSystems].each do |hRefSystem|
-                              @html.details do
-                                 @html.summary('Spatial Reference System', {'class' => 'h5'})
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div('Spatial Reference System', {'class' => 'h5'})
+                                 @html.div(:class => 'block') do
                                     referenceClass.writeHtml(hRefSystem)
                                  end
                               end
@@ -311,13 +311,13 @@ module ADIWG
 
                   # resource - extent [] {extent}
                   unless hResource[:extents].empty?
-                     @html.details do
-                        @html.summary('Spatial, Temporal, and Vertical Extents', {'id' => 'resourceInfo-extent', 'class' => 'h3'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Spatial, Temporal, and Vertical Extents', {'id' => 'resourceInfo-extent', 'class' => 'h3'})
+                        @html.div(:class => 'block') do
                            hResource[:extents].each do |hExtent|
-                              @html.details do
-                                 @html.summary('Extent', {'class' => 'h5'})
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div('Extent', {'class' => 'h5'})
+                                 @html.div(:class => 'block') do
                                     extentClass.writeHtml(hExtent)
                                  end
                               end
@@ -328,9 +328,9 @@ module ADIWG
 
                   # resource - keywords [] {keyword}
                   unless hResource[:keywords].empty?
-                     @html.details do
-                        @html.summary('Keywords', {'id' => 'resourceInfo-keyword', 'class' => 'h3'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Keywords', {'id' => 'resourceInfo-keyword', 'class' => 'h3'})
+                        @html.div(:class => 'block') do
                            hResource[:keywords].each do |hKeyword|
                               keywordClass.writeHtml(hKeyword)
                            end
@@ -340,15 +340,15 @@ module ADIWG
 
                   # resource - taxonomy {taxonomy}
                   unless hResource[:taxonomy].empty?
-                     @html.details do
-                        @html.summary('Taxonomy', {'id' => 'resourceInfo-taxonomy', 'class' => 'h3'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Taxonomy', {'id' => 'resourceInfo-taxonomy', 'class' => 'h3'})
+                        @html.div(:class => 'block') do
                            counter = 0
                            hResource[:taxonomy].each do |hTaxonomy|
                               counter += 1
-                              @html.details do
-                                 @html.summary('Taxonomic Structure '+counter.to_s, 'class' => 'h5')
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div('Taxonomic Structure '+counter.to_s, 'class' => 'h5')
+                                 @html.div(:class => 'block') do
                                     taxonomyClass.writeHtml(hTaxonomy)
                                  end
                               end
@@ -359,13 +359,13 @@ module ADIWG
 
                   # resource - constraints [] {constraint}
                   unless hResource[:constraints].empty?
-                     @html.details do
-                        @html.summary('Constraints', {'id' => 'resourceInfo-constraint', 'class' => 'h3'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Constraints', {'id' => 'resourceInfo-constraint', 'class' => 'h3'})
+                        @html.div(:class => 'block') do
                            hResource[:constraints].each do |hConstraint|
-                              @html.details do
-                                 @html.summary(hConstraint[:type].capitalize+' Constraint', {'class' => 'h5'})
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div(hConstraint[:type].capitalize+' Constraint', {'class' => 'h5'})
+                                 @html.div(:class => 'block') do
                                     constraintClass.writeHtml(hConstraint)
                                  end
                               end
@@ -376,13 +376,13 @@ module ADIWG
 
                   # resource - coverage description [] {coverageInfo}
                   unless hResource[:coverageDescriptions].empty?
-                     @html.details do
-                        @html.summary('Coverage Description', {'id' => 'resourceInfo-Coverage', 'class' => 'h3'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Coverage Description', {'id' => 'resourceInfo-Coverage', 'class' => 'h3'})
+                        @html.div(:class => 'block') do
                            hResource[:coverageDescriptions].each do |hCoverage|
-                              @html.details do
-                                 @html.summary(hCoverage[:coverageName], {'class' => 'h5'})
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div(hCoverage[:coverageName], {'class' => 'h5'})
+                                 @html.div(:class => 'block') do
                                     coverageClass.writeHtml(hCoverage)
                                  end
                               end
@@ -393,15 +393,15 @@ module ADIWG
 
                   # resource - locale
                   unless hResource[:defaultResourceLocale].empty? && hResource[:otherResourceLocales].empty?
-                     @html.details do
-                        @html.summary('Resource Locales', {'id' => 'resourceInfo-locale', 'class' => 'h3'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Resource Locales', {'id' => 'resourceInfo-locale', 'class' => 'h3'})
+                        @html.div(:class => 'block') do
 
                            # default resource locales {locale}
                            unless hResource[:defaultResourceLocale].empty?
-                              @html.details do
-                                 @html.summary('Default Locale', {'class' => 'h5'})
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div('Default Locale', {'class' => 'h5'})
+                                 @html.div(:class => 'block') do
                                     localeClass.writeHtml(hResource[:defaultResourceLocale])
                                  end
                               end
@@ -409,9 +409,9 @@ module ADIWG
 
                            # other resource locales [] {locale}
                            hResource[:otherResourceLocales].each do |hLocale|
-                              @html.details do
-                                 @html.summary('Other Locale', {'class' => 'h5'})
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div('Other Locale', {'class' => 'h5'})
+                                 @html.div(:class => 'block') do
                                     localeClass.writeHtml(hLocale)
                                  end
                               end
@@ -423,13 +423,13 @@ module ADIWG
 
                   # resource - formats [] {format}
                   unless hResource[:resourceFormats].empty?
-                     @html.details do
-                        @html.summary('Resource Formats', {'id' => 'resourceInfo-format', 'class' => 'h3'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Resource Formats', {'id' => 'resourceInfo-format', 'class' => 'h3'})
+                        @html.div(:class => 'block') do
                            hResource[:resourceFormats].each do |hFormat|
-                              @html.details do
-                                 @html.summary('Format', {'class' => 'h5'})
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div('Format', {'class' => 'h5'})
+                                 @html.div(:class => 'block') do
                                     formatClass.writeHtml(hFormat)
                                  end
                               end
@@ -442,15 +442,15 @@ module ADIWG
                   unless hResource[:resourceMaintenance].empty? &&
                      hResource[:environmentDescription].nil? &&
                      hResource[:supplementalInfo].nil?
-                     @html.details do
-                        @html.summary('Supplemental Information', {'id' => 'resourceInfo-supplemental', 'class' => 'h3'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Supplemental Information', {'id' => 'resourceInfo-supplemental', 'class' => 'h3'})
+                        @html.div(:class => 'block') do
 
                            # supplemental - maintenance [] {maintenance}
                            hResource[:resourceMaintenance].each do |hMaint|
-                              @html.details do
-                                 @html.summary('Resource Maintenance', {'class' => 'h5'})
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div('Resource Maintenance', {'class' => 'h5'})
+                                 @html.div(:class => 'block') do
                                     maintenanceClass.writeHtml(hMaint)
                                  end
                               end
@@ -459,7 +459,7 @@ module ADIWG
                            # supplemental - environment description
                            unless hResource[:environmentDescription].nil?
                               @html.em('Environment Description:')
-                              @html.section(:class => 'block') do
+                              @html.div(:class => 'block') do
                                  @html.text!(hResource[:environmentDescription])
                               end
                            end
@@ -467,7 +467,7 @@ module ADIWG
                            # supplemental - supplemental information
                            unless hResource[:supplementalInfo].nil?
                               @html.em('Supplemental Information:')
-                              @html.section(:class => 'block') do
+                              @html.div(:class => 'block') do
                                  @html.text!(hResource[:supplementalInfo])
                               end
                            end

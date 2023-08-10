@@ -12,7 +12,7 @@ require_relative 'html_georeferenceableRepresentation'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_SpatialRepresentation
 
@@ -30,9 +30,9 @@ module ADIWG
 
                   # spatial Representation - grid {gridRepresentation}
                   unless hRepresentation[:gridRepresentation].empty?
-                     @html.details do
-                        @html.summary('Grid Representation ', 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Grid Representation ', 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            gridClass.writeHtml(hRepresentation[:gridRepresentation])
                         end
                      end
@@ -40,9 +40,9 @@ module ADIWG
 
                   # spatial Representation - vector {vectorRepresentation}
                   unless hRepresentation[:vectorRepresentation].empty?
-                     @html.details do
-                        @html.summary('Vector Representation ', 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Vector Representation ', 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            vectorClass.writeHtml(hRepresentation[:vectorRepresentation])
                         end
                      end
@@ -50,9 +50,9 @@ module ADIWG
 
                   # spatial Representation - georectified {georectifiedRepresentation}
                   unless hRepresentation[:georectifiedRepresentation].empty?
-                     @html.details do
-                        @html.summary('Georectified Representation ', 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Georectified Representation ', 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            georectifiedClass.writeHtml(hRepresentation[:georectifiedRepresentation])
                         end
                      end
@@ -60,9 +60,9 @@ module ADIWG
 
                   # spatial Representation - georeferenceable {georeferenceableRepresentation}
                   unless hRepresentation[:georeferenceableRepresentation].empty?
-                     @html.details do
-                        @html.summary('Georeferenceable Representation ', 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Georeferenceable Representation ', 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            georeferenceableClass.writeHtml(hRepresentation[:georeferenceableRepresentation])
                         end
                      end

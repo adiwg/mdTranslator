@@ -16,7 +16,7 @@ require_relative 'html_graphic'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_Citation
 
@@ -67,9 +67,9 @@ module ADIWG
 
                   # citation - responsibilities [] {responsibility}
                   hCitation[:responsibleParties].each do |hResponsibility|
-                     @html.details do
-                        @html.summary(hResponsibility[:roleName], 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div(hResponsibility[:roleName], 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            responsibilityClass.writeHtml(hResponsibility)
                         end
                      end
@@ -77,9 +77,9 @@ module ADIWG
 
                   # citation - identifier []
                   hCitation[:identifiers].each do |hIdentifier|
-                     @html.details do
-                        @html.summary('Identifier', 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Identifier', 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            identifierClass.writeHtml(hIdentifier)
                         end
                      end
@@ -87,9 +87,9 @@ module ADIWG
 
                   # citation - series
                   unless hCitation[:series].empty?
-                     @html.details do
-                        @html.summary('Publication Series', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Publication Series', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
 
                            hSeries = hCitation[:series]
 
@@ -120,9 +120,9 @@ module ADIWG
 
                   # citation - online resource []
                   hCitation[:onlineResources].each do |hOnline|
-                     @html.details do
-                        @html.summary('Online Resource', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Online Resource', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            onlineClass.writeHtml(hOnline)
                         end
                      end
@@ -130,9 +130,9 @@ module ADIWG
 
                   # citation - browse graphic []
                   hCitation[:browseGraphics].each do |hGraphic|
-                     @html.details do
-                        @html.summary('Graphic Overview', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Graphic Overview', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            graphicClass.writeHtml(hGraphic)
                         end
                      end
@@ -147,10 +147,10 @@ module ADIWG
                      end
                   end
 
-                  # citation - other details []
-                  unless hCitation[:otherDetails].empty?
-                     hCitation[:otherDetails].each do |detail|
-                        @html.em('Other Details: ')
+                  # citation - other div []
+                  unless hCitation[:otherdiv].empty?
+                     hCitation[:otherdiv].each do |detail|
+                        @html.em('Other div: ')
                         @html.text!(detail)
                         @html.br
                      end

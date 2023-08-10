@@ -13,7 +13,7 @@ require_relative 'html_citation'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_Domain
 
@@ -37,9 +37,9 @@ module ADIWG
                      type = 'CODESET' unless hDomain[:domainReference].empty?
                      type = 'ENUMERATED' unless hDomain[:domainItems].empty?
 
-                     @html.details do
-                        @html.summary(dName, {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div(dName, {'class' => 'h5'})
+                        @html.div(:class => 'block') do
 
                            # domain - type
                            @html.em('Domain Type: ')
@@ -70,16 +70,16 @@ module ADIWG
                            # domain - description
                            unless hDomain[:domainDescription].nil?
                               @html.em('Description: ')
-                              @html.section(:class => 'block') do
+                              @html.div(:class => 'block') do
                                  @html.text!(hDomain[:domainDescription])
                               end
                            end
 
                            # domain - domain reference {citation}
                            unless hDomain[:domainReference].empty?
-                              @html.details do
-                                 @html.summary('Reference', {'class' => 'h5'})
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div('Reference', {'class' => 'h5'})
+                                 @html.div(:class => 'block') do
                                     citationClass.writeHtml(hDomain[:domainReference])
                                  end
                               end
@@ -87,9 +87,9 @@ module ADIWG
 
                            # domain - domain items [] {domainItem}
                            hDomain[:domainItems].each do |hItem|
-                              @html.details do
-                                 @html.summary(hItem[:itemValue], {'class' => 'h5'})
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div(hItem[:itemValue], {'class' => 'h5'})
+                                 @html.div(:class => 'block') do
                                     itemClass.writeHtml(hItem)
                                  end
                               end

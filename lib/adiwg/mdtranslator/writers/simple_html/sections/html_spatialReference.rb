@@ -12,7 +12,7 @@ require_relative 'html_referenceSystemParameters'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_SpatialReference
 
@@ -36,16 +36,16 @@ module ADIWG
                   # spatial reference - WKT
                   unless hSpaceRef[:systemWKT].nil?
                      @html.em('System Well Know Text (WKT)')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hSpaceRef[:systemWKT])
                      end
                   end
 
                   # spatial reference - identifier {identifier}
                   unless hSpaceRef[:systemIdentifier].empty?
-                     @html.details do
-                        @html.summary('System Identifier', {'id' => 'spatialReference-identifier', 'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('System Identifier', {'id' => 'spatialReference-identifier', 'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            identifierClass.writeHtml(hSpaceRef[:systemIdentifier])
                         end
                      end
@@ -53,9 +53,9 @@ module ADIWG
 
                   # spatial reference - projection parameters {referenceSystemParameterSet}
                   unless hSpaceRef[:systemParameterSet].empty?
-                     @html.details do
-                        @html.summary('System Parameters', {'id' => 'spatialReference-parameters', 'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('System Parameters', {'id' => 'spatialReference-parameters', 'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            paramSetClass.writeHtml(hSpaceRef[:systemParameterSet])
                         end
                      end

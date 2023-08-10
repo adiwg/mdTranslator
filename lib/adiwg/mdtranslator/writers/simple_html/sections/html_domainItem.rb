@@ -10,7 +10,7 @@ require_relative 'html_citation'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_DomainItem
 
@@ -40,16 +40,16 @@ module ADIWG
                   # domain item - definition
                   unless hItem[:itemDefinition].nil?
                      @html.em('Definition: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hItem[:itemDefinition])
                      end
                   end
 
                   # domain item - reference {citation}
                   unless hItem[:itemReference].empty?
-                     @html.details do
-                        @html.summary('Reference', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Reference', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            citationClass.writeHtml(hItem[:itemReference])
                         end
                      end

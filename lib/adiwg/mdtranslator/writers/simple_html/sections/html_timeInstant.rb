@@ -14,7 +14,7 @@ require_relative 'html_geologicAge'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_TimeInstant
 
@@ -53,7 +53,7 @@ module ADIWG
                   # time instant - description
                   unless hInstant[:description].nil?
                      @html.em('Description: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hInstant[:description])
                      end
                   end
@@ -65,9 +65,9 @@ module ADIWG
 
                   # time instant - identifier {identifier}
                   unless hInstant[:identifier].empty?
-                     @html.details do
-                        @html.summary('Identifier', 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Identifier', 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            identifierClass.writeHtml(hInstant[:identifier])
                         end
                      end

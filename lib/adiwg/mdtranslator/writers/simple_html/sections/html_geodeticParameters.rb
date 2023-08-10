@@ -9,7 +9,7 @@ require_relative 'html_identifier'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_GeodeticParameters
 
@@ -24,9 +24,9 @@ module ADIWG
 
                   # geodetic parameters - datum identifier
                   unless hGeodetic[:datumIdentifier].empty?
-                     @html.details do
-                        @html.summary('Datum Identifier', {'id' => 'datum-identifier', 'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Datum Identifier', {'id' => 'datum-identifier', 'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            identifierClass.writeHtml(hGeodetic[:datumIdentifier])
                         end
                      end
@@ -34,9 +34,9 @@ module ADIWG
 
                   # geodetic parameters - ellipsoid identifier
                   unless hGeodetic[:ellipsoidIdentifier].empty?
-                     @html.details do
-                        @html.summary('Ellipsoid Identifier', {'id' => 'ellipsoid-identifier', 'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Ellipsoid Identifier', {'id' => 'ellipsoid-identifier', 'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            identifierClass.writeHtml(hGeodetic[:ellipsoidIdentifier])
                         end
                      end

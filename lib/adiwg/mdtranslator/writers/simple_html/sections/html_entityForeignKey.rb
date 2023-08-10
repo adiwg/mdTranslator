@@ -7,7 +7,7 @@
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_EntityForeignKey
 
@@ -20,7 +20,7 @@ module ADIWG
                   # foreign key - attributes []
                   unless hKey[:fkLocalAttributes].empty?
                      @html.em('Local Attribute(s):')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         hKey[:fkLocalAttributes].each do |attribute|
                            @html.text!(attribute)
                            @html.br
@@ -38,7 +38,7 @@ module ADIWG
                   # foreign key - referenced attributes []
                   unless hKey[:fkReferencedAttributes].empty?
                      @html.em('Referenced Attribute(s):')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         hKey[:fkReferencedAttributes].each do |attribute|
                            @html.text!(attribute)
                            @html.br

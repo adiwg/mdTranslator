@@ -13,7 +13,7 @@ require_relative 'html_responsibility'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_Maintenance
 
@@ -28,7 +28,7 @@ module ADIWG
                   scopeClass = Html_Scope.new(@html)
                   responsibilityClass = Html_Responsibility.new(@html)
 
-                  @html.section(:class => 'block') do
+                  @html.div(:class => 'block') do
 
                      # maintenance - frequency
                      unless hMaint[:frequency].nil?
@@ -46,13 +46,13 @@ module ADIWG
 
                      # maintenance - scopes [] {scope}
                      unless hMaint[:scopes].empty?
-                        @html.details do
-                           @html.summary('Maintenance Scopes', {'class' => 'h5'})
-                           @html.section(:class => 'block') do
+                        @html.div do
+                           @html.div('Maintenance Scopes', {'class' => 'h5'})
+                           @html.div(:class => 'block') do
                               hMaint[:scopes].each do |hScope|
-                                 @html.details do
-                                    @html.summary(hScope[:scopeCode], 'class' => 'h5')
-                                    @html.section(:class => 'block') do
+                                 @html.div do
+                                    @html.div(hScope[:scopeCode], 'class' => 'h5')
+                                    @html.div(:class => 'block') do
                                        scopeClass.writeHtml(hScope)
                                     end
                                  end
@@ -63,13 +63,13 @@ module ADIWG
 
                      # maintenance - contacts [] {responsibility}
                      unless hMaint[:contacts].empty?
-                        @html.details do
-                           @html.summary('Maintenance Contacts', {'class' => 'h5'})
-                           @html.section(:class => 'block') do
+                        @html.div do
+                           @html.div('Maintenance Contacts', {'class' => 'h5'})
+                           @html.div(:class => 'block') do
                               hMaint[:contacts].each do |hContact|
-                                 @html.details do
-                                    @html.summary(hContact[:roleName], 'class' => 'h5')
-                                    @html.section(:class => 'block') do
+                                 @html.div do
+                                    @html.div(hContact[:roleName], 'class' => 'h5')
+                                    @html.div(:class => 'block') do
                                        responsibilityClass.writeHtml(hContact)
                                     end
                                  end

@@ -12,7 +12,7 @@ require_relative 'html_identifier'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_Medium
 
@@ -28,9 +28,9 @@ module ADIWG
 
                   # medium - specification {citation}
                   unless hMedium[:mediumSpecification].empty?
-                     @html.details do
-                        @html.summary('Medium Specification', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Medium Specification', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            citationClass.writeHtml(hMedium[:mediumSpecification])
                         end
                      end
@@ -73,9 +73,9 @@ module ADIWG
 
                   # medium - identifier {identifier}
                   unless hMedium[:identifier].empty?
-                     @html.details do
-                        @html.summary('Identifier for the Medium', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Identifier for the Medium', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            identifierClass.writeHtml(hMedium[:identifier])
                         end
                      end

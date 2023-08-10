@@ -12,7 +12,7 @@ require_relative 'html_citation'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_EntityAttribute
 
@@ -50,7 +50,7 @@ module ADIWG
                   # entity attribute - definition
                   unless hAttribute[:attributeDefinition].nil?
                      @html.em('Definition: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hAttribute[:attributeDefinition])
                      end
                   end
@@ -128,9 +128,9 @@ module ADIWG
 
                   # entity attribute - range of values [] {citation}
                   hAttribute[:valueRange].each do |hRange|
-                     @html.details do
-                        @html.summary('Range of Values', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Range of Values', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
 
                            # range of values - minimum value
                            unless hRange[:minRangeValue].nil?
@@ -152,9 +152,9 @@ module ADIWG
 
                   # entity attribute - time period of values {timePeriod}
                   hAttribute[:timePeriod].each do |hPeriod|
-                     @html.details do
-                        @html.summary('Time Period of Values', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Time Period of Values', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            periodClass.writeHtml(hPeriod)
                         end
                      end
@@ -162,9 +162,9 @@ module ADIWG
 
                   # entity attribute - attribute reference {citation}
                   unless hAttribute[:attributeReference].empty?
-                     @html.details do
-                        @html.summary('Reference', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Reference', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            citationClass.writeHtml(hAttribute[:attributeReference])
                         end
                      end

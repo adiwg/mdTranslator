@@ -9,7 +9,7 @@ require_relative 'html_citation'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_GeologicAge
 
@@ -39,7 +39,7 @@ module ADIWG
                   # geologic age - age uncertainty
                   unless hGeoAge[:ageUncertainty].nil?
                      @html.em('Age Uncertainty: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hGeoAge[:ageUncertainty])
                      end
                   end
@@ -47,16 +47,16 @@ module ADIWG
                   # geologic age - age explanation
                   unless hGeoAge[:ageExplanation].nil?
                      @html.em('Age Determination Methodology: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hGeoAge[:ageExplanation])
                      end
                   end
 
                   # geologic age - age references [] {citation}
                   hGeoAge[:ageReferences].each do |hCitation|
-                     @html.details do
-                        @html.summary('Age Reference', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Age Reference', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            citationClass.writeHtml(hCitation)
                         end
                      end

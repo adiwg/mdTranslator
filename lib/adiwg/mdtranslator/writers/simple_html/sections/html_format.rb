@@ -12,7 +12,7 @@ require_relative 'html_citation'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_Format
 
@@ -27,9 +27,9 @@ module ADIWG
 
                   # resource format - format specification {citation}
                   unless hFormat[:formatSpecification].empty?
-                     @html.details do
-                        @html.summary(hFormat[:formatSpecification][:title], {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div(hFormat[:formatSpecification][:title], {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            citationClass.writeHtml(hFormat[:formatSpecification])
                         end
                      end
@@ -52,7 +52,7 @@ module ADIWG
                   # distribution - technical prerequisite
                   unless hFormat[:technicalPrerequisite].nil?
                      @html.em('Technical Prerequisite:')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hFormat[:technicalPrerequisite])
                      end
                   end

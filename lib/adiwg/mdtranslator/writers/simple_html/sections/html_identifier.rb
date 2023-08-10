@@ -13,7 +13,7 @@ require_relative 'html_citation'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_Identifier
 
@@ -57,16 +57,16 @@ module ADIWG
                   # identifier - description
                   unless hIdentifier[:description].nil?
                      @html.em(' Description:')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hIdentifier[:description])
                      end
                   end
 
                   # identifier - authority {citation}
                   unless hIdentifier[:citation].empty?
-                     @html.details do
-                        @html.summary('Authority', {'id' => 'metadata-identifier', 'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Authority', {'id' => 'metadata-identifier', 'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            citationClass.writeHtml(hIdentifier[:citation])
                         end
                      end

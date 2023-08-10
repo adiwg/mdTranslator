@@ -11,7 +11,7 @@ require_relative 'html_datetime'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_OrderProcess
 
@@ -27,7 +27,7 @@ module ADIWG
                   # order process - order instructions
                   unless hOrder[:orderingInstructions].nil?
                      @html.em('Order instructions: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hOrder[:orderingInstructions])
                      end
                   end

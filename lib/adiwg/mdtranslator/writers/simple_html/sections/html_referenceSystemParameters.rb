@@ -11,7 +11,7 @@ require_relative 'html_verticalDatumParameters'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_ReferenceSystemParameters
 
@@ -28,9 +28,9 @@ module ADIWG
 
                   # reference parameter set - projection
                   unless hParamSet[:projection].empty?
-                     @html.details do
-                        @html.summary('Projection Parameters', {'id' => 'projection', 'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Projection Parameters', {'id' => 'projection', 'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            projectionClass.writeHtml(hParamSet[:projection])
                         end
                      end
@@ -38,9 +38,9 @@ module ADIWG
 
                   # reference parameter set - geodetic
                   unless hParamSet[:geodetic].empty?
-                     @html.details do
-                        @html.summary('Geodetic Parameters', {'id' => 'geodetic', 'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Geodetic Parameters', {'id' => 'geodetic', 'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            ellipsoidClass.writeHtml(hParamSet[:geodetic])
                         end
                      end
@@ -48,9 +48,9 @@ module ADIWG
 
                   # reference parameter set - vertical datum
                   unless hParamSet[:verticalDatum].empty?
-                     @html.details do
-                        @html.summary('Vertical Datum Parameters', {'id' => 'verticalDatum', 'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Vertical Datum Parameters', {'id' => 'verticalDatum', 'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            verticalClass.writeHtml(hParamSet[:verticalDatum])
                         end
                      end

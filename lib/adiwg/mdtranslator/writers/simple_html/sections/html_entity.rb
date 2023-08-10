@@ -15,7 +15,7 @@ require_relative 'html_citation'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_Entity
 
@@ -37,9 +37,9 @@ module ADIWG
                      eName = hEntity[:entityCode] unless hEntity[:entityCode].nil?
                      eName = hEntity[:entityName] unless hEntity[:entityName].nil?
 
-                     @html.details do
-                        @html.summary(eName, {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div(eName, {'class' => 'h5'})
+                        @html.div(:class => 'block') do
 
                            # entity - entity id
                            unless hEntity[:entityId].nil?
@@ -65,7 +65,7 @@ module ADIWG
                            # entity - alias names
                            hEntity[:entityAlias].each do |otherName|
                               @html.em('Alias: ')
-                              @html.section(:class => 'block') do
+                              @html.div(:class => 'block') do
                                  @html.text!(otherName)
                               end
                            end
@@ -73,7 +73,7 @@ module ADIWG
                            # entity - definition
                            unless hEntity[:entityDefinition].nil?
                               @html.em('Definition: ')
-                              @html.section(:class => 'block') do
+                              @html.div(:class => 'block') do
                                  @html.text!(hEntity[:entityDefinition])
                               end
                            end
@@ -81,7 +81,7 @@ module ADIWG
                            # entity - primary key
                            unless hEntity[:primaryKey].empty?
                               @html.em('Primary Key Attribute(s):')
-                              @html.section(:class => 'block') do
+                              @html.div(:class => 'block') do
                                  hEntity[:primaryKey].each do |attribute|
                                     @html.text!(attribute)
                                     @html.br
@@ -115,9 +115,9 @@ module ADIWG
                               iName = 'index'
                               iName = hIndex[:indexCode] unless hIndex[:indexCode].nil?
                               iName = hIndex[:indexName] unless hIndex[:indexName].nil?
-                              @html.details do
-                                 @html.summary('Index: '+iName, {'class' => 'h5'})
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div('Index: '+iName, {'class' => 'h5'})
+                                 @html.div(:class => 'block') do
                                     indexClass.writeHtml(hIndex)
                                  end
                               end
@@ -125,9 +125,9 @@ module ADIWG
 
                            # entity - foreign keys [] {entityForeignKey}
                            hEntity[:foreignKeys].each do |hForeign|
-                              @html.details do
-                                 @html.summary('ForeignKey', {'class' => 'h5'})
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div('ForeignKey', {'class' => 'h5'})
+                                 @html.div(:class => 'block') do
                                     foreignClass.writeHtml(hForeign)
                                  end
                               end
@@ -135,9 +135,9 @@ module ADIWG
 
                            # entity - entity reference [] {citation}
                            hEntity[:entityReferences].each do |hReference|
-                              @html.details do
-                                 @html.summary('Reference', {'class' => 'h5'})
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div('Reference', {'class' => 'h5'})
+                                 @html.div(:class => 'block') do
                                     citationClass.writeHtml(hReference)
                                  end
                               end
@@ -148,9 +148,9 @@ module ADIWG
                               aName = 'attribute'
                               aName = hAttribute[:attributeCode] unless hAttribute[:attributeCode].nil?
                               aName = hAttribute[:attributeName] unless hAttribute[:attributeName].nil?
-                              @html.details do
-                                 @html.summary('Attribute: '+aName, {'class' => 'h5'})
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div('Attribute: '+aName, {'class' => 'h5'})
+                                 @html.div(:class => 'block') do
                                     attributeClass.writeHtml(hAttribute)
                                  end
                               end

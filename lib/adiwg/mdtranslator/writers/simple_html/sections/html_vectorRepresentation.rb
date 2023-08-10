@@ -11,7 +11,7 @@ require_relative 'html_scope'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_VectorRepresentation
 
@@ -27,9 +27,9 @@ module ADIWG
 
                   # vector representation - scope
                   hVector[:scope].each do |scope|
-                     @html.details do
-                        @html.summary('Scope ', 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Scope ', 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            scopeClass.writeHtml(hVector[:scope])
                         end
                      end
@@ -45,9 +45,9 @@ module ADIWG
 
                   # vector representation - vector object []
                   hVector[:vectorObject].each do |hObject|
-                     @html.details do
-                        @html.summary('Vector Object ', 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Vector Object ', 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            objectClass.writeHtml(hObject)
                         end
                      end

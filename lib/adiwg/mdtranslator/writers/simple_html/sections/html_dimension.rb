@@ -10,7 +10,7 @@ require_relative 'html_measure'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_Dimension
 
@@ -40,7 +40,7 @@ module ADIWG
                   # dimension - description
                   unless hDimension[:dimensionDescription].nil?
                      @html.em('Description: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hDimension[:dimensionDescription])
                      end
                   end
@@ -55,7 +55,7 @@ module ADIWG
                   # dimension - resolution {resolution}
                   unless hDimension[:resolution].empty?
                      @html.em('Resolution:')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         measureClass.writeHtml(hDimension[:resolution])
                      end
                   end

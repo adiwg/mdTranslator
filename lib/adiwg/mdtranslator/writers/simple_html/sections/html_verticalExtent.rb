@@ -10,7 +10,7 @@ require_relative 'html_spatialReference'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_VerticalExtent
 
@@ -26,7 +26,7 @@ module ADIWG
                   # vertical extent - description
                   unless hExtent[:description].nil?
                      @html.em('Description: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hExtent[:description])
                      end
                   end
@@ -48,7 +48,7 @@ module ADIWG
                   # vertical extent - CRS ID {spatialReference}
                   unless hExtent[:crsId].empty?
                      @html.em('Reference System: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         referenceClass.writeHtml(hExtent[:crsId])
                      end
                   end

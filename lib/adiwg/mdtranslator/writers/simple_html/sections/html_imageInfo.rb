@@ -10,7 +10,7 @@ require_relative 'html_identifier'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_ImageInfo
 
@@ -60,9 +60,9 @@ module ADIWG
 
                   # image information - image quality code {identifier}
                   unless hImage[:imageQualityCode].empty?
-                     @html.details do
-                        @html.summary('Image Quality Code', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Image Quality Code', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            identifierClass.writeHtml(hImage[:imageQualityCode])
                         end
                      end

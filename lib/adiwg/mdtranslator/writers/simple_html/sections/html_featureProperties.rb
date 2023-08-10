@@ -9,7 +9,7 @@ require_relative 'html_identifier'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_FeatureProperty
 
@@ -32,16 +32,16 @@ module ADIWG
                   # feature properties - description
                   unless hProperty[:description].nil?
                      @html.em('Description: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hProperty[:description])
                      end
                   end
 
                   # feature properties - identifier [] {identifier}
                   hProperty[:identifiers].each do |hIdentifier|
-                     @html.details do
-                        @html.summary('Identifier', 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Identifier', 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            identifierClass.writeHtml(hIdentifier)
                         end
                      end
@@ -57,7 +57,7 @@ module ADIWG
                   # feature properties - acquisition method
                   unless hProperty[:featureScope].nil?
                      @html.em('Acquisition Method: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hProperty[:acquisitionMethod])
                      end
                   end

@@ -10,7 +10,7 @@ require_relative 'html_boundingBox'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_GeometryCollection
 
@@ -26,9 +26,9 @@ module ADIWG
 
                   # geometry collection - objects
                   hCollection[:geometryObjects].each do |hObject|
-                     @html.details do
-                        @html.summary(hObject[:type], 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div(hObject[:type], 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            geometryClass.writeHtml(hObject)
                         end
                      end
@@ -36,9 +36,9 @@ module ADIWG
 
                   # geometry collection - user bounding box
                   unless hCollection[:bbox].empty?
-                     @html.details do
-                        @html.summary('User Provided Bounding Box', 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('User Provided Bounding Box', 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            bbox = {}
                            bbox[:westLongitude] = hCollection[:bbox][0]
                            bbox[:eastLongitude] = hCollection[:bbox][2]
@@ -51,9 +51,9 @@ module ADIWG
 
                   # geometry collection - computed bounding box
                   unless hCollection[:computedBbox].empty?
-                     @html.details do
-                        @html.summary('Computed Bounding Box', 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Computed Bounding Box', 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            boxClass.writeHtml(hCollection[:computedBbox])
                         end
                      end
@@ -61,9 +61,9 @@ module ADIWG
 
                   # geographic element - native GeoJson
                   unless hCollection[:nativeGeoJson].empty?
-                     @html.details do
-                        @html.summary('GeoJson', 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('GeoJson', 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            @html.text!(hCollection[:nativeGeoJson].to_json)
                         end
                      end

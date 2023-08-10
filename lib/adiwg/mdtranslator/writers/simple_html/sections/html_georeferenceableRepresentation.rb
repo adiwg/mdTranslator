@@ -11,7 +11,7 @@ require_relative 'html_scope'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_GeoreferenceableRepresentation
 
@@ -28,9 +28,9 @@ module ADIWG
 
                   # georeferenceable representation - scope
                   hGeoreferenceable[:scope].each do |scope|
-                     @html.details do
-                        @html.summary('Scope ', 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Scope ', 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            scopeClass.writeHtml(hGeoreferenceable[:scope])
                         end
                      end
@@ -39,9 +39,9 @@ module ADIWG
 
                   # georeferenceable representation - grid {gridRepresentation}
                   unless hGeoreferenceable[:gridRepresentation].empty?
-                     @html.details do
-                        @html.summary('Grid Information ', 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Grid Information ', 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            gridClass.writeHtml(hGeoreferenceable[:gridRepresentation])
                         end
                      end
@@ -60,7 +60,7 @@ module ADIWG
                   # georeferenceable representation - orientation parameter description
                   unless hGeoreferenceable[:orientationParameterDescription].nil?
                      @html.em('Orientation Parameter Description: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hGeoreferenceable[:orientationParameterDescription])
                      end
                   end
@@ -74,9 +74,9 @@ module ADIWG
 
                   # georeferenceable representation - parameter citation {citation}
                   hGeoreferenceable[:parameterCitation].each do |hCitation|
-                     @html.details do
-                        @html.summary('Parameter Citation ', 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Parameter Citation ', 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            citationClass.writeHtml(hCitation)
                         end
                      end

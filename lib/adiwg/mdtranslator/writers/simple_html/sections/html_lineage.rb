@@ -14,7 +14,7 @@ require_relative 'html_source'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_Lineage
 
@@ -33,16 +33,16 @@ module ADIWG
                   # lineage - statement
                   unless hLineage[:statement].nil?
                      @html.em('Statement: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hLineage[:statement])
                      end
                   end
 
                   # lineage - scope
                   unless hLineage[:resourceScope].empty?
-                     @html.details do
-                        @html.summary('Scope', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Scope', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            scopeClass.writeHtml(hLineage[:resourceScope])
                         end
                      end
@@ -50,9 +50,9 @@ module ADIWG
 
                   # lineage - citation
                   hLineage[:lineageCitation].each do |hCitation|
-                     @html.details do
-                        @html.summary('Citation', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Citation', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            citationClass.writeHtml(hCitation)
                         end
                      end
@@ -60,9 +60,9 @@ module ADIWG
 
                   # lineage - data sources
                   hLineage[:dataSources].each do |hsource|
-                     @html.details do
-                        @html.summary('Data Source', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Data Source', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            sourceClass.writeHtml(hsource)
                         end
                      end
@@ -70,9 +70,9 @@ module ADIWG
 
                   # lineage - process steps
                   hLineage[:processSteps].each do |hStep|
-                     @html.details do
-                        @html.summary('Process Step', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Process Step', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            stepClass.writeHtml(hStep)
                         end
                      end

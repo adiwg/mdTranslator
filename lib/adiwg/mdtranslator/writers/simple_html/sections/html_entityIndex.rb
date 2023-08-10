@@ -8,7 +8,7 @@
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_EntityIndex
 
@@ -33,7 +33,7 @@ module ADIWG
                   # entity index - attribute names
                   unless hIndex[:attributeNames].empty?
                      @html.em('Index Attribute(s):')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         hIndex[:attributeNames].each do |attribute|
                            @html.text!(attribute)
                            @html.br

@@ -8,7 +8,7 @@
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_SecurityConstraint
 
@@ -35,7 +35,7 @@ module ADIWG
                   # security constraint - user note
                   unless hSecCon[:userNote].nil?
                      @html.em('User Note:')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hSecCon[:userNote])
                      end
                   end
@@ -43,7 +43,7 @@ module ADIWG
                   # security constraint - handling instructions
                   unless hSecCon[:handling].nil?
                      @html.em('handling Instructions:')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hSecCon[:handling])
                      end
                   end

@@ -11,7 +11,7 @@ require_relative 'html_onlineResource'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_Allocation
 
@@ -79,9 +79,9 @@ module ADIWG
 
                   # allocation - responsible parties [] {responsibleParty}
                   hAllocation[:responsibleParties].each do |hResponsibility|
-                     @html.details do
-                        @html.summary(hResponsibility[:roleName], 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div(hResponsibility[:roleName], 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            responsibilityClass.writeHtml(hResponsibility)
                         end
                      end
@@ -89,9 +89,9 @@ module ADIWG
 
                   # allocation - online resource [] {onlineResource}
                   hAllocation[:onlineResources].each do |hOnline|
-                     @html.details do
-                        @html.summary('Online Resource', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Online Resource', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            onlineClass.writeHtml(hOnline)
                         end
                      end
@@ -100,7 +100,7 @@ module ADIWG
                   # allocation - comment
                   unless hAllocation[:comment].nil?
                      @html.em('Comment: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hAllocation[:comment])
                      end
                   end

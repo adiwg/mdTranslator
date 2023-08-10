@@ -11,7 +11,7 @@ require_relative 'html_citation'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_Keyword
 
@@ -25,13 +25,13 @@ module ADIWG
                   citationClass = Html_Citation.new(@html)
 
                   # keywords - type
-                  @html.details do
+                  @html.div do
                      type = hKeyword[:keywordType]
                      if type.nil?
                         type = 'Unclassified'
                      end
-                     @html.summary(type, {'class' => 'h5'})
-                     @html.section(:class => 'block') do
+                     @html.div(type, {'class' => 'h5'})
+                     @html.div(:class => 'block') do
 
                         # keywords
                         @html.ul do
@@ -48,9 +48,9 @@ module ADIWG
 
                         # thesaurus
                         unless hKeyword[:thesaurus].empty?
-                           @html.details do
-                              @html.summary('Thesaurus', {'class' => 'h5'})
-                              @html.section(:class => 'block') do
+                           @html.div do
+                              @html.div('Thesaurus', {'class' => 'h5'})
+                              @html.div(:class => 'block') do
                                  citationClass.writeHtml(hKeyword[:thesaurus])
                               end
                            end

@@ -10,7 +10,7 @@ require_relative 'html_distributor'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_Distribution
 
@@ -26,7 +26,7 @@ module ADIWG
                   # distribution - description
                   unless hDistribution[:description].nil?
                      @html.em('Description:')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hDistribution[:description])
                      end
                   end
@@ -34,16 +34,16 @@ module ADIWG
                   # distribution - liability statement
                   unless hDistribution[:liabilityStatement].nil?
                      @html.em('Liability Statement:')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hDistribution[:liabilityStatement])
                      end
                   end
 
                   # distribution - distributor [] {distributor}
                   hDistribution[:distributor].each do |hDistributor|
-                     @html.details do
-                        @html.summary('Distributor', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Distributor', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            distributorClass.writeHtml(hDistributor)
                         end
                      end

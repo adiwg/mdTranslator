@@ -20,7 +20,7 @@ require_relative 'html_maintenance'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_MetadataInfo
 
@@ -49,9 +49,9 @@ module ADIWG
 
                   # metadataInfo - metadata identifier {identifier}
                   unless hMetaInfo[:metadataIdentifier].empty?
-                     @html.details do
-                        @html.summary('Metadata Identifier', {'id' => 'metadataInfo-identifier', 'class' => 'h3'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Metadata Identifier', {'id' => 'metadataInfo-identifier', 'class' => 'h3'})
+                        @html.div(:class => 'block') do
                            identifierClass.writeHtml(hMetaInfo[:metadataIdentifier])
                         end
                      end
@@ -59,9 +59,9 @@ module ADIWG
 
                   # metadataInfo - parent metadata {citation}
                   unless hMetaInfo[:parentMetadata].empty?
-                     @html.details do
-                        @html.summary('Parent Metadata', {'id' => 'metadataInfo-parent', 'class' => 'h3'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Parent Metadata', {'id' => 'metadataInfo-parent', 'class' => 'h3'})
+                        @html.div(:class => 'block') do
                            citationClass.writeHtml(hMetaInfo[:parentMetadata])
                         end
                      end
@@ -69,15 +69,15 @@ module ADIWG
 
                   # metadataInfo - metadata locales
                   unless hMetaInfo[:defaultMetadataLocale].empty? && hMetaInfo[:otherMetadataLocales].empty?
-                     @html.details do
-                        @html.summary('Metadata Locales', {'id' => 'metadataInfo-locale', 'class' => 'h3'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Metadata Locales', {'id' => 'metadataInfo-locale', 'class' => 'h3'})
+                        @html.div(:class => 'block') do
 
                            # default metadata locales {locale}
                            unless hMetaInfo[:defaultMetadataLocale].empty?
-                              @html.details do
-                                 @html.summary('Default Locale', {'class' => 'h5'})
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div('Default Locale', {'class' => 'h5'})
+                                 @html.div(:class => 'block') do
                                     localeClass.writeHtml(hMetaInfo[:defaultMetadataLocale])
                                  end
                               end
@@ -85,9 +85,9 @@ module ADIWG
 
                            # other metadata locales [] {locale}
                            hMetaInfo[:otherMetadataLocales].each do |hLocale|
-                              @html.details do
-                                 @html.summary('Other Locale', {'class' => 'h5'})
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div('Other Locale', {'class' => 'h5'})
+                                 @html.div(:class => 'block') do
                                     localeClass.writeHtml(hLocale)
                                  end
                               end
@@ -99,13 +99,13 @@ module ADIWG
 
                   # metadataInfo - contacts [] {responsibility}
                   unless hMetaInfo[:metadataContacts].empty?
-                     @html.details do
-                        @html.summary('Metadata Contacts', {'id' => 'metadataInfo-contacts', 'class' => 'h3'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Metadata Contacts', {'id' => 'metadataInfo-contacts', 'class' => 'h3'})
+                        @html.div(:class => 'block') do
                            hMetaInfo[:metadataContacts].each do |hResponsibility|
-                              @html.details do
-                                 @html.summary(hResponsibility[:roleName], 'class' => 'h5')
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div(hResponsibility[:roleName], 'class' => 'h5')
+                                 @html.div(:class => 'block') do
                                     responsibilityClass.writeHtml(hResponsibility)
                                  end
                               end
@@ -116,9 +116,9 @@ module ADIWG
 
                   # metadataInfo - dates [] {date}
                   unless hMetaInfo[:metadataDates].empty?
-                     @html.details do
-                        @html.summary('Metadata Dates', {'id' => 'metadataInfo-dates', 'class' => 'h3'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Metadata Dates', {'id' => 'metadataInfo-dates', 'class' => 'h3'})
+                        @html.div(:class => 'block') do
                            hMetaInfo[:metadataDates].each do |hDate|
                               @html.em('Date: ')
                               dateClass.writeHtml(hDate)
@@ -130,13 +130,13 @@ module ADIWG
 
                   # metadataInfo - linkages [] {onlineResource}
                   unless hMetaInfo[:metadataLinkages].empty?
-                     @html.details do
-                        @html.summary('Metadata Online Resource', {'id' => 'metadataInfo-links', 'class' => 'h3'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Metadata Online Resource', {'id' => 'metadataInfo-links', 'class' => 'h3'})
+                        @html.div(:class => 'block') do
                            hMetaInfo[:metadataLinkages].each do |hOnline|
-                              @html.details do
-                                 @html.summary('Online Resource', {'class' => 'h5'})
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div('Online Resource', {'class' => 'h5'})
+                                 @html.div(:class => 'block') do
                                     onlineClass.writeHtml(hOnline)
                                  end
                               end
@@ -147,13 +147,13 @@ module ADIWG
 
                   # metadataInfo - constraints [] {constraint}
                   unless hMetaInfo[:metadataConstraints].empty?
-                     @html.details do
-                        @html.summary('Metadata Constraints', {'id' => 'metadataInfo-constraint', 'class' => 'h3'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Metadata Constraints', {'id' => 'metadataInfo-constraint', 'class' => 'h3'})
+                        @html.div(:class => 'block') do
                            hMetaInfo[:metadataConstraints].each do |hConstraint|
-                              @html.details do
-                                 @html.summary(hConstraint[:type].capitalize+' Constraint', {'class' => 'h5'})
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div(hConstraint[:type].capitalize+' Constraint', {'class' => 'h5'})
+                                 @html.div(:class => 'block') do
                                     constraintClass.writeHtml(hConstraint)
                                  end
                               end
@@ -164,9 +164,9 @@ module ADIWG
 
                   # metadataInfo - maintenance {maintenance}
                   unless hMetaInfo[:metadataMaintenance].empty?
-                     @html.details do
-                        @html.summary('Metadata Maintenance', {'id' => 'metadataInfo-maintenance', 'class' => 'h3'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Metadata Maintenance', {'id' => 'metadataInfo-maintenance', 'class' => 'h3'})
+                        @html.div(:class => 'block') do
                            maintClass.writeHtml(hMetaInfo[:metadataMaintenance])
                         end
                      end
@@ -174,13 +174,13 @@ module ADIWG
 
                   # metadataInfo - alternate metadata references [] {citation}
                   unless hMetaInfo[:alternateMetadataReferences].empty?
-                     @html.details do
-                        @html.summary('Alternate Metadata Citations', {'id' => 'metadataInfo-alternate', 'class' => 'h3'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Alternate Metadata Citations', {'id' => 'metadataInfo-alternate', 'class' => 'h3'})
+                        @html.div(:class => 'block') do
                            hMetaInfo[:alternateMetadataReferences].each do |hCitation|
-                              @html.details do
-                                 @html.summary(hCitation[:title], 'class' => 'h5')
-                                 @html.section(:class => 'block') do
+                              @html.div do
+                                 @html.div(hCitation[:title], 'class' => 'h5')
+                                 @html.div(:class => 'block') do
                                     citationClass.writeHtml(hCitation)
                                  end
                               end

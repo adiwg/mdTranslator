@@ -24,7 +24,7 @@ require_relative 'html_metadataRepository'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_Body
 
@@ -108,14 +108,14 @@ module ADIWG
                      end
 
                      # report date
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.em('Report Generated:')
                         @html.text!(Time.new.inspect)
                      end
 
                      # metadata source
                      @html.h3('Metadata Source', 'id' => 'metadataSource')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.em('Metadata schema:')
                         @html.text!(hSchema[:name])
                         @html.br
@@ -127,11 +127,11 @@ module ADIWG
 
                      # contacts [] section
                      unless aContacts.empty?
-                        @html.details do
-                           @html.summary('Contacts', {'id' => 'body-contacts', 'class' => 'h2'})
-                           @html.section(:class => 'block') do
+                        @html.div do
+                           @html.div('Contacts', {'id' => 'body-contacts', 'class' => 'h2'})
+                           @html.div(:class => 'block') do
                               aContacts.each do |hContact|
-                                 @html.section(:class => 'block') do
+                                 @html.div(:class => 'block') do
                                     contactClass.writeHtml(hContact)
                                  end
                               end
@@ -142,10 +142,10 @@ module ADIWG
 
                      # metadata information section
                      unless hMetaInfo.empty?
-                        @html.details do
-                        @html.summary('Metadata Information', {'id' => 'body-metadataInfo', 'class' => 'h2'})
-                        @html.section(:class => 'block') do
-                              @html.section(:class => 'block') do
+                        @html.div do
+                        @html.div('Metadata Information', {'id' => 'body-metadataInfo', 'class' => 'h2'})
+                        @html.div(:class => 'block') do
+                              @html.div(:class => 'block') do
                                  metaInfoClass.writeHtml(hMetaInfo)
                               end
                            end
@@ -155,9 +155,9 @@ module ADIWG
 
                      # resource information section
                      unless hResourceInfo.empty?
-                        @html.details do
-                           @html.summary('Resource Information', {'id' => 'body-resourceInfo', 'class' => 'h2'})
-                           @html.section(:class => 'block') do
+                        @html.div do
+                           @html.div('Resource Information', {'id' => 'body-resourceInfo', 'class' => 'h2'})
+                           @html.div(:class => 'block') do
                               resourceClass.writeHtml(hResourceInfo)
                            end
                            @html.hr
@@ -165,10 +165,10 @@ module ADIWG
                      end
 
                      unless aDataQuality.nil? || aDataQuality.empty?
-                        @html.details do
-                           @html.summary('Data Quality', {'id' => 'body-dataQuality', 'class' => 'h2'})
+                        @html.div do
+                           @html.div('Data Quality', {'id' => 'body-dataQuality', 'class' => 'h2'})
                            aDataQuality.each do |hDataQuality|
-                              @html.section(:class => 'block') do
+                              @html.div(:class => 'block') do
                                  dataQualityClass.writeHtml(hDataQuality)
                               end
                            end
@@ -177,13 +177,13 @@ module ADIWG
 
                      # lineage section
                      unless aLineage.empty?
-                        @html.details do
-                           @html.summary('Resource Lineage', {'id' => 'body-lineage', 'class' => 'h2'})
-                           @html.section(:class => 'block') do
+                        @html.div do
+                           @html.div('Resource Lineage', {'id' => 'body-lineage', 'class' => 'h2'})
+                           @html.div(:class => 'block') do
                               aLineage.each do |hLineage|
-                                 @html.details do
-                                    @html.summary('Lineage', {'class' => 'h3'})
-                                    @html.section(:class => 'block') do
+                                 @html.div do
+                                    @html.div('Lineage', {'class' => 'h3'})
+                                    @html.div(:class => 'block') do
                                        lineageClass.writeHtml(hLineage)
                                     end
                                  end
@@ -195,13 +195,13 @@ module ADIWG
 
                      # distribution section
                      unless aDistribution.empty?
-                        @html.details do
-                           @html.summary('Resource Distribution', {'id' => 'body-distribution', 'class' => 'h2'})
-                           @html.section(:class => 'block') do
+                        @html.div do
+                           @html.div('Resource Distribution', {'id' => 'body-distribution', 'class' => 'h2'})
+                           @html.div(:class => 'block') do
                               aDistribution.each do |hDistribution|
-                                 @html.details do
-                                    @html.summary('Distribution', {'class' => 'h3'})
-                                    @html.section(:class => 'block') do
+                                 @html.div do
+                                    @html.div('Distribution', {'class' => 'h3'})
+                                    @html.div(:class => 'block') do
                                        distributionClass.writeHtml(hDistribution)
                                     end
                                  end
@@ -213,13 +213,13 @@ module ADIWG
 
                      # associated resource section
                      unless aAssociated.empty?
-                        @html.details do
-                           @html.summary('Associated Resources', {'id' => 'body-associatedResource', 'class' => 'h2'})
-                           @html.section(:class => 'block') do
+                        @html.div do
+                           @html.div('Associated Resources', {'id' => 'body-associatedResource', 'class' => 'h2'})
+                           @html.div(:class => 'block') do
                               aAssociated.each do |hAssociated|
-                                 @html.details do
-                                    @html.summary('Resource', {'class' => 'h3'})
-                                    @html.section(:class => 'block') do
+                                 @html.div do
+                                    @html.div('Resource', {'class' => 'h3'})
+                                    @html.div(:class => 'block') do
                                        associatedClass.writeHtml(hAssociated)
                                     end
                                  end
@@ -231,13 +231,13 @@ module ADIWG
 
                      # additional documentation section
                      unless aAdditional.empty?
-                        @html.details do
-                           @html.summary('Additional Documentation', {'id' => 'body-additionalDocument', 'class' => 'h2'})
-                           @html.section(:class => 'block') do
+                        @html.div do
+                           @html.div('Additional Documentation', {'id' => 'body-additionalDocument', 'class' => 'h2'})
+                           @html.div(:class => 'block') do
                               aAdditional.each do |hAdditional|
-                                 @html.details do
-                                    @html.summary('Document', {'class' => 'h3'})
-                                    @html.section(:class => 'block') do
+                                 @html.div do
+                                    @html.div('Document', {'class' => 'h3'})
+                                    @html.div(:class => 'block') do
                                        additionalClass.writeHtml(hAdditional)
                                     end
                                  end
@@ -249,13 +249,13 @@ module ADIWG
 
                      # data dictionary section
                      unless aDictionaries.empty?
-                        @html.details do
-                           @html.summary('Data Dictionaries', {'id' => 'body-dataDictionary', 'class' => 'h2'})
-                           @html.section(:class => 'block') do
+                        @html.div do
+                           @html.div('Data Dictionaries', {'id' => 'body-dataDictionary', 'class' => 'h2'})
+                           @html.div(:class => 'block') do
                               aDictionaries.each do |hDictionary|
-                                 @html.details do
-                                    @html.summary('Dictionary', {'class' => 'h3'})
-                                    @html.section(:class => 'block') do
+                                 @html.div do
+                                    @html.div('Dictionary', {'class' => 'h3'})
+                                    @html.div(:class => 'block') do
                                        dictionaryClass.writeHtml(hDictionary)
                                     end
                                  end
@@ -266,13 +266,13 @@ module ADIWG
 
                      # funding section
                      unless aFunding.empty?
-                        @html.details do
-                           @html.summary('Funding', {'id' => 'body-funding', 'class' => 'h2'})
-                           @html.section(:class => 'block') do
+                        @html.div do
+                           @html.div('Funding', {'id' => 'body-funding', 'class' => 'h2'})
+                           @html.div(:class => 'block') do
                               aFunding.each do |hFunding|
-                                 @html.details do
-                                    @html.summary('Funds', {'class' => 'h3'})
-                                    @html.section(:class => 'block') do
+                                 @html.div do
+                                    @html.div('Funds', {'class' => 'h3'})
+                                    @html.div(:class => 'block') do
                                        fundingClass.writeHtml(hFunding)
                                     end
                                  end
@@ -283,13 +283,13 @@ module ADIWG
 
                      # metadata repository section
                      unless aRepositories.empty?
-                        @html.details do
-                           @html.summary('Metadata Repositories', {'id' => 'body-repository', 'class' => 'h2'})
-                           @html.section(:class => 'block') do
+                        @html.div do
+                           @html.div('Metadata Repositories', {'id' => 'body-repository', 'class' => 'h2'})
+                           @html.div(:class => 'block') do
                               aRepositories.each do |hRepository|
-                                 @html.details do
-                                    @html.summary('Repository', {'class' => 'h3'})
-                                    @html.section(:class => 'block') do
+                                 @html.div do
+                                    @html.div('Repository', {'class' => 'h3'})
+                                    @html.div(:class => 'block') do
                                        repositoryClass.writeHtml(hRepository)
                                     end
                                  end

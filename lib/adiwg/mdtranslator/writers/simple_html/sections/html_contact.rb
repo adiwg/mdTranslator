@@ -13,7 +13,7 @@ require_relative 'html_graphic'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_Contact
 
@@ -27,9 +27,9 @@ module ADIWG
                   onlineClass = Html_OnlineResource.new(@html)
                   graphicClass = Html_Graphic.new(@html)
 
-                  @html.details do
-                     @html.summary(hContact[:name], {'id' => 'CID_' + hContact[:contactId], 'class' => 'h3'})
-                     @html.section(:class => 'block') do
+                  @html.div do
+                     @html.div(hContact[:name], {'id' => 'CID_' + hContact[:contactId], 'class' => 'h3'})
+                     @html.div(:class => 'block') do
 
                         # contact - contact ID
                         unless hContact[:contactId].nil?
@@ -69,9 +69,9 @@ module ADIWG
 
                         # contact - address
                         hContact[:addresses].each do |hAddress|
-                           @html.details do
-                              @html.summary('Address', {'class' => 'h5'})
-                              @html.section(:class => 'block') do
+                           @html.div do
+                              @html.div('Address', {'class' => 'h5'})
+                              @html.div(:class => 'block') do
 
                                  # address - delivery points
                                  hAddress[:deliveryPoints].each do |addLine|
@@ -118,9 +118,9 @@ module ADIWG
 
                         # contact - phones
                         hContact[:phones].each do |hPhone|
-                           @html.details do
-                              @html.summary('Phone', {'class' => 'h5'})
-                              @html.section(:class => 'block') do
+                           @html.div do
+                              @html.div('Phone', {'class' => 'h5'})
+                              @html.div(:class => 'block') do
 
                                  # phone - name
                                  unless hPhone[:phoneName].nil?
@@ -158,9 +158,9 @@ module ADIWG
 
                         # contact - online resource []
                         hContact[:onlineResources].each do |hOnline|
-                           @html.details do
-                              @html.summary('Online Resource', {'class' => 'h5'})
-                              @html.section(:class => 'block') do
+                           @html.div do
+                              @html.div('Online Resource', {'class' => 'h5'})
+                              @html.div(:class => 'block') do
                                  onlineClass.writeHtml(hOnline)
                               end
                            end
@@ -168,9 +168,9 @@ module ADIWG
 
                         # contact - logos []
                         hContact[:logos].each do |hLogo|
-                           @html.details do
-                              @html.summary('Logo Graphic', {'class' => 'h5'})
-                              @html.section(:class => 'block') do
+                           @html.div do
+                              @html.div('Logo Graphic', {'class' => 'h5'})
+                              @html.div(:class => 'block') do
                                  graphicClass.writeHtml(hLogo)
                               end
                            end

@@ -10,7 +10,7 @@ require_relative 'html_rangeElementDescription'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_Attribute
 
@@ -40,16 +40,16 @@ module ADIWG
                   # attribute - attribute description
                   unless hAttribute[:attributeDescription].nil?
                      @html.em('Attribute Description:')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hAttribute[:attributeDescription])
                      end
                   end
 
                   # attribute - attribute identifiers [] {identifier}
                   hAttribute[:attributeIdentifiers].each do |hIdentifier|
-                     @html.details do
-                        @html.summary('Identifier', 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Identifier', 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            identifierClass.writeHtml(hIdentifier)
                         end
                      end
@@ -120,9 +120,9 @@ module ADIWG
 
                   # attribute - range element description
                   hAttribute[:rangeElementDescription].each do |red|
-                     @html.details do
-                        @html.summary('Range Element Description', 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Range Element Description', 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            rangeElementDescriptionClass.writeHtml(red)
                         end
                      end
@@ -159,7 +159,7 @@ module ADIWG
                   # attribute - band boundary definitions
                   unless hAttribute[:bandBoundaryDefinition].nil?
                      @html.em('Band Boundary Definition:')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hAttribute[:bandBoundaryDefinition])
                      end
                   end

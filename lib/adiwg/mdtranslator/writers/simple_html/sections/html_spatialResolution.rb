@@ -16,7 +16,7 @@ require_relative 'html_geographicResolution'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_SpatialResolution
 
@@ -40,9 +40,9 @@ module ADIWG
 
                   # resolution - measure
                   unless hResolution[:measure].empty?
-                     @html.details do
-                        @html.summary('Resolution Measure', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Resolution Measure', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            measureClass.writeHtml(hResolution[:measure])
                         end
                      end
@@ -50,9 +50,9 @@ module ADIWG
 
                   # resolution - coordinate resolution
                   unless hResolution[:coordinateResolution].empty?
-                     @html.details do
-                        @html.summary('Coordinate Resolution', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Coordinate Resolution', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            coordinateClass.writeHtml(hResolution[:coordinateResolution])
                         end
                      end
@@ -60,9 +60,9 @@ module ADIWG
 
                   # resolution - bearing distance resolution
                   unless hResolution[:bearingDistanceResolution].empty?
-                     @html.details do
-                        @html.summary('Bearing Distance Resolution', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Bearing Distance Resolution', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            bearingClass.writeHtml(hResolution[:bearingDistanceResolution])
                         end
                      end
@@ -70,9 +70,9 @@ module ADIWG
 
                   # resolution - geographic resolution
                   unless hResolution[:geographicResolution].empty?
-                     @html.details do
-                        @html.summary('Geographic Resolution', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Geographic Resolution', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            geoClass.writeHtml(hResolution[:geographicResolution])
                         end
                      end
@@ -81,7 +81,7 @@ module ADIWG
                   # resolution - level of detail
                   unless hResolution[:levelOfDetail].nil?
                      @html.em('Level of Detail: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hResolution[:levelOfDetail])
                      end
                   end

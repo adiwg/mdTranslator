@@ -11,7 +11,7 @@ require_relative 'html_extent'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_Responsibility
                def initialize(html)
@@ -26,9 +26,9 @@ module ADIWG
                   # responsibility - role parties
                   hResponsibility[:parties].each do |hParty|
                      hContact = Html_Document.getContact(hParty[:contactId])
-                     @html.details do
-                        @html.summary(hContact[:name], 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div(hContact[:name], 'class' => 'h5')
+                        @html.div(:class => 'block') do
 
                            # party - contact ID
                            @html.em('Contact ID: ')
@@ -64,9 +64,9 @@ module ADIWG
 
                   # responsibility - role extent [] {extent}
                   hResponsibility[:roleExtents].each do |hExtent|
-                     @html.details do
-                        @html.summary('Extent', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Extent', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            extentClass.writeHtml(hExtent)
                         end
                      end

@@ -11,7 +11,7 @@ require_relative 'html_scope'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_GridRepresentation
 
@@ -27,9 +27,9 @@ module ADIWG
 
                   # grid representation - scope
                   hGrid[:scope].each do |scope|
-                     @html.details do
-                        @html.summary('Scope ', 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Scope ', 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            scopeClass.writeHtml(hGrid[:scope])
                         end
                      end
@@ -47,9 +47,9 @@ module ADIWG
                   dimensionCount = 0
                   hGrid[:dimension].each do |hDimension|
                      dimensionCount += 1
-                     @html.details do
-                        @html.summary('Dimension '+dimensionCount.to_s, 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Dimension '+dimensionCount.to_s, 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            dimensionClass.writeHtml(hDimension)
                         end
                      end

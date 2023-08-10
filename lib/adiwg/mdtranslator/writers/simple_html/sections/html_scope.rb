@@ -10,7 +10,7 @@ require_relative 'html_extent'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_Scope
 
@@ -33,9 +33,9 @@ module ADIWG
 
                   # scope - description [] {scopeDescription}
                   hScope[:scopeDescriptions].each do |hDescription|
-                     @html.details do
-                        @html.summary('Description', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Description', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            descriptionClass.writeHtml(hDescription)
                         end
                      end
@@ -43,9 +43,9 @@ module ADIWG
 
                   # scope - extent [] {extent}
                   hScope[:extents].each do |hExtent|
-                     @html.details do
-                        @html.summary('Extent', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Extent', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            extentClass.writeHtml(hExtent)
                         end
                      end

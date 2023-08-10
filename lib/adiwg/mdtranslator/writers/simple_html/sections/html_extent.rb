@@ -13,7 +13,7 @@ require_relative 'html_verticalExtent'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_Extent
 
@@ -31,16 +31,16 @@ module ADIWG
                   # extent - description
                   unless hExtent[:description].nil?
                      @html.em('Description: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hExtent[:description])
                      end
                   end
 
                   # extent - geographic extents
                   hExtent[:geographicExtents].each do |hGeographic|
-                     @html.details do
-                        @html.summary('Geographic Extent', {'class' => 'h5'})
-                        @html.section(:class => 'block extent-geographic') do
+                     @html.div do
+                        @html.div('Geographic Extent', {'class' => 'h5'})
+                        @html.div(:class => 'block extent-geographic') do
                            geographicClass.writeHtml(hGeographic)
                         end
                      end
@@ -48,9 +48,9 @@ module ADIWG
 
                   # extent - temporal extents
                   hExtent[:temporalExtents].each do |hTemporal|
-                     @html.details do
-                        @html.summary('Temporal Extent', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Temporal Extent', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            temporalClass.writeHtml(hTemporal)
                         end
                      end
@@ -58,9 +58,9 @@ module ADIWG
 
                   # extent - vertical extents
                   hExtent[:verticalExtents].each do |hVertical|
-                     @html.details do
-                        @html.summary('Vertical Extent', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Vertical Extent', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            verticalClass.writeHtml(hVertical)
                         end
                      end

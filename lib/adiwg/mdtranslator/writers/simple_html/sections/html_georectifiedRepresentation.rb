@@ -10,7 +10,7 @@ require_relative 'html_scope'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_GeorectifiedRepresentation
 
@@ -26,9 +26,9 @@ module ADIWG
 
                   # georectified representation - scope
                   hGeorectified[:scope].each do |scope|
-                     @html.details do
-                        @html.summary('Scope ', 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Scope ', 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            scopeClass.writeHtml(hGeorectified[:scope])
                         end
                      end
@@ -36,9 +36,9 @@ module ADIWG
 
                   # georectified representation - grid {gridRepresentation}
                   unless hGeorectified[:gridRepresentation].empty?
-                     @html.details do
-                        @html.summary('Grid Information ', 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Grid Information ', 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            gridClass.writeHtml(hGeorectified[:gridRepresentation])
                         end
                      end
@@ -52,7 +52,7 @@ module ADIWG
                   # georectified representation - check point description
                   unless hGeorectified[:checkPointDescription].nil?
                      @html.em('Check Point Description: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hGeorectified[:checkPointDescription])
                      end
                   end
@@ -60,7 +60,7 @@ module ADIWG
                   # georectified representation - corner points [ 4 coordinates ]
                   unless hGeorectified[:cornerPoints].nil?
                      @html.em('Corner Points: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hGeorectified[:cornerPoints].to_s)
                      end
                   end
@@ -68,7 +68,7 @@ module ADIWG
                   # georectified representation - center point [ 1 coordinate ]
                   unless hGeorectified[:centerPoint].nil?
                      @html.em('Center Point: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hGeorectified[:centerPoint].to_s)
                      end
                   end
@@ -83,7 +83,7 @@ module ADIWG
                   # georectified representation - transformation dimension description
                   unless hGeorectified[:transformationDimensionDescription].nil?
                      @html.em('Transformation Dimension Description: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hGeorectified[:transformationDimensionDescription])
                      end
                   end
@@ -91,7 +91,7 @@ module ADIWG
                   # georectified representation - transformation dimension mapping
                   unless hGeorectified[:transformationDimensionMapping].nil?
                      @html.em('Transformation Dimension Mapping: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hGeorectified[:transformationDimensionMapping])
                      end
                   end

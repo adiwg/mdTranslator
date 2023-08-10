@@ -16,7 +16,7 @@ require_relative 'html_duration'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_TimePeriod
 
@@ -64,16 +64,16 @@ module ADIWG
                   # time period - description
                   unless hPeriod[:description].nil?
                      @html.em('Description: ')
-                     @html.section(:class => 'block') do
+                     @html.div(:class => 'block') do
                         @html.text!(hPeriod[:description])
                      end
                   end
 
                   # time period - start geologic age {geologic age}
                   unless hPeriod[:startGeologicAge].empty?
-                     @html.details do
-                        @html.summary('Starting Geologic Age', 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Starting Geologic Age', 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            geoAgeClass.writeHtml(hPeriod[:startGeologicAge])
                         end
                      end
@@ -81,9 +81,9 @@ module ADIWG
 
                   # time period - end geologic age {geologic age}
                   unless hPeriod[:endGeologicAge].empty?
-                     @html.details do
-                        @html.summary('Ending Geologic Age', 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Ending Geologic Age', 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            geoAgeClass.writeHtml(hPeriod[:endGeologicAge])
                         end
                      end
@@ -91,9 +91,9 @@ module ADIWG
 
                   # time period - identifier {identifier}
                   unless hPeriod[:identifier].empty?
-                     @html.details do
-                        @html.summary('Identifier', 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Identifier', 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            identifierClass.writeHtml(hPeriod[:identifier])
                         end
                      end
@@ -101,9 +101,9 @@ module ADIWG
 
                   # time period - time interval
                   unless hPeriod[:timeInterval].empty?
-                     @html.details do
-                        @html.summary('Time Interval', 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Time Interval', 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            intervalClass.writeHtml(hPeriod[:timeInterval])
                         end
                      end
@@ -111,9 +111,9 @@ module ADIWG
 
                   # time period - duration
                   unless hPeriod[:duration].empty?
-                     @html.details do
-                        @html.summary('Duration', 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Duration', 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            durationClass.writeHtml(hPeriod[:duration])
                         end
                      end

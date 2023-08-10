@@ -3,7 +3,7 @@ require_relative 'html_citation'
 module ADIWG
   module Mdtranslator
     module Writers
-      module Html
+      SimpleHtml
         class Html_DataQuality
           def initialize(html)
             @html = html
@@ -14,10 +14,10 @@ module ADIWG
             scopeClass = Html_Scope.new(@html)
 
             unless hDataQuality[:scope].nil? || hDataQuality[:scope].empty?
-              @html.section(class: 'block') do
-                @html.details do
-                  @html.summary('Scope', {'class' => 'h5'})
-                  @html.section(class: 'block') do
+              @html.div(class: 'block') do
+                @html.div do
+                  @html.div('Scope', {'class' => 'h5'})
+                  @html.div(class: 'block') do
                     scopeClass.writeHtml(hDataQuality[:scope])
                   end
                 end
@@ -30,20 +30,20 @@ module ADIWG
                      hDataQuality[:standaloneQualityReport][:reportReference].nil? )
               report = hDataQuality[:standaloneQualityReport]
 
-              @html.section(class: 'block') do
-                @html.details do
-                  @html.summary('Standalone Quality Report', {'class' => 'h5'})
+              @html.div(class: 'block') do
+                @html.div do
+                  @html.div('Standalone Quality Report', {'class' => 'h5'})
                   unless report[:abstract].nil?
-                    @html.section(class: 'block') do
+                    @html.div(class: 'block') do
                       @html.em('Abstract:')
                       @html.text!(report[:abstract])
                     end
                   end
 
                   unless report[:reportReference].nil?
-                    @html.details do
-                      @html.summary('Report Reference', {'class' => 'h5'})
-                      @html.section(class: 'block') do
+                    @html.div do
+                      @html.div('Report Reference', {'class' => 'h5'})
+                      @html.div(class: 'block') do
                         citationClass.writeHtml(report[:reportReference])
                       end
                     end

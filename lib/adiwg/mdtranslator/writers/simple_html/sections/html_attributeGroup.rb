@@ -10,7 +10,7 @@ require_relative 'html_attribute'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_AttributeGroup
 
@@ -33,10 +33,10 @@ module ADIWG
                   # attribute group - attribute [] {attribute}
                   counter = 0
                   hGroup[:attributes].each do |hAttribute|
-                     @html.details do
+                     @html.div do
                         counter += 1
-                        @html.summary('Attribute '+counter.to_s, {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                        @html.div('Attribute '+counter.to_s, {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            attributeClass.writeHtml(hAttribute)
                         end
                      end

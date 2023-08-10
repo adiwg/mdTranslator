@@ -10,7 +10,7 @@ require_relative 'html_taxonomyClass'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_TaxonomyClass
 
@@ -57,9 +57,9 @@ module ADIWG
                   # taxonomic classification - sub-classification
                   unless hTaxon[:subClasses].empty?
                      hTaxon[:subClasses].each do |hSubClass|
-                        @html.details do
-                           @html.summary('Sub-Classification', {'class' => 'h5'})
-                           @html.section(:class => 'block') do
+                        @html.div do
+                           @html.div('Sub-Classification', {'class' => 'h5'})
+                           @html.div(:class => 'block') do
                               subClass.writeHtml(hSubClass)
                            end
                         end

@@ -12,7 +12,7 @@ require_relative 'html_transferOption'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_Distributor
 
@@ -29,9 +29,9 @@ module ADIWG
 
                   # distributor - contact {responsibility}
                   unless hDistributor[:contact].empty?
-                     @html.details do
-                        @html.summary('Contact', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Contact', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            responsibilityClass.writeHtml(hDistributor[:contact])
                         end
                      end
@@ -39,9 +39,9 @@ module ADIWG
 
                   # distributor - order process [] {orderProcess}
                   hDistributor[:orderProcess].each do |hOrder|
-                     @html.details do
-                        @html.summary('Order Process', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Order Process', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            orderClass.writeHtml(hOrder)
                         end
                      end
@@ -49,9 +49,9 @@ module ADIWG
 
                   # distributor - transfer options [] {transferOption}
                   hDistributor[:transferOptions].each do |hTransfer|
-                     @html.details do
-                        @html.summary('Transfer Option', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Transfer Option', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            transferClass.writeHtml(hTransfer)
                         end
                      end

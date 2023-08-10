@@ -15,7 +15,7 @@ require_relative 'html_format'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module SimpleHtml
 
             class Html_TransferOption
 
@@ -47,9 +47,9 @@ module ADIWG
 
                   # transfer options - online options [] {onlineResource}
                   hOption[:onlineOptions].each do |hOption|
-                     @html.details do
-                        @html.summary('Online Option', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Online Option', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            onlineClass.writeHtml(hOption)
                         end
                      end
@@ -57,9 +57,9 @@ module ADIWG
 
                   # transfer options - offline options [] {medium}
                   hOption[:offlineOptions].each do |hOption|
-                     @html.details do
-                        @html.summary('Offline Option', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Offline Option', {'class' => 'h5'})
+                        @html.div(:class => 'block') do
                            mediumClass.writeHtml(hOption)
                         end
                      end
@@ -67,9 +67,9 @@ module ADIWG
 
                   # transfer options - transfer frequency {duration}
                   unless hOption[:transferFrequency].empty?
-                     @html.details do
-                        @html.summary('Transfer Frequency', 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Transfer Frequency', 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            durationClass.writeHtml(hOption[:transferFrequency])
                         end
                      end
@@ -77,9 +77,9 @@ module ADIWG
 
                   # transfer options - distribution formats [] {format}
                   hOption[:distributionFormats].each do |hFormat|
-                     @html.details do
-                        @html.summary('Distribution Format Option', 'class' => 'h5')
-                        @html.section(:class => 'block') do
+                     @html.div do
+                        @html.div('Distribution Format Option', 'class' => 'h5')
+                        @html.div(:class => 'block') do
                            formatClass.writeHtml(hFormat)
                         end
                      end
