@@ -9,7 +9,7 @@ DCAT-US - mdTranslator
 | Title | dcat:title | citation.title |
 | Description | dcat:description | citation.abstract |
 | Tags | dcat:keyword | [resourceInfo.keywords *flatten*] **thesauri dropped** |
-| Last Update | dcat:modified | citation.dates.[most recent].date |
+| Last Update | dcat:modified | if resourceInfo.citation.date[any].dateType = "lastUpdated" or "lastRevised" or "revision" then <br> resourceInfo.citation.date[most recent] |
 | Publisher | dcat:publisher{name} | if citation.responsibleParty.[any].role = "publisher" then <br> contactId -> contact.name where isOrganization IS TRUE <br> else if exists resourceDistribution.distributor.contact then <br> [first contact] contactId -> contact.name where isOrganization IS TRUE |
 | Publisher Parent Organization | dcat:publisher{subOrganizationOf} | if citation.responsibleParty[any].role = "publisher" and exists contactId -> memberOfOrganization[0] and isOrganization is true <br> contactId -> contact.name <br> else if exists resourceDistribution.distributor.contact and exists contactId -> memberOfOrganization[0] and isOrganization IS TRUE <br> contactId -> contact.name |
 | Contact Name | dcat:contactPoint{fn} | resourceInfo.pointOfContact.parties[0].contactId -> contact.name |
@@ -39,12 +39,12 @@ DCAT-US - mdTranslator
 
 | Field Name | DCAT Name | mdJson Source |
 | --- | --- | --- |
-| Release Date | dcat:issued | ** |
-| Frequency | dcat:accrualPeriodicity | ** |
-| Language | dcat:language | ** |
-| Data Quality | dcat:dataQuality | ** |
-| Category | dcat:theme | ** |
-| Related Documents | dcat:references | ** |
+| Release Date | dcat:issued | if resourceInfo.citation.date[any].dateType = "publication" or "distributed" then <br> resourceInfo.citation.date[earliest] |
+| Frequency | dcat:accrualPeriodicity | [*ISO codelist MD_maintenanceFrequency can be used and several codes intersect with accrualPeriod codelist they are partially corresponding. A column of ISO8601 code equivalents could be added to MD_maintenanceFrequency to provide the coding expected https://resources.data.gov/schemas/dcat-us/v1.1/iso8601_guidance/#accrualperiodicity, community valuation should be determined*]  |
+| Language | dcat:language | [*language codelist could be used but needs to be bound with country corresponding to the RFC 5646 format https://datatracker.ietf.org/doc/html/rfc5646, such as "en-US", community valuation should be determined* |
+| Data Quality | dcat:dataQuality | [*this is a boolean to indicate whether data "conforms" to agency standards, value seems negligble*] |
+| Category | dcat:theme | where resourceInfo.keyword[any].thesaurus.title = "ISO Topic Category" <br> [resourceInfo.keyword.keyword[0, n] *flatten*]  |
+| Related Documents | dcat:references | associatedResource[all].resourceCitation.onlineResource[all].uri + additionalDocumentation[all].citation[all].onlineResource[all].uri [*comma separated*]|
 | Homepage URL | dcat:landingPage | ** |
 | Collection | dcat:isPartOf | ** |
 | System of Records | dcat:systemOfRecords | ** |
