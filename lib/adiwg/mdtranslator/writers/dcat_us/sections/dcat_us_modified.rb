@@ -13,10 +13,22 @@ module ADIWG
                   resourceInfo = intObj[:metadata][:resourceInfo]
                   citation = resourceInfo[:citation]
                   dates = citation[:dates]
-                  lastDateIndex = dates.length - 1
-                  # ToDo: mostRecentDateIndex = find most recent date
-                  modified = dates[lastDateIndex][:date]
-                  return modified
+
+                  mostRecentDate = nil
+                  mostRecentDateIndex = nil
+
+                  dates.each_with_index do |date, index|
+                     if date[:dateType] == "lastUpdated" || date[:dateType] == "lastRevised" || date[:dateType] == "revision"
+                        mostRecentDate = date[:date]
+                        mostRecentDateIndex = index
+                        break
+                     elsif mostRecentDate.nil? || date[:date] > mostRecentDate
+                        mostRecentDate = date[:date]
+                        mostRecentDateIndex = index
+                     end
+                  end
+
+                  return mostRecentDate
                end
 
             end
