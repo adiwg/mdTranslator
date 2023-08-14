@@ -16,20 +16,19 @@ module ADIWG
                   responsibleParties = metadata&.dig(:resourceInfo, :citation, :responsibleParties)
                   distributorInfo = metadata&.dig(:distributorInfo)
 
-                  publisher = responsibleParties&.detect { |party| party[:roleName] == 'publisher' } || distributorInfo&.first&.dig(:distributor)&.first&.dig(:contact)
+                  publisher = responsibleParties&.detect { |party| party[:roleName] == 'publisher' }
+
+                  if publisher.nil? || publisher.dig(:parties)&.first&.dig(:contactType) != 'organization'
+                     distributor = distributorInfo&.first&.dig(:distributor)&.first
+                     if distributor&.dig(:contact)&.dig(:contactType) == 'organization'
+                        publisher = distributor&.dig(:contact)
+                     end
+                  end
 
                   name = publisher&.dig(:parties)&.first&.dig(:contactName)
-                  contactType = publisher&.dig(:parties)&.first&.dig(:contactType)
-
-                  contactType_to_dcatType = {
-                     'organization' => 'org:Organization',
-                     'individual' => 'org:Individual'
-                  }
-
-                  type = contactType_to_dcatType[contactType]
 
                   Jbuilder.new do |json|
-                     json.set!('@type', type)
+                     json.set!('@type', 'org:Organization')
                      json.set!('name', name)
                   end
                end
