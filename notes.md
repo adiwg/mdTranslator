@@ -45,10 +45,10 @@ DCAT-US - mdTranslator
 | Data Quality | dcat:dataQuality | [*this is a boolean to indicate whether data "conforms" to agency standards, value seems negligble*] |
 | Category | dcat:theme | where resourceInfo.keyword[any].thesaurus.title = "ISO Topic Category" <br> [resourceInfo.keyword.keyword[0, n] *flatten*]  |
 | Related Documents | dcat:references | associatedResource[all].resourceCitation.onlineResource[all].uri + additionalDocumentation[all].citation[all].onlineResource[all].uri [*comma separated*]|
-| Homepage URL | dcat:landingPage | ** |
-| Collection | dcat:isPartOf | ** |
-| System of Records | dcat:systemOfRecords | ** |
-| Primary IT Investment | dcat:primaryITInvestmentUII | ** |
-| Data Dictionary | dcat:describedBy | ** |
-| Data Dictionary Type | dcat:describedByType | ** |
-| Data Standard | dcat:conformsTo | ** |
+| Homepage URL | dcat:landingPage | [*Add code "landingPage" to CI_OnlineFunctionCode*] <br> if resourceInfo.citation.onlineResource[any].function = "landingPage" then <br> resourceInfo.citation.onlineResource.uri |
+| Collection | dcat:isPartOf | for each associatedResource[0, n].initiativeType = "collection" and associatedResource.associationType = "collectiveTitle" then <br> associatedResource.resourceCitation[0].uri |
+| System of Records | dcat:systemOfRecords | [*Add code "sorn" to DS_InitiativeTypeCode*] <br> for each associatedResource[0, n].initiativeType = "sorn" and  then <br> associatedResource.resourceCitation[0].uri |
+| Primary IT Investment | dcat:primaryITInvestmentUII | [*Links data to an IT investment identifier relative to Exhibit 53 docs, community valuation should be determined*] |
+| Data Dictionary | dcat:describedBy | if dataDictionary.dictionaryIncludedWithResource IS NOT TRUE and citation[0].onlineResource[0].uri exists then <br> dataDictionary.citation[0].onlineResource[0].uri |
+| Data Dictionary Type | dcat:describedByType | [*For simplicity, leave blank implying html page, community decision needed whether to support other format types using mime type and in the form of "application/pdf"*]|
+| Data Standard | dcat:conformsTo | [*Currently not able to identify the schema standard the data conforms to, though this has been proposed. Should this be built and there is community decision to support it, then it can be mapped*] |
