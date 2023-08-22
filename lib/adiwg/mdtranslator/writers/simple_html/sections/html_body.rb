@@ -128,7 +128,7 @@ module ADIWG
                      # contacts [] section
                      unless aContacts.empty?
                         @html.div do
-                           @html.div('Contacts', {'id' => 'body-contacts', 'class' => 'h2'})
+                           @html.h2('Contacts', {'id' => 'body-contacts', 'class' => 'h2'})
                            @html.div(:class => 'block') do
                               aContacts.each do |hContact|
                                  @html.div(:class => 'block') do
@@ -143,7 +143,7 @@ module ADIWG
                      # metadata information section
                      unless hMetaInfo.empty?
                         @html.div do
-                        @html.div('Metadata Information', {'id' => 'body-metadataInfo', 'class' => 'h2'})
+                        @html.h2('Metadata Information', {'id' => 'body-metadataInfo', 'class' => 'h2'})
                         @html.div(:class => 'block') do
                               @html.div(:class => 'block') do
                                  metaInfoClass.writeHtml(hMetaInfo)
@@ -156,7 +156,7 @@ module ADIWG
                      # resource information section
                      unless hResourceInfo.empty?
                         @html.div do
-                           @html.div('Resource Information', {'id' => 'body-resourceInfo', 'class' => 'h2'})
+                           @html.h2('Resource Information', {'id' => 'body-resourceInfo', 'class' => 'h2'})
                            @html.div(:class => 'block') do
                               resourceClass.writeHtml(hResourceInfo)
                            end
@@ -166,7 +166,7 @@ module ADIWG
 
                      unless aDataQuality.nil? || aDataQuality.empty?
                         @html.div do
-                           @html.div('Data Quality', {'id' => 'body-dataQuality', 'class' => 'h2'})
+                           @html.h2('Data Quality', {'id' => 'body-dataQuality', 'class' => 'h2'})
                            aDataQuality.each do |hDataQuality|
                               @html.div(:class => 'block') do
                                  dataQualityClass.writeHtml(hDataQuality)
@@ -178,11 +178,11 @@ module ADIWG
                      # lineage section
                      unless aLineage.empty?
                         @html.div do
-                           @html.div('Resource Lineage', {'id' => 'body-lineage', 'class' => 'h2'})
+                           @html.h2('Resource Lineage', {'id' => 'body-lineage', 'class' => 'h2'})
                            @html.div(:class => 'block') do
                               aLineage.each do |hLineage|
                                  @html.div do
-                                    @html.div('Lineage', {'class' => 'h3'})
+                                    @html.h3('Lineage', {'class' => 'h3'})
                                     @html.div(:class => 'block') do
                                        lineageClass.writeHtml(hLineage)
                                     end
@@ -196,11 +196,11 @@ module ADIWG
                      # distribution section
                      unless aDistribution.empty?
                         @html.div do
-                           @html.div('Resource Distribution', {'id' => 'body-distribution', 'class' => 'h2'})
+                           @html.h2('Resource Distribution', {'id' => 'body-distribution', 'class' => 'h2'})
                            @html.div(:class => 'block') do
                               aDistribution.each do |hDistribution|
                                  @html.div do
-                                    @html.div('Distribution', {'class' => 'h3'})
+                                    @html.h3('Distribution', {'class' => 'h3'})
                                     @html.div(:class => 'block') do
                                        distributionClass.writeHtml(hDistribution)
                                     end
@@ -214,11 +214,11 @@ module ADIWG
                      # associated resource section
                      unless aAssociated.empty?
                         @html.div do
-                           @html.div('Associated Resources', {'id' => 'body-associatedResource', 'class' => 'h2'})
+                           @html.h2('Associated Resources', {'id' => 'body-associatedResource', 'class' => 'h2'})
                            @html.div(:class => 'block') do
                               aAssociated.each do |hAssociated|
                                  @html.div do
-                                    @html.div('Resource', {'class' => 'h3'})
+                                    @html.h3('Resource', {'class' => 'h3'})
                                     @html.div(:class => 'block') do
                                        associatedClass.writeHtml(hAssociated)
                                     end
@@ -232,11 +232,11 @@ module ADIWG
                      # additional documentation section
                      unless aAdditional.empty?
                         @html.div do
-                           @html.div('Additional Documentation', {'id' => 'body-additionalDocument', 'class' => 'h2'})
+                           @html.h2('Additional Documentation', {'id' => 'body-additionalDocument', 'class' => 'h2'})
                            @html.div(:class => 'block') do
                               aAdditional.each do |hAdditional|
                                  @html.div do
-                                    @html.div('Document', {'class' => 'h3'})
+                                    @html.h3('Document', {'class' => 'h3'})
                                     @html.div(:class => 'block') do
                                        additionalClass.writeHtml(hAdditional)
                                     end
@@ -250,11 +250,11 @@ module ADIWG
                      # data dictionary section
                      unless aDictionaries.empty?
                         @html.div do
-                           @html.div('Data Dictionaries', {'id' => 'body-dataDictionary', 'class' => 'h2'})
+                           @html.h2('Data Dictionaries', {'id' => 'body-dataDictionary', 'class' => 'h2'})
                            @html.div(:class => 'block') do
                               aDictionaries.each do |hDictionary|
                                  @html.div do
-                                    @html.div('Dictionary', {'class' => 'h3'})
+                                    @html.h3('Dictionary', {'class' => 'h3'})
                                     @html.div(:class => 'block') do
                                        dictionaryClass.writeHtml(hDictionary)
                                     end
@@ -267,11 +267,11 @@ module ADIWG
                      # funding section
                      unless aFunding.empty?
                         @html.div do
-                           @html.div('Funding', {'id' => 'body-funding', 'class' => 'h2'})
+                           @html.h2('Funding', {'id' => 'body-funding', 'class' => 'h2'})
                            @html.div(:class => 'block') do
                               aFunding.each do |hFunding|
                                  @html.div do
-                                    @html.div('Funds', {'class' => 'h3'})
+                                    @html.h3('Funds', {'class' => 'h3'})
                                     @html.div(:class => 'block') do
                                        fundingClass.writeHtml(hFunding)
                                     end
@@ -284,11 +284,11 @@ module ADIWG
                      # metadata repository section
                      unless aRepositories.empty?
                         @html.div do
-                           @html.div('Metadata Repositories', {'id' => 'body-repository', 'class' => 'h2'})
+                           @html.h2('Metadata Repositories', {'id' => 'body-repository', 'class' => 'h2'})
                            @html.div(:class => 'block') do
                               aRepositories.each do |hRepository|
                                  @html.div do
-                                    @html.div('Repository', {'class' => 'h3'})
+                                    @html.h3('Repository', {'class' => 'h3'})
                                     @html.div(:class => 'block') do
                                        repositoryClass.writeHtml(hRepository)
                                     end
