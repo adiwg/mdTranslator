@@ -6,7 +6,7 @@
 #  Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 # 	Stan Smith 2015-03-24 original script
 
-require_relative 'html_extent'
+# require_relative 'html_extent'
 
 module ADIWG
    module Mdtranslator
@@ -21,7 +21,7 @@ module ADIWG
                def writeHtml(hResponsibility)
 
                   # classes used
-                  extentClass = Html_Extent.new(@html)
+                  # extentClass = Html_Extent.new(@html)
 
                   # responsibility - role parties
                   hResponsibility[:parties].each do |hParty|
@@ -62,15 +62,15 @@ module ADIWG
                      end
                   end
 
-                  # responsibility - role extent [] {extent}
-                  hResponsibility[:roleExtents].each do |hExtent|
-                     @html.div do
-                        @html.div('Extent', {'class' => 'h5'})
-                        @html.div(:class => 'block') do
-                           extentClass.writeHtml(hExtent)
-                        end
-                     end
-                  end
+                  # # responsibility - role extent [] {extent}
+                  # hResponsibility[:roleExtents].each do |hExtent|
+                  #    @html.div do
+                  #       @html.div('Extent', {'class' => 'h5'})
+                  #       @html.div(:class => 'block') do
+                  #          extentClass.writeHtml(hExtent)
+                  #       end
+                  #    end
+                  # end
 
                end # writeHtml
             end # Html_Responsibility

@@ -26,7 +26,7 @@ require_relative 'html_coverageInfo'
 require_relative 'html_locale'
 require_relative 'html_format'
 require_relative 'html_maintenance'
-require_relative 'html_extent'
+# require_relative 'html_extent'
 
 module ADIWG
    module Mdtranslator
@@ -59,7 +59,7 @@ module ADIWG
                   localeClass = Html_Locale.new(@html)
                   formatClass = Html_Format.new(@html)
                   maintenanceClass = Html_Maintenance.new(@html)
-                  extentClass = Html_Extent.new(@html)
+                  # extentClass = Html_Extent.new(@html)
 
                   # resource - type [] {resourceType}
                   hResource[:resourceTypes].each do |hType|
@@ -309,22 +309,22 @@ module ADIWG
                      end
                   end
 
-                  # resource - extent [] {extent}
-                  unless hResource[:extents].empty?
-                     @html.div do
-                        @html.div('Spatial, Temporal, and Vertical Extents', {'id' => 'resourceInfo-extent', 'class' => 'h3'})
-                        @html.div(:class => 'block') do
-                           hResource[:extents].each do |hExtent|
-                              @html.div do
-                                 @html.div('Extent', {'class' => 'h5'})
-                                 @html.div(:class => 'block') do
-                                    extentClass.writeHtml(hExtent)
-                                 end
-                              end
-                           end
-                        end
-                     end
-                  end
+                  # # resource - extent [] {extent}
+                  # unless hResource[:extents].empty?
+                  #    @html.div do
+                  #       @html.div('Spatial, Temporal, and Vertical Extents', {'id' => 'resourceInfo-extent', 'class' => 'h3'})
+                  #       @html.div(:class => 'block') do
+                  #          hResource[:extents].each do |hExtent|
+                  #             @html.div do
+                  #                @html.div('Extent', {'class' => 'h5'})
+                  #                @html.div(:class => 'block') do
+                  #                   extentClass.writeHtml(hExtent)
+                  #                end
+                  #             end
+                  #          end
+                  #       end
+                  #    end
+                  # end
 
                   # resource - keywords [] {keyword}
                   unless hResource[:keywords].empty?
