@@ -27,6 +27,8 @@ module ADIWG
 
                   name = publisher&.dig(:parties)&.first&.dig(:contactName)
 
+                  return if name.nil?
+
                   Jbuilder.new do |json|
                      json.set!('@type', 'org:Organization')
                      json.set!('name', name)
