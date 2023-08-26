@@ -10,12 +10,25 @@ module ADIWG
             module Temporal
 
                def self.build(intObj)
-                  resourceInfo = intObj[:metadata][:resourceInfo]
-                  extent = resourceInfo[:extents][0]
-                  temporalExtent = extent[:temporalExtents][0]
-                  timeInstant = temporalExtent[:timeInstant]
-                  dateTime = timeInstant[:timeInstant][:dateTime]
-                  return dateTime
+                  resourceInfo = intObj.dig(:metadata, :resourceInfo)
+                  extent = resourceInfo&.dig(:extents, 0)
+                  temporalExtent = extent&.dig(:temporalExtents, 0)
+                  timePeriod = temporalExtent&.dig(:timePeriod)
+
+                  if timePeriod
+                    startDate = timePeriod[:startDate]
+                    endDate = timePeriod[:endDate]
+
+                    if startDate && endDate
+                      return "#{startDate}/#{endDate}"
+                    elsif startDate
+                      return startDate
+                    elsif endDate
+                      return endDate
+                    end
+                  end
+
+                  nil
                end           
 
             end

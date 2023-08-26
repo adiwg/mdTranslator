@@ -13,6 +13,7 @@ require_relative 'dcat_us_spatial'
 require_relative 'dcat_us_temporal'
 require_relative 'dcat_us_modified'
 require_relative 'dcat_us_access_level'
+require_relative 'dcat_us_rights'
 
 module ADIWG
    module Mdtranslator
@@ -33,8 +34,13 @@ module ADIWG
                accessLevel = AccessLevel.build(intObj)
                identifier = Identifier.build(intObj)
                distribution = Distribution.build(intObj)
+               rights = Rights.build(intObj)
                spatial = Spatial.build(intObj)
                temporal = Temporal.build(intObj)
+
+               reference = resourceInfo.dig(:constraint, :reference, 0)
+               license = reference || 'https://creativecommons.org/publicdomain/zero/1.0/'
+
 
                @Namespace = ADIWG::Mdtranslator::Writers::Dcat_us
 
@@ -52,8 +58,8 @@ module ADIWG
                   # json.set!('dcat:programCode', 'ToDo')
                   json.set!('dcat:distribution', distribution)
 
-                  json.set!('dcat:license', 'https://creativecommons.org/publicdomain/zero/1.0/')
-                  # json.set!('dcat:rights', metadataInfo[:metadataUseConstraints][0][:useLimitation])
+                  json.set!('dcat:license', license)
+                  json.set!('dcat:rights', rights)
                   json.set!('dcat:spatial', spatial)
                   json.set!('dcat:temporal', temporal)
 

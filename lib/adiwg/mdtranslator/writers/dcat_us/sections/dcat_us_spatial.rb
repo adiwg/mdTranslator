@@ -10,11 +10,24 @@ module ADIWG
             module Spatial
 
                def self.build(intObj)
-                  resourceInfo = intObj[:metadata][:resourceInfo]
-                  extent = resourceInfo[:extents][0]
-                  geographicExtent = extent[:geographicExtents][0]
-                  boundingBox = geographicExtent[:boundingBox]
-                  return boundingBox
+                  resourceInfo = intObj.dig(:metadata, :resourceInfo)
+                  extent = resourceInfo&.dig(:extents, 0)
+                  geographicExtent = extent&.dig(:geographicExtents, 0)
+                  boundingBox = geographicExtent&.dig(:boundingBox)
+
+                  if boundingBox
+                    return [
+                      boundingBox[:eastLongitude],
+                      boundingBox[:southLatitude],
+                      boundingBox[:westLongitude],
+                      boundingBox[:northLatitude]
+                    ].join(',')
+                  elsif geographicExtent&.dig(:geographicElement, 0, :type) == 'point'
+                    point = geographicExtent.dig(:geographicElement, 0, :coordinate)
+                    return "#{point[1]},#{point[0]}" if point&.length == 2
+                  end
+
+                  nil
                end           
 
             end
