@@ -16,8 +16,8 @@ module ADIWG
                   timePeriod = temporalExtent&.dig(:timePeriod)
 
                   if timePeriod
-                    startDate = timePeriod[:startDate]
-                    endDate = timePeriod[:endDate]
+                    startDate = timePeriod[:startDateTime]
+                    endDate = timePeriod[:endDateTime]
 
                     if startDate && endDate
                       return "#{startDate}/#{endDate}"

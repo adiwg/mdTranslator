@@ -14,6 +14,7 @@ require_relative 'dcat_us_temporal'
 require_relative 'dcat_us_modified'
 require_relative 'dcat_us_access_level'
 require_relative 'dcat_us_rights'
+require_relative 'dcat_us_license'
 
 module ADIWG
    module Mdtranslator
@@ -37,9 +38,7 @@ module ADIWG
                rights = Rights.build(intObj)
                spatial = Spatial.build(intObj)
                temporal = Temporal.build(intObj)
-
-               reference = resourceInfo.dig(:constraint, :reference, 0)
-               license = reference || 'https://creativecommons.org/publicdomain/zero/1.0/'
+               license = License.build(intObj)
 
 
                @Namespace = ADIWG::Mdtranslator::Writers::Dcat_us

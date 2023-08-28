@@ -6,54 +6,55 @@
 require 'jbuilder'
 
 module ADIWG
-   module Mdtranslator
-     module Writers
-       module Dcat_us
-         module Distribution
- 
-           def self.build(intObj)
-             resourceDistributions = intObj.dig(:metadata, :resourceDistribution)
-             distributions = []
-             stop_iterating = false
- 
-             resourceDistributions&.each do |resource|
-               description = resource[:description] || ''
-               resource[:distributor]&.each do |distributor|
-                 distributor[:transferOptions]&.each do |transfer|
-                   mediaType = transfer.dig(:distributionFormat, :formatSpecification, :title) || ''
-                   transfer[:onlineOptions]&.each do |option|
-                     if option[:uri]
-                        # ToDo:  Need to add a check for .html extension
-                       accessURL = option[:uri]
-                       downloadURL = option[:uri]
-                       title = resource.dig(:distributor, :transferOption, :onlineOption, :name) || ''
-                       
-                       distribution = Jbuilder.new do |json|
-                         json.set!('@type', 'dcat:Distribution')
-                         json.set!('dcat:description', description)
-                         json.set!('dcat:accessURL', accessURL)
-                         json.set!('dcat:downloadURL', downloadURL)
-                         json.set!('dcat:mediaType', mediaType)
-                         json.set!('dcat:title', title)
-                       end
-                       distributions << distribution.attributes!
-                       stop_iterating = true
-                       break
-                     end
-                   end
-                   break if stop_iterating
-                 end
-                 break if stop_iterating
-               end
-               stop_iterating = false  # Reset flag for the next resourceDistribution
-             end
- 
-             distributions
-           end          
- 
-         end
-       end
-     end
-   end
- end
- 
+  module Mdtranslator
+    module Writers
+      module Dcat_us
+        module Distribution
+
+          def self.build(intObj)
+            resourceDistributions = intObj.dig(:metadata, :distributorInfo)
+            distributions = []
+
+            resourceDistributions&.each do |resource|
+              description = resource[:description] || ''
+              break_flag = false  # Flag to control nested loop breaks
+
+              resource[:distributor]&.each do |distributor|
+                break if break_flag
+
+                distributor[:transferOptions]&.each do |transfer|
+                  break if break_flag
+
+                  mediaType = transfer.dig(:distributionFormats)&.find { |format| format.dig(:formatSpecification, :title) }&.dig(:formatSpecification, :title) || ''
+
+                  transfer[:onlineOptions]&.each do |option|
+                    next unless option[:olResURI]
+
+                    accessURL = option[:olResURI] unless option[:olResURI].end_with?('.html')
+                    downloadURL = option[:olResURI] if option[:olResURI].end_with?('.html')
+                    title = option[:olResName] || ''
+
+                    distribution = Jbuilder.new do |json|
+                      json.set!('@type', 'dcat:Distribution')
+                      json.set!('dcat:description', description)
+                      json.set!('dcat:accessURL', accessURL) if accessURL
+                      json.set!('dcat:downloadURL', downloadURL) if downloadURL
+                      json.set!('dcat:mediaType', mediaType)
+                      json.set!('dcat:title', title)
+                    end
+
+                    distributions << distribution.attributes!
+                    break_flag = true
+                    break
+                  end
+                end
+              end
+            end
+            distributions
+          end
+
+        end
+      end
+    end
+  end
+end

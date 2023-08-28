@@ -12,11 +12,19 @@ module ADIWG
             module AccessLevel
 
                def self.build(intObj)
-                  # [need new code under constraints to distinguish 'public', 'restricted public', 'non-public']
-                  return 'public'
-               end
+                  resourceInfo = intObj[:metadata][:resourceInfo]
+                  legalConstraints = resourceInfo[:constraints]&.select { |constraint| constraint[:type] == 'legal' }
+                  
+                  accessLevel = legalConstraints&.detect do |constraint|
+                     constraint.dig(:legalConstraint, :accessCodes)&.any? { |code| ["public", "restricted public", "non-public"].include?(code) }
+                  end                   
+
+                  accessLevel ? accessLevel : nil
+               end           
+
             end
          end
       end
    end
 end
+

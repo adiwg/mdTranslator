@@ -11,8 +11,8 @@ module ADIWG
 
                def self.build(intObj)
                   resourceInfo = intObj.dig(:metadata, :resourceInfo)
-                  reference = resourceInfo.dig(:constraint, :reference, 0)
-                  license = reference || 'https://creativecommons.org/publicdomain/zero/1.0/'
+                  title = resourceInfo.dig(:constraints, 0, :reference, 0, :title)
+                  license = title || 'https://creativecommons.org/publicdomain/zero/1.0/'
                   license
                end
 
