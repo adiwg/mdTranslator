@@ -1,0 +1,258 @@
+{
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "name"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
+            {
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "metadataOnlineResource": [
+            {
+               "uri": "http://ISO.uri/adiwg/10",
+               "function": "metadataInfo link"
+            },
+            {
+               "uri": "http://ISO.uri/adiwg/11",
+               "function": "metadataInfo link"
+            }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "myCitationTitle",
+            "onlineResource": [
+               {
+                  "uri": "http://ISO.uri/adiwg/20",
+                  "protocol": "protocol",
+                  "name": "myName20",
+                  "function": "citation resource"
+               },
+               {
+                  "uri": "http://ISO.uri/adiwg/21",
+                  "protocol": "protocol",
+                  "name": "myName21",
+                  "function": "citation resource"
+               }
+            ]
+         },
+         "abstract": "myBody",
+         "status": [
+            "status"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         },
+         "graphicOverview": [
+            {
+               "fileName": "fileName",
+               "fileDescription": "fileDescription",
+               "fileType": "fileType",
+               "fileUri": [
+                  {
+                     "uri": "http://ISO.uri/adiwg/4",
+                     "protocol": "protocol",
+                     "name": "myName4",
+                     "description": "translated adiwg code",
+                     "function": "browseGraphic"
+                  },
+                  {
+                     "uri": "http://ISO.uri/adiwg/5",
+                     "protocol": "protocol",
+                     "name": "myName5",
+                     "description": "translated adiwg code",
+                     "function": "browseGraphic"
+                  }
+               ]
+            }
+         ]
+      },
+      "resourceDistribution": [
+         {
+            "description": "distribution 1",
+            "distributor": [
+               {
+                  "contact": {
+                     "role": "role",
+                     "party": [
+                        {
+                           "contactId": "CID001"
+                        }
+                     ]
+                  },
+                  "transferOption": [
+                     {
+                        "transferSize": 9.9,
+                        "onlineOption": [
+                           {
+                              "uri": "http://ISO.uri/adiwg/6",
+                              "protocol": "protocol",
+                              "name": "myName6",
+                              "description": "translated adiwg code",
+                              "function": "download"
+                           },
+                           {
+                              "uri": "http://ISO.uri/adiwg/7",
+                              "protocol": "protocol",
+                              "name": "myName7",
+                              "description": "translated adiwg code",
+                              "function": "fileAccess"
+                           }
+                        ]
+                     },
+                     {
+                        "transferSize": 10.9,
+                        "onlineOption": [
+                           {
+                              "uri": "http://ISO.uri/adiwg/8",
+                              "protocol": "protocol",
+                              "name": "myName8",
+                              "description": "untranslated adiwg code",
+                              "function": "doi"
+                           }
+                        ]
+                     }
+                  ]
+               },
+               {
+                  "contact": {
+                     "role": "role",
+                     "party": [
+                        {
+                           "contactId": "CID001"
+                        }
+                     ]
+                  },
+                  "transferOption": [
+                     {
+                        "onlineOption": [
+                           {
+                              "uri": "http://ISO.uri/adiwg/9",
+                              "protocol": "protocol",
+                              "name": "myName9",
+                              "description": "untranslated adiwg code",
+                              "function": "orcid"
+                           }
+                        ]
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "description": "distribution 2",
+            "distributor": [
+               {
+                  "contact": {
+                     "role": "role",
+                     "party": [
+                        {
+                           "contactId": "CID001"
+                        }
+                     ]
+                  },
+                  "transferOption": [
+                     {
+                        "onlineOption": [
+                           {
+                              "uri": "http://ISO.uri/adiwg/10",
+                              "protocol": "protocol",
+                              "name": "myName10",
+                              "description": "untranslated sb type",
+                              "function": "serviceMapUrl"
+                           }
+                        ]
+                     }
+                  ]
+               }
+            ]
+         }
+      ],
+      "additionalDocumentation": [
+         {
+            "resourceType": [
+               {
+                  "type": "type1",
+                  "name": "name1"
+               }
+            ],
+            "citation": [
+               {
+                  "title": "myCitationTitle1",
+                  "onlineResource": [
+                     {
+                        "uri": "http://ISO.uri/adiwg/1",
+                        "protocol": "protocol",
+                        "name": "myName1",
+                        "description": "translated adiwg code",
+                        "function": "download"
+                     },
+                     {
+                        "uri": "http://ISO.uri/adiwg/2",
+                        "description": "missing function code"
+                     }
+                  ]
+               },
+               {
+                  "title": "myCitationTitle2"
+               }
+            ]
+         },
+         {
+            "resourceType": [
+               {
+                  "type": "type3",
+                  "name": "name3"
+               }
+            ],
+            "citation": [
+               {
+                  "title": "myCitationTitle3",
+                  "onlineResource": [
+                     {
+                        "uri": "http://ISO.uri/adiwg/3",
+                        "protocol": "protocol",
+                        "name": "myName13",
+                        "description": "translated adiwg code",
+                        "function": "webApplication"
+                     }
+                  ]
+               }
+            ]
+         }
+      ]
+   }
+}

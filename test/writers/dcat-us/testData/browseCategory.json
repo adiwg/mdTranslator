@@ -1,0 +1,87 @@
+{
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "name"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
+            {
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "myType",
+               "name": "myTypeName"
+            },
+            {
+               "type": "document"
+            },
+            {
+               "type": "collection"
+            },
+            {
+               "type": "project"
+            },
+            {
+               "type": "tabularDataset"
+            },
+            {
+               "type": "photographicImage"
+            },
+            {
+               "type": "sciencePaper"
+            },
+            {
+               "type": "fieldSeason"
+            },
+            {
+               "type": "factSheet"
+            },
+            {
+               "type": "presentation"
+            },
+            {
+               "type": "sample"
+            }
+         ],
+         "citation": {
+            "title": "myCitationTitle"
+         },
+         "abstract": "myBody",
+         "status": [
+            "status"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         }
+      }
+   }
+}

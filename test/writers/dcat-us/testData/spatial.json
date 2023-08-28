@@ -1,0 +1,149 @@
+{
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "Person 001"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
+            {
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "myCitationTitle"
+         },
+         "abstract": "myBody",
+         "status": [
+            "status"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         },
+         "extent": [
+            {
+               "description": "Extent 1",
+               "geographicExtent": [
+                  {
+                     "containsData": false,
+                     "identifier": {
+                        "identifier": "identifier"
+                     },
+                     "boundingBox": {
+                        "westLongitude": -140.0,
+                        "eastLongitude": -120.0,
+                        "southLatitude": 49.0,
+                        "northLatitude": 70.0
+                     },
+                     "geographicElement": [
+                        {
+                           "type": "Polygon",
+                           "coordinates": [
+                              [
+                                 [-161.74223, 67.663378],
+                                 [-161.440345, 67.630173],
+                                 [-161.294611, 67.656257],
+                                 [-161.228063, 67.625736],
+                                 [-161.247712, 67.585909],
+                                 [-161.334662, 67.591324],
+                                 [-161.566245, 67.491263],
+                                 [-161.812338, 67.455299],
+                                 [-161.825019, 67.40123],
+                                 [-162.128301, 67.414364],
+                                 [-162.167825, 67.363047],
+                                 [-162.383403, 67.293329],
+                                 [-162.633432, 67.272237],
+                                 [-162.645587, 67.356665],
+                                 [-162.369023, 67.455264],
+                                 [-162.287324, 67.551235],
+                                 [-162.171139, 67.559356],
+                                 [-161.99344, 67.646806],
+                                 [-161.857964, 67.620329],
+                                 [-161.769431, 67.629407],
+                                 [-161.74223, 67.663378]
+                              ]
+                           ]
+                        }
+                     ]
+                  },
+                  {
+                     "containsData": true,
+                     "geographicElement": [
+                        {
+                           "type": "Polygon",
+                           "coordinates": [
+                              [
+                                 [-100.0, 20.0],
+                                 [-100.0, 30.0],
+                                 [-80.0, 30.0],
+                                 [-80.0, 20.0]
+                              ]
+                           ]
+                        }
+                     ]
+                  },
+                  {
+                     "containsData": true,
+                     "geographicElement": [
+                        {
+                           "type": "MultiPoint",
+                           "coordinates": [
+                              [160, 65],
+                              [170, 52],
+                              [174, 56],
+                              [166, 63],
+                              [172, 58]
+                           ]
+                        }
+                     ]
+                  },
+                  {
+                     "containsData": false,
+                     "identifier": {
+                        "identifier": "identifier"
+                     },
+                     "boundingBox": {
+                        "westLongitude": 160.0,
+                        "eastLongitude": -160.0,
+                        "southLatitude": -10.0,
+                        "northLatitude": -20.0
+                     }
+                  }
+               ]
+            }
+         ]
+      }
+   }
+}

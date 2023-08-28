@@ -1,0 +1,175 @@
+{
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "name"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
+            {
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "myType",
+               "name": "myTypeName"
+            },
+            {
+               "type": "project"
+            },
+            {
+               "type": "tabularDataset"
+            },
+            {
+               "type": "sciencePaper"
+            },
+            {
+               "type": "factSheet"
+            },
+            {
+               "type": "presentation"
+            },
+            {
+               "type": "sample"
+            }
+         ],
+         "citation": {
+            "title": "myCitationTitle"
+         },
+         "abstract": "myBody",
+         "status": [
+            "completed",
+            "onGoing",
+            "underDevelopment"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         },
+         "keyword": [
+            {
+               "keyword": [
+                  {
+                     "keyword": "keyword00",
+                     "keywordId": "keywordId00"
+                  },
+                  {
+                     "keyword": "keyword01"
+                  }
+               ]
+            },
+            {
+               "keyword": [
+                  {
+                     "keyword": "keyword10",
+                     "keywordId": "keywordId10"
+                  },
+                  {
+                     "keyword": "keyword11"
+                  }
+               ],
+               "keywordType": "keywordType1",
+               "thesaurus": {
+                  "title": "title",
+                  "onlineResource": [
+                     {
+                        "uri": "http://ISO.uri/adiwg/1",
+                        "protocol": "protocol",
+                        "name": "myName1",
+                        "description": "myDescription1",
+                        "function": "download"
+                     },
+                     {
+                        "uri": "http://ISO.uri/adiwg/2"
+                     }
+                  ]
+
+               }
+            },
+            {
+               "keyword": [
+                  {
+                     "keyword": "oceans",
+                     "keywordId": "014"
+                  },
+                  {
+                     "keyword": "extraTerrestrial",
+                     "keywordId": "020"
+                  }
+               ],
+               "keywordType": "isoTopicCategory"
+            },
+            {
+               "keyword": [
+                  {
+                     "keyword": "structure",
+                     "keywordId": "017"
+                  }
+               ],
+               "keywordType": "isoTopicCategory",
+               "thesaurus": {
+                  "title": "title"
+               }
+            },
+            {
+               "keyword": [
+                  {
+                     "keyword": "The quick brown fox jumped over the lazy dog. The quick brown fox jumped over the lazy dog."
+                  },
+                  {
+                     "keyword": "first word>second word>third word>fourth word>fifth word>sixth word>seventh word>eighth word"
+                  }
+               ],
+               "keywordType": "theme",
+               "thesaurus": {
+                  "title": "title"
+               }
+            }
+         ]
+      }
+   },
+   "metadataRepository":[
+      {
+         "repository": "data.gov",
+         "citation": {
+            "title": "Arctic LCC Data.gov",
+            "identifier": [
+               {
+                  "identifier": "6f991cdb-6bf5-4f1d-a05b-4b8345455150"
+               }
+            ]
+         },
+         "metadataStandard": "FGDC"
+      },
+      {
+         "repository": "DataOne",
+         "metadataStandard": "iso19115_2"
+      }
+   ]
+}
