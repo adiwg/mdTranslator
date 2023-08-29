@@ -8,10 +8,10 @@ require 'json'
 require 'adiwg-mdtranslator'
 require_relative 'dcat_us_test_parent'
 
-class TestWriterSbJsonIdentifier < TestWriterSbJsonParent
+class TestWriterDcatUsIdentifier < TestWriterDcatUsParent
 
    # get input JSON for test
-   @@jsonIn = TestWriterSbJsonParent.getJson('identifier.json')
+   @@jsonIn = TestWriterDcatUsParent.getJson('identifier.json')
 
    def test_identifier
 
@@ -20,7 +20,7 @@ class TestWriterSbJsonIdentifier < TestWriterSbJsonParent
 
       metadata = ADIWG::Mdtranslator.translate(
          file: hIn, reader: 'mdJson', validate: 'normal',
-         writer: 'sbJson', showAllTags: false)
+         writer: 'dcat_us', showAllTags: false)
 
       expect = [
          {
@@ -49,7 +49,7 @@ class TestWriterSbJsonIdentifier < TestWriterSbJsonParent
 
       metadata = ADIWG::Mdtranslator.translate(
          file: hIn, reader: 'mdJson', validate: 'normal',
-         writer: 'sbJson', showAllTags: false)
+         writer: 'dcat_us', showAllTags: false)
 
       expect = [
          {
@@ -76,5 +76,3 @@ class TestWriterSbJsonIdentifier < TestWriterSbJsonParent
    end
 
 end
-
-
