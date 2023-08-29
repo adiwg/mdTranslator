@@ -10,8 +10,20 @@ module ADIWG
             module Identifier
 
                def self.build(intObj)
-                  intObj.dig(:metadata, :resourceInfo, :citation, :onlineResource, :uri)
-               end                
+                  identifiers = intObj.dig(:metadata, :resourceInfo, :citation, :identifiers)
+                  uri = intObj.dig(:metadata, :resourceInfo, :citation, :onlineResources, 0, :olResURI)
+                
+                  namespace_is_doi = identifiers&.any? { |identifier| identifier[:namespace]&.casecmp?("DOI") }
+                
+                  if namespace_is_doi
+                    return uri
+                  elsif uri && uri.downcase.include?("doi")
+                    return uri
+                  end
+                
+                  nil
+               end
+                                    
 
             end
          end
