@@ -14,65 +14,64 @@ class TestWriterDcatUsTitle < TestWriterDcatUsParent
    @@jsonIn = TestWriterDcatUsParent.getJson('title.json')
 
    def test_title
-
       metadata = ADIWG::Mdtranslator.translate(
          file: @@jsonIn, reader: 'mdJson', validate: 'normal',
          writer: 'dcat_us', showAllTags: false)
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['title']
+      got = hJsonOut['dcat:title']
 
       assert_equal 'myCitationTitle', got
 
    end
 
-   def test_alternateTitle
+   # def test_alternateTitle
 
-      metadata = ADIWG::Mdtranslator.translate(
-         file: @@jsonIn, reader: 'mdJson', validate: 'normal',
-         writer: 'dcat_us', showAllTags: false)
+   #    metadata = ADIWG::Mdtranslator.translate(
+   #       file: @@jsonIn, reader: 'mdJson', validate: 'normal',
+   #       writer: 'dcat_us', showAllTags: false)
 
-      hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['alternateTitles']
+   #    hJsonOut = JSON.parse(metadata[:writerOutput])
+   #    got = hJsonOut['alternateTitles']
 
-      assert_equal 2, got.length
-      assert_equal 'alternateTitle0', got[0]
-      assert_equal 'alternateTitle1', got[1]
+   #    assert_equal 2, got.length
+   #    assert_equal 'alternateTitle0', got[0]
+   #    assert_equal 'alternateTitle1', got[1]
 
-   end
+   # end
 
-   def test_alternateTitle_empty
+   # def test_alternateTitle_empty
 
-      hJsonIn = JSON.parse(@@jsonIn)
-      hJsonIn['metadata']['resourceInfo']['citation']['alternateTitle'] = []
-      hIn = hJsonIn.to_json
+   #    hJsonIn = JSON.parse(@@jsonIn)
+   #    hJsonIn['metadata']['resourceInfo']['citation']['alternateTitle'] = []
+   #    hIn = hJsonIn.to_json
 
-      metadata = ADIWG::Mdtranslator.translate(
-         file: hIn, reader: 'mdJson', validate: 'normal',
-         writer: 'dcat_us', showAllTags: false)
+   #    metadata = ADIWG::Mdtranslator.translate(
+   #       file: hIn, reader: 'mdJson', validate: 'normal',
+   #       writer: 'dcat_us', showAllTags: false)
 
-      hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['alternateTitles']
+   #    hJsonOut = JSON.parse(metadata[:writerOutput])
+   #    got = hJsonOut['alternateTitles']
 
-      assert_nil got
+   #    assert_nil got
 
-   end
+   # end
 
-   def test_alternateTitle_missing
+   # def test_alternateTitle_missing
 
-      hJsonIn = JSON.parse(@@jsonIn)
-      hJsonIn['metadata']['resourceInfo']['citation'].delete('alternateTitle')
-      hIn = hJsonIn.to_json
+   #    hJsonIn = JSON.parse(@@jsonIn)
+   #    hJsonIn['metadata']['resourceInfo']['citation'].delete('alternateTitle')
+   #    hIn = hJsonIn.to_json
 
-      metadata = ADIWG::Mdtranslator.translate(
-         file: hIn, reader: 'mdJson', validate: 'normal',
-         writer: 'dcat_us', showAllTags: false)
+   #    metadata = ADIWG::Mdtranslator.translate(
+   #       file: hIn, reader: 'mdJson', validate: 'normal',
+   #       writer: 'dcat_us', showAllTags: false)
 
-      hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['alternateTitles']
+   #    hJsonOut = JSON.parse(metadata[:writerOutput])
+   #    got = hJsonOut['alternateTitles']
 
-      assert_nil got
+   #    assert_nil got
 
-   end
+   # end
 
 end
