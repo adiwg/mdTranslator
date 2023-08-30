@@ -9,17 +9,20 @@
 
 ### Always (always required)
 
-| Field Name | DCAT Name | mdJson Source |
-| --- | --- | --- |
-| Title | dcat:title | citation.title |
-| Description | dcat:description | citation.abstract |
-| Tags | dcat:keyword | [resourceInfo.keywords *flatten*] **thesauri dropped** |
-| Last Update | dcat:modified | if resourceInfo.citation.date[any].dateType = "lastUpdated" or "lastRevised" or "revision" then <br> resourceInfo.citation.date[most recent] |
-| Publisher | dcat:publisher{name} | if citation.responsibleParty.[any].role = "publisher" then <br> contactId -> contact.name where isOrganization IS TRUE <br> else if exists resourceDistribution.distributor.contact then <br> [first contact] contactId -> contact.name where isOrganization IS TRUE |
-| Publisher Parent Organization | dcat:publisher{subOrganizationOf} | if citation.responsibleParty[any].role = "publisher" and exists contactId -> memberOfOrganization[0] and isOrganization is true <br> contactId -> contact.name <br> else if exists resourceDistribution.distributor.contact and exists contactId -> memberOfOrganization[0] and isOrganization IS TRUE <br> contactId -> contact.name |
-| Contact Name | dcat:contactPoint{fn} | resourceInfo.pointOfContact.parties[0].contactId -> contact.name |
-| Contact Email | dcat:contactPoint{email} | resourceInfo.pointOfContact.parties[0].contactId -> contact.eMailList[0] |
-| Unique Identifier | dcat:identifier | if resourceInfo.citation.identifier.namespace = "DOI" then resourceInfo.citation.onlineResource.uri <br> else if "DOI" within resourceInfo.citation.onlineResource.uri then <br> resourceInfo.citation.onlineResource.uri |
+| Field Name | DCAT Name | Condition | mdJson Source |
+| --- | --- | --- | --- |
+| Title | dcat:title | exists | citation.title |
+| Description | dcat:description | exists | citation.abstract |
+| Tags | dcat:keyword | exists | [resourceInfo.keywords *flatten*] **thesauri dropped** |
+| Last Update | dcat:modified | if resourceInfo.citation.date[any].dateType = "lastUpdated" or "lastRevised" or "revision" | resourceInfo.citation.date[most recent] |
+| Publisher | dcat:publisher{name} | if citation.responsibleParty.[any].role = "publisher" |  contactId -> contact.name where isOrganization IS TRUE |
+| | | if exists resourceDistribution.distributor.contact | [first contact] contactId -> contact.name where isOrganization IS TRUE |
+| Publisher Parent Organization | dcat:publisher{subOrganizationOf} | if citation.responsibleParty[any].role = "publisher" and exists contactId -> memberOfOrganization[0] and isOrganization is true | contactId -> contact.name |
+| | | if exists resourceDistribution.distributor.contact and exists contactId -> memberOfOrganization[0] and isOrganization IS TRUE | contactId -> contact.name |
+| Contact Name | dcat:contactPoint{fn} | exists | resourceInfo.pointOfContact.parties[0].contactId -> contact.name |
+| Contact Email | dcat:contactPoint{email} | exists | resourceInfo.pointOfContact.parties[0].contactId -> contact.eMailList[0] |
+| Unique Identifier | dcat:identifier | if resourceInfo.citation.identifier.namespace = "DOI" | resourceInfo.citation.onlineResource.uri |
+| | | if "DOI" within resourceInfo.citation.onlineResource.uri | resourceInfo.citation.onlineResource.uri |
 | Public Access Level | dcat:accessLevel | [*extend codelist MD_RestrictionCode to include "public",  "restricted  public", "non-public"*] <br> if resourceInfo.constraints.legal[any] one of {"public", "restricted public", "non-public"} then <br>resourceInfo.constraints.legal[first]. Also resourceInfo.constraint.security.classification [[MD_ClassificationCode](https://mdtools.adiwg.org/#codes-page?c=iso_classification)] |
 | Bureau Code | dcat:bureauCode | [*extend role codelist to include "bureau", extend namespace codelist to include "bureauCode"*] <br> for each resourceInfo.citation.responsibleParty[any] role = "bureau" <br>contactId -> contact.identifier [*identifier must conform to https://resources.data.gov/schemas/dcat-us/v1.1/omb_bureau_codes.csv*] |
 | Program Code | dcat:programCode | [*add new element of program resourceInfo.programCode, add new codelist of programCode*] <br> resourceInfo.program[0,n] |
