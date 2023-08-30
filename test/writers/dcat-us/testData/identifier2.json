@@ -40,7 +40,7 @@
             "identifier": [
                {
                   "identifier": "myDoiIdentifier0",
-                  "namespace": "DOI",
+                  "namespace": "ISBN",
                   "description": "myDescription0"
                },
                {
@@ -65,7 +65,7 @@
             ],
             "onlineResource": [
                {
-                  "uri": "http://myOnlineResource-namespace.com"
+                  "uri": "http://myOnlineResource-doi.com"
                }
             ]
          },

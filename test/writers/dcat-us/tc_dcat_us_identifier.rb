@@ -12,9 +12,9 @@ class TestWriterDcatUsIdentifier < TestWriterDcatUsParent
 
    # get input JSON for test
    @@jsonIn = TestWriterDcatUsParent.getJson('identifier.json')
+   @@jsonIn2 = TestWriterDcatUsParent.getJson('identifier2.json')
 
    def test_identifier
-
       hJsonIn = JSON.parse(@@jsonIn)
       hIn = hJsonIn.to_json
 
@@ -22,58 +22,26 @@ class TestWriterDcatUsIdentifier < TestWriterDcatUsParent
          file: hIn, reader: 'mdJson', validate: 'normal',
          writer: 'dcat_us', showAllTags: false)
 
-      expect = [
-         {
-            'key' => 'myIdentifier0',
-            'scheme' => 'mySchema0',
-            'type' => 'myDescription0'
-         },
-         { 'key' => 'myIdentifier1',
-           'scheme' => 'mySchema1',
-           'type' => 'myDescription1'
-         }
-      ]
-
       hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['identifiers']
+      got = hJsonOut['dcat:identifier']
 
-      # assert_equal expect, got
-      assert_equal 1, 1
-
+      assert_equal 'http://myOnlineResource-namespace.com', got
    end
 
-   # def test_identifier_include_metadataIdentifier
+   def test_identifier_url_contains
+      hJsonIn = JSON.parse(@@jsonIn2)
+      hIn = hJsonIn.to_json
 
-   #    hJsonIn = JSON.parse(@@jsonIn)
-   #    hJsonIn['metadata']['metadataInfo']['metadataIdentifier']['namespace'] = 'ABC'
-   #    hIn = hJsonIn.to_json
+      metadata = ADIWG::Mdtranslator.translate(
+         file: hIn, reader: 'mdJson', validate: 'normal',
+         writer: 'dcat_us', showAllTags: false)
 
-   #    metadata = ADIWG::Mdtranslator.translate(
-   #       file: hIn, reader: 'mdJson', validate: 'normal',
-   #       writer: 'dcat_us', showAllTags: false)
+      hJsonOut = JSON.parse(metadata[:writerOutput])
+      puts hJsonOut
 
-   #    expect = [
-   #       {
-   #          'key' => 'myMetadataIdentifierID',
-   #          'scheme' => 'ABC',
-   #          'type' => 'metadata identifier'
-   #       },
-   #       {
-   #          'key' => 'myIdentifier0',
-   #          'scheme' => 'mySchema0',
-   #          'type' => 'myDescription0'
-   #       },
-   #       { 'key' => 'myIdentifier1',
-   #         'scheme' => 'mySchema1',
-   #         'type' => 'myDescription1'
-   #       }
-   #    ]
+      got = hJsonOut['dcat:identifier']
 
-   #    hJsonOut = JSON.parse(metadata[:writerOutput])
-   #    got = hJsonOut['identifiers']
-
-   #    assert_equal expect, got
-
-   # end
+      assert_equal 'http://myOnlineResource-doi.com', got
+   end
 
 end
