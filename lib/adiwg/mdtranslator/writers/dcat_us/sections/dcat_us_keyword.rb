@@ -1,8 +1,3 @@
-# dcat_us 1.0 writer
-
-# History:
-#  Johnathan Aspinwall 2023-07-06 original script
-
 module ADIWG
    module Mdtranslator
       module Writers
