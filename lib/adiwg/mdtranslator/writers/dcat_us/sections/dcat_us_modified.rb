@@ -1,8 +1,3 @@
-# dcat_us 1.0 writer
-
-# History:
-#  Johnathan Aspinwall 2023-06-22 original script
-
 module ADIWG
    module Mdtranslator
       module Writers
@@ -15,21 +10,17 @@ module ADIWG
                   dates = citation[:dates]
 
                   mostRecentDate = nil
-                  mostRecentDateIndex = nil
 
-                  dates.each_with_index do |date, index|
+                  dates.each do |date|
                      if date[:dateType] == "lastUpdated" || date[:dateType] == "lastRevised" || date[:dateType] == "revision"
-                        mostRecentDate = date[:date]
-                        mostRecentDateIndex = index
-                        break
-                     elsif mostRecentDate.nil? || date[:date] > mostRecentDate
-                        mostRecentDate = date[:date]
-                        mostRecentDateIndex = index
+                        if mostRecentDate.nil? || date[:date] > mostRecentDate
+                           mostRecentDate = date[:date]
+                        end
                      end
                   end
 
                   return mostRecentDate
-               end
+               end               
 
             end
          end
