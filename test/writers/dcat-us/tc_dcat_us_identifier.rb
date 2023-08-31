@@ -9,7 +9,7 @@ class TestWriterDcatUsIdentifier < TestWriterDcatUsParent
    @@jsonIn = TestWriterDcatUsParent.getJson('identifier.json')
    @@jsonIn2 = TestWriterDcatUsParent.getJson('identifier2.json')
 
-   def test_identifier
+   def test_identifier_namespace
       hJsonIn = JSON.parse(@@jsonIn)
       hIn = hJsonIn.to_json
 
@@ -23,7 +23,7 @@ class TestWriterDcatUsIdentifier < TestWriterDcatUsParent
       assert_equal 'http://myOnlineResource-namespace.com', got
    end
 
-   def test_identifier_url_contains
+   def test_identifier_url
       hJsonIn = JSON.parse(@@jsonIn2)
       hIn = hJsonIn.to_json
 
