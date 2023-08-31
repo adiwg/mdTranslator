@@ -1,8 +1,3 @@
-# dcat_us 1 writer tests - title/alternateTitles
-
-# History:
-# 
-
 require 'minitest/autorun'
 require 'json'
 require 'adiwg-mdtranslator'

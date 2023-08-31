@@ -1,8 +1,3 @@
-# dcat-us 1 writer tests - identifier
-
-# History:
-#  
-
 require 'minitest/autorun'
 require 'json'
 require 'adiwg-mdtranslator'
