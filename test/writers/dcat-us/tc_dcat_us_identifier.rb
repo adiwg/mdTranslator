@@ -10,11 +10,8 @@ class TestWriterDcatUsIdentifier < TestWriterDcatUsParent
    @@jsonIn2 = TestWriterDcatUsParent.getJson('identifier2.json')
 
    def test_identifier_namespace
-      hJsonIn = JSON.parse(@@jsonIn)
-      hIn = hJsonIn.to_json
-
       metadata = ADIWG::Mdtranslator.translate(
-         file: hIn, reader: 'mdJson', validate: 'normal',
+         file: @@jsonIn, reader: 'mdJson', validate: 'normal',
          writer: 'dcat_us', showAllTags: false)
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
@@ -24,11 +21,8 @@ class TestWriterDcatUsIdentifier < TestWriterDcatUsParent
    end
 
    def test_identifier_url
-      hJsonIn = JSON.parse(@@jsonIn2)
-      hIn = hJsonIn.to_json
-
       metadata = ADIWG::Mdtranslator.translate(
-         file: hIn, reader: 'mdJson', validate: 'normal',
+         file: @@jsonIn2, reader: 'mdJson', validate: 'normal',
          writer: 'dcat_us', showAllTags: false)
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
