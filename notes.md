@@ -13,7 +13,7 @@
 | --- | --- | --- | --- |
 | Title | dcat:title | exists | citation.title |
 | Description | dcat:description | exists | citation.abstract |
-| Tags | dcat:keyword | exists | [resourceInfo.keywords *flatten*] **thesauri dropped** |
+| Tags | dcat:keyword | exists | [resourceInfo.keyword.keyword[0, n] *flatten*] |
 | Last Update | dcat:modified | if resourceInfo.citation.date[any].dateType = "lastUpdated" or "lastRevised" or "revision" | resourceInfo.citation.date[most recent] |
 | Publisher | dcat:publisher{name} | if citation.responsibleParty.[any].role = "publisher" |  contactId -> contact.name where isOrganization IS TRUE |
 | | | if exists resourceDistribution.distributor.contact | [first contact] contactId -> contact.name where isOrganization IS TRUE |
@@ -49,18 +49,18 @@
 
 ### No (not required)
 
-| Field Name | DCAT Name | mdJson Source |
-| --- | --- | --- |
-| Release Date | dcat:issued | if resourceInfo.citation.date[any].dateType = "publication" or "distributed" then <br> resourceInfo.citation.date[earliest] |
-| Frequency | dcat:accrualPeriodicity | [*ISO codelist MD_maintenanceFrequency can be used and several codes intersect with accrualPeriod codelist they are partially corresponding. A column of ISO8601 code equivalents could be added to MD_maintenanceFrequency to provide the coding expected https://resources.data.gov/schemas/dcat-us/v1.1/iso8601_guidance/#accrualperiodicity, community valuation should be determined*]  |
-| Language | dcat:language | [*language codelist could be used but needs to be bound with country corresponding to the RFC 5646 format https://datatracker.ietf.org/doc/html/rfc5646, such as "en-US", community valuation should be determined* |
-| Data Quality | dcat:dataQuality | [*this is a boolean to indicate whether data "conforms" to agency standards, value seems negligble*] |
-| Category | dcat:theme | where resourceInfo.keyword[any].thesaurus.title = "ISO Topic Category" <br> [resourceInfo.keyword.keyword[0, n] *flatten*]  |
-| Related Documents | dcat:references | associatedResource[all].resourceCitation.onlineResource[all].uri + additionalDocumentation[all].citation[all].onlineResource[all].uri [*comma separated*]|
-| Homepage URL | dcat:landingPage | [*Add code "landingPage" to CI_OnlineFunctionCode*] <br> if resourceInfo.citation.onlineResource[any].function = "landingPage" then <br> resourceInfo.citation.onlineResource.uri |
-| Collection | dcat:isPartOf | for each associatedResource[0, n].initiativeType = "collection" and associatedResource.associationType = "collectiveTitle" then <br> associatedResource.resourceCitation[0].uri |
-| System of Records | dcat:systemOfRecords | [*Add code "sorn" to DS_InitiativeTypeCode*] <br> for each associatedResource[0, n].initiativeType = "sorn" and  then <br> associatedResource.resourceCitation[0].uri |
-| Primary IT Investment | dcat:primaryITInvestmentUII | [*Links data to an IT investment identifier relative to Exhibit 53 docs, community valuation should be determined*] |
-| Data Dictionary | dcat:describedBy | if dataDictionary.dictionaryIncludedWithResource IS NOT TRUE and citation[0].onlineResource[0].uri exists then <br> dataDictionary.citation[0].onlineResource[0].uri |
-| Data Dictionary Type | dcat:describedByType | [*For simplicity, leave blank implying html page, community decision needed whether to support other format types using mime type and in the form of "application/pdf"*]|
-| Data Standard | dcat:conformsTo | [*Currently not able to identify the schema standard the data conforms to, though this has been proposed. Should this be built and there is community decision to support it, then it can be mapped*] |
+| Field Name | DCAT Name | Condition | mdJson Source |
+| --- | --- | --- | --- |
+| Release Date | dcat:issued | if resourceInfo.citation.date[any].dateType = "publication" or "distributed" | resourceInfo.citation.date[earliest] |
+| Frequency | dcat:accrualPeriodicity | | [*ISO codelist MD_maintenanceFrequency can be used and several codes intersect with accrualPeriod codelist they are partially corresponding. A column of ISO8601 code equivalents could be added to MD_maintenanceFrequency to provide the coding expected https://resources.data.gov/schemas/dcat-us/v1.1/iso8601_guidance/#accrualperiodicity, community valuation should be determined*]  |
+| Language | dcat:language | | [*language codelist could be used but needs to be bound with country corresponding to the RFC 5646 format https://datatracker.ietf.org/doc/html/rfc5646, such as "en-US", community valuation should be determined* |
+| Data Quality | dcat:dataQuality | | [*this is a boolean to indicate whether data "conforms" to agency standards, value seems negligble*] |
+| Category | dcat:theme | where resourceInfo.keyword[any].thesaurus.title = "ISO Topic Category" | [resourceInfo.keyword.keyword[0, n] *flatten*]  |
+| Related Documents | dcat:references | | associatedResource[all].resourceCitation.onlineResource[all].uri + additionalDocumentation[all].citation[all].onlineResource[all].uri [*comma separated*]|
+| Homepage URL | dcat:landingPage | [*Add code "landingPage" to CI_OnlineFunctionCode*] <br> if resourceInfo.citation.onlineResource[any].function = "landingPage" | resourceInfo.citation.onlineResource.uri |
+| Collection | dcat:isPartOf | for each associatedResource[0, n].initiativeType = "collection" and associatedResource.associationType = "collectiveTitle" | associatedResource.resourceCitation[0].uri |
+| System of Records | dcat:systemOfRecords | [*Add code "sorn" to DS_InitiativeTypeCode*] <br> for each associatedResource[0, n].initiativeType = "sorn"   | associatedResource.resourceCitation[0].uri |
+| Primary IT Investment | dcat:primaryITInvestmentUII | | [*Links data to an IT investment identifier relative to Exhibit 53 docs, community valuation should be determined*] |
+| Data Dictionary | dcat:describedBy | if dataDictionary.dictionaryIncludedWithResource IS NOT TRUE and citation[0].onlineResource[0].uri exists | dataDictionary.citation[0].onlineResource[0].uri |
+| Data Dictionary Type | dcat:describedByType | | [*For simplicity, leave blank implying html page, community decision needed whether to support other format types using mime type and in the form of "application/pdf"*]|
+| Data Standard | dcat:conformsTo | | [*Currently not able to identify the schema standard the data conforms to, though this has been proposed. Should this be built and there is community decision to support it, then it can be mapped*] |
