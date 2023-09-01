@@ -1,8 +1,9 @@
 # DCAT-US - mdTranslator proposed mappings
 ## Quick references
   - DCAT-US [element definitions](https://resources.data.gov/resources/dcat-us/)
-  - DCAT-US v1.1 [JSON schema](https://resources.data.gov/schemas/dcat-us/v1.1/schema/catalog.json)
-  - DCAT-US v1.1 [JSON-LD schema](https://resources.data.gov/schemas/dcat-us/v1.1/schema/catalog.jsonld)
+  - DCAT-US v1.1 [catalog.json schema](https://resources.data.gov/schemas/dcat-us/v1.1/schema/catalog.json)
+  - DCAT-US v1.1 [dataset.json schema](https://resources.data.gov/schemas/dcat-us/v1.1/schema/dataset.json)
+  - DCAT-US v1.1 [JSON-LD catalog.json schema](https://resources.data.gov/schemas/dcat-us/v1.1/schema/catalog.jsonld)
   - [Element crosswalks](https://resources.data.gov/resources/podm-field-mapping/#field-mappings) to other standards
 
 ## DCAT-US - mdTranslator
