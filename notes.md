@@ -23,25 +23,29 @@
 | Contact Email | dcat:contactPoint{email} | exists | resourceInfo.pointOfContact.parties[0].contactId -> contact.eMailList[0] |
 | Unique Identifier | dcat:identifier | if resourceInfo.citation.identifier.namespace = "DOI" | resourceInfo.citation.onlineResource.uri |
 | | | if "DOI" within resourceInfo.citation.onlineResource.uri | resourceInfo.citation.onlineResource.uri |
-| Public Access Level | dcat:accessLevel | [*extend codelist MD_RestrictionCode to include "public",  "restricted  public", "non-public"*] <br> if resourceInfo.constraints.legal[any] one of {"public", "restricted public", "non-public"} then <br>resourceInfo.constraints.legal[first]. Also resourceInfo.constraint.security.classification [[MD_ClassificationCode](https://mdtools.adiwg.org/#codes-page?c=iso_classification)] |
-| Bureau Code | dcat:bureauCode | [*extend role codelist to include "bureau", extend namespace codelist to include "bureauCode"*] <br> for each resourceInfo.citation.responsibleParty[any] role = "bureau" <br>contactId -> contact.identifier [*identifier must conform to https://resources.data.gov/schemas/dcat-us/v1.1/omb_bureau_codes.csv*] |
-| Program Code | dcat:programCode | [*add new element of program resourceInfo.programCode, add new codelist of programCode*] <br> resourceInfo.program[0,n] |
+| Public Access Level | dcat:accessLevel | [*extend codelist MD_RestrictionCode to include "public",  "restricted  public", "non-public"*] <br> if resourceInfo.constraints.legal[any] one of {"public", "restricted public", "non-public"} | resourceInfo.constraints.legal[first]. Also resourceInfo.constraint.security.classification [[MD_ClassificationCode](https://mdtools.adiwg.org/#codes-page?c=iso_classification)] |
+| Bureau Code | dcat:bureauCode | | [*extend role codelist to include "bureau", extend namespace codelist to include "bureauCode"*] <br> for each resourceInfo.citation.responsibleParty[any] role = "bureau" <br>contactId -> contact.identifier [*identifier must conform to https://resources.data.gov/schemas/dcat-us/v1.1/omb_bureau_codes.csv*] |
+| Program Code | dcat:programCode | | [*add new element of program resourceInfo.programCode, add new codelist of programCode*] <br> resourceInfo.program[0,n] |
 
 ### If-Applicable (required if it exists)
 
-| Field Name | DCAT Name | mdJson Source |
-| --- | --- | --- |
+| Field Name | DCAT Name | Condition | mdJson Source |
+| --- | --- | --- | --- |
 | Distribution | dcat:distribution | if exists resourceDistribution[any] and if exists resourceDistribution.distributor[any].transferOption[any].onlineOption[any].uri <br> for each resourceDistribution[0, n] where exists resourceDistribution.distributor.transferOption.onlineOption.uri then <br> {description, accessURL, downloadURL, mediaType, title} |
-| - Description | dcat:distribution.description | resourceDistribution.description |
-| - AccessURL | dcat:distribution.accessURL | if citation.onlineResources[first occurence].uri [path ends in ".html"] [*required if applicable*] then <br> resourceDistribution.distributor.transferOption.onlineOption.uri |
-| - DownloadURL | dcat.distribution.downloadURL | if citation.onlineResources[first occurence].uri [path does not end in ".html"] [*required if applicable*] then <br> resourceDistribution.distributor.transferOption.onlineOption.uri |
+| - Description | dcat:distribution.description | exists | resourceDistribution.description |
+| - AccessURL | dcat:distribution.accessURL | if citation.onlineResources[first occurence].uri [path ends in ".html"] [*required if applicable*] | resourceDistribution.distributor.transferOption.onlineOption.uri |
+| - DownloadURL | dcat.distribution.downloadURL | if citation.onlineResources[first occurence].uri [path does not end in ".html"] [*required if applicable*] |resourceDistribution.distributor.transferOption.onlineOption.uri |
 | - MediaType | dcat:distribution.mediaType | [*add codelist of "dataFormat"*] <br> transferOption.distributionFormat.formatSpecification.title [dataFormat] [*dataFormat should conform to: https://www.iana.org/assignments/media-types/media-types.xhtml*] |
-| - Title | dcat:distribution.title | resourceDistribution.distributor.transferOption.onlineOption.name |
-| License | dcat:license | [*add resourceInfo.constraint.reference to mdEditor*] <br> if exists resourceInfo.constraint.reference[0] then <br> resourceInfo.constraint.reference[0] <br> else https://creativecommons.org/publicdomain/zero/1.0/ <br> [*allows author to identify a license to use, or default to CC0 if none provided, CC0 would cover international usage as opposed to publicdomain*] <br> [*others: http://www.usa.gov/publicdomain/label/1.0/, http://opendatacommons.org/licenses/pddl/1.0*] |
-| Rights | dcat:rights | if constraint.accessLevel in {"restricted public", "non-public"} then <br>resourceInfo.constraint.releasibility.statement + " " + each constraint.releasibility.dessiminationConstraint[0, n] |
-| Endpoint | *removed* | *ignored* |
-| Spatial | dcat:spatial | if exists resourceInfo.extents[0].geographicExtents[0].boundingBox then <br> boundingBox.eastLongitude + "," + boundingBox.southLatitude + "," + boundingBox.westLongitude + "," + boundingBox.northLatitude [*decimal degrees*] <br> else if exists resourceInfo.extents[0].geographicExtents[0].geographicElement[0].type = "point" then <br> geographicElement[0].coordinate[1] + "," + geographicElement[0].coordinate[0] [*lat, long decimal degrees*] |
-| Temporal | dcat:temporal | if exists resourceInfo.extent[0].temporalExtent[0] then <br> if exists tempororalExtent[0].timePeriod.startDate and exists temporaralExtent[0].timePeriod.endDate then <br> timePeriod[0].startDate + "/" + timePeriod.endDate <br> else if exists  tempororalExtent[0].timePeriod.startDate and not exists temporaralExtent[0].timePeriod.endDate then tempororalExtent[0].timePeriod.startDate <br> else if not exists temporalExtent[0].timePeriod.startDate and exists temporaralExtent[0].timePeriod.endDate then <br> tempororalExtent[0].timePeriod.endDate <br> [*may need revisiting relative to decision on date only formatting*] |
+| - Title | dcat:distribution.title | exists | resourceDistribution.distributor.transferOption.onlineOption.name |
+| License | dcat:license | [*add resourceInfo.constraint.reference to mdEditor*] <br> if exists resourceInfo.constraint.reference[0] | resourceInfo.constraint.reference[0] <br> |
+| | | else | https://creativecommons.org/publicdomain/zero/1.0/ <br> [*allows author to identify a license to use, or default to CC0 if none provided, CC0 would cover international usage as opposed to publicdomain*] <br> [*others: http://www.usa.gov/publicdomain/label/1.0/, http://opendatacommons.org/licenses/pddl/1.0*] |
+| Rights | dcat:rights | if constraint.accessLevel in {"restricted public", "non-public"} | resourceInfo.constraint.releasibility.statement + " " + each constraint.releasibility.dessiminationConstraint[0, n] |
+| Endpoint | *removed* | *ignored* | *ignored* |
+| Spatial | dcat:spatial | if exists resourceInfo.extents[0].geographicExtents[0].boundingBox | boundingBox.eastLongitude + "," + boundingBox.southLatitude + "," + boundingBox.westLongitude + "," + boundingBox.northLatitude [*decimal degrees*] |
+| | | else | if exists resourceInfo.extents[0].geographicExtents[0].geographicElement[0].type = "point" then <br> geographicElement[0].coordinate[1] + "," + geographicElement[0].coordinate[0] [*lat, long decimal degrees*] |
+| Temporal | dcat:temporal | if exists resourceInfo.extent[0].temporalExtent[0] then <br> if exists tempororalExtent[0].timePeriod.startDate and exists temporaralExtent[0].timePeriod.endDate | timePeriod[0].startDate + "/" + timePeriod.endDate |
+| | | if exists  tempororalExtent[0].timePeriod.startDate and not exists temporaralExtent[0].timePeriod.endDate | tempororalExtent[0].timePeriod.startDate |
+| | | if not exists temporalExtent[0].timePeriod.startDate and exists temporaralExtent[0].timePeriod.endDate | tempororalExtent[0].timePeriod.endDate <br> [*may need revisiting relative to decision on date only formatting*] |
 
 ### No (not required)
 
