@@ -1,9 +1,3 @@
-# MdTranslator - minitest of
-# parent class for all tc_dcat_us tests
-
-# History:
-# 
-
 require 'minitest/autorun'
 require 'json'
 require 'json-schema'
