@@ -30,11 +30,10 @@ module ADIWG
                accessLevel = AccessLevel.build(intObj)
                identifier = Identifier.build(intObj)
                distribution = Distribution.build(intObj)
-               rights = Rights.build(intObj)
+               rights = Rights.build(intObj, accessLevel)
                spatial = Spatial.build(intObj)
                temporal = Temporal.build(intObj)
                license = License.build(intObj)
-
 
                @Namespace = ADIWG::Mdtranslator::Writers::Dcat_us
 

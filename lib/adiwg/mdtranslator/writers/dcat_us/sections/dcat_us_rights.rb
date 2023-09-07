@@ -4,24 +4,26 @@ module ADIWG
          module Dcat_us
             module Rights
 
-               def self.build(intObj)
+               def self.build(intObj, accessLevel)
                   resourceInfo = intObj.dig(:metadata, :resourceInfo)
-                  constraint = resourceInfo&.dig(:constraint)
-                  accessLevel = constraint&.dig(:accessLevel)
-
+                  constraints = resourceInfo&.dig(:constraints)
+                
                   if accessLevel && ["restricted public", "non-public"].include?(accessLevel)
-                    statement = constraint.dig(:releasibility, :statement)
-                    disseminationConstraints = constraint.dig(:releasibility, :disseminationConstraint)
-                    
-                    if disseminationConstraints
-                      combinedConstraints = disseminationConstraints.join(" ")
+                    constraints&.each do |constraint|
+                      if constraint[:type] == "use"
+                        statement = constraint.dig(:releasability, :statement)
+                        disseminationConstraints = constraint.dig(:releasability, :disseminationConstraint)
+                
+                        if statement && disseminationConstraints
+                          combinedConstraints = disseminationConstraints.join(" ")
+                          return "#{statement} #{combinedConstraints}".strip
+                        end
+                      end
                     end
-
-                    return "#{statement} #{combinedConstraints}".strip
                   end
-
+                
                   nil
-               end
+               end                
 
             end
          end
