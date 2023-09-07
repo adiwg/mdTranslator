@@ -11,7 +11,7 @@ require 'nokogiri'
 require 'rubygems'
 require 'adiwg/mdtranslator'
 
-class TestWriterFGDCParent < MiniTest::Test
+class TestWriterFGDCParent < Minitest::Test
 
    @@responseObj = {
       readerExecutionPass: true,

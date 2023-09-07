@@ -11,7 +11,7 @@ require 'nokogiri'
 require 'adiwg-mdjson_schemas'
 require 'adiwg/mdtranslator'
 
-class TestWriter191151Parent < MiniTest::Test
+class TestWriter191151Parent < Minitest::Test
 
    @@responseObj = {
       readerExecutionPass: true,

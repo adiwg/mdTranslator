@@ -10,7 +10,7 @@ require_relative '../../lib/adiwg/mdtranslator_cli'
 
 # test CLI parameters
 # no writer is specified; the input mdJson will only be scanned for errors
-class TestMdtranslatorCLI < MiniTest::Test
+class TestMdtranslatorCLI < Minitest::Test
 
     def test_mdtranslatorCLI_default
 
