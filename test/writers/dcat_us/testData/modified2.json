@@ -1,0 +1,376 @@
+{
+   "schema": {
+     "name": "mdJson",
+     "version": "2.6.0"
+   },
+   "contact": [
+     {
+       "contactId": "CID001",
+       "isOrganization": false,
+       "name": "Stan Smith",
+       "positionName": "Associate - retired",
+       "memberOfOrganization": [
+         "CID002",
+         "CID003"
+       ],
+       "logoGraphic": [
+         {
+           "fileName": "fileName0",
+           "fileDescription": "fileDescription0",
+           "fileType": "fileType0",
+           "fileConstraint": [{
+               "type": "use",
+               "useLimitation": [
+                 "useLimitation0",
+                 "useLimitation1"
+               ]
+             },
+             {
+               "type": "legal",
+               "legal": {
+                 "useConstraint": [
+                   "useConstraint0",
+                   "useConstraint1"
+                 ],
+                 "accessConstraint": [
+                   "accessConstraint0",
+                   "accessConstraint1"
+                 ],
+                 "otherConstraint": [
+                   "otherConstraint0",
+                   "otherConstraint1"
+                 ]
+               }
+             },
+             {
+               "type": "security",
+               "security": {
+                 "classification": "classification",
+                 "classificationSystem": "classificationSystem",
+                 "userNote": "userNote",
+                 "handlingDescription": "handlingDescription"
+               }
+             }
+           ],
+           "fileUri": [{
+             "uri": "http://ISO.uri/adiwg/0"
+           }]
+         },
+         {
+           "fileName": "fileName1",
+           "fileDescription": "fileDescription1",
+           "fileType": "fileType1"
+         },
+         {
+           "fileName": "fileName2"
+         }
+       ],
+       "phone": [
+         {
+           "phoneName": "mobile",
+           "phoneNumber": "111-111-1111",
+           "service": [
+             "voice",
+             "sms",
+             "message"
+           ]
+         },
+         {
+           "phoneName": "office",
+           "phoneNumber": "222-222-2222",
+           "service": [
+             "voice",
+             "message"
+           ]
+         }
+       ],
+       "address": [
+         {
+           "addressType": [
+             "mailing",
+             "physical"
+           ],
+           "description": "work location",
+           "deliveryPoint": [
+             "address line 1",
+             "address line 2"
+           ],
+           "city": "city",
+           "administrativeArea": "state",
+           "postalCode": "zip",
+           "country": "country"
+         },
+         {
+           "addressType": [
+             "mailing"
+           ],
+           "description": "telework location",
+           "deliveryPoint": [
+             "address line 3"
+           ],
+           "city": "city",
+           "administrativeArea": "state",
+           "postalCode": "zip",
+           "country": "country"
+         }
+       ],
+       "electronicMailAddress": [
+         "e.mail@address.com1",
+         "e.mail@address.com2"
+       ],
+       "onlineResource": [
+         {
+           "uri": "http://ISO.uri/adiwg/1",
+           "protocol": "protocol",
+           "name": "name",
+           "description": "description",
+           "function": "function"
+         },
+         {
+           "uri": "http://ISO.uri/adiwg/2"
+         }
+       ],
+       "hoursOfService": [
+         "hoursOfService1",
+         "hoursOfService2"
+       ],
+       "contactInstructions": "contactInstructions",
+       "contactType": "individual"
+     },
+     {
+       "contactId": "CID002",
+       "isOrganization": true,
+       "name": "US Geological Survey",
+       "memberOfOrganization": [
+         "CID005"
+       ],
+       "logoGraphic": [
+         {
+         "fileName": "fileName"
+       }],
+       "phone": [
+         {
+         "phoneName": "single service",
+         "phoneNumber": "111-111-1111",
+         "service": [
+           "voice"
+         ]
+       }],
+       "address": [
+         {
+         "addressType": [
+           "addressType"
+         ],
+         "city": "Anchorage",
+         "administrativeArea": "AK",
+         "postalCode": "99508"
+       }],
+       "electronicMailAddress": [
+         "e.mail@address.com2"
+       ],
+       "onlineResource": [{
+         "uri": "http://ISO.uri/adiwg/2"
+       }],
+       "hoursOfService": [
+         "hoursOfService"
+       ],
+       "contactInstructions": "contactInstructions",
+       "contactType": "federal"
+     },
+     {
+       "contactId": "CID003",
+       "isOrganization": true,
+       "name": "Arctic Landscape Conservation Cooperative",
+       "contactType": "federal",
+       "phone": [{
+         "phoneName": "single service",
+         "phoneNumber": "111-111-1111",
+         "service": [
+           "voice"
+         ]
+       }],
+       "address": [{
+         "addressType": [
+           "addressType"
+         ],
+         "city": "Anchorage",
+         "administrativeArea": "AK",
+         "postalCode": "99508"
+       }]
+     },
+     {
+       "contactId": "CID004",
+       "isOrganization": false,
+       "name": "Joshua Bradley",
+       "positionName": "Data Manager",
+       "memberOfOrganization": [
+         "CID003"
+       ],
+       "phone": [{
+         "phoneName": "single service",
+         "phoneNumber": "111-111-1111",
+         "service": [
+           "voice"
+         ]
+       }],
+       "address": [{
+         "addressType": [
+           "addressType"
+         ],
+         "city": "Anchorage",
+         "administrativeArea": "AK",
+         "postalCode": "99508"
+       }]
+     },
+     {
+       "contactId": "CID005",
+       "isOrganization": true,
+       "name": "US Department of the Interior",
+       "contactType": "federal"
+     },
+     {
+       "contactId": "CID006",
+       "isOrganization": false,
+       "name": "Dennis Walworth",
+       "memberOfOrganization": [
+         "CID002"
+       ],
+       "contactType": "individual",
+       "phone": [{
+         "phoneName": "single service",
+         "phoneNumber": "111-111-1111",
+         "service": [
+           "voice"
+         ]
+       }],
+       "address": [{
+         "addressType": [
+           "addressType"
+         ],
+         "city": "Anchorage",
+         "administrativeArea": "AK",
+         "postalCode": "99508"
+       }]
+     }
+   ],
+   "metadata": {
+      "metadataInfo": {
+        "metadataContact": [
+            {
+              "role": "metadataContact",
+              "party": [
+                  {
+                    "contactId": "CID001"
+                  }
+              ]
+            }
+        ]
+      },
+     "resourceInfo": {
+       "resourceType": [
+         {
+           "type": "tableDigital",
+           "name": "My Table Name"
+         },
+         {
+           "type": "website",
+           "name": "My Website Name"
+         }
+       ],
+       "citation": {
+         "title": "Main Resource Title - Citation",
+         "alternateTitle": [
+           "How I spent my summer",
+           "Research under the midnight-sun"
+         ],
+         "date": [
+           {
+             "date": "2017-06-13",
+             "dateType": "publication"
+           },
+           {
+             "date": "2019-06-22T16:15:14",
+             "dateType": "revision"
+           },
+           {
+             "date": "2022-06-22T16:15:14",
+             "dateType": "revision"
+           },
+           {
+             "date": "2018-06-22T16:15:14",
+             "dateType": "revision"
+           }
+         ],
+         "edition": "edition",
+         "responsibleParty": [
+           {
+             "role": "principalInvestigator",
+             "roleExtent": [
+               {
+                 "description": "Extent 1: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+               },
+               {
+                 "description": "Extent 2: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+               }
+             ],
+             "party": [
+               {
+                 "contactId": "CID001"
+               },
+               {
+                 "contactId": "CID004"
+               }
+             ]
+           },
+           {
+             "role": "funder",
+             "party": [{
+               "contactId": "CID003",
+               "organizationMembers": [
+                 "CID004",
+                 "CID001"
+               ]
+             }]
+           },
+           {
+             "role": "originator",
+             "party": [{
+               "contactId": "CID004"
+             }]
+           }
+         ]
+       },
+       "abstract": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+       "shortAbstract": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+       "purpose": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+       "status": [
+         "incomplete",
+         "suspended"
+       ],
+       "pointOfContact": [
+         {
+           "role": "pointOfContact",
+           "party": [{
+               "contactId": "CID001"
+             },
+             {
+               "contactId": "CID006"
+             }
+           ]
+         },
+         {
+           "role": "principalInvestigator",
+           "party": [{
+             "contactId": "CID004"
+           }]
+         }
+       ],
+       "defaultResourceLocale": {
+         "language": "eng",
+         "country": "USA",
+         "characterSet": "UTF-8"
+       }
+     }
+   }
+ }
+ 
