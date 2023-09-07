@@ -11,6 +11,7 @@ require_relative 'dcat_us_access_level'
 require_relative 'dcat_us_rights'
 require_relative 'dcat_us_license'
 require_relative 'dcat_us_issued'
+require_relative 'dcat_us_theme'
 
 module ADIWG
    module Mdtranslator
@@ -36,6 +37,7 @@ module ADIWG
                temporal = Temporal.build(intObj)
                license = License.build(intObj)
                issued = Issued.build(intObj)
+               theme = Theme.build(intObj)
 
                @Namespace = ADIWG::Mdtranslator::Writers::Dcat_us
 
@@ -62,7 +64,7 @@ module ADIWG
                   # json.set!('dcat:accrualPeriodicity', metadataInfo[:metadataMaintenance][:maintenanceFrequency])
                   # json.set!('dcat:language', metadataInfo[:metadataLocales][0][:languageCode])
                   # json.set!('dcat:dataQuality', metadataInfo[:metadataMaintenance][:maintenanceNote])
-                  # json.set!('dcat:theme', metadataInfo[:metadataTopics][0][:topicCategory])
+                  json.set!('dcat:theme', theme)
                   # json.set!('dcat:references', metadataInfo[:metadataCitation])
                   # json.set!('dcat:landingPage', metadataInfo[:metadataOnlineOptions][0][:olResURI])
                   # json.set!('dcat:isPartOf', metadataInfo[:metadataHierarchy][0][:parentMetadata][:metadataId])
