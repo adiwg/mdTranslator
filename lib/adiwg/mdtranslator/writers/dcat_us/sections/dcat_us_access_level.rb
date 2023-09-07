@@ -16,8 +16,9 @@ module ADIWG
                   legalConstraints = resourceInfo[:constraints]&.select { |constraint| constraint[:type] == 'legal' }
                   
                   accessLevel = legalConstraints&.detect do |constraint|
-                     constraint.dig(:legalConstraint, :accessCodes)&.any? { |code| ["public", "restricted public", "non-public"].include?(code) }
-                  end                   
+                     codes = constraint.dig(:legalConstraint, :accessCodes)
+                     codes&.any? { |code| ["public", "restricted public", "non-public"].include?(code) }
+                  end&.dig(:legalConstraint, :accessCodes)&.find { |code| ["public", "restricted public", "non-public"].include?(code) }
 
                   accessLevel ? accessLevel : nil
                end           
