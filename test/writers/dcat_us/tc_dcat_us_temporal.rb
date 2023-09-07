@@ -16,7 +16,7 @@ class TestWriterDcatUsTemporal < TestWriterDcatUsParent
       hJsonOut = JSON.parse(metadata[:writerOutput])
       got = hJsonOut['dcat:temporal']
 
-      expect = 'Temporal'
+      expect = '2016-10-24T11:10:15-10:00'
 
       assert_equal expect, got
    end

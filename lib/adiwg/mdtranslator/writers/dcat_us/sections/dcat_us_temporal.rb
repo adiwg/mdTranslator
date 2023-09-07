@@ -7,24 +7,31 @@ module ADIWG
                def self.build(intObj)
                   resourceInfo = intObj.dig(:metadata, :resourceInfo)
                   extent = resourceInfo&.dig(:extents, 0)
-                  temporalExtent = extent&.dig(:temporalExtents, 0)
-                  timePeriod = temporalExtent&.dig(:timePeriod)
-
-                  if timePeriod
-                    startDate = timePeriod[:startDateTime]
-                    endDate = timePeriod[:endDateTime]
-
-                    if startDate && endDate
-                      return "#{startDate}/#{endDate}"
-                    elsif startDate
-                      return startDate
-                    elsif endDate
-                      return endDate
+                  temporalExtents = extent&.dig(:temporalExtents)
+                
+                  if temporalExtents
+                    temporalExtents.each do |temporalExtent|
+                      timePeriod = temporalExtent&.dig(:timePeriod)
+                      next unless timePeriod
+                
+                      startDateHash = timePeriod[:startDateTime]
+                      endDateHash = timePeriod[:endDateTime]
+                      
+                      startDate = startDateHash&.dig(:dateTime)
+                      endDate = endDateHash&.dig(:dateTime)
+                
+                      if startDate && endDate
+                        return "#{startDate}/#{endDate}"
+                      elsif startDate
+                        return startDate
+                      elsif endDate
+                        return endDate
+                      end
                     end
                   end
-
+                
                   nil
-               end           
+               end
 
             end
          end
