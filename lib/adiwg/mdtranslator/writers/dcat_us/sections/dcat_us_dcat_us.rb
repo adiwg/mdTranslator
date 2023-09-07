@@ -1,8 +1,3 @@
-# dcat_us 1.0 writer
-
-# History:
-#  Johnathan Aspinwall 2023-06-22 original script
-
 require 'jbuilder'
 require_relative 'dcat_us_keyword'
 require_relative 'dcat_us_publisher'
