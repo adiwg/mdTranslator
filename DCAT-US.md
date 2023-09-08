@@ -62,6 +62,6 @@
 | Collection | dcat:isPartOf | for each associatedResource[0, n].initiativeType = "collection" and associatedResource.associationType = "collectiveTitle" | associatedResource.resourceCitation[0].uri |
 | System of Records | dcat:systemOfRecords | [*Add code "sorn" to DS_InitiativeTypeCode*] <br> for each associatedResource[0, n].initiativeType = "sorn"   | associatedResource.resourceCitation[0].uri |
 | Primary IT Investment | dcat:primaryITInvestmentUII | | [*Links data to an IT investment identifier relative to Exhibit 53 docs, community valuation should be determined*] |
-| Data Dictionary | dcat:describedBy | if dataDictionary.dictionaryIncludedWithResource IS NOT TRUE and citation[0].onlineResource[0].uri exists | dataDictionary.citation[0].onlineResource[0].uri |
+| Data Dictionary | dcat:describedBy | if dataDictionary.dictionaryIncludedWithResource IS NOT TRUE and citation.onlineResource[0].uri exists | dataDictionary.citation.onlineResource[0].uri |
 | Data Dictionary Type | dcat:describedByType | | [*For simplicity, leave blank implying html page, community decision needed whether to support other format types using mime type and in the form of "application/pdf"*]|
 | Data Standard | dcat:conformsTo | | [*Currently not able to identify the schema standard the data conforms to, though this has been proposed. Should this be built and there is community decision to support it, then it can be mapped*] |
