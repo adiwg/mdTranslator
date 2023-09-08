@@ -14,6 +14,7 @@ require_relative 'dcat_us_issued'
 require_relative 'dcat_us_theme'
 require_relative 'dcat_us_landing_page'
 require_relative 'dcat_us_is_part_of'
+require_relative 'dcat_us_described_by'
 
 module ADIWG
    module Mdtranslator
@@ -42,6 +43,7 @@ module ADIWG
                theme = Theme.build(intObj)
                landingPage = LandingPage.build(intObj)
                isPartOf = IsPartOf.build(intObj)
+               describedBy = DescribedBy.build(intObj)
 
                @Namespace = ADIWG::Mdtranslator::Writers::Dcat_us
 
@@ -74,7 +76,7 @@ module ADIWG
                   json.set!('dcat:isPartOf', isPartOf)
                   # json.set!('dcat:systemOfRecords', metadataInfo[:metadataHierarchy][0][:parentMetadata][:metadataId])
                   # json.set!('dcat:primaryITInvestmentUII', metadataInfo[:metadataId])
-                  # json.set!('dcat:describedBy', metadataInfo[:metadataOnlineOptions][0][:olResURI])
+                  json.set!('dcat:describedBy', describedBy)
                   # json.set!('dcat:describedByType', metadataInfo[:metadataOnlineOptions][0][:olResProtocol])
                   # json.set!('dcat:conformsTo', metadataInfo[:metadataStandards][0][:standardName])
                end
