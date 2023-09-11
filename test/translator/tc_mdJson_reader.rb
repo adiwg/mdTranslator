@@ -9,7 +9,7 @@ require 'json'
 require 'rubygems'
 require 'adiwg/mdtranslator'
 
-class TestMdJsonReader < MiniTest::Test
+class TestMdJsonReader < Minitest::Test
 
    def test_mdJson_reader_invalid_mdJson
 

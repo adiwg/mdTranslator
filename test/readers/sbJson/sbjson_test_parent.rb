@@ -10,7 +10,7 @@ require 'json-schema'
 require 'adiwg-mdjson_schemas'
 require 'adiwg/mdtranslator/readers/sbJson/modules/module_sbJson'
 
-class TestReaderSbJsonParent < MiniTest::Test
+class TestReaderSbJsonParent < Minitest::Test
 
    @@responseObj = {
       readerExecutionPass: true,

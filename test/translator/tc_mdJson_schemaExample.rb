@@ -8,7 +8,7 @@ require 'minitest/autorun'
 require 'rubygems'
 require 'adiwg/mdtranslator'
 
-class TestMdjsonSchemaExample < MiniTest::Test
+class TestMdjsonSchemaExample < Minitest::Test
    
    def test_mdJson_schema_example
       
