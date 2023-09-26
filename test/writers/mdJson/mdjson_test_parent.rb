@@ -10,7 +10,7 @@ require 'json'
 require 'json-schema'
 require 'adiwg-mdjson_schemas'
 
-class TestWriterMdJsonParent < MiniTest::Test
+class TestWriterMdJsonParent < Minitest::Test
 
    # get json file for tests from examples folder
    def self.getJson(fileName)

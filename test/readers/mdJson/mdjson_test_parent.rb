@@ -14,7 +14,7 @@ require 'adiwg/mdtranslator/readers/mdJson/modules/module_mdJson'
 require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
 
-class TestReaderMdJsonParent < MiniTest::Test
+class TestReaderMdJsonParent < Minitest::Test
 
    # instance classes needed in script
    TDClass = MdJsonHashWriter.new

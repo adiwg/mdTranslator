@@ -9,7 +9,7 @@ require 'nokogiri'
 require 'adiwg/mdtranslator'
 require 'adiwg/mdtranslator/readers/fgdc/version'
 
-class TestFgdcReader < MiniTest::Test
+class TestFgdcReader < Minitest::Test
 
     def test_fgdc_reader_badly_formed_xml
 
