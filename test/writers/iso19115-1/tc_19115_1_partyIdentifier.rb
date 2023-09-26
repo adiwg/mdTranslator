@@ -31,7 +31,7 @@ class TestWriter19115PartyIdentifier < TestWriter191151Parent
       {
         name: "person name",
         isOrganization: false,
-        contactId: "CID001",
+        contactId: "CID002",
         externalIdentifier: [
           {
             identifier: "https://orcid.org/0000-0002-4472-5965",
