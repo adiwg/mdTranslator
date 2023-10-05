@@ -29,7 +29,7 @@ class TestWriter19115PartyIdentifier < TestWriter191151Parent
         ] 
       },
       {
-        name: "expected person name",
+        name: "person name",
         isOrganization: false,
         contactId: "CID002",
         externalIdentifier: [
