@@ -7,7 +7,7 @@ require 'minitest/autorun'
 require 'json'
 require 'adiwg-mdtranslator'
 
-class TestHtmlDocument < MiniTest::Test
+class TestHtmlDocument < Minitest::Test
 
    # get input JSON for test
    fname = File.join(File.dirname(__FILE__), 'testData', 'metadataGeo.json')

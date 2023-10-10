@@ -9,7 +9,7 @@ require 'json'
 require 'adiwg/mdtranslator'
 require 'adiwg/mdtranslator/readers/sbJson/version'
 
-class TestSbJsonReader < MiniTest::Test
+class TestSbJsonReader < Minitest::Test
 
    def test_sbJson_reader_invalid_sbJson
 

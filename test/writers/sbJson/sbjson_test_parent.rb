@@ -8,7 +8,7 @@ require 'minitest/autorun'
 require 'json'
 require 'json-schema'
 
-class TestWriterSbJsonParent < MiniTest::Test
+class TestWriterSbJsonParent < Minitest::Test
 
    # get json file for tests from examples folder
    def self.getJson(fileName)
