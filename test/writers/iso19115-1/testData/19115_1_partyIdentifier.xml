@@ -36,7 +36,7 @@
   <cit:party>
     <cit:CI_Individual>
       <cit:name>
-        <gco:CharacterString>expected person name</gco:CharacterString>
+        <gco:CharacterString>person name</gco:CharacterString>
       </cit:name>
       <cit:contactInfo/>
       <cit:partyIdentifier>

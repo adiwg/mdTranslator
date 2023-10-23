@@ -31,7 +31,7 @@ class TestWriter19115PartyIdentifier < TestWriter191151Parent
       {
         name: "person name",
         isOrganization: false,
-        contactId: "CID001",
+        contactId: "CID002",
         externalIdentifier: [
           {
             identifier: "https://orcid.org/0000-0002-4472-5965",
@@ -48,7 +48,7 @@ class TestWriter19115PartyIdentifier < TestWriter191151Parent
 
     hIn[:metadata][:resourceInfo][:citation][:responsibleParty][0][:party] = parties
 
-    hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_partyIdentifier', '//cit:party[2]', '//cit:party', 0)
+    hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_partyIdentifier', '//cit:party[1]', '//cit:party', 0)
 
     assert_equal hReturn[0], hReturn[1]
     assert hReturn[2]
