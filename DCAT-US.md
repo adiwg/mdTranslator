@@ -13,7 +13,7 @@
 | Field Name | DCAT Name | Condition | mdJson Source |
 | --- | --- | --- | --- |
 | Title | dcat:title | exists | citation.title |
-| Description | dcat:description | exists | citation.abstract |
+| Description | dcat:description | exists | resourceInfo.abstract |
 | Tags | dcat:keyword | exists | [resourceInfo.keyword.keyword[0, n] *flatten*] |
 | Last Update | dcat:modified | if resourceInfo.citation.date[any].dateType = "lastUpdated" or "lastRevised" or "revision" | resourceInfo.citation.date[most recent] |
 | Publisher | dcat:publisher{name} | if citation.responsibleParty.[any].role = "publisher" |  contactId -> contact.name where isOrganization IS TRUE |
