@@ -10,6 +10,14 @@ require_relative 'dcat_us_modified'
 require_relative 'dcat_us_access_level'
 require_relative 'dcat_us_rights'
 require_relative 'dcat_us_license'
+require_relative 'dcat_us_issued'
+require_relative 'dcat_us_described_by'
+require_relative 'dcat_us_is_part_of'
+require_relative 'dcat_us_theme'
+require_relative 'dcat_us_references'
+require_relative 'dcat_us_landing_page'
+require_relative 'dcat_us_system_of_records'
+require_relative 'dcat_us_description'
 
 module ADIWG
    module Mdtranslator
@@ -22,7 +30,7 @@ module ADIWG
                citation = resourceInfo[:citation]
 
                title = citation[:title]
-               description = citation[:abstract]
+               description = Description.build(intObj)
                keyword = Keyword.build(intObj)
                modified = Modified.build(intObj)
                publisher = Publisher.build(intObj)
@@ -34,6 +42,13 @@ module ADIWG
                spatial = Spatial.build(intObj)
                temporal = Temporal.build(intObj)
                license = License.build(intObj)
+               issued = Issued.build(intObj)
+               describedBy = DescribedBy.build(intObj)
+               isPartOf = IsPartOf.build(intObj)
+               theme = Theme.build(intObj)
+               references = References.build(intObj)
+               landingPage = LandingPage.build(intObj)
+               systemOfRecords = SystemOfRecords.build(intObj)
 
                @Namespace = ADIWG::Mdtranslator::Writers::Dcat_us
 
@@ -56,17 +71,17 @@ module ADIWG
                   json.set!('dcat:spatial', spatial)
                   json.set!('dcat:temporal', temporal)
 
-                  # json.set!('dcat:issued', metadataInfo[:metadataDates][0][:date])
+                  json.set!('dcat:issued', issued)
                   # json.set!('dcat:accrualPeriodicity', metadataInfo[:metadataMaintenance][:maintenanceFrequency])
                   # json.set!('dcat:language', metadataInfo[:metadataLocales][0][:languageCode])
                   # json.set!('dcat:dataQuality', metadataInfo[:metadataMaintenance][:maintenanceNote])
-                  # json.set!('dcat:theme', metadataInfo[:metadataTopics][0][:topicCategory])
-                  # json.set!('dcat:references', metadataInfo[:metadataCitation])
-                  # json.set!('dcat:landingPage', metadataInfo[:metadataOnlineOptions][0][:olResURI])
-                  # json.set!('dcat:isPartOf', metadataInfo[:metadataHierarchy][0][:parentMetadata][:metadataId])
-                  # json.set!('dcat:systemOfRecords', metadataInfo[:metadataHierarchy][0][:parentMetadata][:metadataId])
+                  json.set!('dcat:theme', theme)
+                  json.set!('dcat:references', references)
+                  json.set!('dcat:landingPage', landingPage)
+                  json.set!('dcat:isPartOf', isPartOf)
+                  json.set!('dcat:systemOfRecords', systemOfRecords)
                   # json.set!('dcat:primaryITInvestmentUII', metadataInfo[:metadataId])
-                  # json.set!('dcat:describedBy', metadataInfo[:metadataOnlineOptions][0][:olResURI])
+                  json.set!('dcat:describedBy', describedBy)
                   # json.set!('dcat:describedByType', metadataInfo[:metadataOnlineOptions][0][:olResProtocol])
                   # json.set!('dcat:conformsTo', metadataInfo[:metadataStandards][0][:standardName])
                end
