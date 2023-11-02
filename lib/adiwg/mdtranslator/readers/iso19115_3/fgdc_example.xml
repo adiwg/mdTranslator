@@ -1,0 +1,1021 @@
+<?xml version="1.0"?>
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>Robert Wilson (ORCID: 0000-0003-1800-0183)</origin>
+        <pubdate>201704</pubdate>
+        <title>Greater White-Fronted Goose (Anser albifrons) Microsatellite DNA Data, Alaska, 1989-2006</title>
+        <geoform>spreadsheet</geoform>
+        <pubinfo>
+          <pubplace>Anchorage, AK</pubplace>
+          <publish>U.S. Geological Survey, Alaska Science Center</publish>
+        </pubinfo>
+        <othercit>Wilson, R. E., 2017, Greater White-Fronted Goose (Anser albifrons) Microsatellite DNA Data, Alaska, 1989-2006: U.S. Geological Survey data release, https://doi.org/10.5066/F71G0JGN</othercit>
+        <onlink>https://doi.org/10.5066/F71G0JGN</onlink>
+        <lworkcit>
+          <citeinfo>
+            <origin>Talbot, S.L.</origin>
+            <pubdate>19980101</pubdate>
+            <title>Developing and Applying Molecular Tools to Natural Resource Problems in Alaska</title>
+            <geoform>web site</geoform>
+            <serinfo>
+              <sername>none</sername>
+              <issue>none</issue>
+            </serinfo>
+            <pubinfo>
+              <pubplace>Anchorage, AK</pubplace>
+              <publish>U.S. Geological Survey, Alaska Science Center</publish>
+            </pubinfo>
+            <onlink>https://alaska.usgs.gov/portal/project.php?project_id=378</onlink>
+          </citeinfo>
+        </lworkcit>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>This data set describes nuclear microsatellite genotypes derived from eight autosomal loci (BCA6, BCA9, BCA11, Aaμ1, CRG, OXY13, TSP1.20.09 and TSP1.20.46 ).  A total of 115 Greater White-fronted Geese were examined for genotyping with samples coming from the three primary breeding locales within Alaska that represent the Pacific Flyway (Cook Inlet, Bristol Bay Lowlands, and the Yukon Delta, Western Alaska).  The sex of most samples was determined in the field.</abstract>
+      <purpose>To examine nuclear microsatellite allele variation and population genetic structure among samples of Greater White-fronted Geese (Anser albifrons) within the Pacific Flyway. </purpose>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <rngdates>
+          <begdate>1989</begdate>
+          <enddate>2006</enddate>
+        </rngdates>
+      </timeinfo>
+      <current>ground condition</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>None planned</update>
+    </status>
+    <spdom>
+      <descgeog>Bristol Bay Lowlands (Alaska), Cook Inlet (Alaska), Yukon-Kuskokwim Delta (Alaska)</descgeog>
+      <bounding>
+        <westbc>-163.72</westbc>
+        <eastbc>-156.77</eastbc>
+        <northbc>63.33</northbc>
+        <southbc>57.18</southbc>
+      </bounding>
+      <dsgpoly>
+        <dsgpolyo>
+          <grngpoin>
+            <grnglat>1.0</grnglat>
+            <grnglon>1.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>2.0</grnglat>
+            <grnglon>21.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>9.0</grnglat>
+            <grnglon>25.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>10.0</grnglat>
+            <grnglon>6.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>1.0</grnglat>
+            <grnglon>1.0</grnglon>
+          </grngpoin>
+        </dsgpolyo>
+        <dsgpolyx>
+          <grngpoin>
+            <grnglat>6.0</grnglat>
+            <grnglon>10.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>7.0</grnglat>
+            <grnglon>14.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>8.0</grnglat>
+            <grnglon>13.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>8.0</grnglat>
+            <grnglon>7.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>6.0</grnglat>
+            <grnglon>10.0</grnglon>
+          </grngpoin>
+        </dsgpolyx>
+        <dsgpolyx>
+          <gring>12.0 3.0, 18.0 4.0, 19.0 5.0, 12.0 5.0, 12.0 3.0</gring>
+        </dsgpolyx>
+      </dsgpoly>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>population genetic structure</themekey>
+        <themekey>genetic diversity</themekey>
+      </theme>
+      <theme>
+        <themekt>NASA GCMD Earth Science</themekt>
+        <themekey>Biological classification</themekey>
+        <themekey>Animals/vertebrates</themekey>
+        <themekey>Birds</themekey>
+        <themekey>Ducks/Geese/Swans</themekey>
+        <themekey>Terrestrial Ecosystems</themekey>
+      </theme>
+      <theme>
+        <themekt>ISO 19115 Topic Category</themekt>
+        <themekey>Biota</themekey>
+      </theme>
+      <theme>
+        <themekt>MeSH</themekt>
+        <themekey>Genetics, population</themekey>
+        <themekey>Genetic variation</themekey>
+      </theme>
+      <theme>
+        <themekt>CSA Biocomplexity</themekt>
+        <themekey>Molecular biology</themekey>
+        <themekey>Speciation (biological)</themekey>
+        <themekey>Population differentiation</themekey>
+        <themekey>Population genetics</themekey>
+      </theme>
+      <place>
+        <placekt>Geographic Names Information System</placekt>
+        <placekey>Bristol Bay</placekey>
+        <placekey>Yukon Delta National Wildlife Refuge</placekey>
+        <placekey>Kuskokwim River</placekey>
+        <placekey>Innoko National Wildlife Refuge</placekey>
+        <placekey>Cook Inlet</placekey>
+      </place>
+    </keywords>
+    <taxonomy>
+      <keywtax>
+        <taxonkt>Biological Classification</taxonkt>
+        <taxonkey>animals</taxonkey>
+        <taxonkey>birds</taxonkey>
+        <taxonkey>Ducks/Geese/Swans</taxonkey>
+      </keywtax>
+      <taxonsys>
+        <classsys>
+          <classcit>
+            <citeinfo>
+              <origin>Integrated Taxonomic Information System</origin>
+              <pubdate>2016</pubdate>
+              <title>Integrated Taxonomic Information System</title>
+              <geoform>database</geoform>
+              <pubinfo>
+                <pubplace>Online</pubplace>
+                <publish>ITIS-North America</publish>
+              </pubinfo>
+              <othercit>Retrieved (December 12, 2016], from Integrated Taxonomic Information System (ITIS)</othercit>
+              <onlink>https://www.itis.gov/</onlink>
+            </citeinfo>
+          </classcit>
+        </classsys>
+        <idref>
+          <citeinfo>
+            <origin>Ely, Craig R. and A. X. Dzubin</origin>
+            <pubdate>1994</pubdate>
+            <title>Greater White-fronted Goose (Anser albifrons)</title>
+            <geoform>website</geoform>
+            <serinfo>
+              <sername>The Birds of North America </sername>
+              <issue> Macaulay Library ML31124591</issue>
+            </serinfo>
+            <pubinfo>
+              <pubplace>Ithaca, New York</pubplace>
+              <publish>Cornell Lab of Ornithology</publish>
+            </pubinfo>
+            <onlink>https://birdsna.org/Species-Account/bna/species/gwfgoo</onlink>
+          </citeinfo>
+        </idref>
+        <taxonpro>We identified birds to species following the description in the Identification Reference (Ely, C.R. and A.X. Dzubin 1994).</taxonpro>
+        <taxoncom>Taxonomy is complete for all samples.</taxoncom>
+        <vouchers>
+          <specimen>blood samples</specimen>
+          <reposit>
+            <cntinfo>
+              <cntorgp>
+                <cntorg>U.S. Geological Survey Alaska Science Center</cntorg>
+              </cntorgp>
+              <cntaddr>
+                <addrtype>mailing and physical</addrtype>
+                <address>4210 University Drive</address>
+                <city>Anchorage</city>
+                <state>Alaska</state>
+                <postal>99508</postal>
+                <country>USA</country>
+              </cntaddr>
+              <cntvoice>907-786-7000</cntvoice>
+              <cntemail>ascweb@usgs.gov</cntemail>
+            </cntinfo>
+          </reposit>
+        </vouchers>
+        <vouchers>
+          <specimen>feather samples</specimen>
+          <reposit>
+            <cntinfo>
+              <cntorgp>
+                <cntorg>U.S. Geological Survey Alaska Science Center</cntorg>
+              </cntorgp>
+              <cntaddr>
+                <addrtype>mailing and physical</addrtype>
+                <address>4210 University Drive</address>
+                <city>Anchorage</city>
+                <state>Alaska</state>
+                <postal>99508</postal>
+                <country>USA</country>
+              </cntaddr>
+              <cntvoice>907-786-7000</cntvoice>
+              <cntemail>ascweb@usgs.gov</cntemail>
+            </cntinfo>
+          </reposit>
+        </vouchers>
+        <vouchers>
+          <specimen>feathers</specimen>
+          <reposit>
+            <cntinfo>
+              <cntorgp>
+                <cntorg>U.S. Geological Survey Alaska Science Center</cntorg>
+              </cntorgp>
+              <cntaddr>
+                <addrtype>mailing and physical</addrtype>
+                <address>4210 University Drive</address>
+                <city>Anchorage</city>
+                <state>Alaska</state>
+                <postal>99508</postal>
+                <country>USA</country>
+              </cntaddr>
+              <cntvoice>907-786-7000</cntvoice>
+              <cntemail>ascweb@usgs.gov</cntemail>
+            </cntinfo>
+          </reposit>
+        </vouchers>
+        <vouchers>
+          <specimen>muscle samples</specimen>
+          <reposit>
+            <cntinfo>
+              <cntorgp>
+                <cntorg>U.S. Geological Survey Alaska Science Center</cntorg>
+              </cntorgp>
+              <cntaddr>
+                <addrtype>mailing and physical</addrtype>
+                <address>4210 University Drive</address>
+                <city>Anchorage</city>
+                <state>Alaska</state>
+                <postal>99508</postal>
+                <country>USA</country>
+              </cntaddr>
+              <cntvoice>907-786-7000</cntvoice>
+              <cntemail>ascweb@usgs.gov</cntemail>
+            </cntinfo>
+          </reposit>
+        </vouchers>
+        <vouchers>
+          <specimen>muscle sample</specimen>
+          <reposit>
+            <cntinfo>
+              <cntorgp>
+                <cntorg>U.S. Geological Survey Alaska Science Center</cntorg>
+              </cntorgp>
+              <cntaddr>
+                <addrtype>mailing and physical</addrtype>
+                <address>4210 University Drive</address>
+                <city>Anchorage</city>
+                <state>Alaska</state>
+                <postal>99508</postal>
+                <country>USA</country>
+              </cntaddr>
+              <cntvoice>907-786-7000</cntvoice>
+              <cntemail>ascweb@usgs.gov</cntemail>
+            </cntinfo>
+          </reposit>
+        </vouchers>
+      </taxonsys>
+      <taxoncl>
+        <taxonrn>Kingdom</taxonrn>
+        <taxonrv>Animalia</taxonrv>
+        <taxoncl>
+          <taxonrn>Phylum</taxonrn>
+          <taxonrv>Chordata</taxonrv>
+          <taxoncl>
+            <taxonrn>Subphylum</taxonrn>
+            <taxonrv>Vertebrata</taxonrv>
+            <taxoncl>
+              <taxonrn>Superclass</taxonrn>
+              <taxonrv>Tetrapoda</taxonrv>
+              <taxoncl>
+                <taxonrn>Class</taxonrn>
+                <taxonrv>Aves</taxonrv>
+                <taxoncl>
+                  <taxonrn>Family</taxonrn>
+                  <taxonrv>Anatidae</taxonrv>
+                  <taxoncl>
+                    <taxonrn>Subfamily</taxonrn>
+                    <taxonrv>Anatinae</taxonrv>
+                    <taxoncl>
+                      <taxonrn>Genus</taxonrn>
+                      <taxonrv>Anser</taxonrv>
+                      <taxoncl>
+                        <taxonrn>Species</taxonrn>
+                        <taxonrv>albifrons</taxonrv>
+                      </taxoncl>
+                    </taxoncl>
+                  </taxoncl>
+                </taxoncl>
+              </taxoncl>
+            </taxoncl>
+          </taxoncl>
+        </taxoncl>
+      </taxoncl>
+    </taxonomy>
+    <accconst>None</accconst>
+    <useconst>If you use these data in a publication, presentation, or other product please use the citation below to credit the authors for their contribution to your work.  It is strongly recommended that careful attention be paid to the contents of the metadata file associated with these data to evaluate data set limitations, restrictions or intended use.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>U.S. Geological Survey, Alaska Science Center</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>4210 University Drive</address>
+          <city>Anchorage</city>
+          <state>Alaska</state>
+          <postal>99508</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>907-786-7000</cntvoice>
+        <cntemail>ascweb@usgs.gov</cntemail>
+      </cntinfo>
+    </ptcontac>
+    <crossref>
+      <citeinfo>
+        <origin>Ely, C. R.</origin>
+        <origin>Wilson, R.E.</origin>
+        <origin>Talbot, S.L.</origin>
+        <pubdate>20170322</pubdate>
+        <title>Genetic structure among greater white-fronted goose populations of the Pacific Flyway</title>
+        <geoform>journal article</geoform>
+        <serinfo>
+          <sername>Ecology and Evolution </sername>
+          <issue>2017; 00.1-13</issue>
+        </serinfo>
+        <pubinfo>
+          <pubplace>Online</pubplace>
+          <publish>John Wiley &amp; Sons, Ltd</publish>
+        </pubinfo>
+        <othercit>Ely CR, Wilson RE, Talbot SL. Genetic structure among greater white-fronted goose populations of the Pacific Flyway. Ecol Evol. 2017;00:1–13.</othercit>
+        <onlink>https://doi.org/10.1002/ece3.2934</onlink>
+      </citeinfo>
+    </crossref>
+  </idinfo>
+  <dataqual>
+    <attracc>
+      <attraccr>To ensure quality of allele scores, For quality control purposes all genotypes were scored releative to M13 DNA sequence ladders and known size standards run on each gel. , Additionally, ten percent of the samples were amplified and genotyped in duplicate for the 8 microsatellite loci to double-check genotype scores.  Final genotype scores were reviewed by a second laboratory specialist.</attraccr>
+    </attracc>
+    <logic>We calculated allelic richness, the inbreeding coefficient (FIS), observed and expected heterozygosities, Hardy–Weinberg equilibrium (HWE), and linkage disequilibrium (LD) for each microsatellite locus and population.  Molecular diversity indices were similar across populations with allelic richness (r) ranging from 4.8 to 5.4. Observed heterozygosity ranged from 58.4% to 61.4% for each population with an overall value of 59.6%. The inbreeding coefficient (FIS) ranged from 0.050 to 0.082 across sampled sites with an overall mean of 0.063; no FIS value differed significantly from zero. All populations were in HWE, and no signature of linkage disequilibrium was detected between any pair of loci.</logic>
+    <complete>For the 8 microsatellite loci attributes, the code “np” signifies a sample that did not amplify or show any product.</complete>
+    <posacc>
+      <horizpa>
+        <horizpar>No formal positional accuracy tests were conducted.  The coordinates of samples are for general purposes only.  The coordinates only designate a general regional location for each population and should not be considered at exact location of each sample.  Coordinates were determined in Google Earth by searching general location information.  For example, Hook Lagoon, Alaska Peninsula was searched and the coordinates from google earth was assigned to those samples.</horizpar>
+      </horizpa>
+    </posacc>
+    <lineage>
+      <method>
+        <methtype>Lab</methtype>
+        <methdesc>Genotype numbers were determined by scoring based on allele size relative to an M13 DNA sequence ladder and to samples established as size standards that were run on each gel. The code “np” in a cell of the data set refers to a sample that did not amplify or show any product (“no product”).</methdesc>
+        <methcite>
+          <citeinfo>
+            <origin>Sonsthagen, S.A.</origin>
+            <origin>Talbot, S.L.</origin>
+            <origin>White, C.M. </origin>
+            <pubdate>2004</pubdate>
+            <title> Gene flow and genetic characterization of Northern Goshawks breeding in Utah.</title>
+            <geoform>journal article</geoform>
+            <othercit>Sonsthagen et al. (2004; Sonsthagen, S.A., Talbot, S.L., and White, C.M. 2004. Gene flow and genetic characterization of Northern Goshawks breeding in Utah. Condor 106:826–836.). </othercit>
+            <onlink>http://www.jstor.org/stable/3247787?seq=1#page_scan_tab_contents</onlink>
+          </citeinfo>
+        </methcite>
+      </method>
+      <procstep>
+        <procdesc>No process steps have been described for this data set</procdesc>
+        <procdate>Unknown</procdate>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Point</direct>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <geograph>
+        <latres>0.01</latres>
+        <longres>0.01</longres>
+        <geogunit>Decimal degrees</geogunit>
+      </geograph>
+      <geodetic>
+        <horizdn>World Geodetic System of 1984</horizdn>
+        <ellips>World Geodetic System of 1984</ellips>
+        <semiaxis>6378137</semiaxis>
+        <denflat>298.257223563</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttype>
+        <enttypl>Greater White-fronted Goose sample and microsatellite genotype data</enttypl>
+        <enttypd>Description of sample type, age, sex, collection date, and location and values for eight autosomal loci (Bca6, Bca9, Bca11, CRG, Aaμ1OXY13, TSP 1.20.09, and TSP1.20.46) were used to generate genotype data and describe genetic diversity and structure.</enttypd>
+        <enttypds>Author defined</enttypds>
+      </enttype>
+      <attr>
+        <attrlabl>Id No</attrlabl>
+        <attrdef>Identifying number for the sample.</attrdef>
+        <attrdefs>Author defined</attrdefs>
+        <attrdomv>
+          <udom>No domain identified</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Id Type</attrlabl>
+        <attrdef>Description of the Id no. field by type. A combination of population code (A: Bristol Bay Lowlands, B: Cook Inlet, H: Yukon–Kuskokwim Delta), species code (GWFG: Greater White-fronted Goose), locality codes, nest number, year, specimen preparator initials, last 2 digits of USGS metal leg band number, or collar number.  These codes uniquely identified the sample.</attrdef>
+        <attrdefs>Author defined</attrdefs>
+        <attrdomv>
+          <udom>Description of the Id no. field by type. A combination of population code (A: Bristol Bay Lowlands, B: Cook Inlet, H: Yukon–Kuskokwim Delta), species code (GWFG: Greater White-fronted Goose), locality codes, nest number, year, specimen preparator initials, last 2 digits of USGS metal leg band number, or collar number.  These codes uniquely identified the sample.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Sample Type</attrlabl>
+        <attrdef>Identification of type of biological sample taken.</attrdef>
+        <attrdefs>Author defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>Blood</edomv>
+            <edomvd>Taken from the captured or collected bird.</edomvd>
+            <edomvds>Author defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>nest feather</edomv>
+            <edomvd>Collected from a nest.</edomvd>
+            <edomvds>Author defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Muscle tissue</edomv>
+            <edomvd>Collected from a bird carcass.</edomvd>
+            <edomvds>Author defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>USGS band number</attrlabl>
+        <attrdef>USGS band number on metal tarsus (leg) band has a unique number on each band assigned by the Bird Banding Lab, Patuxent Wildlife Research Center, Patuxent, Maryland. Each individual has a unique metal leg band that identifies each bird. Each band remains on the bird; bands are only removed if not legible. Bands generally begin with a 3-4 digit prefix followed by a 5 digit suffix, e.g., 1347.59381.</attrdef>
+        <attrdefs>USGS Bird Banding Laboratory, Patuxent Wildlife Research Center</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0618-05583</rdommin>
+            <rdommax>5037-01858</rdommax>
+          </rdom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>none</edomv>
+            <edomvd>No USGS band was placed on the bird</edomvd>
+            <edomvds>Author defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Location Name</attrlabl>
+        <attrdef>Sampling location of bird for genetic sample</attrdef>
+        <attrdefs>Author defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>Alaska: Bristol Bay Lowlands, Nushugak Peninsula</edomv>
+            <edomvd>Region and specific collection location by name.</edomvd>
+            <edomvds>Author defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Alaska: Bristol Bay Lowlands, Hook Lagoon</edomv>
+            <edomvd>Region and specific collection location by name.</edomvd>
+            <edomvds>Author defined.</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Alaska: Cook Inlet</edomv>
+            <edomvd>Region and specific collection location by name.</edomvd>
+            <edomvds>Author defined.</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Alaska: Innoko</edomv>
+            <edomvd>Region and specific collection location by name.  These samples were fitted with transmitter and were assigned to Cook Inlet based on movement data.</edomvd>
+            <edomvds>Author defined.</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Alaska: Yukon–Kuskokwim Delta</edomv>
+            <edomvd>Region and specific collection location by name.</edomvd>
+            <edomvds>Author defined.</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Latitude</attrlabl>
+        <attrdef>Latitude of bird capture location.  These are general region coordinates taken from Google Earth and are not exact location of samples.  Coordinates are expressed as North latitude, decimal degrees, WGS84 datum.</attrdef>
+        <attrdefs>Author defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>58.86</rdommin>
+            <rdommax>63.33</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Longitude</attrlabl>
+        <attrdef>Longitude of bird capture location. These are general region coordinates taken from Google Earth and are not exact location of samples. Coordinates are expressed as East or West longitude, decimal degrees, WGS84 datum.</attrdef>
+        <attrdefs>Author defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>-164.6</rdommin>
+            <rdommax>-152.47</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Collection Date</attrlabl>
+        <attrdef>Date the genetic sample was taken in the field. When exact day and month are unknown, only the year is given.</attrdef>
+        <attrdefs>Author defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>1989</rdommin>
+            <rdommax>2006</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Age</attrlabl>
+        <attrdef>Age (year Class) Codes specified by the USGS, Bird Banding Laboratory, Patuxent Wildlife Research Center.</attrdef>
+        <attrdefs>USGS Bird Banding Laboratory, Patuxent Wildlife Research Center</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>HY</edomv>
+            <edomvd>Hatch year: sample collected during the summer or fall in the hatch year of the bird</edomvd>
+            <edomvds>Author defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Adult</edomv>
+            <edomvd>Bird is of adult age (&gt;1 year of age)</edomvd>
+            <edomvds>Author defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>ASY</edomv>
+            <edomvd>After Second Year: A bird known to have hatched earlier than the calendar year preceeding the year of banding; year of hatch otherwise unknown.</edomvd>
+            <edomvds>USGS Bird Banding Laboratory</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>SY</edomv>
+            <edomvd>Second Year: A bird known to have hatched in the calendar year preceding the year of banding and in its second calendar year of life.</edomvd>
+            <edomvds>USGS Bird Banding Laboratory</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>AHY</edomv>
+            <edomvd>After hatch year: A bird known to have hatched before the calendar year of banding; year of hatch otherwise unknown.</edomvd>
+            <edomvds>USGS Bird Banding Laboratory</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Sex</attrlabl>
+        <attrdef>Sex of the sampled goose</attrdef>
+        <attrdefs>Author defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>Male</edomv>
+            <edomvd>Bird is male based on one or two sex verification methods</edomvd>
+            <edomvds>Author defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Female</edomv>
+            <edomvd>Bird is female based on one or two sex verification methods</edomvd>
+            <edomvds>Author defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Sex verification method</attrlabl>
+        <attrdef>Sex of the sampled goose was determined in the field based on morphological characteristics of the bird.
+          Ely, C.R., A.D. Fox, R. T. Alisaukas, A. Andreev A., R. G. Bromley, A. G. Degtyarev, B. Ebbinge, E. N. Gurtovaya, R. Kerbes, A. V. Kondratyev, I. Kostin, A. V. Krechmar, K. Litvin, Y. Miyabayashi, J. H. Mooij,  R. M. Oates, D. L. Orthmeyer, Y. Sabano, S. G. Simpson, D. V. Solovieva, M. A. Spindler,  Ye .V. Syroechkovsky, J.Y. Takekawa, and A. Walsh.  2005.  Circumpolar variation in morphological characteristics of Greater White-fronted Geese (Anser albifrons). Bird Study 52: 104–119.
+          In addition, some samples were prepared as museum skins (CPD) and the presence of testes or ovaries were used to verify sex.</attrdef>
+        <attrdefs>Author defined and Ely et al. (2005)</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>In Field</edomv>
+            <edomvd>Sex was determined in the field  using morphological characteristics.</edomvd>
+            <edomvds>Author defined and Sex of the sampled goose was determined in the field based on morphological characteristics of the bird.
+              Ely, C.R., A.D. Fox, R. T. Alisaukas, A. Andreev A., R. G. Bromley, A. G. Degtyarev, B. Ebbinge, E. N. Gurtovaya, R. Kerbes, A. V. Kondratyev, I. Kostin, A. V. Krechmar, K. Litvin, Y. Miyabayashi, J. H. Mooij,  R. M. Oates, D. L. Orthmeyer, Y. Sabano, S. G. Simpson, D. V. Solovieva, M. A. Spindler,  Ye .V. Syroechkovsky, J.Y. Takekawa, and A. Walsh.  2005.  Circumpolar variation in morphological characteristics of Greater White-fronted Geese (Anser albifrons). Bird Study 52: 104–119.</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Testes detected</edomv>
+            <edomvd>Sex was determined by the presence of testes during preparation of museum round skin</edomvd>
+            <edomvds>Author defined.</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Ovaries detected</edomv>
+            <edomvd>Sex was determined by the presernce of ovaries during preparation of a museum round skin.</edomvd>
+            <edomvds>Author defined.</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Transmitter</attrlabl>
+        <attrdef>Indicates if goose was fitted with a transmitter.  Geese fitted with transmitter in Innoko were tracked to California during winter and Cook Inlet and therefore were assigned to Cook Inlet population.</attrdef>
+        <attrdefs>Author defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>Yes</edomv>
+            <edomvd>Goose associated with the sample was fitted with a satellite transmitter.</edomvd>
+            <edomvds>Author defined.</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>No</edomv>
+            <edomvd>Goose associated with the sample was not fitted with a satellite transmitter.</edomvd>
+            <edomvds>Author defined.</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>BCA6_Allele1</attrlabl>
+        <attrdef>Microsatellite allele one from the BCA6 locus.</attrdef>
+        <attrdefs>Author defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>140</rdommin>
+            <rdommax>148</rdommax>
+            <attrunit>base pairs</attrunit>
+          </rdom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>np</edomv>
+            <edomvd>No Product: The code “np” in a cell of the data set refers to a sample that did not amplify or show any product.</edomvd>
+            <edomvds>Author defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>BCA6_Allele2</attrlabl>
+        <attrdef>Microsatellite allele two from the BCA6 locus</attrdef>
+        <attrdefs>Author defined.</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>np</edomv>
+            <edomvd>No Product: The code “np” in a cell of the data set refers to a sample that did not amplify or show any product.</edomvd>
+            <edomvds>Author defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <rdom>
+            <rdommin>140</rdommin>
+            <rdommax>148</rdommax>
+            <attrunit>base pairs</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>BCA9_Allele1</attrlabl>
+        <attrdef>Microsatellite allele one from the BCA9 locus.</attrdef>
+        <attrdefs>Author defined.</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>np</edomv>
+            <edomvd>No Product: The code “np” in a cell of the data set refers to a sample that did not amplify or show any product.</edomvd>
+            <edomvds>Author defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <rdom>
+            <rdommin>101</rdommin>
+            <rdommax>111</rdommax>
+            <attrunit>base pairs</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>BCA9_Allele2</attrlabl>
+        <attrdef>Microsatellite allele two from the BCA9 locus</attrdef>
+        <attrdefs>Author defined.</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>np</edomv>
+            <edomvd>No Product: The code “np” in a cell of the data set refers to a sample that did not amplify or show any product.</edomvd>
+            <edomvds>Author defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <rdom>
+            <rdommin>101</rdommin>
+            <rdommax>111</rdommax>
+            <attrunit>base pairs</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Bca11_Allele1</attrlabl>
+        <attrdef>Microsatellite allele one from the Bca11 locus.</attrdef>
+        <attrdefs>Author defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>137</rdommin>
+            <rdommax>145</rdommax>
+            <attrunit>base pairs</attrunit>
+          </rdom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>np</edomv>
+            <edomvd>No Product: The code “np” in a cell of the data set refers to a sample that did not amplify or show any product.</edomvd>
+            <edomvds>Author defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Bca11_Allele2</attrlabl>
+        <attrdef>Microsatellite allele two from the Bca11 locus.</attrdef>
+        <attrdefs>Author defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>np</edomv>
+            <edomvd>No Product: The code “np” in a cell of the data set refers to a sample that did not amplify or show any product.</edomvd>
+            <edomvds>Author defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <rdom>
+            <rdommin>137</rdommin>
+            <rdommax>145</rdommax>
+            <attrunit>base pairs</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CRG_Allele1</attrlabl>
+        <attrdef>Microsatellite allele one from the CRG locus.</attrdef>
+        <attrdefs>Author defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>np</edomv>
+            <edomvd>No Product: The code “np” in a cell of the data set refers to a sample that did not amplify or show any product.</edomvd>
+            <edomvds>Author defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <rdom>
+            <rdommin>163</rdommin>
+            <rdommax>167</rdommax>
+            <attrunit>base pairs</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CRG_Allele2</attrlabl>
+        <attrdef>Microsatellite allele two from the CRG locus.</attrdef>
+        <attrdefs>Author defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>163</rdommin>
+            <rdommax>167</rdommax>
+            <attrunit>base pairs</attrunit>
+          </rdom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>np</edomv>
+            <edomvd>No Product: The code “np” in a cell of the data set refers to a sample that did not amplify or show any product.</edomvd>
+            <edomvds>Author defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Aaμ1_Allele1</attrlabl>
+        <attrdef>Microsatellite allele one from the Aaμ1 locus.</attrdef>
+        <attrdefs>Author defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>79</rdommin>
+            <rdommax>91</rdommax>
+          </rdom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>np</edomv>
+            <edomvd>No Product: The code “np” in a cell of the data set refers to a sample that did not amplify or show any product.</edomvd>
+            <edomvds>Author defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Aaμ1_Allele2</attrlabl>
+        <attrdef>Microsatellite allele two from the Aaμ1 locus.</attrdef>
+        <attrdefs>Author defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>81</rdommin>
+            <rdommax>111</rdommax>
+          </rdom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>np</edomv>
+            <edomvd>No Product: The code “np” in a cell of the data set refers to a sample that did not amplify or show any product.</edomvd>
+            <edomvds>Author defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>OXY13_Allele1</attrlabl>
+        <attrdef>Microsatellite allele one from the OXY13 locus.</attrdef>
+        <attrdefs>Author defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>166</rdommin>
+            <rdommax>202</rdommax>
+          </rdom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>np</edomv>
+            <edomvd>No Product: The code “np” in a cell of the data set refers to a sample that did not amplify or show any product.</edomvd>
+            <edomvds>Author defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>OXY13_Allele2</attrlabl>
+        <attrdef>Microsatellite allele two from the OXY13 locus</attrdef>
+        <attrdefs>Author defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>np</edomv>
+            <edomvd>No Product: The code “np” in a cell of the data set refers to a sample that did not amplify or show any product.</edomvd>
+            <edomvds>Author defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <rdom>
+            <rdommin>170</rdommin>
+            <rdommax>214</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>TSP1.20.09_Allele1</attrlabl>
+        <attrdef>Microsatellite allele one from the TSP 1.20.09 locus.</attrdef>
+        <attrdefs>Author defined.</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>112</rdommin>
+            <rdommax>126</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>TSP1.20.09_Allele2</attrlabl>
+        <attrdef>Microsatellite allele two from the TSP 1.20.09 locus.</attrdef>
+        <attrdefs>Author defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>114</rdommin>
+            <rdommax>126</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>TSP1.20.46_Allele1</attrlabl>
+        <attrdef>Microsatellite allele one from the TSP 1.20.46 locus.</attrdef>
+        <attrdefs>Author defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>156</rdommin>
+            <rdommax>172</rdommax>
+          </rdom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>np</edomv>
+            <edomvd>No Product: The code “np” in a cell of the data set refers to a sample that did not amplify or show any product.</edomvd>
+            <edomvds>Author defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>TSP1.20.46_Allele2</attrlabl>
+        <attrdef>Microsatellite allele two from the TSP1.20.46 locus.</attrdef>
+        <attrdefs>Author defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>162</rdommin>
+            <rdommax>172</rdommax>
+          </rdom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>np</edomv>
+            <edomvd>No Product: The code “np” in a cell of the data set refers to a sample that did not amplify or show any product.</edomvd>
+            <edomvds>Author defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+    </detailed>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>U.S. Geological Survey, Alaska Science Center</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>4210 University Dr.</address>
+          <city>Anchorage</city>
+          <state>Alaska</state>
+          <postal>99508</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>907-786-7000</cntvoice>
+        <cntemail>ascweb@usgs.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <resdesc>Authoritative source for access to data.</resdesc>
+    <distliab>Unless otherwise stated, all data, metadata and related materials are considered to satisfy the quality standards relative to the purpose for which the data were collected. Although these data and associated metadata have been reviewed for accuracy and completeness and approved for release by the U.S. Geological Survey (USGS), no warranty expressed or implied is made regarding the display or utility of the data on any other system or for general or scientific purposes, nor shall the act of distribution constitute any such warranty</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>Zip</formname>
+          <formvern>19.0</formvern>
+          <filedec>No compression applied</filedec>
+          <transize>0.34</transize>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>http://dx.doi.org/10.5066/F71G0JGN</networkr>
+              </networka>
+            </computer>
+          </onlinopt>
+        </digtopt>
+      </digform>
+      <fees>No fees.</fees>
+    </stdorder>
+  </distinfo>
+  <metainfo>
+    <metd>20160908</metd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>U.S. Geological Survey Alaska Science Center</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>P.O. Box 1449</address>
+          <city>Anchorage</city>
+          <state>Alaska</state>
+          <postal>99510-1449</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>800-222-1212</cntvoice>
+        <cntemail>webmaster.asc.usgs@usgs.gov</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Biological Data Profile of the Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001.1-1999</metstdv>
+    <metsi>
+      <metscs>None</metscs>
+      <metsc>Unclassified</metsc>
+      <metshd>None</metshd>
+    </metsi>
+  </metainfo>
+</metadata>

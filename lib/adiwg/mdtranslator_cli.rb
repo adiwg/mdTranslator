@@ -36,7 +36,7 @@ and to choose the level of validation for mdJson input files.
    LONGDESC
    # define cli options
    method_option :reader, :aliases => '-r', :desc => 'Reader to read your input metadata file',
-                 :enum => %w{mdJson sbJson fgdc}, :required => true
+                 :enum => %w{mdJson sbJson fgdc iso19115_3}, :required => true
    method_option :writer, :aliases => '-w',
                  :desc => 'Writer to create your output metadata file, leave blank to validate input only',
                  :enum => %w{fgdc html iso19110 iso19115_1 iso19115_2 mdJson sbJson simple_html }
