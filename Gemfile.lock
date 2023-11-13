@@ -2,8 +2,8 @@ PATH
   remote: .
   specs:
     adiwg-mdtranslator (2.18.3)
-      adiwg-mdcodes (~> 2.8)
-      adiwg-mdjson_schemas (~> 2.8)
+      adiwg-mdcodes (= 2.8.4)
+      adiwg-mdjson_schemas (= 2.8.1)
       builder (~> 3.2)
       coderay (~> 1.1)
       jbuilder (~> 2.5)
