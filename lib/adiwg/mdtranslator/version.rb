@@ -109,7 +109,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.18.3-html-ext-cont-id"
+      VERSION = "2.18.4"
    end
 end
 
