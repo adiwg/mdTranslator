@@ -20,8 +20,6 @@ module ADIWG
 
                def writeHtml(hScope)
 
-                  puts hScope
-
                   # classes used
                   descriptionClass = Html_ScopeDescription.new(@html)
                   extentClass = Html_Extent.new(@html)
