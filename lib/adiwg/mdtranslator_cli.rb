@@ -39,7 +39,7 @@ and to choose the level of validation for mdJson input files.
                  :enum => %w{mdJson sbJson fgdc}, :required => true
    method_option :writer, :aliases => '-w',
                  :desc => 'Writer to create your output metadata file, leave blank to validate input only',
-                 :enum => %w{fgdc html iso19110 iso19115_1 iso19115_2 mdJson sbJson simple_html }
+                 :enum => %w{fgdc html iso19110 iso19115_1 iso19115_2 iso19115_3 mdJson sbJson simple_html }
    method_option :validate, :aliases => '-v', :desc => 'Specify level of validation to be performed',
                  :enum => %w{none normal strict}, :default => 'normal'
    method_option :forceValid, :aliases => '-f', :desc => 'Insert tags for required elements missing from input',
@@ -83,7 +83,7 @@ and to choose the level of validation for mdJson input files.
       mdReturn = ADIWG::Mdtranslator.translate(
          file: fileObj,
          reader: options[:reader],
-         writer: options[:writer],
+         writer: options[:writer] == 'iso19115_1' ? 'iso19115_3' : options[:writer], # iso19115_1 is a subset of iso19115_3
          validate: options[:validate],
          forceValid: options[:forceValid],
          showAllTags: options[:showAllTags],
