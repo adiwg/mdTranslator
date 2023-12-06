@@ -32,21 +32,29 @@ module ADIWG
                   end
 
                   # scope - description [] {scopeDescription}
-                  hScope[:scopeDescriptions].each do |hDescription|
-                     @html.details do
-                        @html.summary('Description', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
-                           descriptionClass.writeHtml(hDescription)
+                  unless !hScope.key?(:scopeDescriptions)
+                     unless hScope[:scopeDescriptions].empty?
+                        hScope[:scopeDescriptions].each do |hDescription|
+                           @html.details do
+                              @html.summary('Description', {'class' => 'h5'})
+                              @html.section(:class => 'block') do
+                                 descriptionClass.writeHtml(hDescription)
+                              end
+                           end
                         end
                      end
                   end
 
                   # scope - extent [] {extent}
-                  hScope[:extents].each do |hExtent|
-                     @html.details do
-                        @html.summary('Extent', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
-                           extentClass.writeHtml(hExtent)
+                  unless !hScope.key?(:extents)
+                     unless hScope[:extents].empty?
+                        hScope[:extents].each do |hExtent|
+                           @html.details do
+                              @html.summary('Extent', {'class' => 'h5'})
+                              @html.section(:class => 'block') do
+                                 extentClass.writeHtml(hExtent)
+                              end
+                           end
                         end
                      end
                   end

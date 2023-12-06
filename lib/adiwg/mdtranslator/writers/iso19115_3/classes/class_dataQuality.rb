@@ -17,12 +17,19 @@ module ADIWG
             reportClass = DataQualityReport.new(@xml, @hResponseObj)
             citationClass = CI_Citation.new(@xml, @hResponseObj)
 
+            codeListValue = nil
+            unless hDataQuality[:scope].empty?
+              unless hDataQuality[:scope][:scopeCode].nil?
+                codeListValue = hDataQuality[:scope][:scopeCode]
+              end
+            end
+
             @xml.tag!('mdq:DQ_DataQuality') do
 
               @xml.tag!('mdq:scope') do
                 @xml.tag!('mcc:MD_Scope') do
                   @xml.tag!('mcc:level') do
-                    @xml.tag!('mcc:MD_ScopeCode', codeList: "http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode", codeListValue: "series")
+                    @xml.tag!('mcc:MD_ScopeCode', codeList: "http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode", codeListValue: codeListValue)
                   end
                 end
               end
