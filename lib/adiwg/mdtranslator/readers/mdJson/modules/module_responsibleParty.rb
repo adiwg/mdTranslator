@@ -36,7 +36,7 @@ module ADIWG
                   end
 
                   # instance classes needed in script
-                  # CI_Responsibility replaces CI_ResponsibleParty in 19115-1
+                  # CI_Responsibility replaces CI_ResponsibleParty in 19115-3
                   # Responsibility object is translated to ResponsibleParty by 19115-2 writer
                   intMetadataClass = InternalMetadata.new
                   intResParty = intMetadataClass.newResponsibility

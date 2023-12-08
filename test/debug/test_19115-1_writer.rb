@@ -13,7 +13,7 @@ class Test191151WriterDebug < TestDebugParent
       mdJson = TestDebugParent.get_json('schemaExample')
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: mdJson, reader: 'mdJson', writer: 'iso19115_1', showAllTags: true, forceValid: true
+         file: mdJson, reader: 'mdJson', writer: 'iso19115_3', showAllTags: true, forceValid: true
       )
 
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
