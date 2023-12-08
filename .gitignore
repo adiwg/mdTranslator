@@ -4,7 +4,6 @@
 .bundle
 .config
 .yardoc
-Gemfile.lock
 InstalledFiles
 _yardoc
 coverage
@@ -22,3 +21,5 @@ tmp
 mkmf.log
 /.idea
 /.rake_tasks~
+vendor/
+*.DS_Store

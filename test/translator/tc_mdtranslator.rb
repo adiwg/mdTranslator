@@ -10,7 +10,7 @@ require 'minitest/autorun'
 require 'json'
 require 'adiwg/mdtranslator'
 
-class TestMdTranslator < MiniTest::Test
+class TestMdTranslator < Minitest::Test
 
    # read in an mdJson 2.x test file
    file = File.join(File.dirname(__FILE__), 'testData', 'mdJson_minimal.json')

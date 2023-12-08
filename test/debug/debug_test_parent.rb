@@ -12,7 +12,7 @@ require 'rubygems'
 require 'adiwg-mdjson_schemas'
 require 'adiwg/mdtranslator'
 
-class TestDebugParent < MiniTest::Test
+class TestDebugParent < Minitest::Test
 
    @@responseObj = {
       readerExecutionPass: true,

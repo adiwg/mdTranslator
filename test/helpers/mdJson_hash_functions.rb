@@ -884,7 +884,7 @@ class MdJsonHashWriter
    end
 
    def add_attribute_dash1(hAttGroup, type)
-      # types for ISO 19115-1 [ range | sample | mdBand | miBand ]
+      # types for ISO 19115_3 [ range | sample | mdBand | miBand ]
       hAttribute = attribute
 
       clear_sample = Proc.new {

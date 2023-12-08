@@ -9,7 +9,7 @@ require 'nokogiri'
 require 'adiwg/mdtranslator'
 require 'adiwg/mdtranslator/readers/fgdc/version'
 
-class TestTranslatorRoundTrip < MiniTest::Test
+class TestTranslatorRoundTrip < Minitest::Test
 
     def test_fgdc_demo_to_iso191152
 
