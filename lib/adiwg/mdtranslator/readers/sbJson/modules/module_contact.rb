@@ -249,6 +249,19 @@ module ADIWG
                            end
                         end
 
+                        # orcId - external contact identifier
+                        if hSbContact.has_key?('orcId') && hSbContact['contactType'] == 'person'
+                           hContact[:externalIdentifier] ||= []
+                           unless hSbContact['orcId'].nil? || hSbContact['orcId'] == ''
+                              hExternalIdentifier = {
+                                 "identifier": hSbContact['orcId'],
+                                 "namespace": "ORCID",
+                                 "description": "Open Researcher and Contributor Id"
+                              }
+                              hContact[:externalIdentifier] << hExternalIdentifier
+                           end
+                        end
+
                         aContacts << hContact
                         aContacts << hContactOrg unless hContactOrg.empty?
 

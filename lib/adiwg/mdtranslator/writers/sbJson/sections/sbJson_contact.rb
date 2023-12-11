@@ -149,6 +149,16 @@ module ADIWG
                               end
                            end
                         end
+
+                        if hContact[:externalIdentifier] && type == 'person'
+                           hContact[:externalIdentifier].each do |hExternalIdentifier|
+                              if hExternalIdentifier[:namespace] == 'ORCID'
+                                 json.orcId hExternalIdentifier[:identifier]
+                                 break
+                              end
+                           end
+                        end
+
                      end
                   end
 
