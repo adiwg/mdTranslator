@@ -95,12 +95,12 @@ class MdJsonHashWriter
             {
                contactId: 'CID003',
                isOrganization: false,
-               name: 'person name three',
+               name: 'person name three'
             },
             {
                contactId: 'CID004',
                isOrganization: true,
-               name: 'organization name four',
+               name: 'organization name four'
             }
          ],
          metadata: {
@@ -766,13 +766,6 @@ class MdJsonHashWriter
          maxValue: 9,
          units: 'min/max units',
          scaleFactor: 99.9,
-         rangeElementDescriptions: [
-            {
-               name: 'range element name 1',
-               definition: 'range element definition',
-               rangeElements: [ 'range element record 1' ]
-            }
-         ],
          offset: 1.0,
          meanValue: 50.0,
          numberOfValues: 9,
@@ -1604,8 +1597,7 @@ class MdJsonHashWriter
          centerPoint: [62.0, 37.0],
          pointInPixel: 'upperRight',
          transformationDimensionDescription: 'transformation dimension description',
-         transformationDimensionMapping: 'transformation dimension mapping',
-         scope: []
+         transformationDimensionMapping: 'transformation dimension mapping'
       }
    end
 
@@ -1624,8 +1616,7 @@ class MdJsonHashWriter
             {
                title: 'parameter citation title two'
             },
-         ],
-         scope: []
+         ]
       }
    end
 
@@ -1635,8 +1626,7 @@ class MdJsonHashWriter
          numberOfDimensions: 9,
          dimension: [],
          cellGeometry: 'point',
-         transformationParameterAvailable: false,
-         scope: []
+         transformationParameterAvailable: false
       }
    end
 
@@ -1651,8 +1641,7 @@ class MdJsonHashWriter
       {
          scope: [],
          topologyLevel: 'topology level',
-         vectorObject: [],
-         scope: []
+         vectorObject: []
       }
    end
 
