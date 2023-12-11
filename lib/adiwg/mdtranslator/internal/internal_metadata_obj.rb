@@ -314,7 +314,7 @@ class InternalMetadata
          onlineResources: [],
          hoursOfService: [],
          contactInstructions: nil,
-         contactType: nil
+         contactType: nil,
       }
    end
 
@@ -1196,7 +1196,8 @@ class InternalMetadata
          numberOfDimensions: nil,
          dimension: [],
          cellGeometry: nil,
-         transformationParameterAvailable: false
+         transformationParameterAvailable: false,
+         scope: []
       }
    end
 
@@ -1214,7 +1215,8 @@ class InternalMetadata
       {
          scope: [],
          topologyLevel: nil,
-         vectorObject: []
+         vectorObject: [],
+         scope: []
       }
    end
 
@@ -1235,7 +1237,8 @@ class InternalMetadata
          centerPoint: [],
          pointInPixel: nil,
          transformationDimensionDescription: nil,
-         transformationDimensionMapping: nil
+         transformationDimensionMapping: nil,
+         scope: []
       }
    end
 
@@ -1247,7 +1250,8 @@ class InternalMetadata
          orientationParameterAvailable: false,
          orientationParameterDescription: nil,
          georeferencedParameter: nil,
-         parameterCitation: []
+         parameterCitation: [],
+         scope: []
       }
    end
 

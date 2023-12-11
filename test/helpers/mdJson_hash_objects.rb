@@ -50,6 +50,12 @@ class MdJsonHashWriter
                      postalCode: 'postal code',
                      country: 'country'
                   }
+               ],
+               externalIdentifiers: [
+                  { 
+                     identifier: '0000-00001', 
+                     namespace: 'ORCID'
+                  }
                ]
             },
             {
@@ -81,17 +87,20 @@ class MdJsonHashWriter
                      postalCode: 'postal code',
                      country: 'country'
                   }
+               ],
+               externalIdentifiers: [
+                  { identifier: '0000-00002', namespace: 'ORCID' }
                ]
             },
             {
                contactId: 'CID003',
                isOrganization: false,
-               name: 'person name three'
+               name: 'person name three',
             },
             {
                contactId: 'CID004',
                isOrganization: true,
-               name: 'organization name four'
+               name: 'organization name four',
             }
          ],
          metadata: {
@@ -757,6 +766,13 @@ class MdJsonHashWriter
          maxValue: 9,
          units: 'min/max units',
          scaleFactor: 99.9,
+         rangeElementDescriptions: [
+            {
+               name: 'range element name 1',
+               definition: 'range element definition',
+               rangeElements: [ 'range element record 1' ]
+            }
+         ],
          offset: 1.0,
          meanValue: 50.0,
          numberOfValues: 9,
@@ -1588,7 +1604,8 @@ class MdJsonHashWriter
          centerPoint: [62.0, 37.0],
          pointInPixel: 'upperRight',
          transformationDimensionDescription: 'transformation dimension description',
-         transformationDimensionMapping: 'transformation dimension mapping'
+         transformationDimensionMapping: 'transformation dimension mapping',
+         scope: []
       }
    end
 
@@ -1607,7 +1624,8 @@ class MdJsonHashWriter
             {
                title: 'parameter citation title two'
             },
-         ]
+         ],
+         scope: []
       }
    end
 
@@ -1617,7 +1635,8 @@ class MdJsonHashWriter
          numberOfDimensions: 9,
          dimension: [],
          cellGeometry: 'point',
-         transformationParameterAvailable: false
+         transformationParameterAvailable: false,
+         scope: []
       }
    end
 
@@ -1632,7 +1651,8 @@ class MdJsonHashWriter
       {
          scope: [],
          topologyLevel: 'topology level',
-         vectorObject: []
+         vectorObject: [],
+         scope: []
       }
    end
 

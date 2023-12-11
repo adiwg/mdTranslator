@@ -24,6 +24,7 @@ module ADIWG
                      json.dimension @Namespace.json_map(hGrid[:dimension], Dimension)
                      json.cellGeometry hGrid[:cellGeometry]
                      json.transformationParameterAvailable hGrid[:transformationParameterAvailable]
+                     json.scope hGrid[:scope]
                   end
 
                end # build

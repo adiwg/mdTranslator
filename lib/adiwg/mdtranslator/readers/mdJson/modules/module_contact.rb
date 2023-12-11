@@ -36,8 +36,13 @@ module ADIWG
 
                   # contact - contact id (required)
                   if hContact.has_key?('contactId')
-                     intContact[:contactId] = hContact['contactId']
-                     outContext = 'contact ID ' + hContact['contactId']
+                     if hContact['contactId'].is_a?(Hash)
+                        outContext = 'contact ID ' + hContact['contactId']['identifier']
+                        intContact[:contactId] = hContact['contactId'].transform_keys(&:to_sym)
+                     elsif hContact['contactId'].is_a?(String)
+                        outContext = 'contact ID ' + hContact['contactId']
+                        intContact[:contactId] = hContact['contactId']
+                     end
                   end
                   if intContact[:contactId].nil? || intContact[:contactId] == ''
                      @MessagePath.issueError(101, responseObj)

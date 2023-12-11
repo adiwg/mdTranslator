@@ -32,6 +32,7 @@ module ADIWG
                      json.phone @Namespace.json_map(hContact[:phones], Phone)
                      json.address @Namespace.json_map(hContact[:addresses], Address)
                      json.electronicMailAddress hContact[:eMailList] unless hContact[:eMailList].empty?
+                     json.externalIdentifiers hContact[:externalIdentifiers] unless hContact[:externalIdentifiers].empty?
                      json.onlineResource @Namespace.json_map(hContact[:onlineResources], OnlineResource)
                      json.hoursOfService hContact[:hoursOfService] unless hContact[:hoursOfService].empty?
                      json.contactInstructions hContact[:contactInstructions]
