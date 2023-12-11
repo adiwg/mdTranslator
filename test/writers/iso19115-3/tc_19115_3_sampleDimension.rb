@@ -73,7 +73,6 @@ class TestWriter191151SampleDimension < TestWriter191151Parent
       hAttGroup[:attribute][0].delete(:maxValue)
       hAttGroup[:attribute][0].delete(:units)
       hAttGroup[:attribute][0].delete(:scaleFactor)
-      hAttGroup[:attribute][0].delete(:rangeElementDescriptions)
       hAttGroup[:attribute][0].delete(:offset)
       hAttGroup[:attribute][0].delete(:meanValue)
       hAttGroup[:attribute][0].delete(:numberOfValues)
