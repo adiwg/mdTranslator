@@ -91,7 +91,7 @@ module ADIWG
                         if hContact[:positionName].nil? && @hResponseObj[:writerShowTags]
                            @xml.tag!('cit:positionName')
                         end
-
+                        
                      end
                   end
                   if hContact.empty?
