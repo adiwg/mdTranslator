@@ -29,6 +29,7 @@ class TestWriterMdJsonMdJson < TestWriterMdJsonParent
 
    def test_schema_mdJson
 
+      errors = TestWriterMdJsonParent.testSchema(@@mdHash, 'schema.json')
       assert_empty errors
 
    end
