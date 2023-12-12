@@ -39,7 +39,6 @@
         <gco:CharacterString>person name</gco:CharacterString>
       </cit:name>
       <cit:contactInfo/>
-      <cit:positionName/>
       <cit:partyIdentifier>
         <mcc:MD_Identifier>
           <mcc:authority/>
@@ -53,6 +52,7 @@
           <mcc:description/>
         </mcc:MD_Identifier>
       </cit:partyIdentifier>
+      <cit:positionName/>
     </cit:CI_Individual>
   </cit:party>
 
