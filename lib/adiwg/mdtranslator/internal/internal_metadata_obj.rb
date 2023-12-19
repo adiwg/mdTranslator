@@ -657,8 +657,8 @@ class InternalMetadata
          spatialRepresentationType: nil,
          spatialRepresentation: {},
          resultContent: [],
-         resourceFormat: {},
-         resultFile: {}
+         resourceFormat: nil,
+         resultFile: nil
       }
    end
 
