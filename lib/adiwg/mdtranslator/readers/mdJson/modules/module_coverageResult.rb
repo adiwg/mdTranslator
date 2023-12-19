@@ -7,7 +7,7 @@ module ADIWG
       module MdJson
 
         module CoverageResult
-          def self.unpack(hResult, responseObj, inContext)
+          def self.unpack(hResult, responseObj)
 
             intMetadataClass = InternalMetadata.new
             intResult = intMetadataClass.newCoverageResult
@@ -25,7 +25,6 @@ module ADIWG
 
 
             # spatialRepresentationType
-            # https://github.com/ISO-TC211/XML/blob/master/standards.iso.org/iso/19115/resources/Codelists/gml/MD_SpatialRepresentationTypeCode.xml
             if hResult.has_key?('spatialRepresentationType')
               intResult[:spatialRepresentationType] = hResult['spatialRepresentationType']
             end
@@ -50,7 +49,6 @@ module ADIWG
 
 
             # resultFile
-            resultFile
             if hResult.has_key?('resultFile')
               intResult[:resultFile] = hResult['resultFile']
             end
