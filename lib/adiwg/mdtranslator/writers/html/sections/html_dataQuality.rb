@@ -1,5 +1,6 @@
 require_relative 'html_citation'
 require_relative 'html_dataQualityReport'
+require_relative 'html_scope'
 
 module ADIWG
   module Mdtranslator
@@ -15,6 +16,7 @@ module ADIWG
             scopeClass = Html_Scope.new(@html)
             dataQualityReportClass = Html_DataQualityReport.new(@html)
 
+            # scope
             unless hDataQuality[:scope].nil? || hDataQuality[:scope].empty?
               @html.section(class: 'block') do
                 @html.details do
@@ -26,12 +28,11 @@ module ADIWG
               end
             end
 
-
-            unless hDataQuality[:standaloneQualityReport].nil? || 
-                   ( hDataQuality[:standaloneQualityReport][:abstract].nil? && 
-                     hDataQuality[:standaloneQualityReport][:reportReference].nil? )
-              report = hDataQuality[:standaloneQualityReport]
-
+            # standalone quality report
+            unless hDataQuality[:standaloneReport].nil? || 
+                   ( hDataQuality[:standaloneReport][:abstract].nil? && 
+                     hDataQuality[:standaloneReport][:reportReference].nil? )
+              report = hDataQuality[:standaloneReport]
               @html.section(class: 'block') do
                 @html.details do
                   @html.summary('Standalone Quality Report', {'class' => 'h5'})
@@ -41,7 +42,6 @@ module ADIWG
                       @html.text!(report[:abstract])
                     end
                   end
-
                   unless report[:reportReference].nil?
                     @html.details do
                       @html.summary('Report Reference', {'class' => 'h5'})
@@ -52,15 +52,14 @@ module ADIWG
                   end
                 end
               end
-              
             end
 
-
-            unless report[:reports].nil? || report[:reports].empty?
+            # reports
+            unless hDataQuality[:report].nil? || hDataQuality[:report].empty?
               @html.section(class: 'block') do
                 @html.details do
                   @html.summary('Reports', {'class' => 'h5'})
-                  report[:reports].each do |report|
+                  hDataQuality[:report].each do |report|
                     @html.section(class: 'block') do
                       @html.details do
                         @html.summary('Report', {'class' => 'h5'})
