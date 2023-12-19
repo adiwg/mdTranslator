@@ -41,7 +41,7 @@ module ADIWG
                 intDataQuality[:standaloneReport] = {}
                 intDataQuality[:standaloneReport][:abstract] = hObject["abstract"]
 
-                unless hObject["reportRefereence"].nil? || hObject["reportReference"].empty?
+                unless hObject["reportReference"].nil? || hObject["reportReference"].empty?
                   intDataQuality[:standaloneReport][:reportReference] = Citation.unpack(hObject["reportReference"], responseObj, inContext)
                 end
               end
