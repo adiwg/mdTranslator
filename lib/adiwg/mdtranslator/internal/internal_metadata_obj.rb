@@ -513,6 +513,13 @@ class InternalMetadata
       }
    end
 
+   def newRangeElementDescription
+      {
+         name: nil,
+         definition: nil,
+         rangeElement: []
+      }
+
    def newImageDescription
       {
          illuminationElevationAngle: nil,
