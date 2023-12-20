@@ -519,6 +519,7 @@ class InternalMetadata
          definition: nil,
          rangeElement: []
       }
+   end
 
    def newImageDescription
       {
