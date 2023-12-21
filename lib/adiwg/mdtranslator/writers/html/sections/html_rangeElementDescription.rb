@@ -25,7 +25,7 @@ module ADIWG
               @html.br
             end
 
-            red[:rangeElements].each do |hRangeElement|
+            red[:rangeElement].each do |hRangeElement|
               @html.em('Range Element:')
               @html.text!(hRangeElement)
             end
