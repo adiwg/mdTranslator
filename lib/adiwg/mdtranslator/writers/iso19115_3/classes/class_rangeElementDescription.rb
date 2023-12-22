@@ -30,7 +30,7 @@ module ADIWG
               end
             end
 
-            hAttribute[:rangeElements].each do |hRangeElement|
+            hAttribute[:rangeElement].each do |hRangeElement|
               @xml.tag!('mrc:rangeElement') do
                 @xml.tag!('gco:Record') do
                   @xml.tag!('gco:CharacterString', hRangeElement)
