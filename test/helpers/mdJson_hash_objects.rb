@@ -766,7 +766,7 @@ class MdJsonHashWriter
             {
                name: 'range element name 1',
                definition: 'range element definition',
-               rangeElements: [ 'range element record 1' ]
+               rangeElement: [ 'range element record 1' ]
             }
          ],
          boundMin: 100,
