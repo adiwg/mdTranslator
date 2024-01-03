@@ -662,11 +662,11 @@ class InternalMetadata
       {
          dateTime: nil,
          scope: {},
-         spatialRepresentationType: {},
+         spatialRepresentationType: nil,
          spatialRepresentation: {},
          resultContent: [],
-         resourceFormat: {},
-         resultFile: {}
+         resourceFormat: nil,
+         resultFile: nil
       }
    end
 
@@ -713,15 +713,12 @@ class InternalMetadata
 
    def newDataQualityReport
       {
-         # standaloneQualityReportDetails: nil,
+         qualityMeasure: {},
+         evaluationMethod: [],
          conformanceResult: [],
          coverageResult: [],
-         # derivedElementReport: [],
          descriptiveResult: [],
-         evaluationMethod: {},
-         qualityMeasure: {},
          quantitativeResult: [],
-         # relatedElementReport: []
       }
    end
 
@@ -729,7 +726,6 @@ class InternalMetadata
       {
          reportReference: {},
          abstract: nil,
-         elementReports: []
       }
    end
 

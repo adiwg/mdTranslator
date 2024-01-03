@@ -8,7 +8,7 @@ module ADIWG
 
         module ConformanceResult
 
-          def self.unpack(hConformanceResult, responseObj, inContext = nil)
+          def self.unpack(hConformanceResult, responseObj)
 
             intMetadataClass = InternalMetadata.new
             intConformanceResult = intMetadataClass.newConformanceResult
