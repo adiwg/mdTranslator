@@ -18,7 +18,7 @@ module ADIWG
             Jbuilder.new do |json|
               json.type hReport[:type]
               json.qualityMeasure QualityMeasure.build(hReport[:qualityMeasure]) unless hReport[:qualityMeasure].nil?
-              json.evaluationMethod @Namespace.json_map(hReport[:evaluationMethod], EvaluationMethod) unless hReport[:evaluationMethod].nil? || hReport[:evaluationMethod].empty? 
+              json.evaluationMethod EvaluationMethod.build(hReport[:evaluationMethod], EvaluationMethod) unless hReport[:evaluationMethod].nil? || hReport[:evaluationMethod].empty? 
               json.quantitativeResult @Namespace.json_map(hReport[:quantitativeResult], QuantitativeResult) unless hReport[:quantitativeResult].nil? || hReport[:quantitativeResult].empty? 
               json.descriptiveResult @Namespace.json_map(hReport[:descriptiveResult], DescriptiveResult) unless hReport[:descriptiveResult].nil? || hReport[:descriptiveResult].empty? 
               json.conformanceResult @Namespace.json_map(hReport[:conformanceResult], ConformanceResult) unless hReport[:conformanceResult].nil? || hReport[:conformanceResult].empty? 
