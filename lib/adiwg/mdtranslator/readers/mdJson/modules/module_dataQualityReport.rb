@@ -64,7 +64,7 @@ module ADIWG
                 hReturn = EvaluationMethod.unpack(item, responseObj)
 
                 unless hReturn.nil?
-                  intReport[:evaluationMethod] << hReturn
+                  intReport[:evaluationMethod] = hReturn
                 end
               end
             end
