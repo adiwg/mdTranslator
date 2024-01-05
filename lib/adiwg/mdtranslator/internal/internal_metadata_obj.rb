@@ -650,7 +650,7 @@ class InternalMetadata
 
    def newConformanceResult
       {
-         dateTime: nil,
+         dateTime: [],
          scope: {},
          specification: {},
          explanation: nil,
@@ -660,7 +660,7 @@ class InternalMetadata
 
    def newCoverageResult
       {
-         dateTime: nil,
+         dateTime: [],
          scope: {},
          spatialRepresentationType: nil,
          spatialRepresentation: {},
@@ -672,7 +672,7 @@ class InternalMetadata
 
    def newDescriptiveResult
       {
-         dateTime: nil,
+         dateTime: [],
          scope: {},
          statement: nil
       }
@@ -695,7 +695,7 @@ class InternalMetadata
 
    def newQuantitativeResult
       {
-         dateTime: nil,
+         dateTime: [],
          scope: {},
          values: [],
          valueUnits: nil,
