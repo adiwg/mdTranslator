@@ -713,13 +713,14 @@ class InternalMetadata
 
    def newDataQualityReport
       {
+         type: nil,
+         standaloneQualityReportDetails: nil,
          qualityMeasure: {},
          evaluationMethod: {},
          quantitativeResult: [],
          descriptiveResult: [],
          conformanceResult: [],
          coverageResult: [],
-         derivedElementReport: [],
       }
    end
 
