@@ -60,13 +60,11 @@ module ADIWG
             end
 
             if hReport.has_key?('evaluationMethod')
-              hReport['evaluationMethod'].each do |item|
                 hReturn = EvaluationMethod.unpack(item, responseObj)
 
                 unless hReturn.nil?
-                  intReport[:evaluationMethod] << hReturn
+                  intReport[:evaluationMethod] = hReturn
                 end
-              end
             end
 
             if hReport.has_key?('qualityMeasure')

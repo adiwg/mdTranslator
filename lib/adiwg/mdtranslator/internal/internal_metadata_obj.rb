@@ -714,7 +714,7 @@ class InternalMetadata
    def newDataQualityReport
       {
          qualityMeasure: {},
-         evaluationMethod: [],
+         evaluationMethod: {},
          conformanceResult: [],
          coverageResult: [],
          descriptiveResult: [],
