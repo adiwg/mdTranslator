@@ -721,6 +721,7 @@ class InternalMetadata
          descriptiveResult: [],
          conformanceResult: [],
          coverageResult: [],
+         derivedElementReport: []
       }
    end
 
