@@ -1,9 +1,10 @@
+require 'jbuilder'
 require_relative 'mdJson_qualityMeasure'
-require_relative 'mdJson_conformanceResult'
-require_relative 'mdJson_coverageResult'
-require_relative 'mdJson_descriptiveResult'
 require_relative 'mdJson_evaluationMethod'
 require_relative 'mdJson_quantitativeResult'
+require_relative 'mdJson_descriptiveResult'
+require_relative 'mdJson_conformanceResult'
+require_relative 'mdJson_coverageResult'
 
 module ADIWG
   module Mdtranslator
@@ -17,6 +18,7 @@ module ADIWG
           def self.build(hReport)
             Jbuilder.new do |json|
               json.type hReport[:type]
+              json.standaloneQualityReportDetails hReport[:standaloneQualityReportDetails]
               json.qualityMeasure QualityMeasure.build(hReport[:qualityMeasure]) unless hReport[:qualityMeasure].nil?
               json.evaluationMethod EvaluationMethod.build(hReport[:evaluationMethod]) unless hReport[:evaluationMethod].nil? || hReport[:evaluationMethod].empty? 
               json.quantitativeResult @Namespace.json_map(hReport[:quantitativeResult], QuantitativeResult) unless hReport[:quantitativeResult].nil? || hReport[:quantitativeResult].empty? 
