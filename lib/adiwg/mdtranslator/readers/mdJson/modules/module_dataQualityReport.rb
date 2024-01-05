@@ -60,11 +60,11 @@ module ADIWG
             end
 
             if hReport.has_key?('evaluationMethod')
-                hReturn = EvaluationMethod.unpack(item, responseObj)
+              hReturn = EvaluationMethod.unpack(hReport['evaluationMethod'], responseObj)
 
-                unless hReturn.nil?
-                  intReport[:evaluationMethod] = hReturn
-                end
+              unless hReturn.nil?
+                intReport[:evaluationMethod] = hReturn
+              end
             end
 
             if hReport.has_key?('qualityMeasure')
