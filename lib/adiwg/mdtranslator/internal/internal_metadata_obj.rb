@@ -715,10 +715,11 @@ class InternalMetadata
       {
          qualityMeasure: {},
          evaluationMethod: {},
+         quantitativeResult: [],
+         descriptiveResult: [],
          conformanceResult: [],
          coverageResult: [],
-         descriptiveResult: [],
-         quantitativeResult: [],
+         derivedElementReport: [],
       }
    end
 
