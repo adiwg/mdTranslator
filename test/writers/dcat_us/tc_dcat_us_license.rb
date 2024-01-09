@@ -14,7 +14,7 @@ class TestWriterDcatUsLicense < TestWriterDcatUsParent
          writer: 'dcat_us', showAllTags: false)
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['dcat:license']
+      got = hJsonOut['license']
 
       expect = 'title0'
 

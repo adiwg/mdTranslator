@@ -14,7 +14,7 @@ class TestWriterDcatUsIsPartOf < TestWriterDcatUsParent
          writer: 'dcat_us', showAllTags: false)
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['dcat:isPartOf']
+      got = hJsonOut['isPartOf']
 
       expect = 'http://ISO.uri/adiwg/0'
 

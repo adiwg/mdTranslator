@@ -14,7 +14,7 @@ class TestWriterDcatUsTitle < TestWriterDcatUsParent
          writer: 'dcat_us', showAllTags: false)
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['dcat:title']
+      got = hJsonOut['title']
 
       assert_equal 'myCitationTitle', got
    end

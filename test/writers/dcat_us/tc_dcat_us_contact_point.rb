@@ -6,7 +6,7 @@ require_relative 'dcat_us_test_parent'
 class TestWriterDcatUsContactPoint < TestWriterDcatUsParent
 
    # get input JSON for test
-   @@jsonIn = TestWriterDcatUsParent.getJson('ContactPoint.json')
+   @@jsonIn = TestWriterDcatUsParent.getJson('contactPoint.json')
 
    def test_sample
       metadata = ADIWG::Mdtranslator.translate(
@@ -14,7 +14,7 @@ class TestWriterDcatUsContactPoint < TestWriterDcatUsParent
          writer: 'dcat_us', showAllTags: false)
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['dcat:contactPoint']
+      got = hJsonOut['contactPoint']
 
       expect = {"@type"=>"vcard:Contact", "fn"=>"Stan Smith", "hasEmail"=>"e.mail@address.com1"}
 

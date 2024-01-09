@@ -15,7 +15,7 @@ class TestWriterDcatUsIdentifier < TestWriterDcatUsParent
          writer: 'dcat_us', showAllTags: false)
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['dcat:identifier']
+      got = hJsonOut['identifier']
 
       assert_equal 'http://myOnlineResource-namespace.com', got
    end
@@ -26,7 +26,7 @@ class TestWriterDcatUsIdentifier < TestWriterDcatUsParent
          writer: 'dcat_us', showAllTags: false)
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['dcat:identifier']
+      got = hJsonOut['identifier']
 
       assert_equal 'http://myOnlineResource-doi.com', got
    end

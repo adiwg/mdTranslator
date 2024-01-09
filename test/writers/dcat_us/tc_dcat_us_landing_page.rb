@@ -14,7 +14,7 @@ class TestWriterDcatUsLandingPage < TestWriterDcatUsParent
          writer: 'dcat_us', showAllTags: false)
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['dcat:landingPage']
+      got = hJsonOut['landingPage']
 
       expect = 'http://ISO.uri/adiwg/0'
 

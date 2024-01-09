@@ -14,7 +14,7 @@ class TestWriterDcatUsTheme < TestWriterDcatUsParent
          writer: 'dcat_us', showAllTags: false)
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['dcat:theme']
+      got = hJsonOut['theme']
 
       expect = 'inlandWaters location climatologyMeteorologyAtmosphere'
 

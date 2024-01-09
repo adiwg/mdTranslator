@@ -14,7 +14,7 @@ class TestWriterDcatUsSystemOfRecords < TestWriterDcatUsParent
          writer: 'dcat_us', showAllTags: false)
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['dcat:systemOfRecords']
+      got = hJsonOut['systemOfRecords']
 
       expect = 'http://ISO.uri/adiwg/0'
 
