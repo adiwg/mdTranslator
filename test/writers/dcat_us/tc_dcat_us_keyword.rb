@@ -14,7 +14,7 @@ class TestWriterDcatUsKeyword < TestWriterDcatUsParent
          writer: 'dcat_us', showAllTags: false)
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['dcat:keyword']
+      got = hJsonOut['keyword']
 
       expect = ["Barrow", "Prudhoe Bay", "Kaparuk", "Brown Bear", "Polar Bear", "Black Bear", "Cinnamon Bear", "Teddy Bear", "butter", "sugar", "eggs", "inlandWaters", "location", "climatologyMeteorologyAtmosphere", "carbon dating", "ionization"]
 

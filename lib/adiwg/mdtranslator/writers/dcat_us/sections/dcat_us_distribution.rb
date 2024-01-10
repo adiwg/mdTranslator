@@ -31,11 +31,11 @@ module ADIWG
 
                     distribution = Jbuilder.new do |json|
                       json.set!('@type', 'dcat:Distribution')
-                      json.set!('dcat:description', description)
-                      json.set!('dcat:accessURL', accessURL) if accessURL
-                      json.set!('dcat:downloadURL', downloadURL) if downloadURL
-                      json.set!('dcat:mediaType', mediaType)
-                      json.set!('dcat:title', title)
+                      json.set!('description', description)
+                      json.set!('accessURL', accessURL) if accessURL
+                      json.set!('downloadURL', downloadURL) if downloadURL
+                      json.set!('mediaType', mediaType)
+                      json.set!('title', title)
                     end
 
                     distributions << distribution.attributes!

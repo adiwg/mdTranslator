@@ -15,7 +15,7 @@ class TestWriterDcatUsPublisher < TestWriterDcatUsParent
          writer: 'dcat_us', showAllTags: false)
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['dcat:publisher']
+      got = hJsonOut['publisher']
 
       expect = {"@type"=>"org:Organization", "name"=>"US Geological Survey", "subOrganizationOf"=>{"@type"=>"org:Organization", "name"=>"US Department of the Interior"}}
 
@@ -28,7 +28,7 @@ class TestWriterDcatUsPublisher < TestWriterDcatUsParent
          writer: 'dcat_us', showAllTags: false)
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['dcat:publisher']
+      got = hJsonOut['publisher']
 
       expect = {"@type"=>"org:Organization", "name"=>"Arctic Landscape Conservation Cooperative"}
 

@@ -14,7 +14,7 @@ class TestWriterDcatUsSpatial < TestWriterDcatUsParent
          writer: 'dcat_us', showAllTags: false)
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['dcat:spatial']
+      got = hJsonOut['spatial']
 
       expect = '-120.0,49.0,-140.0,70.0'
 

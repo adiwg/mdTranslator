@@ -16,7 +16,7 @@ class TestWriterDcatUsAccessLevel < TestWriterDcatUsParent
          writer: 'dcat_us', showAllTags: false)
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['dcat:accessLevel']
+      got = hJsonOut['accessLevel']
 
       expect = 'public'
 
@@ -29,7 +29,7 @@ class TestWriterDcatUsAccessLevel < TestWriterDcatUsParent
          writer: 'dcat_us', showAllTags: false)
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['dcat:accessLevel']
+      got = hJsonOut['accessLevel']
 
       expect = 'restricted public'
 
@@ -42,7 +42,7 @@ class TestWriterDcatUsAccessLevel < TestWriterDcatUsParent
          writer: 'dcat_us', showAllTags: false)
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['dcat:accessLevel']
+      got = hJsonOut['accessLevel']
 
       expect = 'non-public'
 

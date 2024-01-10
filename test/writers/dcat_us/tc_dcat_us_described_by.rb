@@ -14,7 +14,7 @@ class TestWriterDcatUsDescribedBy < TestWriterDcatUsParent
          writer: 'dcat_us', showAllTags: false)
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['dcat:describedBy']
+      got = hJsonOut['describedBy']
 
       expect = 'http://adiwg.org/described/by'
 

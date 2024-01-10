@@ -14,9 +14,9 @@ class TestWriterDcatUsDistribution < TestWriterDcatUsParent
          writer: 'dcat_us', showAllTags: false)
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['dcat:distribution']
+      got = hJsonOut['distribution']
 
-      expect = [{"@type"=>"dcat:Distribution", "dcat:description"=>"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.", "dcat:accessURL"=>"http://ISO.uri/adiwg/0", "dcat:mediaType"=>"CSV", "dcat:title"=>""}]
+      expect = [{"@type"=>"dcat:Distribution", "description"=>"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.", "accessURL"=>"http://ISO.uri/adiwg/0", "mediaType"=>"CSV", "title"=>""}]
 
       assert_equal expect, got
    end

@@ -14,7 +14,7 @@ class TestWriterDcatUsIssued < TestWriterDcatUsParent
          writer: 'dcat_us', showAllTags: false)
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['dcat:issued']
+      got = hJsonOut['issued']
 
       expect = '2017-06-13T00:00:00+00:00'
 

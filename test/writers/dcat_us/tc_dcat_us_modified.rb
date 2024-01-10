@@ -15,7 +15,7 @@ class TestWriterDcatUsModified < TestWriterDcatUsParent
          writer: 'dcat_us', showAllTags: false)
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['dcat:modified']
+      got = hJsonOut['modified']
 
       assert_equal '2017-06-22T16:15:14+00:00', got
    end
@@ -26,7 +26,7 @@ class TestWriterDcatUsModified < TestWriterDcatUsParent
          writer: 'dcat_us', showAllTags: false)
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['dcat:modified']
+      got = hJsonOut['modified']
 
       assert_equal '2022-06-22T16:15:14+00:00', got
    end
