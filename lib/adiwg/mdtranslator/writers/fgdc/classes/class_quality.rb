@@ -48,7 +48,7 @@ module ADIWG
                         !report.dig(:qualityMeasure, :description).nil?
                      end
 
-                     if logic = logic_report&.dig(:qualityMeasure, :decription)
+                     if logic = logic_report&.dig(:qualityMeasure, :description)
                         @xml.tag!('logic', logic)
                      else
                         @xml.tag!('logic', 'Not Reported')
@@ -66,12 +66,14 @@ module ADIWG
                         @xml.tag!('complete', 'Not Reported')
                      end
 
-                     # data quality 2.4 (position) - positional accuracy (not implemented)
+                     # data quality 2.4 (position) - positional accuracy
 
 
                      horizontal_positional_accuracy_report = hDataQuality[:report].find do |report|
                         report[:type] == 'DQ_AbsoluteExternalPositionalAccuracy' &&
-                        report.dig(:qualityMeasure, :name) == 'Horizontal Positional Accuracy Report'
+                        report.dig(:qualityMeasure, :name).any? { |name|
+                           name == 'Horizontal Positional Accuracy Report'
+                        }
                      end
 
                      horizpar = horizontal_positional_accuracy_report&.dig(:evaluationMethod, :methodDescription)
@@ -79,7 +81,9 @@ module ADIWG
 
                      vertical_positional_accuracy_report = hDataQuality[:report].find do |report|
                         report[:type] == 'DQ_AbsoluteExternalPositionalAccuracy' &&
-                        report.dig(:qualityMeasure, :name) == 'Vertical Positional Accuracy Report'
+                        report.dig(:qualityMeasure, :name).any? { |name|
+                           name == 'Vertical Positional Accuracy Report'
+                        }
                      end
 
                      vertaccr = vertical_positional_accuracy_report&.dig(:evaluationMethod, :methodDescription)
