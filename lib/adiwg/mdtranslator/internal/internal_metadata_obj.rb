@@ -727,8 +727,8 @@ class InternalMetadata
 
    def newStandaloneReport
       {
-         reportReference: {},
          abstract: nil,
+         reportReference: {},
       }
    end
 
