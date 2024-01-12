@@ -66,8 +66,8 @@ class MdJsonHashWriter
       hDataQuality = dataQuality
       hDataQuality[:scope] = build_scope_full
       hDataQuality[:standaloneQualityReport] = {
-         abstract: "standalone quality report 1",
-         reportReference: build_citation('standalone quality report 1')
+         reportReference: build_citation('standalone quality report 1'),
+         abstract: "standalone quality report 1"
       }
 
       hDataQuality[:report] = [
