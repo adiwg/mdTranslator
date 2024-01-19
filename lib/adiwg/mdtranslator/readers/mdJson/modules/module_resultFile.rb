@@ -8,8 +8,6 @@ module ADIWG
             module ResultFile
 
                 def self.unpack(hContent, responseObj)
-                    require 'pp'
-                    pp hContent
                     @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                     # return nil object if input is empty
