@@ -1,5 +1,6 @@
 require_relative 'module_scope'
 require_relative 'module_spatialRepresentation'
+require_relative 'module_resultFile'
 
 module ADIWG
   module Mdtranslator
@@ -50,7 +51,7 @@ module ADIWG
 
             # resultFile
             if hResult.has_key?('resultFile')
-              intResult[:resultFile] = hResult['resultFile']
+              intResult[:resultFile] = ResultFile.unpack(hResult['resultFile'], responseObj)
             end
 
             return intResult
