@@ -1,6 +1,7 @@
 require 'jbuilder'
 require_relative 'mdJson_scope'
 require_relative 'mdJson_spatialRepresentation'
+require_relative 'mdJson_resultFile'
 
 module ADIWG
   module Mdtranslator
@@ -16,7 +17,7 @@ module ADIWG
                 json.spatialRepresentation SpatialRepresentation.build(hCoverageResult[:spatialRepresentation]) unless hCoverageResult[:spatialRepresentation].nil?
                 json.resultContent hCoverageResult[:resultContent]
                 json.resourceFormat hCoverageResult[:resourceFormat]
-                json.resultFile hCoverageResult[:resultFile]
+                json.resultFile ResultFile.build(hCoverageResult[:resultFile]) unless hCoverageResult[:resultFile].nil?
             end
           end
         end
