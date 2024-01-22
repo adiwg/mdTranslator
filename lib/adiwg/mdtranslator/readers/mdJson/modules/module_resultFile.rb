@@ -18,7 +18,7 @@ module ADIWG
 
                     # instance classes needed in script
                     intMetadataClass = InternalMetadata.new
-                    intContent = intMetadataClass.newCoverageDescription
+                    intContent = intMetadataClass.newresultFile
 
                     # content information - file name (required)
                     if hContent.has_key?('fileName')

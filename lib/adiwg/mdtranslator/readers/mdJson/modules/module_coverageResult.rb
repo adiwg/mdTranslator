@@ -1,6 +1,8 @@
 require_relative 'module_scope'
 require_relative 'module_spatialRepresentation'
 require_relative 'module_resultFile'
+require_relative 'module_resourceFormat'
+require_relative 'module_resultContentDescription'
 
 module ADIWG
   module Mdtranslator
@@ -38,14 +40,14 @@ module ADIWG
 
 
             # resultContent
-            if hResult.has_key?('resultContent')
-              intResult[:resultContent] = hResult['resultContent']
+            if hResult.has_key?('resultContentDescription')
+              intResult[:resultContentDescription] = ResultContentDescription.unpack(hResult['resultContentDescription'], responseObj)
             end
 
 
             # resourceFormat
             if hResult.has_key?('resourceFormat')
-              intResult[:resourceFormat] = hResult['resourceFormat']
+              intResult[:resourceFormat] = ResourceFormat.unpack(hResult['resourceFormat'], responseObj)
             end
 
 
