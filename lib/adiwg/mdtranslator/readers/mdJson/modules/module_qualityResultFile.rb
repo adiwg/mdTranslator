@@ -5,7 +5,7 @@ module ADIWG
       module Readers
          module MdJson
 
-            module ResultFile
+            module QualiltyResultFile
 
                 def self.unpack(hContent, responseObj)
                     @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
