@@ -3,7 +3,7 @@ PATH
   specs:
     adiwg-mdtranslator (2.18.5)
       adiwg-mdcodes (= 2.8.4)
-      adiwg-mdjson_schemas (= 2.8.1)
+      adiwg-mdjson_schemas (= 2.8.2)
       builder (~> 3.2)
       coderay (~> 1.1)
       jbuilder (~> 2.5)
