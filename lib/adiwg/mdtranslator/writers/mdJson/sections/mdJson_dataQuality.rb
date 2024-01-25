@@ -4,7 +4,7 @@ require 'jbuilder'
 require_relative 'mdJson_scope'
 require_relative 'mdJson_dataQualityReport'
 require_relative 'mdJson_citation'
-require_relative 'mdJson_standAloneQualityReport'
+require_relative 'mdJson_standaloneQualityReport'
 
 module ADIWG
   module Mdtranslator
