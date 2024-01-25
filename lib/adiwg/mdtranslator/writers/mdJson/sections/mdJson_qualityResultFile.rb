@@ -10,8 +10,8 @@ module ADIWG
           def self.build(hQualityResultFile)
             Jbuilder.new do |json|
                 json.fileName hQualityResultFile[:fileName]
-                json.fileName hQualityResultFile[:fileDescription]
-                json.fileName hQualityResultFile[:fileType]
+                json.fileDescription hQualityResultFile[:fileDescription]
+                json.fileType hQualityResultFile[:fileType]
                 json.fileFormat Format.build(hQualityResultFile[:fileFormat]) unless hQualityResultFile[:fileFormat].nil?
             end
           end
