@@ -28,6 +28,10 @@ module ADIWG
 
             intReport[:type] = hReport["type"]
 
+            if hReport.has_key?('standaloneQualityReportDetails')
+              intReport[:standaloneQualityReportDetails] = hReport['standaloneQualityReportDetails']
+            end
+
             if hReport.has_key?('conformanceResult')
               hReport['conformanceResult'].each do |item|
                 hReturn = ConformanceResult.unpack(item, responseObj)

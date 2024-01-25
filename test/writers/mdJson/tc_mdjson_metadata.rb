@@ -17,6 +17,11 @@ class TestWriterMdJsonMetadata < TestWriterMdJsonParent
    # build mdJson test file in hash
    mdHash = TDClass.base
 
+   # data quality []
+   mdHash[:metadata][:dataQuality] = []
+   mdHash[:metadata][:dataQuality] << TDClass.build_dataQuality
+   mdHash[:metadata][:dataQuality] << TDClass.build_dataQuality
+
    # lineage []
    mdHash[:metadata][:resourceLineage] = []
    mdHash[:metadata][:resourceLineage] << TDClass.build_lineage
@@ -41,12 +46,6 @@ class TestWriterMdJsonMetadata < TestWriterMdJsonParent
    mdHash[:metadata][:funding] = []
    mdHash[:metadata][:funding] << TDClass.build_funding
    mdHash[:metadata][:funding] << TDClass.build_funding
-
-   # data quality []
-   mdHash[:metadata][:dataQuality] = []
-   mdHash[:metadata][:dataQuality] << TDClass.build_dataQuality
-   mdHash[:metadata][:dataQuality] << TDClass.build_dataQuality
-
 
    TDClass.removeEmptyObjects(mdHash)
 
