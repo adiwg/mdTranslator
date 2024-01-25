@@ -673,7 +673,7 @@ class InternalMetadata
          scope: {},
          spatialRepresentationType: nil,
          spatialRepresentation: {},
-         resultContent: [],
+         resultContentDescription: {},
          resourceFormat: {},
          resultFile: {}
       }
@@ -736,8 +736,8 @@ class InternalMetadata
 
    def newStandaloneReport
       {
-         reportReference: {},
          abstract: nil,
+         reportReference: {},
       }
    end
 

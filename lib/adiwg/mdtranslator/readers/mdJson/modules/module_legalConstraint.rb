@@ -34,21 +34,21 @@ module ADIWG
 
                   haveLegal = false
 
-                  # legal constraint - use constraint []
-                  if hLegalCon.has_key?('useConstraint')
-                     hLegalCon['useConstraint'].each do |item|
-                        unless item == ''
-                           intLegalCon[:useCodes] << item
-                           haveLegal = true
-                        end
-                     end
-                  end
-
                   # legal constraint - access constraint []
                   if hLegalCon.has_key?('accessConstraint')
                      hLegalCon['accessConstraint'].each do |item|
                         unless item == ''
                            intLegalCon[:accessCodes] << item
+                           haveLegal = true
+                        end
+                     end
+                  end
+
+                  # legal constraint - use constraint []
+                  if hLegalCon.has_key?('useConstraint')
+                     hLegalCon['useConstraint'].each do |item|
+                        unless item == ''
+                           intLegalCon[:useCodes] << item
                            haveLegal = true
                         end
                      end
