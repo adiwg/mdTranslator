@@ -28,12 +28,12 @@ module ADIWG
                   Jbuilder.new do |json|
                      json.metadataInfo MetadataInfo.build(hMetadata[:metadataInfo])
                      json.resourceInfo ResourceInfo.build(hMetadata[:resourceInfo])
+                     json.dataQuality @Namespace.json_map(hMetadata[:dataQuality], DataQuality)
                      json.resourceLineage @Namespace.json_map(hMetadata[:lineageInfo], LineageInfo)
                      json.resourceDistribution @Namespace.json_map(hMetadata[:distributorInfo], Distribution)
                      json.associatedResource @Namespace.json_map(hMetadata[:associatedResources], AssociatedResource)
                      json.additionalDocumentation @Namespace.json_map(hMetadata[:additionalDocuments], AdditionalDocument)
                      json.funding @Namespace.json_map(hMetadata[:funding], Funding)
-                     json.dataQuality @Namespace.json_map(hMetadata[:dataQuality], DataQuality)
                   end
 
                end # build
