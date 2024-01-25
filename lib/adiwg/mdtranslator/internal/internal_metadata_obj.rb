@@ -650,7 +650,7 @@ class InternalMetadata
 
    def newConformanceResult
       {
-         dateTime: [],
+         dateTime: nil,
          scope: {},
          specification: {},
          explanation: nil,
@@ -658,21 +658,30 @@ class InternalMetadata
       }
    end
 
+   def newQualityResultFile
+      {
+         fileName: nil,
+         fileType: nil,
+         fileDescription: nil,
+         fileFormat: {}
+      }
+   end
+
    def newCoverageResult
       {
-         dateTime: [],
+         dateTime: nil,
          scope: {},
          spatialRepresentationType: nil,
          spatialRepresentation: {},
-         resultContent: [],
-         resourceFormat: nil,
-         resultFile: nil
+         resultContentDescription: {},
+         resourceFormat: {},
+         resultFile: {}
       }
    end
 
    def newDescriptiveResult
       {
-         dateTime: [],
+         dateTime: nil,
          scope: {},
          statement: nil
       }
@@ -695,7 +704,7 @@ class InternalMetadata
 
    def newQuantitativeResult
       {
-         dateTime: [],
+         dateTime: nil,
          scope: {},
          values: [],
          valueUnits: nil,
@@ -727,8 +736,8 @@ class InternalMetadata
 
    def newStandaloneReport
       {
-         reportReference: {},
          abstract: nil,
+         reportReference: {},
       }
    end
 

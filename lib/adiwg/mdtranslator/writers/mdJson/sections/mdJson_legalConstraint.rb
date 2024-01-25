@@ -15,8 +15,8 @@ module ADIWG
                def self.build(hLegal)
 
                   Jbuilder.new do |json|
-                     json.useConstraint hLegal[:useCodes] unless hLegal[:useCodes].empty?
                      json.accessConstraint hLegal[:accessCodes] unless hLegal[:accessCodes].empty?
+                     json.useConstraint hLegal[:useCodes] unless hLegal[:useCodes].empty?
                      json.otherConstraint hLegal[:otherCons] unless hLegal[:otherCons].empty?
                   end
 

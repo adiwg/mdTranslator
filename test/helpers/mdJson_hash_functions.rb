@@ -62,6 +62,68 @@ class MdJsonHashWriter
       return hDictionary
    end
 
+   def build_dataQuality
+      hDataQuality = dataQuality
+      hDataQuality[:scope] = build_scope_full
+      hDataQuality[:standaloneQualityReport] = {
+         reportReference: build_citation('standalone quality report 1'),
+         abstract: "standalone quality report 1"
+      }
+
+      hDataQuality[:report] = [
+         {
+            type: 'DQ_AbsoluteExternalPositionalAccuracy',
+            standaloneQualityReportDetails: "standalone quality report details 1",
+            qualityMeasure: {
+               identifier: {
+                  identifier: 'identifier',
+                  namespace: 'namespace',
+                  version: 'version',
+                  description: 'description'
+               },
+               name: ['name of measure'],
+               description: 'description'
+            },
+            evaluationMethod: {
+               type: 'DQ_EvaluationMethod',
+               dateTime: ['2019-06-11T08:35:00', '2019-06-11T09:00:00'],
+               methodDescription: 'evaluation method description',
+               evaluationProcedure: { title: 'EP Title' },
+               referenceDocument: [ ],
+               evaluationMethodType: 'DQ_EvaluationMethodTypeCode',
+               deductiveSource: 'deductive source',
+               samplingScheme: 'sampling scheme',
+               lotDescription: 'lot description',
+               samplingRatio: 'sampling ratio'
+            },
+            quantitativeResult: [
+               {
+                  dateTime: "2019-06-11T09:00:00",
+                  scope: build_scope_full,
+                  value: [9.99, 9.0],
+                  valueUnits: "value units",
+                  valueRecordType: "value record type"
+               }
+            ],
+            descriptiveResult: [{
+               dateTime: "2019-06-11T09:00:00",
+               scope: build_scope_full,
+               statement: "statement"
+            }],
+            conformanceResult: [{
+               dateTime: "2019-06-11T09:00:00",
+               scope: build_scope_full,
+               specification: build_citation('alternate metadata title one'),
+               explanation: "conformance result explanation",
+               pass: false
+            }],
+            # derivedElementReports: [],
+         }
+      ]
+
+      return hDataQuality
+   end
+
    def build_date(dateTime, type = 'none')
       hDate = date
       hDate[:date] = dateTime
@@ -156,66 +218,6 @@ class MdJsonHashWriter
       hFunding[:allocation][0][:amount] = amount unless amount.nil?
       hFunding[:description] = description unless description.nil?
       return hFunding
-   end
-
-   def build_dataQuality
-      hDataQuality = dataQuality
-      hDataQuality[:scope] = build_scope_full
-      hDataQuality[:standaloneQualityReport] = {
-         abstract: "standalone quality report 1"
-      }
-
-      hDataQuality[:report] = [
-         {
-            conformanceResult: [{
-               dateTime: "2019-06-11T09:00:00",
-               scope: build_scope_full,
-               specification: build_citation('alternate metadata title one'),
-               explanation: "conformance result explanation",
-               pass: false
-            }],
-            descriptiveResult: [{
-               dateTime: "2019-06-11T09:00:00",
-               scope: build_scope_full,
-               statement: "statement"
-            }],
-            qualityMeasure: {
-               identifier: {
-                  identifier: 'identifier',
-                  description: 'description',
-                  namespace: 'namespace',
-                  version: 'version'
-               },
-               name: ['name of measure'],
-               description: 'description'
-            },
-            evaluationMethod: {
-               type: 'evaluation method type - enumerated',
-               dateTime: '2019-06-11T08:35:00',
-               methodDescription: 'evaluation method description',
-               evaluationProcedure: { title: 'EP Title' },
-               referenceDocument: [ ],
-               evaluationMethodType: 'DQ_EvaluationMethodTypeCode',
-               deductiveSource: 'deductive source',
-               samplingScheme: 'sampling scheme',
-               lotDescription: 'lot description',
-               samplingRatio: 'sampling ratio'
-            },
-            quantitativeResult: [
-               {
-                  dateTime: "2019-06-11T09:00:00",
-                  scope: build_scope_full,
-                  value: [9.99, 9.0],
-                  valueUnits: "value units",
-                  valueRecordType: "value record type"
-               }
-            ],
-            # derivedElementReports: [],
-            # relatedElementReports: []
-         }
-      ]
-
-      return hDataQuality
    end
    
    def build_geoJson

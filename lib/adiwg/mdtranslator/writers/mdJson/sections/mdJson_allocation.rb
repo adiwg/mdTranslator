@@ -28,8 +28,8 @@ module ADIWG
                      json.recipientId hAllocation[:recipientId]
                      json.responsibleParty @Namespace.json_map(hAllocation[:responsibleParties], ResponsibleParty)
                      json.matching hAllocation[:matching]
-                     json.onlineResource @Namespace.json_map(hAllocation[:onlineResources], OnlineResource)
                      json.comment hAllocation[:comment]
+                     json.onlineResource @Namespace.json_map(hAllocation[:onlineResources], OnlineResource)
                   end
 
                end # build
