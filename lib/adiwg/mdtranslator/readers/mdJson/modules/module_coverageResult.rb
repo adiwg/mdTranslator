@@ -1,6 +1,6 @@
 require_relative 'module_scope'
 require_relative 'module_spatialRepresentation'
-require_relative 'module_QualityResultFile'
+require_relative 'module_qualityResultFile'
 require_relative 'module_format'
 require_relative 'module_coverageDescription'
 
