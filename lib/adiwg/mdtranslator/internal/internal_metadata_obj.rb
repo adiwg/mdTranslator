@@ -673,7 +673,7 @@ class InternalMetadata
          scope: {},
          spatialRepresentationType: nil,
          spatialRepresentation: {},
-         resultContent: [],
+         resultContentDescription: {},
          resourceFormat: {},
          resultFile: {}
       }
