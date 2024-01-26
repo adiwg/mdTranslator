@@ -76,7 +76,7 @@ module ADIWG
               hReturn = QualityMeasure.unpack(hReport['qualityMeasure'], responseObj)
 
               unless hReturn.nil?
-                intReport[:evaluationMethod] = hReturn
+                intReport[:qualityMeasure] = hReturn
               end
             end
 
