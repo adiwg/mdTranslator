@@ -372,27 +372,19 @@
         <gco:Integer>9</gco:Integer>
       </mrc:toneGradation>
       <mrc:bandBoundaryDefinition>
-        <mrc:MI_BandDefinition
-          codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MI_BandDefinition"
-          codeListValue="oneOverE" codeSpace="004"/>
+        <mrc:MI_BandDefinition codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MI_BandDefinition" codeListValue="oneOverE" codeSpace="004"/>
       </mrc:bandBoundaryDefinition>
       <mrc:nominalSpatialResolution>
         <gco:Real>99</gco:Real>
       </mrc:nominalSpatialResolution>
       <mrc:transferFunctionType>
-        <mrc:MI_TransferFunctionTypeCode
-          codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MI_TransferFunctionTypeCode"
-          codeListValue="linear" codeSpace="001"/>
+        <mrc:MI_TransferFunctionTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MI_TransferFunctionTypeCode" codeListValue="linear" codeSpace="001"/>
       </mrc:transferFunctionType>
       <mrc:transmittedPolarisation>
-        <mrc:MI_PolarisationOrientationCode
-          codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MI_PolarisationOrientationCode"
-          codeListValue="leftCircular" codeSpace="003"/>
+        <mrc:MI_PolarisationOrientationCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MI_PolarisationOrientationCode" codeListValue="leftCircular" codeSpace="003"/>
       </mrc:transmittedPolarisation>
       <mrc:detectedPolarisation>
-        <mrc:MI_PolarisationOrientationCode
-          codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MI_PolarisationOrientationCode"
-          codeListValue="rightCircular" codeSpace="004"/>
+        <mrc:MI_PolarisationOrientationCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MI_PolarisationOrientationCode" codeListValue="rightCircular" codeSpace="004"/>
       </mrc:detectedPolarisation>
     </mrc:MI_Band>
   </mrc:attribute>
