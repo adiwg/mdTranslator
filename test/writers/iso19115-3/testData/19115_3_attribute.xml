@@ -30,7 +30,8 @@
   xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
   xmlns:fcc="http://standards.iso.org/iso/19110/fcc/1.0"
   xmlns:gfc="http://standards.iso.org/iso/19110/gfc/1.1"
-  xsi:schemaLocation="http://standards.iso.org/iso/19115/-3/mdt/2.0 http://standards.iso.org/iso/19115/-3/mdt/2.0/mdt.xsd">
+  xsi:schemaLocation="http://standards.iso.org/iso/19115/-3/mdt/2.0
+  http://standards.iso.org/iso/19115/-3/mdt/2.0/mdt.xsd">
 
 <mrc:attribute>
     <mrc:MD_RangeDimension>
