@@ -52,18 +52,27 @@ module ADIWG
                     end
                   end
 
-                  unless report[:report].nil?
-                    @html.div do
-                      @html.div('Report', {'class' => 'h5'})
-                      @html.div(class: 'block') do
-                        dataQualityReportClass.writeHtml(report[:report])
+                end
+              end
+            end
+
+            # reports
+            unless hDataQuality[:report].nil? || hDataQuality[:report].empty?
+              @html.div(class: 'block') do
+                @html.div do
+                  @html.div('Reports', {'class' => 'h4'})
+                  hDataQuality[:report].each do |report|
+                    @html.div(class: 'block') do
+                      @html.div do
+                        @html.div('Report', {'class' => 'h5'})
+                        dataQualityReportClass.writeHtml(report)
                       end
                     end
                   end
                 end
               end
-
             end
+
           end
         end
       end

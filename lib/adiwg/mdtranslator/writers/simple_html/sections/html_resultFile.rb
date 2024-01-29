@@ -6,7 +6,7 @@ require_relative 'html_format'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Html
+         module Simple_html
 
             class Html_ResultFile
 
