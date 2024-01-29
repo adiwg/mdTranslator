@@ -53,24 +53,24 @@
       </mrc:description>
       <mrc:name>
         <mcc:MD_Identifier>
-          <mcc:authority />
+          <mcc:authority/>
           <mcc:code>
             <gco:CharacterString>attribute identifier one</gco:CharacterString>
           </mcc:code>
-          <mcc:codeSpace />
-          <mcc:version />
-          <mcc:description />
+          <mcc:codeSpace/>
+          <mcc:version/>
+          <mcc:description/>
         </mcc:MD_Identifier>
       </mrc:name>
       <mrc:name>
         <mcc:MD_Identifier>
-          <mcc:authority />
+          <mcc:authority/>
           <mcc:code>
             <gco:CharacterString>attribute identifier two</gco:CharacterString>
           </mcc:code>
-          <mcc:codeSpace />
-          <mcc:version />
-          <mcc:description />
+          <mcc:codeSpace/>
+          <mcc:version/>
+          <mcc:description/>
         </mcc:MD_Identifier>
       </mrc:name>
     </mrc:MD_RangeDimension>
@@ -97,24 +97,24 @@
       </mrc:description>
       <mrc:name>
         <mcc:MD_Identifier>
-          <mcc:authority />
+          <mcc:authority/>
           <mcc:code>
             <gco:CharacterString>attribute identifier one</gco:CharacterString>
           </mcc:code>
-          <mcc:codeSpace />
-          <mcc:version />
-          <mcc:description />
+          <mcc:codeSpace/>
+          <mcc:version/>
+          <mcc:description/>
         </mcc:MD_Identifier>
       </mrc:name>
       <mrc:name>
         <mcc:MD_Identifier>
-          <mcc:authority />
+          <mcc:authority/>
           <mcc:code>
             <gco:CharacterString>attribute identifier two</gco:CharacterString>
           </mcc:code>
-          <mcc:codeSpace />
-          <mcc:version />
-          <mcc:description />
+          <mcc:codeSpace/>
+          <mcc:version/>
+          <mcc:description/>
         </mcc:MD_Identifier>
       </mrc:name>
       <mrc:maxValue>
@@ -185,24 +185,24 @@
       </mrc:description>
       <mrc:name>
         <mcc:MD_Identifier>
-          <mcc:authority />
+          <mcc:authority/>
           <mcc:code>
             <gco:CharacterString>attribute identifier one</gco:CharacterString>
           </mcc:code>
-          <mcc:codeSpace />
-          <mcc:version />
-          <mcc:description />
+          <mcc:codeSpace/>
+          <mcc:version/>
+          <mcc:description/>
         </mcc:MD_Identifier>
       </mrc:name>
       <mrc:name>
         <mcc:MD_Identifier>
-          <mcc:authority />
+          <mcc:authority/>
           <mcc:code>
             <gco:CharacterString>attribute identifier two</gco:CharacterString>
           </mcc:code>
-          <mcc:codeSpace />
-          <mcc:version />
-          <mcc:description />
+          <mcc:codeSpace/>
+          <mcc:version/>
+          <mcc:description/>
         </mcc:MD_Identifier>
       </mrc:name>
       <mrc:maxValue>
@@ -290,24 +290,24 @@
       </mrc:description>
       <mrc:name>
         <mcc:MD_Identifier>
-          <mcc:authority />
+          <mcc:authority/>
           <mcc:code>
             <gco:CharacterString>attribute identifier one</gco:CharacterString>
           </mcc:code>
-          <mcc:codeSpace />
-          <mcc:version />
-          <mcc:description />
+          <mcc:codeSpace/>
+          <mcc:version/>
+          <mcc:description/>
         </mcc:MD_Identifier>
       </mrc:name>
       <mrc:name>
         <mcc:MD_Identifier>
-          <mcc:authority />
+          <mcc:authority/>
           <mcc:code>
             <gco:CharacterString>attribute identifier two</gco:CharacterString>
           </mcc:code>
-          <mcc:codeSpace />
-          <mcc:version />
-          <mcc:description />
+          <mcc:codeSpace/>
+          <mcc:version/>
+          <mcc:description/>
         </mcc:MD_Identifier>
       </mrc:name>
       <mrc:maxValue>
@@ -374,7 +374,7 @@
       <mrc:bandBoundaryDefinition>
         <mrc:MI_BandDefinition
           codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MI_BandDefinition"
-          codeListValue="oneOverE" codeSpace="004" />
+          codeListValue="oneOverE" codeSpace="004"/>
       </mrc:bandBoundaryDefinition>
       <mrc:nominalSpatialResolution>
         <gco:Real>99</gco:Real>
@@ -382,17 +382,17 @@
       <mrc:transferFunctionType>
         <mrc:MI_TransferFunctionTypeCode
           codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MI_TransferFunctionTypeCode"
-          codeListValue="linear" codeSpace="001" />
+          codeListValue="linear" codeSpace="001"/>
       </mrc:transferFunctionType>
       <mrc:transmittedPolarisation>
         <mrc:MI_PolarisationOrientationCode
           codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MI_PolarisationOrientationCode"
-          codeListValue="leftCircular" codeSpace="003" />
+          codeListValue="leftCircular" codeSpace="003"/>
       </mrc:transmittedPolarisation>
       <mrc:detectedPolarisation>
         <mrc:MI_PolarisationOrientationCode
           codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MI_PolarisationOrientationCode"
-          codeListValue="rightCircular" codeSpace="004" />
+          codeListValue="rightCircular" codeSpace="004"/>
       </mrc:detectedPolarisation>
     </mrc:MI_Band>
   </mrc:attribute>
