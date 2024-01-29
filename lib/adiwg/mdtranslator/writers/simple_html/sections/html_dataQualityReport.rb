@@ -2,6 +2,7 @@ require_relative 'html_citation'
 require_relative 'html_identifier'
 require_relative 'html_scope'
 require_relative 'html_spatialRepresentation'
+require_relative 'html_resultFile'
 
 module ADIWG
   module Mdtranslator
