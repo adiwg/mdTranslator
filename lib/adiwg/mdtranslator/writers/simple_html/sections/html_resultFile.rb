@@ -43,7 +43,7 @@ module ADIWG
 
                  # result file - file format
                  unless hResultFile[:fileFormat].empty?
-                    @html.details do
+                    @html.div do
                        @html.div(hResultFile[:fileFormat][:title], {'class' => 'h5'})
                        @html.div(:class => 'block') do
                           formatClass.writeHtml(hResultFile[:fileFormat])
