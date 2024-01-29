@@ -39,12 +39,12 @@ module ADIWG
           def writeQualityMeasure(qualityMeasure)
             identifierClass = Html_Identifier.new(@html)
 
-            @html.details do
+            @html.div do
               @html.div('Quality Measure', {'class' => 'h5'})
               @html.div(class: 'block') do
                 # Identifier
                 unless qualityMeasure[:identifier].empty?
-                  @html.details do
+                  @html.div do
                     @html.div('Identifier', {'class' => 'h5'})
                     @html.div(class: 'block') do
                       identifierClass.writeHtml(qualityMeasure[:identifier])
@@ -72,7 +72,7 @@ module ADIWG
           def writeEvaluationMethod(evaluationMethod)
             citationClass = Html_Citation.new(@html)
           
-            @html.details do
+            @html.div do
               @html.div('Evaluation Method', {'class' => 'h5'})
               evaluationMethod.each do |method|
                 @html.div(class: 'block') do
@@ -134,7 +134,7 @@ module ADIWG
             
                   # EvaluationProcedure
                   unless method[:evaluationProcedure].nil? || method[:evaluationProcedure].empty?
-                    @html.details do
+                    @html.div do
                       @html.div('Evaluation Procedure', {'class' => 'h5'})
                       @html.div(class: 'block') do
                         citationClass.writeHtml(method[:evaluationProcedure])
@@ -144,7 +144,7 @@ module ADIWG
             
                   # ReferenceDocument
                   unless method[:referenceDocument].nil? || method[:referenceDocument].empty?
-                    @html.details do
+                    @html.div do
                       @html.div('Reference Document', {'class' => 'h5'})
                       method[:referenceDocument].each do |doc|
                         @html.div(class: 'block') do
@@ -162,7 +162,7 @@ module ADIWG
             citationClass = Html_Citation.new(@html)
             scopeClass = Html_Scope.new(@html) # Assuming there's a class to handle scope objects
           
-            @html.details do
+            @html.div do
               @html.div('Conformance Result', {'class' => 'h5'})
               conformanceResult.each do |result|
                 @html.div(class: 'block') do
@@ -175,7 +175,7 @@ module ADIWG
             
                   # Scope
                   unless result[:scope].nil? || result[:scope].empty?
-                    @html.details do
+                    @html.div do
                       @html.div('Scope', {'class' => 'h5'})
                       @html.div(class: 'block') do
                         scopeClass.writeHtml(result[:scope])
@@ -185,7 +185,7 @@ module ADIWG
             
                   # Specification (citation)
                   unless result[:specification].nil?
-                    @html.details do
+                    @html.div do
                       @html.div('Specification', {'class' => 'h5'})
                       @html.div(class: 'block') do
                         citationClass.writeHtml(result[:specification])
@@ -216,7 +216,7 @@ module ADIWG
             spatialRepresentationClass = Html_SpatialRepresentation.new(@html) # Assuming a class to handle spatialRepresentation objects
             resultFileClass = Html_ResultFile.new(@html) # Assuming a class to handle resultFile objects
 
-            @html.details do
+            @html.div do
               @html.div('Coverage Result', {'class' => 'h5'})
               coverageResult.each do |result|
                 @html.div(class: 'block') do
@@ -229,7 +229,7 @@ module ADIWG
             
                   # Scope
                   unless result[:scope].nil? || result[:scope].empty?
-                    @html.details do
+                    @html.div do
                       @html.div('Scope', {'class' => 'h5'})
                       @html.div(class: 'block') do
                         scopeClass.writeHtml(result[:scope])
@@ -246,7 +246,7 @@ module ADIWG
             
                   # SpatialRepresentation
                   unless result[:spatialRepresentation].nil? || result[:spatialRepresentation].empty?
-                    @html.details do
+                    @html.div do
                       @html.div('Spatial Representation', {'class' => 'h5'})
                       @html.div(class: 'block') do
                         spatialRepresentationClass.writeHtml(result[:spatialRepresentation])
@@ -285,7 +285,7 @@ module ADIWG
           def writeDescriptiveResult(descriptiveResult)
             scopeClass = Html_Scope.new(@html) # Assuming a class to handle scope objects
           
-            @html.details do
+            @html.div do
               @html.div('Descriptive Result', {'class' => 'h5'})
               descriptiveResult.each do |result|
                 @html.div(class: 'block') do
@@ -298,7 +298,7 @@ module ADIWG
             
                   # Scope
                   unless result[:scope].nil?
-                    @html.details do
+                    @html.div do
                       @html.div('Scope', {'class' => 'h5'})
                       @html.div(class: 'block') do
                         scopeClass.writeHtml(result[:scope])
@@ -320,7 +320,7 @@ module ADIWG
           def writeQuantitativeResult(quantitativeResult)
             scopeClass = Html_Scope.new(@html) # Assuming a class to handle scope objects
           
-            @html.details do
+            @html.div do
               @html.div('Quantitative Result', {'class' => 'h5'})
               quantitativeResult.each do |result|
                 @html.div(class: 'block') do
@@ -333,7 +333,7 @@ module ADIWG
             
                   # Scope
                   unless result[:scope].nil?
-                    @html.details do
+                    @html.div do
                       @html.div('Scope', {'class' => 'h5'})
                       @html.div(class: 'block') do
                         scopeClass.writeHtml(result[:scope])
