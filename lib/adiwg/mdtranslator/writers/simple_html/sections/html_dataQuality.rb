@@ -1,4 +1,6 @@
 require_relative 'html_citation'
+require_relative 'html_scope'
+require_relative 'html_dataQualityReport'
 
 module ADIWG
   module Mdtranslator
@@ -12,6 +14,7 @@ module ADIWG
           def writeHtml(hDataQuality)
             citationClass = Html_Citation.new(@html)
             scopeClass = Html_Scope.new(@html)
+            dataQualityReportClass = Html_DataQualityReport.new(@html)
 
             unless hDataQuality[:scope].nil? || hDataQuality[:scope].empty?
               @html.div(class: 'block') do
@@ -45,6 +48,15 @@ module ADIWG
                       @html.div('Report Reference', {'class' => 'h5'})
                       @html.div(class: 'block') do
                         citationClass.writeHtml(report[:reportReference])
+                      end
+                    end
+                  end
+
+                  unless report[:report].nil?
+                    @html.div do
+                      @html.div('Report', {'class' => 'h5'})
+                      @html.div(class: 'block') do
+                        dataQualityReportClass.writeHtml(report[:report])
                       end
                     end
                   end
