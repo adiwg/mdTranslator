@@ -1,39 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mdb:MD_Metadata
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        xmlns:gml="http://www.opengis.net/gml/3.2"
-        xmlns:cat="http://standards.iso.org/iso/19115/-3/cat/1.0"
-        xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
-        xmlns:gcx="http://standards.iso.org/iso/19115/-3/gcx/1.0"
-        xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
-        xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
-        xmlns:mas="http://standards.iso.org/iso/19115/-3/mas/1.0"
-        xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
-        xmlns:mco="http://standards.iso.org/iso/19115/-3/mco/1.0"
-        xmlns:mda="http://standards.iso.org/iso/19115/-3/mda/1.0"
-        xmlns:mdq="http://standards.iso.org/iso/19157/-2/mdq/1.0"
-        xmlns:mex="http://standards.iso.org/iso/19157/-2/mex/1.0"
-        xmlns:mmi="http://standards.iso.org/iso/19115/-3/mmi/1.0"
-        xmlns:mpc="http://standards.iso.org/iso/19115/-3/mpc/1.0"
-        xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0"
-        xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
-        xmlns:mrs="http://standards.iso.org/iso/19115/-3/mrs/1.0"
-        xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/2.0"
-        xmlns:mac="http://standards.iso.org/iso/19115/-3/mac/2.0"
-        xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/2.0"
-        xmlns:mds="http://standards.iso.org/iso/19115/-3/mds/2.0"
-        xmlns:mdt="http://standards.iso.org/iso/19115/-3/mdt/2.0"
-        xmlns:mrl="http://standards.iso.org/iso/19115/-3/mrl/2.0"
-        xmlns:mrc="http://standards.iso.org/iso/19115/-3/mrc/2.0"
-        xmlns:msr="http://standards.iso.org/iso/19115/-3/msr/2.0"
-        xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
-        xmlns:fcc="http://standards.iso.org/iso/19110/fcc/1.0"
-        xmlns:gfc="http://standards.iso.org/iso/19110/gfc/1.1"
-        xsi:schemaLocation="http://standards.iso.org/iso/19115/-3/mdt/2.0
-        http://standards.iso.org/iso/19115/-3/mdt/2.0/mdt.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:gml="http://www.opengis.net/gml/3.2"
+  xmlns:cat="http://standards.iso.org/iso/19115/-3/cat/1.0"
+  xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
+  xmlns:gcx="http://standards.iso.org/iso/19115/-3/gcx/1.0"
+  xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
+  xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
+  xmlns:mas="http://standards.iso.org/iso/19115/-3/mas/1.0"
+  xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
+  xmlns:mco="http://standards.iso.org/iso/19115/-3/mco/1.0"
+  xmlns:mda="http://standards.iso.org/iso/19115/-3/mda/1.0"
+  xmlns:mdq="http://standards.iso.org/iso/19157/-2/mdq/1.0"
+  xmlns:mex="http://standards.iso.org/iso/19157/-2/mex/1.0"
+  xmlns:mmi="http://standards.iso.org/iso/19115/-3/mmi/1.0"
+  xmlns:mpc="http://standards.iso.org/iso/19115/-3/mpc/1.0"
+  xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0"
+  xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
+  xmlns:mrs="http://standards.iso.org/iso/19115/-3/mrs/1.0"
+  xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/2.0"
+  xmlns:mac="http://standards.iso.org/iso/19115/-3/mac/2.0"
+  xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/2.0"
+  xmlns:mds="http://standards.iso.org/iso/19115/-3/mds/2.0"
+  xmlns:mdt="http://standards.iso.org/iso/19115/-3/mdt/2.0"
+  xmlns:mrl="http://standards.iso.org/iso/19115/-3/mrl/2.0"
+  xmlns:mrc="http://standards.iso.org/iso/19115/-3/mrc/2.0"
+  xmlns:msr="http://standards.iso.org/iso/19115/-3/msr/2.0"
+  xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
+  xmlns:fcc="http://standards.iso.org/iso/19110/fcc/1.0"
+  xmlns:gfc="http://standards.iso.org/iso/19110/gfc/1.1"
+  xsi:schemaLocation="http://standards.iso.org/iso/19115/-3/mdt/2.0 http://standards.iso.org/iso/19115/-3/mdt/2.0/mdt.xsd">
 
-<mrc:attribute>
+  <mrc:attribute>
     <mrc:MD_RangeDimension>
       <mrc:sequenceIdentifier>
         <gco:MemberName>
@@ -54,24 +53,24 @@
       </mrc:description>
       <mrc:name>
         <mcc:MD_Identifier>
-          <mcc:authority/>
+          <mcc:authority />
           <mcc:code>
             <gco:CharacterString>attribute identifier one</gco:CharacterString>
           </mcc:code>
-          <mcc:codeSpace/>
-          <mcc:version/>
-          <mcc:description/>
+          <mcc:codeSpace />
+          <mcc:version />
+          <mcc:description />
         </mcc:MD_Identifier>
       </mrc:name>
       <mrc:name>
         <mcc:MD_Identifier>
-          <mcc:authority/>
+          <mcc:authority />
           <mcc:code>
             <gco:CharacterString>attribute identifier two</gco:CharacterString>
           </mcc:code>
-          <mcc:codeSpace/>
-          <mcc:version/>
-          <mcc:description/>
+          <mcc:codeSpace />
+          <mcc:version />
+          <mcc:description />
         </mcc:MD_Identifier>
       </mrc:name>
     </mrc:MD_RangeDimension>
@@ -98,24 +97,24 @@
       </mrc:description>
       <mrc:name>
         <mcc:MD_Identifier>
-          <mcc:authority/>
+          <mcc:authority />
           <mcc:code>
             <gco:CharacterString>attribute identifier one</gco:CharacterString>
           </mcc:code>
-          <mcc:codeSpace/>
-          <mcc:version/>
-          <mcc:description/>
+          <mcc:codeSpace />
+          <mcc:version />
+          <mcc:description />
         </mcc:MD_Identifier>
       </mrc:name>
       <mrc:name>
         <mcc:MD_Identifier>
-          <mcc:authority/>
+          <mcc:authority />
           <mcc:code>
             <gco:CharacterString>attribute identifier two</gco:CharacterString>
           </mcc:code>
-          <mcc:codeSpace/>
-          <mcc:version/>
-          <mcc:description/>
+          <mcc:codeSpace />
+          <mcc:version />
+          <mcc:description />
         </mcc:MD_Identifier>
       </mrc:name>
       <mrc:maxValue>
@@ -125,26 +124,13 @@
         <gco:Real>0</gco:Real>
       </mrc:minValue>
       <mrc:units>
-        <gml:UnitDefinition gml:id="unit_002">
+        <gml:UnitDefinition gml:id="unit002">
           <gml:identifier codeSpace="">min/max units</gml:identifier>
         </gml:UnitDefinition>
       </mrc:units>
       <mrc:scaleFactor>
         <gco:Real>99.9</gco:Real>
       </mrc:scaleFactor>
-      <mrc:rangeElementDescription>
-        <mrc:name>
-          <gco:CharacterString>range element name 1</gco:CharacterString>
-        </mrc:name>
-        <mrc:definition>
-          <gco:CharacterString>range element definition</gco:CharacterString>
-        </mrc:definition>
-        <mrc:rangeElement>
-          <gco:Record>
-            <gco:CharacterString>range element record 1</gco:CharacterString>
-          </gco:Record>
-        </mrc:rangeElement>
-      </mrc:rangeElementDescription>
       <mrc:offset>
         <gco:Real>1.0</gco:Real>
       </mrc:offset>
@@ -160,6 +146,21 @@
       <mrc:bitsPerValue>
         <gco:Integer>9</gco:Integer>
       </mrc:bitsPerValue>
+      <mrc:rangeElementDescription>
+        <mrc:MI_RangeElementDescription>
+          <mrc:name>
+            <gco:CharacterString>range element name 1</gco:CharacterString>
+          </mrc:name>
+          <mrc:definition>
+            <gco:CharacterString>range element definition</gco:CharacterString>
+          </mrc:definition>
+          <mrc:rangeElement>
+            <gco:Record>
+              <gco:CharacterString>range element record 1</gco:CharacterString>
+            </gco:Record>
+          </mrc:rangeElement>
+        </mrc:MI_RangeElementDescription>
+      </mrc:rangeElementDescription>
     </mrc:MD_SampleDimension>
   </mrc:attribute>
 
@@ -184,24 +185,24 @@
       </mrc:description>
       <mrc:name>
         <mcc:MD_Identifier>
-          <mcc:authority/>
+          <mcc:authority />
           <mcc:code>
             <gco:CharacterString>attribute identifier one</gco:CharacterString>
           </mcc:code>
-          <mcc:codeSpace/>
-          <mcc:version/>
-          <mcc:description/>
+          <mcc:codeSpace />
+          <mcc:version />
+          <mcc:description />
         </mcc:MD_Identifier>
       </mrc:name>
       <mrc:name>
         <mcc:MD_Identifier>
-          <mcc:authority/>
+          <mcc:authority />
           <mcc:code>
             <gco:CharacterString>attribute identifier two</gco:CharacterString>
           </mcc:code>
-          <mcc:codeSpace/>
-          <mcc:version/>
-          <mcc:description/>
+          <mcc:codeSpace />
+          <mcc:version />
+          <mcc:description />
         </mcc:MD_Identifier>
       </mrc:name>
       <mrc:maxValue>
@@ -211,26 +212,13 @@
         <gco:Real>0</gco:Real>
       </mrc:minValue>
       <mrc:units>
-        <gml:UnitDefinition gml:id="unit_002">
+        <gml:UnitDefinition gml:id="unit002">
           <gml:identifier codeSpace="">min/max units</gml:identifier>
         </gml:UnitDefinition>
       </mrc:units>
       <mrc:scaleFactor>
         <gco:Real>99.9</gco:Real>
       </mrc:scaleFactor>
-      <mrc:rangeElementDescription>
-        <mrc:name>
-          <gco:CharacterString>range element name 1</gco:CharacterString>
-        </mrc:name>
-        <mrc:definition>
-          <gco:CharacterString>range element definition</gco:CharacterString>
-        </mrc:definition>
-        <mrc:rangeElement>
-          <gco:Record>
-            <gco:CharacterString>range element record 1</gco:CharacterString>
-          </gco:Record>
-        </mrc:rangeElement>
-      </mrc:rangeElementDescription>
       <mrc:offset>
         <gco:Real>1.0</gco:Real>
       </mrc:offset>
@@ -246,6 +234,21 @@
       <mrc:bitsPerValue>
         <gco:Integer>9</gco:Integer>
       </mrc:bitsPerValue>
+      <mrc:rangeElementDescription>
+        <mrc:MI_RangeElementDescription>
+          <mrc:name>
+            <gco:CharacterString>range element name 1</gco:CharacterString>
+          </mrc:name>
+          <mrc:definition>
+            <gco:CharacterString>range element definition</gco:CharacterString>
+          </mrc:definition>
+          <mrc:rangeElement>
+            <gco:Record>
+              <gco:CharacterString>range element record 1</gco:CharacterString>
+            </gco:Record>
+          </mrc:rangeElement>
+        </mrc:MI_RangeElementDescription>
+      </mrc:rangeElementDescription>
       <mrc:boundMax>
         <gco:Real>999</gco:Real>
       </mrc:boundMax>
@@ -253,7 +256,7 @@
         <gco:Real>100</gco:Real>
       </mrc:boundMin>
       <mrc:boundUnits>
-        <gml:UnitDefinition gml:id="unit_003">
+        <gml:UnitDefinition gml:id="unit003">
           <gml:identifier codeSpace="">bound min/max units</gml:identifier>
         </gml:UnitDefinition>
       </mrc:boundUnits>
@@ -287,24 +290,24 @@
       </mrc:description>
       <mrc:name>
         <mcc:MD_Identifier>
-          <mcc:authority/>
+          <mcc:authority />
           <mcc:code>
             <gco:CharacterString>attribute identifier one</gco:CharacterString>
           </mcc:code>
-          <mcc:codeSpace/>
-          <mcc:version/>
-          <mcc:description/>
+          <mcc:codeSpace />
+          <mcc:version />
+          <mcc:description />
         </mcc:MD_Identifier>
       </mrc:name>
       <mrc:name>
         <mcc:MD_Identifier>
-          <mcc:authority/>
+          <mcc:authority />
           <mcc:code>
             <gco:CharacterString>attribute identifier two</gco:CharacterString>
           </mcc:code>
-          <mcc:codeSpace/>
-          <mcc:version/>
-          <mcc:description/>
+          <mcc:codeSpace />
+          <mcc:version />
+          <mcc:description />
         </mcc:MD_Identifier>
       </mrc:name>
       <mrc:maxValue>
@@ -314,26 +317,13 @@
         <gco:Real>0</gco:Real>
       </mrc:minValue>
       <mrc:units>
-        <gml:UnitDefinition gml:id="unit_002">
+        <gml:UnitDefinition gml:id="unit002">
           <gml:identifier codeSpace="">min/max units</gml:identifier>
         </gml:UnitDefinition>
       </mrc:units>
       <mrc:scaleFactor>
         <gco:Real>99.9</gco:Real>
       </mrc:scaleFactor>
-      <mrc:rangeElementDescription>
-        <mrc:name>
-          <gco:CharacterString>range element name 1</gco:CharacterString>
-        </mrc:name>
-        <mrc:definition>
-          <gco:CharacterString>range element definition</gco:CharacterString>
-        </mrc:definition>
-        <mrc:rangeElement>
-          <gco:Record>
-            <gco:CharacterString>range element record 1</gco:CharacterString>
-          </gco:Record>
-        </mrc:rangeElement>
-      </mrc:rangeElementDescription>
       <mrc:offset>
         <gco:Real>1.0</gco:Real>
       </mrc:offset>
@@ -349,6 +339,21 @@
       <mrc:bitsPerValue>
         <gco:Integer>9</gco:Integer>
       </mrc:bitsPerValue>
+      <mrc:rangeElementDescription>
+        <mrc:MI_RangeElementDescription>
+          <mrc:name>
+            <gco:CharacterString>range element name 1</gco:CharacterString>
+          </mrc:name>
+          <mrc:definition>
+            <gco:CharacterString>range element definition</gco:CharacterString>
+          </mrc:definition>
+          <mrc:rangeElement>
+            <gco:Record>
+              <gco:CharacterString>range element record 1</gco:CharacterString>
+            </gco:Record>
+          </mrc:rangeElement>
+        </mrc:MI_RangeElementDescription>
+      </mrc:rangeElementDescription>
       <mrc:boundMax>
         <gco:Real>999</gco:Real>
       </mrc:boundMax>
@@ -356,7 +361,7 @@
         <gco:Real>100</gco:Real>
       </mrc:boundMin>
       <mrc:boundUnits>
-        <gml:UnitDefinition gml:id="unit_003">
+        <gml:UnitDefinition gml:id="unit003">
           <gml:identifier codeSpace="">bound min/max units</gml:identifier>
         </gml:UnitDefinition>
       </mrc:boundUnits>
@@ -367,19 +372,27 @@
         <gco:Integer>9</gco:Integer>
       </mrc:toneGradation>
       <mrc:bandBoundaryDefinition>
-        <mrc:MI_BandDefinition codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MI_BandDefinition" codeListValue="oneOverE" codeSpace="004"/>
+        <mrc:MI_BandDefinition
+          codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MI_BandDefinition"
+          codeListValue="oneOverE" codeSpace="004" />
       </mrc:bandBoundaryDefinition>
       <mrc:nominalSpatialResolution>
         <gco:Real>99</gco:Real>
       </mrc:nominalSpatialResolution>
       <mrc:transferFunctionType>
-        <mrc:MI_TransferFunctionTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MI_TransferFunctionTypeCode" codeListValue="linear" codeSpace="001"/>
+        <mrc:MI_TransferFunctionTypeCode
+          codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MI_TransferFunctionTypeCode"
+          codeListValue="linear" codeSpace="001" />
       </mrc:transferFunctionType>
       <mrc:transmittedPolarisation>
-        <mrc:MI_PolarisationOrientationCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MI_PolarisationOrientationCode" codeListValue="leftCircular" codeSpace="003"/>
+        <mrc:MI_PolarisationOrientationCode
+          codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MI_PolarisationOrientationCode"
+          codeListValue="leftCircular" codeSpace="003" />
       </mrc:transmittedPolarisation>
       <mrc:detectedPolarisation>
-        <mrc:MI_PolarisationOrientationCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MI_PolarisationOrientationCode" codeListValue="rightCircular" codeSpace="004"/>
+        <mrc:MI_PolarisationOrientationCode
+          codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MI_PolarisationOrientationCode"
+          codeListValue="rightCircular" codeSpace="004" />
       </mrc:detectedPolarisation>
     </mrc:MI_Band>
   </mrc:attribute>
