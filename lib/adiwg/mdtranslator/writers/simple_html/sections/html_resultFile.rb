@@ -41,7 +41,7 @@ module ADIWG
                     @html.br
                  end
 
-                 # resource format - format specification {citation}
+                 # result file - file format
                  unless hResultFile[:fileFormat].empty?
                     @html.details do
                        @html.div(hResultFile[:fileFormat][:title], {'class' => 'h5'})
@@ -52,7 +52,7 @@ module ADIWG
                  end
 
                end # writeHtml
-            end # Html_Format
+            end # Html_ResultFile
 
          end
       end
