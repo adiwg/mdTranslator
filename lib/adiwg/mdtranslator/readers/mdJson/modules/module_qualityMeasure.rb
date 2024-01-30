@@ -14,7 +14,7 @@ module ADIWG
                         intQualityMeasure[:description] = hQualityMeasure['description']
 
                         if hQualityMeasure.has_key?('name')
-                            intQualityMeasure[:name] = hQualityMeasure['name']
+                            intQualityMeasure[:nameOfMeasure] = hQualityMeasure['name']
                         end
 
                         if hQualityMeasure.has_key?('identifier')
