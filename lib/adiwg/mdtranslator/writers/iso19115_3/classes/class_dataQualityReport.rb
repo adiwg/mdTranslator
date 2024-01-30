@@ -7,6 +7,7 @@ require_relative 'class_spatialRepresentation'
 require_relative 'class_coverageDescription'
 require_relative 'class_codelist'
 require_relative 'class_identifier'
+require_relative 'class_citation'
 
 module ADIWG
   module Mdtranslator
@@ -30,6 +31,7 @@ module ADIWG
             coverageDescriptionClass = MD_CoverageDescription.new(@xml, @hResponseObj)
             codeListClass = MD_Codelist.new(@xml, @hResponseObj)
             identifierClass = MD_Identifier.new(@xml, @hResponseObj)
+            citationClass = CI_Citation.new(@xml, @hResponseObj)
 
             @xml.tag!('mdq:report') do
               @xml.tag!("mdq:#{hReport[:type]}") do
@@ -69,12 +71,40 @@ module ADIWG
 
                 # evaluationMethod {}
                 evaluationMethod = hReport[:evaluationMethod]
-                unless evaluationMethod.nil? || evaluationMethod.empty?
+                unless evaluationMethod.empty?
                   @xml.tag!('mdq:evaluationMethod') do
                     @xml.tag!('mdq:DQ_EvaluationMethod') do
-                      @xml.tag!('mdq:evaluationMethodDescription') do
-                        @xml.tag!('gco:CharacterString', evaluationMethod[:methodDescription]) 
+                      unless evaluationMethod[:dateTime].empty?
+                        evaluationMethod[:dateTime].each do |dateTime|
+                          dateTimeValue = DateTime.parse(dateTime).strftime('%Y-%m-%dT%H:%M:%S')
+                          @xml.tag!('mdq:dateTime') do
+                            @xml.tag!('gco:DateTime', dateTimeValue)
+                          end
+                        end
                       end
+                      unless evaluationMethod[:methodDescription].nil?
+                        @xml.tag!('mdq:evaluationMethodDescription') do
+                          @xml.tag!('gco:CharacterString', evaluationMethod[:methodDescription]) 
+                        end
+                      end
+                      unless evaluationMethod[:evaluationProcedure].empty?
+                        @xml.tag!('mdq:evaluationProcedure') do
+                          citationClass.writeXML(evaluationMethod[:evaluationProcedure])
+                        end
+                      end
+                      unless evaluationMethod[:referenceDocuments].empty?
+                        evaluationMethod[:referenceDocuments].each do |citation|
+                          @xml.tag!('mdq:referenceDoc') do
+                            citationClass.writeXML(citation)
+                          end
+                        end
+                      end
+                      #  TODO the following will not work until the iso_evaluationMethodType codelist is added to mdCodes
+                      # unless evaluationMethod[:evaluationMethodType].nil?
+                      #   @xml.tag!('mdq:evaluationMethodType') do
+                      #     codeListClass.writeXML('mcc', 'iso_evaluationMethodType', evaluationMethod[:evaluationMethodType])
+                      #   end
+                      # end
                     end
                   end
                 end # evaluationMethod
