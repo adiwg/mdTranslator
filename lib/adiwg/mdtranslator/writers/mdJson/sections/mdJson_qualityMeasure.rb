@@ -1,4 +1,5 @@
 require 'jbuilder'
+require_relative 'mdJson_identifier'
 
 module ADIWG
   module Mdtranslator
@@ -8,7 +9,7 @@ module ADIWG
         module QualityMeasure
           def self.build(hQualityMeasure)
             Jbuilder.new do |json|
-              json.identifier hQualityMeasure[:identifier]
+              json.identifier Identifier.build(hQualityMeasure[:identifier]) unless hQualityMeasure[:identifier].empty?
               json.name hQualityMeasure[:name]
               json.description hQualityMeasure[:description]
             end
