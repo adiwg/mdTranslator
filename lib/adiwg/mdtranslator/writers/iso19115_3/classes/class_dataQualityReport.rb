@@ -1,3 +1,12 @@
+require_relative '../iso19115_3_writer'
+require_relative 'class_format'
+require_relative 'class_qualityResultFile'
+require_relative 'class_date'
+require_relative 'class_scope'
+require_relative 'class_spatialRepresentation'
+require_relative 'class_coverageDescription'
+require_relative 'class_codelist'
+
 module ADIWG
   module Mdtranslator
     module Writers
@@ -18,6 +27,58 @@ module ADIWG
                 # conformanceResult []
 
                 # coverageResult []
+                formatClass = MD_Format.new(@xml, @hResponseObj)
+                qualityResultFileClass = QualityResultFile.new(@xml, @hResponseObj)
+                dateClass = CI_Date.new(@xml, @hResponseObj)
+                scopeClass = MD_Scope.new(@xml, @hResponseObj)
+                spatialRepresentationClass = SpatialRepresentation.new(@xml, @hResponseObj)
+                coverageDescriptionClass = MD_CoverageDescription.new(@xml, @hResponseObj)
+                codeListClass = MD_Codelist.new(@xml, @hResponseObj)
+
+                unless hReport[:coverageResult].nil? || hReport[:coverageResult].empty?
+                  hReport[:coverageResult].each do |coverageResult|
+                    @xml.tag!('mdq:result') do
+                      @xml.tag!('mdq:DQ_CoverageResult') do
+                        unless coverageResult[:dateTime].nil?
+                          dateTimeValue = DateTime.parse(coverageResult[:dateTime]).strftime('%Y-%m-%dT%H:%M:%S')
+                          @xml.tag!('mdq:dateTime') do
+                            @xml.tag!('gco:DateTime', dateTimeValue)
+                          end
+                        end
+                        unless coverageResult[:scope].empty?
+                          @xml.tag!('mdq:resultScope') do
+                            scopeClass.writeXML(coverageResult[:scope])
+                          end
+                        end
+                        unless coverageResult[:spatialRepresentationType].nil?
+                          @xml.tag!('mdq:spatialRepresentationType') do
+                            codeListClass.writeXML('mcc', 'iso_spatialRepresentation', coverageResult[:spatialRepresentationType])
+                          end
+                        end
+                        unless coverageResult[:resultFile].empty?
+                          @xml.tag!('mdq:resultFile') do
+                            qualityResultFileClass.writeXML(coverageResult[:resultFile])
+                          end
+                        end
+                        unless coverageResult[:spatialRepresentation].empty?
+                          @xml.tag!('mdq:resultSpatialRepresentation') do
+                            spatialRepresentationClass.writeXML(coverageResult[:spatialRepresentation])
+                          end
+                        end
+                        unless coverageResult[:resultContentDescription].empty?
+                          @xml.tag!('mdq:resultContentDescription') do
+                            coverageDescriptionClass.writeXML(coverageResult[:resultContentDescription])
+                          end
+                        end
+                        unless coverageResult[:resourceFormat].empty?
+                          @xml.tag!('mdq:resultFormat') do
+                            formatClass.writeXML(coverageResult[:resourceFormat])
+                          end
+                        end
+                      end
+                    end
+                  end
+                end
 
                 # descriptiveResult []
                 unless hReport[:descriptiveResult].nil? || hReport[:descriptiveResult].empty?
