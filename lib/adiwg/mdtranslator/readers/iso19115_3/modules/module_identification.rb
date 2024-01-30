@@ -1,11 +1,3 @@
-# Reader - Iso19115_3 to internal data structure
-# unpack Iso19115_3 metadata identification
-
-# History:
-#  Stan Smith 2018-09-06 bug fix - change crossReference processing to an array
-#  Stan Smith 2018-04-06 change mdJson taxonomy to an array
-#  Stan Smith 2017-08-15 original script
-
 require 'nokogiri'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require_relative 'module_citation'

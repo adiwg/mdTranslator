@@ -1,10 +1,3 @@
-# Reader - fgdc to internal data structure
-# unpack fgdc entity attribute
-
-# History:
-#  Stan Smith 2017-10-30 added timePeriod
-#  Stan Smith 2017-09-06 original script
-
 require 'nokogiri'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require_relative 'module_enumerated'
@@ -15,7 +8,7 @@ require_relative 'module_dateTime'
 module ADIWG
    module Mdtranslator
       module Readers
-         module Fgdc
+         module Iso19115_3
 
             module Attribute
 

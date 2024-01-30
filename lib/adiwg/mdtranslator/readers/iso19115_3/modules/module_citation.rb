@@ -1,9 +1,3 @@
-# Reader - fgdc to internal data structure
-# unpack fgdc citation
-
-# History:
-#  Stan Smith 2017-08-15 original script
-
 require 'nokogiri'
 require 'uuidtools'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
@@ -18,7 +12,7 @@ require_relative 'module_responsibility'
 module ADIWG
    module Mdtranslator
       module Readers
-         module Fgdc
+         module Iso19115_3
 
             module Citation
 
