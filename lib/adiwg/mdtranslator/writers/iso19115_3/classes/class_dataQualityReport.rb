@@ -110,13 +110,58 @@ module ADIWG
                 end # evaluationMethod
 
                 # conformanceResult []
+                unless hReport[:conformanceResult].empty?
+                  hReport[:conformanceResult].each do |conformanceResult|
+                    @xml.tag!('mdq:result') do
+                      @xml.tag!('mdq:DQ_ConformanceResult') do
+                        unless conformanceResult[:dateTime].nil?
+                          dateTimeValue = DateTime.parse(conformanceResult[:dateTime]).strftime('%Y-%m-%dT%H:%M:%S')
+                          @xml.tag!('mdq:dateTime') do
+                            @xml.tag!('gco:DateTime', dateTimeValue)
+                          end
+                        end
+                        unless conformanceResult[:scope].empty?
+                          @xml.tag!('mdq:resultScope') do
+                            scopeClass.writeXML(conformanceResult[:scope])
+                          end
+                        end
+                        unless conformanceResult[:specification].empty?
+                          @xml.tag!('mdq:specification') do
+                            citationClass.writeXML(conformanceResult[:specification])
+                          end
+                        end
+                        unless conformanceResult[:explanation].nil?
+                          @xml.tag!('mdq:explanation') do
+                            @xml.tag!('gco:CharacterString', conformanceResult[:explanation])
+                          end
+                        end
+                        unless conformanceResult[:pass].nil?
+                          @xml.tag!('mdq:pass') do
+                            @xml.tag!('gco:Boolean', conformanceResult[:pass])
+                          end
+                        end
+                      end
+                    end
+                  end
+                end # conformanceResult
 
                 # descriptiveResult []
-                unless hReport[:descriptiveResult].nil? || hReport[:descriptiveResult].empty?
+                unless hReport[:descriptiveResult].empty?
                   hReport[:descriptiveResult].each do |descriptiveResult|
                     @xml.tag!('mdq:result') do
                       @xml.tag!('mdq:DQ_DescriptiveResult') do
-                        unless descriptiveResult[:statement].nil? || descriptiveResult[:statement].empty?
+                        unless descriptiveResult[:dateTime].nil?
+                          dateTimeValue = DateTime.parse(descriptiveResult[:dateTime]).strftime('%Y-%m-%dT%H:%M:%S')
+                          @xml.tag!('mdq:dateTime') do
+                            @xml.tag!('gco:DateTime', dateTimeValue)
+                          end
+                        end
+                        unless descriptiveResult[:scope].empty?
+                          @xml.tag!('mdq:resultScope') do
+                            scopeClass.writeXML(descriptiveResult[:scope])
+                          end
+                        end
+                        unless descriptiveResult[:statement].nil?
                           @xml.tag!('mdq:statement') do
                             @xml.tag!('gco:CharacterString', descriptiveResult[:statement])
                           end
@@ -127,13 +172,38 @@ module ADIWG
                 end # descriptiveResult
 
                 # quantitativeResult []
-                unless hReport[:quantitativeResult].nil? || hReport[:quantitativeResult].empty?
+                unless hReport[:quantitativeResult].empty?
                   hReport[:quantitativeResult].each do |quantitativeResult|
                     @xml.tag!('mdq:result') do
                       @xml.tag!('mdq:DQ_QuantitativeResult') do
-                        quantitativeResult[:value].each do |value|
-                          @xml.tag!('mdq:value') do
-                            @xml.tag!('gco:Record', value)
+                        unless quantitativeResult[:dateTime].nil?
+                          dateTimeValue = DateTime.parse(quantitativeResult[:dateTime]).strftime('%Y-%m-%dT%H:%M:%S')
+                          @xml.tag!('mdq:dateTime') do
+                            @xml.tag!('gco:DateTime', dateTimeValue)
+                          end
+                        end
+                        unless quantitativeResult[:scope].empty?
+                          @xml.tag!('mdq:resultScope') do
+                            scopeClass.writeXML(quantitativeResult[:scope])
+                          end
+                        end
+                        unless quantitativeResult[:values].empty?
+                          quantitativeResult[:values].each do |value|
+                            @xml.tag!('mdq:value') do
+                              @xml.tag!('gco:Record', value)
+                            end
+                          end
+                        end
+                        unless quantitativeResult[:valueUnits].nil?
+                          @xml.tag!('mdq:valueUnit') do
+                            @xml.tag!('gml:UnitDefinition') do
+                              @xml.tag!('gml:identifier', {'codeSpace' => 'units'}, quantitativeResult[:valueUnits])
+                            end
+                          end
+                        end
+                        unless quantitativeResult[:valueRecordType].nil?
+                          @xml.tag!('mdq:valueType') do
+                            @xml.tag!('gco:RecordType', quantitativeResult[:valueRecordType])
                           end
                         end
                       end
@@ -142,7 +212,7 @@ module ADIWG
                 end # quantitativeResult
 
                 # coverageResult []
-                unless hReport[:coverageResult].nil? || hReport[:coverageResult].empty?
+                unless hReport[:coverageResult].empty?
                   hReport[:coverageResult].each do |coverageResult|
                     @xml.tag!('mdq:result') do
                       @xml.tag!('mdq:QE_CoverageResult') do
