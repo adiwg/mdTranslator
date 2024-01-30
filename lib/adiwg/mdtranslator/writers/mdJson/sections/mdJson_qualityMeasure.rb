@@ -10,7 +10,7 @@ module ADIWG
           def self.build(hQualityMeasure)
             Jbuilder.new do |json|
               json.identifier Identifier.build(hQualityMeasure[:identifier]) unless hQualityMeasure[:identifier].empty?
-              json.name hQualityMeasure[:name] unless hQualityMeasure[:name].empty?
+              json.name hQualityMeasure[:nameOfMeasure] unless hQualityMeasure[:nameOfMeasure].empty?
               json.description hQualityMeasure[:description] unless hQualityMeasure[:description].nil?
             end
           end
