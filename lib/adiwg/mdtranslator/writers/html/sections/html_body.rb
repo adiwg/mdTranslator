@@ -71,6 +71,7 @@ module ADIWG
                         @html.a(' Contacts', {'href' => '#body-contacts', 'class' => 'btn navBtn', 'id' => 'contactButton'})
                         @html.a(' Metadata', {'href' => '#body-metadataInfo', 'class' => 'btn navBtn', 'id' => 'metadataButton'})
                         @html.a(' Resource', {'href' => '#body-resourceInfo', 'class' => 'btn navBtn', 'id' => 'resourceButton'})
+                        @html.a(' Quality', {'href' => '#body-dataQuality', 'class' => 'btn navBtn', 'id' => 'qualityButton'})
                         @html.a(' Lineage', {'href' => '#body-lineage', 'class' => 'btn navBtn', 'id' => 'lineageButton'})
                         @html.a(' Distribution', {'href' => '#body-distribution', 'class' => 'btn navBtn', 'id' => 'distributionButton'})
                         @html.a(' Associated', {'href' => '#body-associatedResource', 'class' => 'btn navBtn', 'id' => 'associatedButton'})
@@ -169,7 +170,10 @@ module ADIWG
                            @html.summary('Data Quality', {'id' => 'body-dataQuality', 'class' => 'h2'})
                            aDataQuality.each do |hDataQuality|
                               @html.section(:class => 'block') do
-                                 dataQualityClass.writeHtml(hDataQuality)
+                                 @html.details do
+                                    @html.summary('Quality', {'class' => 'h3'})
+                                    dataQualityClass.writeHtml(hDataQuality)
+                                 end
                               end
                            end
                         end

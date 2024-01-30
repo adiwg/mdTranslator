@@ -6,7 +6,7 @@ module ADIWG
       module MdJson
 
         module EvaluationMethod
-          def self.unpack(hMethod, responseObj, inContext = nil)
+          def self.unpack(hMethod, responseObj)
 
             intMetadataClass = InternalMetadata.new
             intMethod = intMetadataClass.newEvaluationMethod

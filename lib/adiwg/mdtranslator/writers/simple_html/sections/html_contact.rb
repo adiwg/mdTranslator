@@ -190,6 +190,38 @@ module ADIWG
                            @html.br
                         end
 
+                        # contact - external identifiers []
+                        if hContact.key?(:externalIdentifier) && !hContact[:externalIdentifier].empty?
+                           hContact[:externalIdentifier].each do |identifier|
+                              @html.div do
+                                 @html.div("External Identifier", {'class' => 'h5'})
+                                 @html.div(:class => 'block') do
+                                    @html.em('Identifier: ')
+                                    @html.text!(identifier[:identifier])
+                                    @html.br
+
+                                    unless identifier[:namespace].nil?
+                                       @html.em('Namespace: ')
+                                       @html.text!(identifier[:namespace])
+                                       @html.br
+                                    end
+
+                                    unless identifier[:version].nil?
+                                       @html.em('Version: ')
+                                       @html.text!(identifier[:version])
+                                       @html.br
+                                    end
+
+                                    unless identifier[:description].nil?
+                                       @html.em('Description: ')
+                                       @html.text!(identifier[:description])
+                                       @html.br
+                                    end
+                                 end
+                              end
+                           end
+                        end
+
                      end
                   end
 
