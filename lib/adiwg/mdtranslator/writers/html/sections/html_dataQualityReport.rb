@@ -2,6 +2,8 @@ require_relative 'html_citation'
 require_relative 'html_identifier'
 require_relative 'html_scope'
 require_relative 'html_spatialRepresentation'
+require_relative 'html_format'
+require_relative 'html_resultFile'
 
 module ADIWG
   module Mdtranslator
@@ -73,82 +75,82 @@ module ADIWG
           
             @html.details do
               @html.summary('Evaluation Method', {'class' => 'h5'})
-              evaluationMethod.each do |method|
-                @html.section(class: 'block') do
-                  # Type
-                  unless method[:type].nil?
-                    @html.em('Type: ')
-                    @html.text!(method[:type])
+              @html.section(class: 'block') do
+                # Type
+                unless evaluationMethod[:type].nil?
+                  @html.em('Type: ')
+                  @html.text!(evaluationMethod[:type])
+                  @html.br
+                end
+          
+                # DateTime
+                unless evaluationMethod[:dateTime].nil?
+                  @html.em('Date Time: ')
+                  evaluationMethod[:dateTime].each do |datetime|
+                    @html.text!(datetime)
                     @html.br
                   end
-            
-                  # DateTime
-                  unless method[:dateTime].nil?
-                    @html.em('Date Time: ')
-                    @html.text!(method[:dateTime])
-                    @html.br
-                  end
-            
-                  # MethodDescription
-                  unless method[:methodDescription].nil?
-                    @html.em('Method Description: ')
-                    @html.text!(method[:methodDescription])
-                    @html.br
-                  end
-            
-                  # EvaluationMethodType
-                  unless method[:evaluationMethodType].nil?
-                    @html.em('Evaluation Method Type: ')
-                    @html.text!(method[:evaluationMethodType])
-                    @html.br
-                  end
-            
-                  # DeductiveSource
-                  unless method[:deductiveSource].nil?
-                    @html.em('Deductive Source: ')
-                    @html.text!(method[:deductiveSource])
-                    @html.br
-                  end
-            
-                  # SamplingScheme
-                  unless method[:samplingScheme].nil?
-                    @html.em('Sampling Scheme: ')
-                    @html.text!(method[:samplingScheme])
-                    @html.br
-                  end
-            
-                  # LotDescription
-                  unless method[:lotDescription].nil?
-                    @html.em('Lot Description: ')
-                    @html.text!(method[:lotDescription])
-                    @html.br
-                  end
-            
-                  # SamplingRatio
-                  unless method[:samplingRatio].nil?
-                    @html.em('Sampling Ratio: ')
-                    @html.text!(method[:samplingRatio])
-                    @html.br
-                  end
-            
-                  # EvaluationProcedure
-                  unless method[:evaluationProcedure].nil? || method[:evaluationProcedure].empty?
-                    @html.details do
-                      @html.summary('Evaluation Procedure', {'class' => 'h5'})
-                      @html.section(class: 'block') do
-                        citationClass.writeHtml(method[:evaluationProcedure])
-                      end
+                end
+          
+                # MethodDescription
+                unless evaluationMethod[:methodDescription].nil?
+                  @html.em('evaluationMethod Description: ')
+                  @html.text!(evaluationMethod[:methodDescription])
+                  @html.br
+                end
+          
+                # EvaluationMethodType
+                unless evaluationMethod[:evaluationMethodType].nil?
+                  @html.em('Evaluation evaluationMethod Type: ')
+                  @html.text!(evaluationMethod[:evaluationMethodType])
+                  @html.br
+                end
+          
+                # DeductiveSource
+                unless evaluationMethod[:deductiveSource].nil?
+                  @html.em('Deductive Source: ')
+                  @html.text!(evaluationMethod[:deductiveSource])
+                  @html.br
+                end
+          
+                # SamplingScheme
+                unless evaluationMethod[:samplingScheme].nil?
+                  @html.em('Sampling Scheme: ')
+                  @html.text!(evaluationMethod[:samplingScheme])
+                  @html.br
+                end
+          
+                # LotDescription
+                unless evaluationMethod[:lotDescription].nil?
+                  @html.em('Lot Description: ')
+                  @html.text!(evaluationMethod[:lotDescription])
+                  @html.br
+                end
+          
+                # SamplingRatio
+                unless evaluationMethod[:samplingRatio].nil?
+                  @html.em('Sampling Ratio: ')
+                  @html.text!(evaluationMethod[:samplingRatio])
+                  @html.br
+                end
+          
+                # EvaluationProcedure
+                unless evaluationMethod[:evaluationProcedure].nil? || evaluationMethod[:evaluationProcedure].empty?
+                  @html.details do
+                    @html.summary('Evaluation Procedure', {'class' => 'h5'})
+                    @html.section(class: 'block') do
+                      citationClass.writeHtml(evaluationMethod[:evaluationProcedure])
                     end
                   end
-            
-                  # ReferenceDocument
-                  unless method[:referenceDocument].nil? || method[:referenceDocument].empty?
-                    @html.details do
-                      @html.summary('Reference Document', {'class' => 'h5'})
-                      method[:referenceDocument].each do |doc|
-                        @html.section(class: 'block') do
-                          citationClass.writeHtml(doc)
-                        end
+                end
+          
+                # ReferenceDocument
+                unless evaluationMethod[:referenceDocument].nil? || evaluationMethod[:referenceDocument].empty?
+                  @html.details do
+                    @html.summary('Reference Document', {'class' => 'h5'})
+                    evaluationMethod[:referenceDocument].each do |doc|
+                      @html.section(class: 'block') do
+                        citationClass.writeHtml(doc)
                       end
                     end
                   end
@@ -213,7 +215,9 @@ module ADIWG
           def writeCoverageResult(coverageResult)
             scopeClass = Html_Scope.new(@html) # Assuming a class to handle scope objects
             spatialRepresentationClass = Html_SpatialRepresentation.new(@html) # Assuming a class to handle spatialRepresentation objects
-          
+            formatClass = Html_Format.new(@html)
+            resultFileClass = Html_ResultFile.new(@html)
+
             @html.details do
               @html.summary('Coverage Result', {'class' => 'h5'})
               coverageResult.each do |result|
@@ -264,15 +268,17 @@ module ADIWG
                   # ResourceFormat
                   unless result[:resourceFormat].nil?
                     @html.em('Resource Format: ')
-                    @html.text!(result[:resourceFormat])
-                    @html.br
+                    @html.section(class: 'block') do
+                      formatClass.writeHtml(result[:resourceFormat])
+                    end
                   end
             
                   # ResultFile
                   unless result[:resultFile].nil?
                     @html.em('Result File: ')
-                    @html.text!(result[:resultFile])
-                    @html.br
+                    @html.section(class: 'block') do
+                      resultFileClass.writeHtml(result[:resultFile])
+                    end
                   end
                 end
               end
