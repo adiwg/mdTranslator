@@ -63,7 +63,7 @@ module ADIWG
                   end
 
                   # identifier - authority {citation}
-                  unless hIdentifier[:citation].empty?
+                  unless hIdentifier[:citation].nil? || hIdentifier[:citation].empty?
                      @html.div do
                         @html.div('Authority', {'id' => 'metadata-identifier', 'class' => 'h5'})
                         @html.div(:class => 'block') do
