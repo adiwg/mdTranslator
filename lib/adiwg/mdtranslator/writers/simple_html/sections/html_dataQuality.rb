@@ -16,7 +16,7 @@ module ADIWG
             scopeClass = Html_Scope.new(@html)
             dataQualityReportClass = Html_DataQualityReport.new(@html)
 
-            unless hDataQuality[:scope].nil? || hDataQuality[:scope].empty?
+            unless hDataQuality[:scope].empty?
               @html.div(class: 'block') do
                 @html.div do
                   @html.div('Scope', {'class' => 'h5'})
