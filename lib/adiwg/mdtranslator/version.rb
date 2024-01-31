@@ -109,7 +109,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.18.5"
+      VERSION = "2.19.0"
    end
 end
 
