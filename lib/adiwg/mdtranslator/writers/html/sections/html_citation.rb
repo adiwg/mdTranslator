@@ -25,9 +25,6 @@ module ADIWG
                end
 
                def writeHtml(hCitation)
-                  if hCitation.nil? || hCitation.empty?
-                     return
-                  end
 
                   # classes used
                   dateClass = Html_Date.new(@html)
