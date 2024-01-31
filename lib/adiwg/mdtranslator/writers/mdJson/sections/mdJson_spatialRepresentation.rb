@@ -19,10 +19,10 @@ module ADIWG
                def self.build(hSystem)
 
                   Jbuilder.new do |json|
-                     json.gridRepresentation Grid.build(hSystem[:gridRepresentation]) unless hSystem[:gridRepresentation].nil? || hSystem[:gridRepresentation].empty?
-                     json.vectorRepresentation Vector.build(hSystem[:vectorRepresentation]) unless hSystem[:vectorRepresentation].nil? || hSystem[:vectorRepresentation].empty?
-                     json.georectifiedRepresentation Georectified.build(hSystem[:georectifiedRepresentation]) unless hSystem[:georectifiedRepresentation].nil? || hSystem[:georectifiedRepresentation].empty?
-                     json.georeferenceableRepresentation Georeferenceable.build(hSystem[:georeferenceableRepresentation]) unless hSystem[:georeferenceableRepresentation].nil? || hSystem[:georeferenceableRepresentation].empty?
+                     json.gridRepresentation Grid.build(hSystem[:gridRepresentation]) unless hSystem[:gridRepresentation].empty?
+                     json.vectorRepresentation Vector.build(hSystem[:vectorRepresentation]) unless hSystem[:vectorRepresentation].empty?
+                     json.georectifiedRepresentation Georectified.build(hSystem[:georectifiedRepresentation]) unless hSystem[:georectifiedRepresentation].empty?
+                     json.georeferenceableRepresentation Georeferenceable.build(hSystem[:georeferenceableRepresentation]) unless hSystem[:georeferenceableRepresentation].empty?
                   end
 
                end # build
