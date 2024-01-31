@@ -57,7 +57,7 @@ module ADIWG
             end
 
             # reports
-            unless hDataQuality[:report].nil? || hDataQuality[:report].empty?
+            unless hDataQuality[:report].empty?
               @html.div(class: 'block') do
                 @html.div do
                   @html.div('Reports', {'class' => 'h4'})
