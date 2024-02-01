@@ -102,7 +102,7 @@ module ADIWG
                   # taxonomy - observers {responsibility}
                   unless hTaxonomy[:observers].empty?
                      @html.div do
-                        @html.div('Observers', {'class' => 'h5'})
+                        @html.h5('Observers', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            hTaxonomy[:observers].each do |hObserver|
                               @html.div do

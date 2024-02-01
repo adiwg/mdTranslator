@@ -19,7 +19,7 @@ module ADIWG
             unless hDataQuality[:scope].empty?
               @html.div(class: 'block') do
                 @html.div do
-                  @html.div('Scope', {'class' => 'h5'})
+                  @html.h5('Scope', {'class' => 'h5'})
                   @html.div(class: 'block') do
                     scopeClass.writeHtml(hDataQuality[:scope])
                   end
@@ -35,7 +35,7 @@ module ADIWG
 
               @html.div(class: 'block') do
                 @html.div do
-                  @html.div('Standalone Quality Report', {'class' => 'h5'})
+                  @html.h5('Standalone Quality Report', {'class' => 'h5'})
                   unless report[:abstract].nil?
                     @html.div(class: 'block') do
                       @html.em('Abstract:')
@@ -45,7 +45,7 @@ module ADIWG
 
                   unless report[:reportReference].nil?
                     @html.div do
-                      @html.div('Report Reference', {'class' => 'h5'})
+                      @html.h5('Report Reference', {'class' => 'h5'})
                       @html.div(class: 'block') do
                         citationClass.writeHtml(report[:reportReference])
                       end
@@ -60,11 +60,11 @@ module ADIWG
             unless hDataQuality[:report].empty?
               @html.div(class: 'block') do
                 @html.div do
-                  @html.div('Reports', {'class' => 'h4'})
+                  @html.h4('Reports', {'class' => 'h4'})
                   hDataQuality[:report].each do |report|
                     @html.div(class: 'block') do
                       @html.div do
-                        @html.div('Report', {'class' => 'h5'})
+                        @html.h5('Report', {'class' => 'h5'})
                         dataQualityReportClass.writeHtml(report)
                       end
                     end

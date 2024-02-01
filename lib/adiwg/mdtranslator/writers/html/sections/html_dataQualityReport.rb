@@ -61,9 +61,9 @@ module ADIWG
                 end
 
                 # Names
-                unless qualityMeasure[:name].empty?
+                unless qualityMeasure[:nameOfMeasure].empty?
                   @html.em('Names: ')
-                  @html.text!(qualityMeasure[:name].join('; '))
+                  @html.text!(qualityMeasure[:nameOfMeasure].join('; '))
                   @html.br
                 end
               end

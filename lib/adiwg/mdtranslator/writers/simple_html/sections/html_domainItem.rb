@@ -48,7 +48,7 @@ module ADIWG
                   # domain item - reference {citation}
                   unless hItem[:itemReference].empty?
                      @html.div do
-                        @html.div('Reference', {'class' => 'h5'})
+                        @html.h5('Reference', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            citationClass.writeHtml(hItem[:itemReference])
                         end

@@ -45,7 +45,7 @@ module ADIWG
                   # coverage - process level code
                   unless hCoverage[:processingLevelCode].empty?
                      @html.div do
-                        @html.div('Processing Level Code', {'class' => 'h5'})
+                        @html.h5('Processing Level Code', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            identifierClass.writeHtml(hCoverage[:processingLevelCode])
                         end
@@ -55,7 +55,7 @@ module ADIWG
                   # coverage - attribute group [] {attributeGroup}
                   hCoverage[:attributeGroups].each do |hAttGroup|
                      @html.div do
-                        @html.div('Attribute Group', {'class' => 'h5'})
+                        @html.h5('Attribute Group', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            attGroupClass.writeHtml(hAttGroup)
                         end
@@ -65,7 +65,7 @@ module ADIWG
                   # coverage - image description {imageInfo}
                   unless hCoverage[:imageDescription].empty?
                      @html.div do
-                        @html.div('Image Description', {'class' => 'h5'})
+                        @html.h5('Image Description', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            imageClass.writeHtml(hCoverage[:imageDescription])
                         end

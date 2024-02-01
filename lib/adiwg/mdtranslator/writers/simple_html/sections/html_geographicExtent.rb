@@ -43,7 +43,7 @@ module ADIWG
 
                   # geographic extent - map {div}
                   @html.div do
-                     @html.div('Map', 'class' => 'h5 map-summary')
+                     @html.h5('Map', 'class' => 'h5 map-summary')
                      @html.div(:class => 'block') do
                         @html.div('class' => 'map', 'id' => 'map') do
                            # map drawn by html_bodyScript.js
@@ -54,7 +54,7 @@ module ADIWG
                   # geographic extent - geographic element [] {geographicElement}
                   unless hExtent[:geographicElements].empty?
                      @html.div do
-                        @html.div('Elements', 'class' => 'h5')
+                        @html.h5('Elements', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            hExtent[:geographicElements].each do |hElement|
                               geographicClass.writeHtml(hElement)
@@ -66,7 +66,7 @@ module ADIWG
                   # geographic extent - user bounding box
                   unless hExtent[:boundingBox].empty?
                      @html.div do
-                        @html.div('User Provided Bounding Box', 'class' => 'h5')
+                        @html.h5('User Provided Bounding Box', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            boundingClass.writeHtml(hExtent[:boundingBox])
                            @html.div(:class =>'userBBox hidden') do
@@ -79,7 +79,7 @@ module ADIWG
                   # computed bounding box - {boundingBox}
                   unless hExtent[:computedBbox].empty?
                      @html.div do
-                        @html.div('Computed Bounding Box', 'class' => 'h5')
+                        @html.h5('Computed Bounding Box', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            boundingClass.writeHtml(hExtent[:computedBbox])
                            @html.div(:class =>'computedBBox hidden') do
@@ -102,7 +102,7 @@ module ADIWG
                   # geographic extent - native GeoJson
                   unless hExtent[:nativeGeoJson].empty?
                      @html.div do
-                        @html.div('GeoJson', 'class' => 'h5')
+                        @html.h5('GeoJson', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            @html.div(:class =>'geojson', :dataPopup => 'fill in popData') do
                               @html.text!(hExtent[:nativeGeoJson].to_json)

@@ -41,12 +41,12 @@ module ADIWG
             identifierClass = Html_Identifier.new(@html)
 
             @html.div do
-              @html.div('Quality Measure', {'class' => 'h5'})
+              @html.h5('Quality Measure', {'class' => 'h5'})
               @html.div(class: 'block') do
                 # Identifier
                 unless qualityMeasure[:identifier].empty?
                   @html.div do
-                    @html.div('Identifier', {'class' => 'h5'})
+                    @html.h5('Identifier', {'class' => 'h5'})
                     @html.div(class: 'block') do
                       identifierClass.writeHtml(qualityMeasure[:identifier])
                     end
@@ -61,9 +61,9 @@ module ADIWG
                 end
 
                 # Names
-                unless qualityMeasure[:name].empty?
+                unless qualityMeasure[:nameOfMeasure].empty?
                   @html.em('Names: ')
-                  @html.text!(qualityMeasure[:name].join('; '))
+                  @html.text!(qualityMeasure[:nameOfMeasure].join('; '))
                   @html.br
                 end
               end
@@ -74,7 +74,7 @@ module ADIWG
             citationClass = Html_Citation.new(@html)
           
             @html.div do
-              @html.div('Evaluation Method', {'class' => 'h5'})
+              @html.h5('Evaluation Method', {'class' => 'h5'})
               @html.div(class: 'block') do
                 # Type
                 unless evaluationMethod[:type].nil?
@@ -137,7 +137,7 @@ module ADIWG
                 # EvaluationProcedure
                 unless evaluationMethod[:evaluationProcedure].nil? || evaluationMethod[:evaluationProcedure].empty?
                   @html.div do
-                    @html.div('Evaluation Procedure', {'class' => 'h5'})
+                    @html.h5('Evaluation Procedure', {'class' => 'h5'})
                     @html.div(class: 'block') do
                       citationClass.writeHtml(evaluationMethod[:evaluationProcedure])
                     end
@@ -147,7 +147,7 @@ module ADIWG
                 # ReferenceDocument
                 unless evaluationMethod[:referenceDocument].nil? || evaluationMethod[:referenceDocument].empty?
                   @html.div do
-                    @html.div('Reference Document', {'class' => 'h5'})
+                    @html.h5('Reference Document', {'class' => 'h5'})
                     evaluationMethod[:referenceDocument].each do |doc|
                       @html.div(class: 'block') do
                         citationClass.writeHtml(doc)
@@ -164,7 +164,7 @@ module ADIWG
             scopeClass = Html_Scope.new(@html) # Assuming there's a class to handle scope objects
           
             @html.div do
-              @html.div('Conformance Result', {'class' => 'h5'})
+              @html.h5('Conformance Result', {'class' => 'h5'})
               conformanceResult.each do |result|
                 @html.div(class: 'block') do
                   # DateTime
@@ -177,7 +177,7 @@ module ADIWG
                   # Scope
                   unless result[:scope].nil? || result[:scope].empty?
                     @html.div do
-                      @html.div('Scope', {'class' => 'h5'})
+                      @html.h5('Scope', {'class' => 'h5'})
                       @html.div(class: 'block') do
                         scopeClass.writeHtml(result[:scope])
                       end
@@ -187,7 +187,7 @@ module ADIWG
                   # Specification (citation)
                   unless result[:specification].nil?
                     @html.div do
-                      @html.div('Specification', {'class' => 'h5'})
+                      @html.h5('Specification', {'class' => 'h5'})
                       @html.div(class: 'block') do
                         citationClass.writeHtml(result[:specification])
                       end
@@ -219,7 +219,7 @@ module ADIWG
             formatClass = Html_Format.new(@html) # Assuming a class to handle format objects
 
             @html.div do
-              @html.div('Coverage Result', {'class' => 'h5'})
+              @html.h5('Coverage Result', {'class' => 'h5'})
               coverageResult.each do |result|
                 @html.div(class: 'block') do
                   # DateTime
@@ -232,7 +232,7 @@ module ADIWG
                   # Scope
                   unless result[:scope].nil? || result[:scope].empty?
                     @html.div do
-                      @html.div('Scope', {'class' => 'h5'})
+                      @html.h5('Scope', {'class' => 'h5'})
                       @html.div(class: 'block') do
                         scopeClass.writeHtml(result[:scope])
                       end
@@ -249,7 +249,7 @@ module ADIWG
                   # SpatialRepresentation
                   unless result[:spatialRepresentation].nil? || result[:spatialRepresentation].empty?
                     @html.div do
-                      @html.div('Spatial Representation', {'class' => 'h5'})
+                      @html.h5('Spatial Representation', {'class' => 'h5'})
                       @html.div(class: 'block') do
                         spatialRepresentationClass.writeHtml(result[:spatialRepresentation])
                       end
@@ -289,7 +289,7 @@ module ADIWG
             scopeClass = Html_Scope.new(@html) # Assuming a class to handle scope objects
           
             @html.div do
-              @html.div('Descriptive Result', {'class' => 'h5'})
+              @html.h5('Descriptive Result', {'class' => 'h5'})
               descriptiveResult.each do |result|
                 @html.div(class: 'block') do
                   # DateTime
@@ -302,7 +302,7 @@ module ADIWG
                   # Scope
                   unless result[:scope].nil?
                     @html.div do
-                      @html.div('Scope', {'class' => 'h5'})
+                      @html.h5('Scope', {'class' => 'h5'})
                       @html.div(class: 'block') do
                         scopeClass.writeHtml(result[:scope])
                       end
@@ -324,7 +324,7 @@ module ADIWG
             scopeClass = Html_Scope.new(@html) # Assuming a class to handle scope objects
           
             @html.div do
-              @html.div('Quantitative Result', {'class' => 'h5'})
+              @html.h5('Quantitative Result', {'class' => 'h5'})
               quantitativeResult.each do |result|
                 @html.div(class: 'block') do
                   # DateTime
@@ -337,7 +337,7 @@ module ADIWG
                   # Scope
                   unless result[:scope].nil?
                     @html.div do
-                      @html.div('Scope', {'class' => 'h5'})
+                      @html.h5('Scope', {'class' => 'h5'})
                       @html.div(class: 'block') do
                         scopeClass.writeHtml(result[:scope])
                       end

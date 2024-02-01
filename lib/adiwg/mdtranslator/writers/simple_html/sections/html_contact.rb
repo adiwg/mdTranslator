@@ -70,7 +70,7 @@ module ADIWG
                         # contact - address
                         hContact[:addresses].each do |hAddress|
                            @html.div do
-                              @html.div('Address', {'class' => 'h5'})
+                              @html.h5('Address', {'class' => 'h5'})
                               @html.div(:class => 'block') do
 
                                  # address - delivery points
@@ -119,7 +119,7 @@ module ADIWG
                         # contact - phones
                         hContact[:phones].each do |hPhone|
                            @html.div do
-                              @html.div('Phone', {'class' => 'h5'})
+                              @html.h5('Phone', {'class' => 'h5'})
                               @html.div(:class => 'block') do
 
                                  # phone - name
@@ -159,7 +159,7 @@ module ADIWG
                         # contact - online resource []
                         hContact[:onlineResources].each do |hOnline|
                            @html.div do
-                              @html.div('Online Resource', {'class' => 'h5'})
+                              @html.h5('Online Resource', {'class' => 'h5'})
                               @html.div(:class => 'block') do
                                  onlineClass.writeHtml(hOnline)
                               end
@@ -169,7 +169,7 @@ module ADIWG
                         # contact - logos []
                         hContact[:logos].each do |hLogo|
                            @html.div do
-                              @html.div('Logo Graphic', {'class' => 'h5'})
+                              @html.h5('Logo Graphic', {'class' => 'h5'})
                               @html.div(:class => 'block') do
                                  graphicClass.writeHtml(hLogo)
                               end
@@ -194,7 +194,7 @@ module ADIWG
                         if hContact.key?(:externalIdentifier) && !hContact[:externalIdentifier].empty?
                            hContact[:externalIdentifier].each do |identifier|
                               @html.div do
-                                 @html.div("External Identifier", {'class' => 'h5'})
+                                 @html.h5("External Identifier", {'class' => 'h5'})
                                  @html.div(:class => 'block') do
                                     @html.em('Identifier: ')
                                     @html.text!(identifier[:identifier])

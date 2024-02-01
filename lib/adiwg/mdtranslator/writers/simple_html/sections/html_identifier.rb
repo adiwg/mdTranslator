@@ -65,7 +65,7 @@ module ADIWG
                   # identifier - authority {citation}
                   unless hIdentifier[:citation].empty?
                      @html.div do
-                        @html.div('Authority', {'id' => 'metadata-identifier', 'class' => 'h5'})
+                        @html.h5('Authority', {'id' => 'metadata-identifier', 'class' => 'h5'})
                         @html.div(:class => 'block') do
                            citationClass.writeHtml(hIdentifier[:citation])
                         end

@@ -52,7 +52,7 @@ module ADIWG
                   # constraint - scope {scope}
                   unless hConstraint[:scope].empty?
                      @html.div do
-                        @html.div('Scope', {'class' => 'h5'})
+                        @html.h5('Scope', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            scopeClass.writeHtml(hConstraint[:scope])
                         end
@@ -62,7 +62,7 @@ module ADIWG
                   # constraint - graphic [] {graphic}
                   hConstraint[:graphic].each do |hGraphic|
                      @html.div do
-                        @html.div('Graphic', {'class' => 'h5'})
+                        @html.h5('Graphic', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            graphicClass.writeHtml(hGraphic)
                         end
@@ -72,7 +72,7 @@ module ADIWG
                   # constraint - reference [] {citation}
                   hConstraint[:reference].each do |hReference|
                      @html.div do
-                        @html.div('Reference', {'class' => 'h5'})
+                        @html.h5('Reference', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            citationClass.writeHtml(hReference)
                         end
@@ -82,7 +82,7 @@ module ADIWG
                   # constraint - releasability {releasability}
                   unless hConstraint[:releasability].empty?
                      @html.div do
-                        @html.div('Releasability', {'class' => 'h5'})
+                        @html.h5('Releasability', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            releasabilityClass.writeHtml(hConstraint[:releasability])
                         end
@@ -92,7 +92,7 @@ module ADIWG
                   # constraint - responsibility [] {responsibility}
                   hConstraint[:responsibleParty].each do |hResponsibility|
                      @html.div do
-                        @html.div(hResponsibility[:roleName], {'class' => 'h5'})
+                        @html.h5(hResponsibility[:roleName], {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            responsibilityClass.writeHtml(hResponsibility)
                         end

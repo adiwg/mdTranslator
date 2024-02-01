@@ -316,7 +316,7 @@ module ADIWG
                   #       @html.div(:class => 'block') do
                   #          hResource[:extents].each do |hExtent|
                   #             @html.div do
-                  #                @html.div('Extent', {'class' => 'h5'})
+                  #                @html.h5('Extent', {'class' => 'h5'})
                   #                @html.div(:class => 'block') do
                   #                   extentClass.writeHtml(hExtent)
                   #                end
@@ -428,7 +428,7 @@ module ADIWG
                         @html.div(:class => 'block') do
                            hResource[:resourceFormats].each do |hFormat|
                               @html.div do
-                                 @html.div('Format', {'class' => 'h5'})
+                                 @html.h5('Format', {'class' => 'h5'})
                                  @html.div(:class => 'block') do
                                     formatClass.writeHtml(hFormat)
                                  end
