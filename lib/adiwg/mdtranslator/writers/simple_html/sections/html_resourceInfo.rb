@@ -76,7 +76,7 @@ module ADIWG
                   # resource - citation {citation}
                   unless hResource[:citation].empty?
                      @html.div do
-                        @html.div('Citation', {'id' => 'resourceInfo-citation', 'class' => 'h3'})
+                        @html.h3('Citation', {'id' => 'resourceInfo-citation', 'class' => 'h3'})
                         @html.div(:class => 'block') do
                            citationClass.writeHtml(hResource[:citation])
                         end
@@ -86,7 +86,7 @@ module ADIWG
                   # resource - abstract
                   unless hResource[:abstract].nil? && hResource[:shortAbstract].nil?
                      @html.div do
-                        @html.div('Abstract', {'id' => 'resourceInfo-abstract', 'class' => 'h3'})
+                        @html.h3('Abstract', {'id' => 'resourceInfo-abstract', 'class' => 'h3'})
                         @html.div(:class => 'block') do
 
                            # short abstract
@@ -115,7 +115,7 @@ module ADIWG
                   # resource - purpose
                   unless hResource[:purpose].nil? && hResource[:resourceUsages].empty?
                      @html.div do
-                        @html.div('Purpose, Usage, and Limitations', {'id' => 'resourceInfo-purpose', 'class' => 'h3'})
+                        @html.h3('Purpose, Usage, and Limitations', {'id' => 'resourceInfo-purpose', 'class' => 'h3'})
                         @html.div(:class => 'block') do
 
                            # purpose
@@ -148,7 +148,7 @@ module ADIWG
                   # resource - graphic overview [] {graphicOverview}
                   unless hResource[:graphicOverviews].empty?
                      @html.div do
-                        @html.div('Graphic Overviews', {'id' => 'resourceInfo-overview', 'class' => 'h3'})
+                        @html.h3('Graphic Overviews', {'id' => 'resourceInfo-overview', 'class' => 'h3'})
                         @html.div(:class => 'block') do
                            counter = 0
                            hResource[:graphicOverviews].each do |hGraphic|
@@ -167,7 +167,7 @@ module ADIWG
                   # resource - point of contact [] {responsibility}
                   unless hResource[:pointOfContacts].empty? && hResource[:credits].empty?
                      @html.div do
-                        @html.div('Resource Contacts', {'id' => 'resourceInfo-contacts', 'class' => 'h3'})
+                        @html.h3('Resource Contacts', {'id' => 'resourceInfo-contacts', 'class' => 'h3'})
                         @html.div(:class => 'block') do
 
                            # contacts - responsibility
@@ -201,7 +201,7 @@ module ADIWG
                   # resource - temporal information
                   unless hResource[:timePeriod].empty? && hResource[:temporalResolutions].empty?
                      @html.div do
-                        @html.div('Temporal Information', {'id' => 'resourceInfo-temporal', 'class' => 'h3'})
+                        @html.h3('Temporal Information', {'id' => 'resourceInfo-temporal', 'class' => 'h3'})
                         @html.div(:class => 'block') do
 
                            # time period {timePeriod}
@@ -234,7 +234,7 @@ module ADIWG
                      hResource[:spatialRepresentations].empty?
                      hResource[:spatialResolutions].empty?
                      @html.div do
-                        @html.div('Spatial Information', {'id' => 'resourceInfo-spatial', 'class' => 'h3'})
+                        @html.h3('Spatial Information', {'id' => 'resourceInfo-spatial', 'class' => 'h3'})
                         @html.div(:class => 'block') do
 
                            # representation type [] {spatialRepresentation}
@@ -312,7 +312,7 @@ module ADIWG
                   # # resource - extent [] {extent}
                   # unless hResource[:extents].empty?
                   #    @html.div do
-                  #       @html.div('Spatial, Temporal, and Vertical Extents', {'id' => 'resourceInfo-extent', 'class' => 'h3'})
+                  #       @html.h3('Spatial, Temporal, and Vertical Extents', {'id' => 'resourceInfo-extent', 'class' => 'h3'})
                   #       @html.div(:class => 'block') do
                   #          hResource[:extents].each do |hExtent|
                   #             @html.div do
@@ -329,7 +329,7 @@ module ADIWG
                   # resource - keywords [] {keyword}
                   unless hResource[:keywords].empty?
                      @html.div do
-                        @html.div('Keywords', {'id' => 'resourceInfo-keyword', 'class' => 'h3'})
+                        @html.h3('Keywords', {'id' => 'resourceInfo-keyword', 'class' => 'h3'})
                         @html.div(:class => 'block') do
                            hResource[:keywords].each do |hKeyword|
                               keywordClass.writeHtml(hKeyword)
@@ -341,7 +341,7 @@ module ADIWG
                   # resource - taxonomy {taxonomy}
                   unless hResource[:taxonomy].empty?
                      @html.div do
-                        @html.div('Taxonomy', {'id' => 'resourceInfo-taxonomy', 'class' => 'h3'})
+                        @html.h3('Taxonomy', {'id' => 'resourceInfo-taxonomy', 'class' => 'h3'})
                         @html.div(:class => 'block') do
                            counter = 0
                            hResource[:taxonomy].each do |hTaxonomy|
@@ -360,7 +360,7 @@ module ADIWG
                   # resource - constraints [] {constraint}
                   unless hResource[:constraints].empty?
                      @html.div do
-                        @html.div('Constraints', {'id' => 'resourceInfo-constraint', 'class' => 'h3'})
+                        @html.h3('Constraints', {'id' => 'resourceInfo-constraint', 'class' => 'h3'})
                         @html.div(:class => 'block') do
                            hResource[:constraints].each do |hConstraint|
                               @html.div do
@@ -377,7 +377,7 @@ module ADIWG
                   # resource - coverage description [] {coverageInfo}
                   unless hResource[:coverageDescriptions].empty?
                      @html.div do
-                        @html.div('Coverage Description', {'id' => 'resourceInfo-Coverage', 'class' => 'h3'})
+                        @html.h3('Coverage Description', {'id' => 'resourceInfo-Coverage', 'class' => 'h3'})
                         @html.div(:class => 'block') do
                            hResource[:coverageDescriptions].each do |hCoverage|
                               @html.div do
@@ -394,7 +394,7 @@ module ADIWG
                   # resource - locale
                   unless hResource[:defaultResourceLocale].empty? && hResource[:otherResourceLocales].empty?
                      @html.div do
-                        @html.div('Resource Locales', {'id' => 'resourceInfo-locale', 'class' => 'h3'})
+                        @html.h3('Resource Locales', {'id' => 'resourceInfo-locale', 'class' => 'h3'})
                         @html.div(:class => 'block') do
 
                            # default resource locales {locale}
@@ -424,7 +424,7 @@ module ADIWG
                   # resource - formats [] {format}
                   unless hResource[:resourceFormats].empty?
                      @html.div do
-                        @html.div('Resource Formats', {'id' => 'resourceInfo-format', 'class' => 'h3'})
+                        @html.h3('Resource Formats', {'id' => 'resourceInfo-format', 'class' => 'h3'})
                         @html.div(:class => 'block') do
                            hResource[:resourceFormats].each do |hFormat|
                               @html.div do
@@ -443,7 +443,7 @@ module ADIWG
                      hResource[:environmentDescription].nil? &&
                      hResource[:supplementalInfo].nil?
                      @html.div do
-                        @html.div('Supplemental Information', {'id' => 'resourceInfo-supplemental', 'class' => 'h3'})
+                        @html.h3('Supplemental Information', {'id' => 'resourceInfo-supplemental', 'class' => 'h3'})
                         @html.div(:class => 'block') do
 
                            # supplemental - maintenance [] {maintenance}

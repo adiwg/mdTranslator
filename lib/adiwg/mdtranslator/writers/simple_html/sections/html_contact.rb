@@ -28,7 +28,7 @@ module ADIWG
                   graphicClass = Html_Graphic.new(@html)
 
                   @html.div do
-                     @html.div(hContact[:name], {'id' => 'CID_' + hContact[:contactId], 'class' => 'h3'})
+                     @html.h3(hContact[:name], {'id' => 'CID_' + hContact[:contactId], 'class' => 'h3'})
                      @html.div(:class => 'block') do
 
                         # contact - contact ID
