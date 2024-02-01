@@ -135,7 +135,7 @@ module ADIWG
                   # process step - scope {scope}
                   unless hStep[:scope].empty?
                      @html.div do
-                        @html.div('Scope', {'class' => 'h5'})
+                        @html.h5('Scope', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            scopeClass.writeHtml(hStep[:scope])
                         end

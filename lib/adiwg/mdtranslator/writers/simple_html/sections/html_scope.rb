@@ -34,7 +34,7 @@ module ADIWG
                   # scope - description [] {scopeDescription}
                   hScope[:scopeDescriptions].each do |hDescription|
                      @html.div do
-                        @html.div('Description', {'class' => 'h5'})
+                        @html.h5('Description', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            descriptionClass.writeHtml(hDescription)
                         end
@@ -44,7 +44,7 @@ module ADIWG
                   # # scope - extent [] {extent}
                   # hScope[:extents].each do |hExtent|
                   #    @html.div do
-                  #       @html.div('Extent', {'class' => 'h5'})
+                  #       @html.h5('Extent', {'class' => 'h5'})
                   #       @html.div(:class => 'block') do
                   #          extentClass.writeHtml(hExtent)
                   #       end

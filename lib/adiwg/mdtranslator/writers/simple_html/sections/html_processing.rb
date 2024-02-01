@@ -36,7 +36,7 @@ module ADIWG
                   # processing - identifier {identifier}
                   unless hProcessing[:identifier].empty?
                      @html.div do
-                        @html.div('Identifier', {'class' => 'h5'})
+                        @html.h5('Identifier', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            identifierClass.writeHtml(hProcessing[:identifier])
                         end
@@ -63,7 +63,7 @@ module ADIWG
                   # processing - documentation [] {citation}
                   hProcessing[:documentation].each do |hCitation|
                      @html.div do
-                        @html.div('Documentation', {'class' => 'h5'})
+                        @html.h5('Documentation', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            citationClass.writeHtml(hCitation)
                         end
@@ -73,7 +73,7 @@ module ADIWG
                   # processing - algorithm [] {algorithm}
                   hProcessing[:algorithms].each do |hAlgorithm|
                      @html.div do
-                        @html.div('Algorithm', {'class' => 'h5'})
+                        @html.h5('Algorithm', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            algorithmClass.writeHtml(hAlgorithm)
                         end

@@ -42,7 +42,7 @@ module ADIWG
                   # distribution - distributor [] {distributor}
                   hDistribution[:distributor].each do |hDistributor|
                      @html.div do
-                        @html.div('Distributor', {'class' => 'h5'})
+                        @html.h5('Distributor', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            distributorClass.writeHtml(hDistributor)
                         end
