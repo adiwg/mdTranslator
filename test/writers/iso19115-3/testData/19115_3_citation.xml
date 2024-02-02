@@ -149,8 +149,6 @@
                   <mcc:description/>
                 </mcc:MD_Identifier>
               </cit:partyIdentifier>
-              <cit:logo/>
-              <cit:individual/>
               <cit:partyIdentifier>
                 <mcc:MD_Identifier>
                   <mcc:authority/>
@@ -164,6 +162,8 @@
                   <mcc:description/>
                 </mcc:MD_Identifier>
               </cit:partyIdentifier>
+              <cit:logo/>
+              <cit:individual/>
             </cit:CI_Organisation>
           </cit:party>
         </cit:CI_Responsibility>
@@ -371,8 +371,6 @@
                   <mcc:description/>
                 </mcc:MD_Identifier>
               </cit:partyIdentifier>
-              <cit:logo/>
-              <cit:individual/>
               <cit:partyIdentifier>
                 <mcc:MD_Identifier>
                   <mcc:authority/>
@@ -386,6 +384,8 @@
                   <mcc:description/>
                 </mcc:MD_Identifier>
               </cit:partyIdentifier>
+              <cit:logo/>
+              <cit:individual/>
             </cit:CI_Organisation>
           </cit:party>
         </cit:CI_Responsibility>
@@ -517,8 +517,6 @@
                   <mcc:description/>
                 </mcc:MD_Identifier>
               </cit:partyIdentifier>
-              <cit:logo/>
-              <cit:individual/>
               <cit:partyIdentifier>
                 <mcc:MD_Identifier>
                   <mcc:authority/>
@@ -532,6 +530,8 @@
                   <mcc:description/>
                 </mcc:MD_Identifier>
               </cit:partyIdentifier>
+              <cit:logo/>
+              <cit:individual/>
             </cit:CI_Organisation>
           </cit:party>
         </cit:CI_Responsibility>
@@ -559,8 +559,6 @@
                   <mcc:description/>
                 </mcc:MD_Identifier>
               </cit:partyIdentifier>
-              <cit:logo/>
-              <cit:individual/>
               <cit:partyIdentifier>
                 <mcc:MD_Identifier>
                   <mcc:authority/>
@@ -572,6 +570,8 @@
                   <mcc:description/>
                 </mcc:MD_Identifier>
               </cit:partyIdentifier>
+              <cit:logo/>
+              <cit:individual/>
             </cit:CI_Organisation>
           </cit:party>
           <cit:party>
@@ -632,8 +632,6 @@
                   <mcc:description/>
                 </mcc:MD_Identifier>
               </cit:partyIdentifier>
-              <cit:logo/>
-              <cit:individual/>
               <cit:partyIdentifier>
                 <mcc:MD_Identifier>
                   <mcc:authority/>
@@ -647,6 +645,8 @@
                   <mcc:description/>
                 </mcc:MD_Identifier>
               </cit:partyIdentifier>
+              <cit:logo/>
+              <cit:individual/>
             </cit:CI_Organisation>
           </cit:party>
         </cit:CI_Responsibility>
