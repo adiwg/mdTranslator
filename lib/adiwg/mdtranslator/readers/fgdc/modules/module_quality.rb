@@ -16,32 +16,34 @@ module ADIWG
             module Quality
 
                def self.unpack(xDataQual, hMetadata, hDataQuality, hResponseObj)
+                  intMetadataClass = InternalMetadata.new
 
-                  hDataQuality[:scope] = {scopeCode: 'tabularDataset'}
+                  hDataQuality[:scope] = intMetadataClass.newScope
+                  hDataQuality[:scope][:scopeCode] = 'tabularDataset'
+
                   hDataQuality[:systemIdentifier] = {
                      uid: UUIDTools::UUID.random_create.to_s,
                      label: "CSDGM Data Quality"
                   }
 
-
                   # data quality 2.1 (attracc) - attribute accuracy
                   xAccuracy = xDataQual.xpath('./attracc')
                   accuracyReport = xAccuracy.xpath('./attraccr').text
-                  hDataQuality[:report] << {
-                     type: 'DQ_NonQuantitativeAttributeCompleteness',
-                     descriptiveResult: [ {statement: accuracyReport} ]
-                  }
+                  report = intMetadataClass.newDataQualityReport
+                  report[:type] = 'DQ_NonQuantitativeAttributeAccuracy'
+                  descriptiveResult = intMetadataClass.newDescriptiveResult
+                  descriptiveResult[:statement] = accuracyReport
+                  report[:descriptiveResult] << descriptiveResult
+                  hDataQuality[:report] << report
 
                   # data quality 2.1 (qattracc) - Quantitative Attribute Accuracy Assessment
-
                   xQuantitativeAccuracy = xDataQual.xpath('./qattracc')
                   unless xQuantitativeAccuracy.xpath('./attraccv').empty?
-                     hDataQuality[:report] << {
-                        type: 'DQ_QuantitativeAttributeAccuracy',
-                        quantitativeResult: [{
-                           value: xQuantitativeAccuracy.xpath('./attraccv').text
-                        }]
-                     }
+                     report = intMetadataClass.newDataQualityReport
+                     report[:type] = 'DQ_QuantitativeAttributeAccuracy'
+                     report[:quantitativeResult] = intMetadataClass.newQualityMeasure
+                     report[:quantitativeResult][:values] = [xQuantitativeAccuracy.xpath('./attraccv').text]
+                     hDataQuality[:report] << report
                   end
 
                   # data quality 2.2 (logic) - logical consistency (required) (not implemented)
@@ -50,12 +52,11 @@ module ADIWG
                      hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: data quality logical consistency section is missing'
                   else
                      logic = xLogic.text
-                     hDataQuality[:report] << {
-                        type: 'DQ_ConceptualConsistency',
-                        qualityMeasure: {
-                           description: logic
-                        }
-                     }
+                     report = intMetadataClass.newDataQualityReport
+                     report[:type] = 'DQ_ConceptualConsistency'
+                     report[:qualityMeasure] = intMetadataClass.newQualityMeasure
+                     report[:qualityMeasure][:description] = logic
+                     hDataQuality[:report] << report
                   end
 
                   # data quality 2.3 (complete) - completion report (required)
@@ -64,94 +65,58 @@ module ADIWG
                      hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: data quality completion report section is missing'
                   else
                      complete = xComplete.text
-                     hDataQuality[:report] << {
-                        type: 'DQ_CompletenessOmission',
-                        descriptiveResult: [{
-                           statement: complete
-                        }]
-                     }
+                     report = intMetadataClass.newDataQualityReport
+                     report[:type] = 'DQ_CompletenessOmission'
+                     descriptiveResult = intMetadataClass.newDescriptiveResult
+                     descriptiveResult[:statement] = complete
+                     report[:descriptiveResult] << descriptiveResult
+                     hDataQuality[:report] << report
                   end
 
                   # data quality 2.4 (position) - positional accuracy
                   xPositionalAccuracy = xDataQual.xpath('./posacc')
                   unless xPositionalAccuracy.empty?
-
                      # horizontal positional accuracy
                      xHorizontal = xPositionalAccuracy.xpath('./horizpa')
                      unless xHorizontal.empty?
-
-                        report = {}
-
-                        unless xHorizontal.xpath('horizpar').empty?
-                           report[:evaluationMethod] = {
-                              methodDescription: xHorizontal.xpath('horizpar').text
-                           }
-                        end
-
+                        report = intMetadataClass.newDataQualityReport
+                        report[:type] = 'DQ_AbsoluteExternalPositionalAccuracy'
                         unless xHorizontal.xpath('qhorizpa/horizpae').empty?
-                           report[:qualityMeasure] = {
-                              description: xHorizontal.xpath('qhorizpa/horizpae').text
-                           }
+                           report[:qualityMeasure] = intMetadataClass.newQualityMeasure
+                           report[:qualityMeasure][:description] = xHorizontal.xpath('qhorizpa/horizpae').text
+                           # The commented code below looks wrong and needs to be validated (also, it's nameOfMeasure, which is an array)
+                           # report[:qualityMeasure][:name] = ['Horizontal Positional Accuracy Report']
                         end
-
+                        unless xHorizontal.xpath('horizpar').empty?
+                           report[:evaluationMethod] = intMetadataClass.newEvaluationMethod
+                           report[:evaluationMethod][:methodDescription] = xHorizontal.xpath('horizpar').text
+                        end
                         unless xHorizontal.xpath('qhorizpa/horizpav').empty?
-                           report[:quantitativeResult] = [{
-                              value: [ xHorizontal.xpath('qhorizpa/horizpav').text ]
-                           }]
+                           report[:quantitativeResult] = [intMetadataClass.newQuantitativeResult]
+                           report[:quantitativeResult][:values] = [ xHorizontal.xpath('qhorizpa/horizpav').text ]
                         end
-
-                        unless report.empty?
-                           if report[:qualityMeasure].nil?
-                              report[:qualityMeasure] = {
-                                 name: ['Horizontal Positional Accuracy Report']
-                              }
-                           else
-                              report[:qualityMeasure][:name] = ['Horizontal Positional Accuracy Report']
-                           end
-
-                           report[:type] = 'DQ_AbsoluteExternalPositionalAccuracy'
-
-                           hDataQuality[:report] << report
-                        end
+                        hDataQuality[:report] << report
                      end
-
                      # vertical positional accuracy
                      xVertical = xPositionalAccuracy.xpath('./vertacc')
                      unless xVertical.empty?
-
-                        report = {}
-
-                        unless xVertical.xpath('vertaccr').empty?
-                           report[:evaluationMethod] = {
-                              methodDescription: xVertical.xpath('vertaccr').text
-                           }
-                        end
-
+                        report = intMetadataClass.newDataQualityReport
+                        report[:type] = 'DQ_AbsoluteExternalPositionalAccuracy'
                         unless xVertical.xpath('qvertpa/vertacce').empty?
-                           report[:qualityMeasure] = {
-                              description: xVertical.xpath('qvertpa/vertacce').text
-                           }
+                           report[:qualityMeasure] = intMetadataClass.newQualityMeasure
+                           report[:qualityMeasure][:description] = xVertical.xpath('qvertpa/vertacce').text
+                           # The commented code below looks wrong and needs to be validated (also, it's nameOfMeasure, which is an array)
+                           # report[:qualityMeasure][:name] = ['Vertical Positional Accuracy Report']
                         end
-
+                        unless xVertical.xpath('vertaccr').empty?
+                           report[:evaluationMethod] = intMetadataClass.newEvaluationMethod
+                           report[:evaluationMethod][:methodDescription] = xVertical.xpath('vertaccr').text
+                        end
                         unless xVertical.xpath('qvertpa/vertaccv').empty?
-                           report[:quantitativeResult] = [{
-                              value: [ xVertical.xpath('qvertpa/vertaccv').text ]
-                           }]
+                           report[:quantitativeResult] = intMetadataClass.newQuantitativeResult
+                           report[:quantitativeResult][:values] = [ xVertical.xpath('qvertpa/vertaccv').text ]
                         end
-
-                        unless report.empty?
-                           if report[:qualityMeasure].nil?
-                              report[:qualityMeasure] = {
-                                 name: ['Vertical Positional Accuracy Report']
-                              }
-                           else
-                              report[:qualityMeasure][:name] = ['Vertical Positional Accuracy Report']
-                           end
-
-                           report[:type] = 'DQ_AbsoluteExternalPositionalAccuracy'
-
-                           hDataQuality[:report] << report
-                        end
+                        hDataQuality[:report] << report
                      end
                   end
 
@@ -167,10 +132,7 @@ module ADIWG
                      hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: data quality lineage section is missing'
                   end
 
-                  # data quality 2.6 (cloud) - cloud cover (not implemented)
-
                   return hDataQuality
-
                end
 
             end
