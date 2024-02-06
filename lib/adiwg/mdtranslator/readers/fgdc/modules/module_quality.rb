@@ -41,8 +41,10 @@ module ADIWG
                   unless xQuantitativeAccuracy.xpath('./attraccv').empty?
                      report = intMetadataClass.newDataQualityReport
                      report[:type] = 'DQ_QuantitativeAttributeAccuracy'
-                     report[:quantitativeResult] = intMetadataClass.newQualityMeasure
-                     report[:quantitativeResult][:values] = [xQuantitativeAccuracy.xpath('./attraccv').text]
+                     quantitativeResult = intMetadataClass.newQualityMeasure
+                     value = xQuantitativeAccuracy.xpath('./attraccv').text
+                     quantitativeResult[:values] << value
+                     report[:qualityMeasure] << quantitativeResult
                      hDataQuality[:report] << report
                   end
 
@@ -84,16 +86,18 @@ module ADIWG
                         unless xHorizontal.xpath('qhorizpa/horizpae').empty?
                            report[:qualityMeasure] = intMetadataClass.newQualityMeasure
                            report[:qualityMeasure][:description] = xHorizontal.xpath('qhorizpa/horizpae').text
-                           # The commented code below looks wrong and needs to be validated (also, it's nameOfMeasure, which is an array)
-                           # report[:qualityMeasure][:name] = ['Horizontal Positional Accuracy Report']
+                           name = 'Horizontal Positional Accuracy Report'
+                           report[:qualityMeasure][:nameOfMeasure] << name
                         end
                         unless xHorizontal.xpath('horizpar').empty?
                            report[:evaluationMethod] = intMetadataClass.newEvaluationMethod
                            report[:evaluationMethod][:methodDescription] = xHorizontal.xpath('horizpar').text
                         end
                         unless xHorizontal.xpath('qhorizpa/horizpav').empty?
-                           report[:quantitativeResult] = [intMetadataClass.newQuantitativeResult]
-                           report[:quantitativeResult][:values] = [ xHorizontal.xpath('qhorizpa/horizpav').text ]
+                           quantitativeResult = intMetadataClass.newQuantitativeResult
+                           value = xHorizontal.xpath('qhorizpa/horizpav').text
+                           quantitativeResult[:values] << value
+                           report[:quantitativeResult] << quantitativeResult
                         end
                         hDataQuality[:report] << report
                      end
@@ -105,16 +109,18 @@ module ADIWG
                         unless xVertical.xpath('qvertpa/vertacce').empty?
                            report[:qualityMeasure] = intMetadataClass.newQualityMeasure
                            report[:qualityMeasure][:description] = xVertical.xpath('qvertpa/vertacce').text
-                           # The commented code below looks wrong and needs to be validated (also, it's nameOfMeasure, which is an array)
-                           # report[:qualityMeasure][:name] = ['Vertical Positional Accuracy Report']
+                           name = 'Vertical Positional Accuracy Report'
+                           report[:qualityMeasure][:nameOfMeasure] << name
                         end
                         unless xVertical.xpath('vertaccr').empty?
                            report[:evaluationMethod] = intMetadataClass.newEvaluationMethod
                            report[:evaluationMethod][:methodDescription] = xVertical.xpath('vertaccr').text
                         end
                         unless xVertical.xpath('qvertpa/vertaccv').empty?
-                           report[:quantitativeResult] = intMetadataClass.newQuantitativeResult
-                           report[:quantitativeResult][:values] = [ xVertical.xpath('qvertpa/vertaccv').text ]
+                           quantitativeResult = intMetadataClass.newQuantitativeResult
+                           value = xVertical.xpath('qvertpa/vertaccv').text
+                           quantitativeResult[:values] << value
+                           report[:quantitativeResult] << quantitativeResult
                         end
                         hDataQuality[:report] << report
                      end
