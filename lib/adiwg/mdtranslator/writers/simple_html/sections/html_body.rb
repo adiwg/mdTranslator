@@ -305,14 +305,14 @@ module ADIWG
 
                      # add inline javascript
                      # read javascript from file
-                     path = File.join(File.dirname(__FILE__), 'html_bodyScript.js')
-                     file = File.open(path, 'r')
-                     bodyJS = file.read
-                     file.close
+                     # path = File.join(File.dirname(__FILE__), 'html_bodyScript.js')
+                     # file = File.open(path, 'r')
+                     # bodyJS = file.read
+                     # file.close
 
-                     @html.script('type'=>'text/javascript') do
-                        @html << bodyJS
-                     end
+                     # @html.script('type'=>'text/javascript') do
+                     #    @html << bodyJS
+                     # end
 
                   end # body
                end # writeHtml
