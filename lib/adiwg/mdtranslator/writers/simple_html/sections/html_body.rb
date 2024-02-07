@@ -298,22 +298,6 @@ module ADIWG
                         end
                      end
 
-                     # load leaflet
-                     @html.link( :rel => 'stylesheet', :href => 'https://unpkg.com/leaflet@1.0.3/dist/leaflet.css')
-                     @html.script('', :src => 'https://unpkg.com/leaflet@1.0.3/dist/leaflet.js')
-                     @html.script('', :src => 'https://stamen-maps.a.ssl.fastly.net/js/tile.stamen.js')
-
-                     # add inline javascript
-                     # read javascript from file
-                     # path = File.join(File.dirname(__FILE__), 'html_bodyScript.js')
-                     # file = File.open(path, 'r')
-                     # bodyJS = file.read
-                     # file.close
-
-                     # @html.script('type'=>'text/javascript') do
-                     #    @html << bodyJS
-                     # end
-
                   end # body
                end # writeHtml
             end # Html_Body
