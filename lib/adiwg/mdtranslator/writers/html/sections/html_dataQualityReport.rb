@@ -147,10 +147,10 @@ module ADIWG
                 end
           
                 # ReferenceDocument
-                unless evaluationMethod[:referenceDocument].empty?
+                unless evaluationMethod[:referenceDocuments].empty?
                   @html.details do
                     @html.summary('Reference Document', {'class' => 'h5'})
-                    evaluationMethod[:referenceDocument].each do |doc|
+                    evaluationMethod[:referenceDocuments].each do |doc|
                       @html.section(:class => 'block') do
                         citationClass.writeHtml(doc)
                       end
