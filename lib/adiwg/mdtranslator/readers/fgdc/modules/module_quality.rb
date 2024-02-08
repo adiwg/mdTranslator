@@ -41,10 +41,10 @@ module ADIWG
                   unless xQuantitativeAccuracy.xpath('./attraccv').empty?
                      report = intMetadataClass.newDataQualityReport
                      report[:type] = 'DQ_QuantitativeAttributeAccuracy'
-                     quantitativeResult = intMetadataClass.newQualityMeasure
+                     quantitativeResult = intMetadataClass.newQuantitativeResult
                      value = xQuantitativeAccuracy.xpath('./attraccv').text
                      quantitativeResult[:values] << value
-                     report[:qualityMeasure] << quantitativeResult
+                     report[:quantitativeResult] << quantitativeResult
                      hDataQuality[:report] << report
                   end
 
