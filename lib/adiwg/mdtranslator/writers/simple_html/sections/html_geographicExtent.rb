@@ -41,16 +41,6 @@ module ADIWG
                      end
                   end
 
-                  # geographic extent - map {div}
-                  @html.div do
-                     @html.h5('Map', 'class' => 'h5 map-summary')
-                     @html.div(:class => 'block') do
-                        @html.div('class' => 'map', 'id' => 'map') do
-                           # map drawn by html_bodyScript.js
-                        end
-                     end
-                  end
-
                   # geographic extent - geographic element [] {geographicElement}
                   unless hExtent[:geographicElements].empty?
                      @html.div do
