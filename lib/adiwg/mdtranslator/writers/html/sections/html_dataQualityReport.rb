@@ -16,7 +16,7 @@ module ADIWG
 
           def writeHtml(hDataQualityReport)
             @html.section(class: 'block') do
-              writeQualityMeasure(hDataQualityReport[:qualityMeasure]) unless hDataQualityReport[:qualityMeasure].nil?
+              writeQualityMeasure(hDataQualityReport[:qualityMeasure]) unless hDataQualityReport[:qualityMeasure].empty?
             end
             @html.section(class: 'block') do
               writeEvaluationMethod(hDataQualityReport[:evaluationMethod]) unless hDataQualityReport[:evaluationMethod].empty?
