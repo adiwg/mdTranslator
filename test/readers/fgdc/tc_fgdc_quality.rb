@@ -11,7 +11,7 @@ require_relative 'fgdc_test_parent'
 class TestReaderFgdcQuality < TestReaderFGDCParent
 
    @@xDoc = TestReaderFGDCParent.get_XML('dataQuality.xml')
-   @@NameSpace = ADIWG::Mdtranslator::Readers::Fgdc::Quality
+   @@NameSpace = ADIWG::Mdtranslator::Readers::Fgdc::DataQuality
 
    def test_quality_complete
 
