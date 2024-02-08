@@ -13,7 +13,7 @@ module ADIWG
       module Readers
          module Fgdc
 
-            module Quality
+            module DataQuality
 
                def self.unpack(xDataQual, hMetadata, hDataQuality, hResponseObj)
                   intMetadataClass = InternalMetadata.new
@@ -39,12 +39,12 @@ module ADIWG
                   # data quality 2.1 (qattracc) - Quantitative Attribute Accuracy Assessment
                   xQuantitativeAccuracy = xDataQual.xpath('./qattracc')
                   unless xQuantitativeAccuracy.xpath('./attraccv').empty?
+                     value = xQuantitativeAccuracy.xpath('./attraccv').text
                      report = intMetadataClass.newDataQualityReport
                      report[:type] = 'DQ_QuantitativeAttributeAccuracy'
-                     quantitativeResult = intMetadataClass.newQualityMeasure
-                     value = xQuantitativeAccuracy.xpath('./attraccv').text
+                     quantitativeResult = intMetadataClass.newQuantitativeResult
                      quantitativeResult[:values] << value
-                     report[:qualityMeasure] << quantitativeResult
+                     report[:quantitativeResult] << quantitativeResult
                      hDataQuality[:report] << report
                   end
 
