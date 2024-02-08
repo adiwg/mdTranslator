@@ -39,10 +39,10 @@ module ADIWG
                   # data quality 2.1 (qattracc) - Quantitative Attribute Accuracy Assessment
                   xQuantitativeAccuracy = xDataQual.xpath('./qattracc')
                   unless xQuantitativeAccuracy.xpath('./attraccv').empty?
+                     value = xQuantitativeAccuracy.xpath('./attraccv').text
                      report = intMetadataClass.newDataQualityReport
                      report[:type] = 'DQ_QuantitativeAttributeAccuracy'
                      quantitativeResult = intMetadataClass.newQuantitativeResult
-                     value = xQuantitativeAccuracy.xpath('./attraccv').text
                      quantitativeResult[:values] << value
                      report[:quantitativeResult] << quantitativeResult
                      hDataQuality[:report] << report
