@@ -13,7 +13,7 @@ module ADIWG
       module Readers
          module Fgdc
 
-            module Quality
+            module DataQuality
 
                def self.unpack(xDataQual, hMetadata, hDataQuality, hResponseObj)
                   intMetadataClass = InternalMetadata.new
