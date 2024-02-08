@@ -38,7 +38,7 @@ module ADIWG
                      eName = hEntity[:entityName] unless hEntity[:entityName].nil?
 
                      @html.div do
-                        @html.div(eName, {'class' => 'h5'})
+                        @html.h5(eName, {'class' => 'h5'})
                         @html.div(:class => 'block') do
 
                            # entity - entity id
@@ -116,7 +116,7 @@ module ADIWG
                               iName = hIndex[:indexCode] unless hIndex[:indexCode].nil?
                               iName = hIndex[:indexName] unless hIndex[:indexName].nil?
                               @html.div do
-                                 @html.div('Index: '+iName, {'class' => 'h5'})
+                                 @html.h5('Index: '+iName, {'class' => 'h5'})
                                  @html.div(:class => 'block') do
                                     indexClass.writeHtml(hIndex)
                                  end
@@ -126,7 +126,7 @@ module ADIWG
                            # entity - foreign keys [] {entityForeignKey}
                            hEntity[:foreignKeys].each do |hForeign|
                               @html.div do
-                                 @html.div('ForeignKey', {'class' => 'h5'})
+                                 @html.h5('ForeignKey', {'class' => 'h5'})
                                  @html.div(:class => 'block') do
                                     foreignClass.writeHtml(hForeign)
                                  end
@@ -136,7 +136,7 @@ module ADIWG
                            # entity - entity reference [] {citation}
                            hEntity[:entityReferences].each do |hReference|
                               @html.div do
-                                 @html.div('Reference', {'class' => 'h5'})
+                                 @html.h5('Reference', {'class' => 'h5'})
                                  @html.div(:class => 'block') do
                                     citationClass.writeHtml(hReference)
                                  end
@@ -149,7 +149,7 @@ module ADIWG
                               aName = hAttribute[:attributeCode] unless hAttribute[:attributeCode].nil?
                               aName = hAttribute[:attributeName] unless hAttribute[:attributeName].nil?
                               @html.div do
-                                 @html.div('Attribute: '+aName, {'class' => 'h5'})
+                                 @html.h5('Attribute: '+aName, {'class' => 'h5'})
                                  @html.div(:class => 'block') do
                                     attributeClass.writeHtml(hAttribute)
                                  end

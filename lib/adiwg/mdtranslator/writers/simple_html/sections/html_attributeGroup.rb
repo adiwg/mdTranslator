@@ -35,7 +35,7 @@ module ADIWG
                   hGroup[:attributes].each do |hAttribute|
                      @html.div do
                         counter += 1
-                        @html.div('Attribute '+counter.to_s, {'class' => 'h5'})
+                        @html.h5('Attribute '+counter.to_s, {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            attributeClass.writeHtml(hAttribute)
                         end

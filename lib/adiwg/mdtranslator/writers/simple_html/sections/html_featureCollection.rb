@@ -31,7 +31,7 @@ module ADIWG
                         unless feature[:id].nil?
                            title += ': '+feature[:id].to_s
                         end
-                        @html.div(title, 'class' => 'h5')
+                        @html.h5(title, 'class' => 'h5')
                         @html.div(:class => 'block') do
                            featureClass.writeHtml(feature)
                         end
@@ -41,7 +41,7 @@ module ADIWG
                   # feature collection - user bounding box
                   unless hCollection[:bbox].empty?
                      @html.div do
-                        @html.div('User Provided Bounding Box', 'class' => 'h5')
+                        @html.h5('User Provided Bounding Box', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            bbox = {}
                            bbox[:westLongitude] = hCollection[:bbox][0]
@@ -56,7 +56,7 @@ module ADIWG
                   # feature collection - computed bounding box
                   unless hCollection[:computedBbox].empty?
                      @html.div do
-                        @html.div('Computed Bounding Box', 'class' => 'h5')
+                        @html.h5('Computed Bounding Box', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            boxClass.writeHtml(hCollection[:computedBbox])
                         end
@@ -66,7 +66,7 @@ module ADIWG
                   # feature collection - native GeoJson
                   unless hCollection[:nativeGeoJson].empty?
                      @html.div do
-                        @html.div('GeoJson', 'class' => 'h5')
+                        @html.h5('GeoJson', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            @html.text!(hCollection[:nativeGeoJson].to_json)
                         end

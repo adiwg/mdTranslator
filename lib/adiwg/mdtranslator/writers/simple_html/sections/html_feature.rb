@@ -36,7 +36,7 @@ module ADIWG
                   # feature - geometry object
                   unless hFeature[:geometryObject].empty?
                      @html.div do
-                        @html.div(hFeature[:geometryObject][:type], 'class' => 'h5')
+                        @html.h5(hFeature[:geometryObject][:type], 'class' => 'h5')
                         @html.div(:class => 'block') do
                            geometryClass.writeHtml(hFeature[:geometryObject])
                         end
@@ -46,7 +46,7 @@ module ADIWG
                   # feature - user bounding box
                   unless hFeature[:bbox].empty?
                      @html.div do
-                        @html.div('User Provided Bounding Box', 'class' => 'h5')
+                        @html.h5('User Provided Bounding Box', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            bbox = {}
                            bbox[:westLongitude] = hFeature[:bbox][0]
@@ -61,7 +61,7 @@ module ADIWG
                   # feature - computed bounding box
                   unless hFeature[:computedBbox].empty?
                      @html.div do
-                        @html.div('Computed Bounding Box', 'class' => 'h5')
+                        @html.h5('Computed Bounding Box', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            boxClass.writeHtml(hFeature[:computedBbox])
                         end
@@ -71,7 +71,7 @@ module ADIWG
                   # feature - properties
                   unless hFeature[:properties].empty?
                      @html.div do
-                        @html.div('Properties', 'class' => 'h5')
+                        @html.h5('Properties', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            propertyClass.writeHtml(hFeature[:properties])
                         end
@@ -81,7 +81,7 @@ module ADIWG
                   # feature - native GeoJson
                   unless hFeature[:nativeGeoJson].empty?
                      @html.div do
-                        @html.div('GeoJson', 'class' => 'h5')
+                        @html.h5('GeoJson', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            @html.text!(hFeature[:nativeGeoJson].to_json)
                         end

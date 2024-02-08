@@ -30,7 +30,7 @@ module ADIWG
                      if type.nil?
                         type = 'Unclassified'
                      end
-                     @html.div(type, {'class' => 'h5'})
+                     @html.h5(type, {'class' => 'h5'})
                      @html.div(:class => 'block') do
 
                         # keywords
@@ -49,7 +49,7 @@ module ADIWG
                         # thesaurus
                         unless hKeyword[:thesaurus].empty?
                            @html.div do
-                              @html.div('Thesaurus', {'class' => 'h5'})
+                              @html.h5('Thesaurus', {'class' => 'h5'})
                               @html.div(:class => 'block') do
                                  citationClass.writeHtml(hKeyword[:thesaurus])
                               end

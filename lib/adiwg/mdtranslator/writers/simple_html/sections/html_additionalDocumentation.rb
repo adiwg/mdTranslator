@@ -33,7 +33,7 @@ module ADIWG
                   # additional documentation - citation [] {citation}
                   hAddDoc[:citation].each do |hCitation|
                      @html.div do
-                        @html.div(hCitation[:title], {'class' => 'h5'})
+                        @html.h5(hCitation[:title], {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            citationClass.writeHtml(hCitation)
                         end

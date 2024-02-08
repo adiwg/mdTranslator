@@ -68,7 +68,7 @@ module ADIWG
                   # citation - responsibilities [] {responsibility}
                   hCitation[:responsibleParties].each do |hResponsibility|
                      @html.div do
-                        @html.div(hResponsibility[:roleName], 'class' => 'h5')
+                        @html.h5(hResponsibility[:roleName], 'class' => 'h5')
                         @html.div(:class => 'block') do
                            responsibilityClass.writeHtml(hResponsibility)
                         end
@@ -78,7 +78,7 @@ module ADIWG
                   # citation - identifier []
                   hCitation[:identifiers].each do |hIdentifier|
                      @html.div do
-                        @html.div('Identifier', 'class' => 'h5')
+                        @html.h5('Identifier', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            identifierClass.writeHtml(hIdentifier)
                         end
@@ -88,7 +88,7 @@ module ADIWG
                   # citation - series
                   unless hCitation[:series].empty?
                      @html.div do
-                        @html.div('Publication Series', {'class' => 'h5'})
+                        @html.h5('Publication Series', {'class' => 'h5'})
                         @html.div(:class => 'block') do
 
                            hSeries = hCitation[:series]
@@ -121,7 +121,7 @@ module ADIWG
                   # citation - online resource []
                   hCitation[:onlineResources].each do |hOnline|
                      @html.div do
-                        @html.div('Online Resource', {'class' => 'h5'})
+                        @html.h5('Online Resource', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            onlineClass.writeHtml(hOnline)
                         end
@@ -131,7 +131,7 @@ module ADIWG
                   # citation - browse graphic []
                   hCitation[:browseGraphics].each do |hGraphic|
                      @html.div do
-                        @html.div('Graphic Overview', {'class' => 'h5'})
+                        @html.h5('Graphic Overview', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            graphicClass.writeHtml(hGraphic)
                         end
