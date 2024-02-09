@@ -32,20 +32,7 @@ module ADIWG
                      end
                      @html.h5(type, {'class' => 'h5'})
                      @html.div(:class => 'block') do
-
-                        # keywords
-                        @html.ul do
-                           hKeyword[:keywords].each do |hKeyword|
-                              unless hKeyword[:keyword].nil?
-                                 keyword = hKeyword[:keyword]
-                                 unless hKeyword[:keywordId].nil?
-                                    keyword += ' (ID: ' + hKeyword[:keywordId].to_s + ')'
-                                 end
-                                 @html.li(keyword)
-                              end
-                           end
-                        end
-
+                        
                         # thesaurus
                         unless hKeyword[:thesaurus].empty?
                            @html.div do
@@ -53,6 +40,17 @@ module ADIWG
                               @html.div(:class => 'block') do
                                  citationClass.writeHtml(hKeyword[:thesaurus])
                               end
+                           end
+                        end
+
+                        # keywords
+                        hKeyword[:keywords].each do |hKeyword|
+                           unless hKeyword[:keyword].nil?
+                              keyword = hKeyword[:keyword]
+                              unless hKeyword[:keywordId].nil?
+                                 keyword += ' (ID: ' + hKeyword[:keywordId].to_s + ')'
+                              end
+                              @html.div('Keyword:' + keyword)
                            end
                         end
 
