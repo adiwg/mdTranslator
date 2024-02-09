@@ -1,5 +1,5 @@
 # MdTranslator - minitest of
-# readers / fgdc / module_quality
+# readers / fgdc / module_dataQuality
 
 # History:
 #   Stan Smith 2017-08-31 original script
