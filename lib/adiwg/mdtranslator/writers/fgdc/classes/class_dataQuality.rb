@@ -12,7 +12,7 @@ module ADIWG
       module Writers
          module Fgdc
 
-            class Quality
+            class DataQuality
 
                def initialize(xml, hResponseObj)
                   @xml = xml
@@ -71,7 +71,7 @@ module ADIWG
 
                      horizontal_positional_accuracy_report = hDataQuality[:report].find do |report|
                         report[:type] == 'DQ_AbsoluteExternalPositionalAccuracy' &&
-                        report.dig(:qualityMeasure, :name).any? { |name|
+                        report.dig(:qualityMeasure, :nameOfMeasure)&.any? { |name|
                            name == 'Horizontal Positional Accuracy Report'
                         }
                      end
@@ -81,7 +81,7 @@ module ADIWG
 
                      vertical_positional_accuracy_report = hDataQuality[:report].find do |report|
                         report[:type] == 'DQ_AbsoluteExternalPositionalAccuracy' &&
-                        report.dig(:qualityMeasure, :name).any? { |name|
+                        report.dig(:qualityMeasure, :nameOfMeasure)&.any? { |name|
                            name == 'Vertical Positional Accuracy Report'
                         }
                      end
