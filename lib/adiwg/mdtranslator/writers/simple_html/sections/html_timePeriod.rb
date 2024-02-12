@@ -64,9 +64,7 @@ module ADIWG
                   # time period - description
                   unless hPeriod[:description].nil?
                      @html.em('Description: ')
-                     @html.div(:class => 'block') do
-                        @html.text!(hPeriod[:description])
-                     end
+                     @html.text!(hPeriod[:description])
                   end
 
                   # time period - start geologic age {geologic age}
