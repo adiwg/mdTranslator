@@ -8,6 +8,7 @@ require 'nokogiri'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require_relative 'module_dateTime'
 require_relative 'module_contact'
+require_relative 'module_citation'
 
 module ADIWG
    module Mdtranslator
@@ -89,6 +90,17 @@ module ADIWG
                      unless hResponsibility.nil?
                         hResponsibility[:roleName] = 'processor'
                         hProcess[:processors] << hResponsibility
+                     end
+                  end
+
+                  # process (references) - references []
+                  axReferences = xProcess.xpath('./reference')
+                  unless axReferences.empty?
+                     axReferences.each do |xReference|
+                        hCitation = Citation.unpack(xReference, hResponseObj)
+                        unless hCitation.nil?
+                           hProcess[:references] << hCitation
+                        end
                      end
                   end
 
