@@ -18,6 +18,9 @@ module ADIWG
 
                def self.unpack(hLineage, axMethods, hResponseObj)
 
+                  intObj = Fgdc.get_intObj
+                  hResourceInfo = intObj[:metadata][:resourceInfo]
+
                   intMetadataClass = InternalMetadata.new
                   hProcessStep = intMetadataClass.newProcessStep
 
