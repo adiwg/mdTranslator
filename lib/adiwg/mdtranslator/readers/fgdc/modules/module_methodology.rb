@@ -18,9 +18,8 @@ module ADIWG
 
                def self.unpack(hLineage, axMethods, hResponseObj)
 
-                  statement = ''
-                  intObj = Fgdc.get_intObj
-                  hResourceInfo = intObj[:metadata][:resourceInfo]
+                  intMetadataClass = InternalMetadata.new
+                  hProcessStep = intMetadataClass.newProcessStep
 
                   axMethods.each do |xMethod|
 
@@ -37,7 +36,7 @@ module ADIWG
                      # methodology bio (methdesc) - method description (required)
                      description = xMethod.xpath('./methdesc').text
                      unless description.empty?
-                        statement += description + '; '
+                        hProcessStep[:description] = description
                      end
                      if description.empty?
                         hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO lineage methodology description is missing'
@@ -49,19 +48,14 @@ module ADIWG
                         axCitations.each do |xCitation|
                            hReturn = Citation.unpack(xCitation, hResponseObj)
                            unless hReturn.nil?
-                              hLineage[:lineageCitation] << hReturn
+                              hProcessStep[:references] << hReturn
                            end
                         end
                      end
 
                   end
 
-                  unless statement.empty?
-                     statement.chomp!('; ')
-                     hLineage[:statement] = statement
-                  end
-
-                  return hLineage
+                  hLineage[:processSteps] << hProcessStep
 
                end
             end
