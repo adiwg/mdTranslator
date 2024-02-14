@@ -231,9 +231,9 @@ module ADIWG
                         hCitation[:title] = thesaurus
                         hKeyword[:thesaurus] = hCitation
                      end
-                     if thesaurus.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO method keyword thesaurus is missing'
-                     end
+                     # if thesaurus.empty?
+                     #    hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO method keyword thesaurus is missing'
+                     # end
 
                      # theme keyword bio.1.2 (methkey) - lineage method keywords {keywordObject}
                      axKeywords = xKeywords.xpath('./methkey')
@@ -247,9 +247,9 @@ module ADIWG
                            end
                         end
                      end
-                     if axKeywords.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO method keyword is missing'
-                     end
+                     # if axKeywords.empty?
+                     #    hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO method keyword is missing'
+                     # end
 
                      aKeywords << hKeyword
 
