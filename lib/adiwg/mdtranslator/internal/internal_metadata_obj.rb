@@ -951,8 +951,8 @@ class InternalMetadata
          statement: nil,
          resourceScope: {},
          lineageCitation: [],
-         dataSources: [],
-         processSteps: []
+         processSteps: [],
+         dataSources: []
       }
    end
 
