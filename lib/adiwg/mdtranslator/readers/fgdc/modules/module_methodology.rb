@@ -49,7 +49,7 @@ module ADIWG
                         axCitations.each do |xCitation|
                            hReturn = Citation.unpack(xCitation, hResponseObj)
                            unless hReturn.nil?
-                              hLineage[:lineageCitation] << hReturn
+                              hLineage[:processSteps] << hReturn
                            end
                         end
                      end
