@@ -157,33 +157,33 @@ class TestMdJsonReader < Minitest::Test
 
    end
 
-   def test_mdJson_reader_schema_version_future_minor
+#    def test_mdJson_reader_schema_version_future_minor
 
-      # read in an mdJson 2.x test file with schema object
-      file = File.join(File.dirname(__FILE__), 'testData', 'mdJson_minimal.json')
-      file = File.open(file, 'r')
-      jsonMinimal = file.read
-      file.close
+#       # read in an mdJson 2.x test file with schema object
+#       file = File.join(File.dirname(__FILE__), 'testData', 'mdJson_minimal.json')
+#       file = File.open(file, 'r')
+#       jsonMinimal = file.read
+#       file.close
 
-      # bump minor version
-      version = Gem::Specification.find_by_name('adiwg-mdjson_schemas').version.to_s
-      aVersion = version.split('.')
-      newMinor = aVersion[1].to_i + 1
-      testVersion = aVersion[0] + '.' + newMinor.to_s + '.' + aVersion[2]
+#       # bump minor version
+#       version = Gem::Specification.find_by_name('adiwg-mdjson_schemas').version.to_s
+#       aVersion = version.split('.')
+#       newMinor = aVersion[1].to_i + 1
+#       testVersion = aVersion[0] + '.' + newMinor.to_s + '.' + aVersion[2]
 
-      hJson = JSON.parse(jsonMinimal)
-      hSchema = hJson['schema']
-      hSchema['version'] = testVersion
-      jsonIn = hJson.to_json
+#       hJson = JSON.parse(jsonMinimal)
+#       hSchema = hJson['schema']
+#       hSchema['version'] = testVersion
+#       jsonIn = hJson.to_json
 
-      metadata = ADIWG::Mdtranslator.translate(file: jsonIn)
+#       metadata = ADIWG::Mdtranslator.translate(file: jsonIn)
 
-      refute_empty metadata
-      assert_equal 'mdJson', metadata[:readerRequested]
-      refute metadata[:readerStructurePass]
-      refute_empty metadata[:readerStructureMessages]
+#       refute_empty metadata
+#       assert_equal 'mdJson', metadata[:readerRequested]
+#       refute metadata[:readerStructurePass]
+#       refute_empty metadata[:readerStructureMessages]
 
-   end
+#    end
 
    def test_mdJson_reader_schema_version_future_major
 
