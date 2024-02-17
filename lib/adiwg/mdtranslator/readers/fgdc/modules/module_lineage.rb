@@ -30,21 +30,15 @@ module ADIWG
                      # lineage bio (method) - methodology [] (required)
                      axMethods = xLineage.xpath('./method')
                      unless axMethods.empty?
-                        Method.unpack(hLineage, axMethods, hResponseObj)
+                        axMethods.each do |xMethod|
+                           hProcess = Method.unpack(hLineage, xMethod, hResponseObj)
+                           hLineage[:processSteps] << hProcess
+                        end
                      end
                      if axMethods.empty?
                         hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO lineage methodology section is missing'
                      end
-
-                     # lineage 2.5.1 (srcinfo) - source information []
-                     axSource = xLineage.xpath('./srcinfo')
-                     unless axSource.empty?
-                        axSource.each do |xSource|
-                           hSource = Source.unpack(xSource, hResponseObj)
-                           hLineage[:dataSources] << hSource
-                        end
-                     end
-
+                     
                      # lineage 2.5.2 (procstep) - process step [] (required)
                      axProcess = xLineage.xpath('./procstep')
                      unless axProcess.empty?
@@ -55,6 +49,15 @@ module ADIWG
                      end
                      if axProcess.empty?
                         hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: lineage process step section is missing'
+                     end
+
+                     # lineage 2.5.1 (srcinfo) - source information []
+                     axSource = xLineage.xpath('./srcinfo')
+                     unless axSource.empty?
+                        axSource.each do |xSource|
+                           hSource = Source.unpack(xSource, hResponseObj)
+                           hLineage[:dataSources] << hSource
+                        end
                      end
 
                      return hLineage

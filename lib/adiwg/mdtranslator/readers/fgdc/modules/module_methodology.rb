@@ -16,7 +16,7 @@ module ADIWG
 
             module Method
 
-               def self.unpack(hLineage, axMethods, hResponseObj)
+               def self.unpack(hLineage, xMethod, hResponseObj)
 
                   intObj = Fgdc.get_intObj
                   hResourceInfo = intObj[:metadata][:resourceInfo]
@@ -24,42 +24,37 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   hProcessStep = intMetadataClass.newProcessStep
 
-                  axMethods.each do |xMethod|
+                  # methodology bio (methtype) - method type (not supported)
 
-                     # methodology bio (methtype) - method type (not supported)
-
-                     # methodology bio (methodid) - method identifier [] {keyword}
-                     axKeywords = xMethod.xpath('./methodid')
-                     unless axKeywords.empty?
-                        axKeywords.each do |xKeyword|
-                           Keyword.unpack(xKeyword, hResourceInfo, hResponseObj)
-                        end
+                  # methodology bio (methodid) - method identifier [] {keyword}
+                  axKeywords = xMethod.xpath('./methodid')
+                  unless axKeywords.empty?
+                     axKeywords.each do |xKeyword|
+                        Keyword.unpack(xKeyword, hResourceInfo, hResponseObj)
                      end
-
-                     # methodology bio (methdesc) - method description (required)
-                     description = xMethod.xpath('./methdesc').text
-                     unless description.empty?
-                        hProcessStep[:description] = description
-                     end
-                     if description.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO lineage methodology description is missing'
-                     end
-
-                     # methodology bio (methcite) - method citation [] {citation}
-                     axCitations = xMethod.xpath('./methcite')
-                     unless axCitations.empty?
-                        axCitations.each do |xCitation|
-                           hReturn = Citation.unpack(xCitation, hResponseObj)
-                           unless hReturn.nil?
-                              hProcessStep[:references] << hReturn
-                           end
-                        end
-                     end
-
                   end
 
-                  hLineage[:processSteps] << hProcessStep
+                  # methodology bio (methdesc) - method description (required)
+                  description = xMethod.xpath('./methdesc').text
+                  unless description.empty?
+                     hProcessStep[:description] = description
+                  end
+                  if description.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO lineage methodology description is missing'
+                  end
 
+                  # methodology bio (methcite) - method citation [] {citation}
+                  axCitations = xMethod.xpath('./methcite')
+                  unless axCitations.empty?
+                     axCitations.each do |xCitation|
+                        hReturn = Citation.unpack(xCitation, hResponseObj)
+                        unless hReturn.nil?
+                           hProcessStep[:references] << hReturn
+                        end
+                     end
+                  end
+
+                  return hProcessStep
                end
             end
 

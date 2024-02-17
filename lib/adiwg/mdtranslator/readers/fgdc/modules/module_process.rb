@@ -38,7 +38,7 @@ module ADIWG
                      axUsed.each do |xUsed|
                         usedSrc = xUsed.text
                         unless usedSrc.empty?
-                           hLineage[:dataSources].each do |hSource|
+                           hProcess[:stepSources].each do |hSource|
                               unless hSource[:sourceId].nil?
                                  if usedSrc == hSource[:sourceId]
                                     hProcess[:stepSources] << hSource
