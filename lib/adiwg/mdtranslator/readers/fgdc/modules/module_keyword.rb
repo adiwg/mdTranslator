@@ -231,6 +231,8 @@ module ADIWG
                         hCitation[:title] = thesaurus
                         hKeyword[:thesaurus] = hCitation
                      end
+                     # This code is being disabled intentionally. While the standard does indicate this is required, in practice it is not always present.
+                     #   Instead of requiring keywords, we will allow them to be optional for bio lineage.
                      # if thesaurus.empty?
                      #    hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO method keyword thesaurus is missing'
                      # end
@@ -247,6 +249,8 @@ module ADIWG
                            end
                         end
                      end
+                     # This code is being disabled intentionally. While the standard does indicate this is required, in practice it is not always present.
+                     #   Instead of requiring keywords, we will allow them to be optional for bio lineage.
                      # if axKeywords.empty?
                      #    hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO method keyword is missing'
                      # end
