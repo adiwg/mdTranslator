@@ -157,6 +157,8 @@ class TestMdJsonReader < Minitest::Test
 
    end
 
+#   This test needs to be verified that it's still valid and useful.
+#     Leave this test disabled until issue #348 is resolved.
 #    def test_mdJson_reader_schema_version_future_minor
 
 #       # read in an mdJson 2.x test file with schema object
