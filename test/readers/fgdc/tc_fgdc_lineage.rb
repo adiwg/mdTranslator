@@ -35,16 +35,47 @@ class TestReaderFgdcLineage < TestReaderFGDCParent
 
       # lineage
       refute_nil hLineage
-      assert_equal 'method description one; method description two', hLineage[:statement]
-      assert_equal 3, hLineage[:lineageCitation].length
-      assert_equal 2, hLineage[:dataSources].length
-      assert_equal 2, hLineage[:processSteps].length
+      # statement to processStep description, change 
+      assert_nil hLineage[:statement]   
+      refute_empty hLineage[:processSteps]
+      
+      # 4 total, 2 from methodology and 2 from process step
+      assert_equal 4, hLineage[:processSteps].length
 
-      # citation
-      hCitation = hLineage[:lineageCitation][0]
-      assert_equal 'method citation one', hCitation[:title]
+      # 2 tests for descriptions in methods
+      assert_equal 'method description one', hLineage[:processSteps][0][:description]
+      assert_equal 'method description two', hLineage[:processSteps][1][:description]
 
+      # expected 2 citations in the first process step
+      assert_equal 2, hLineage[:processSteps][0][:references].length
+
+      # expected 1 citation in the second process step
+      assert_equal 1, hLineage[:processSteps][1][:references].length
+
+      
+      # process step descriptions
+      assert_equal 'my proc step 1 description', hLineage[:processSteps][2][:description]
+      assert_equal 'my proc step 2 description', hLineage[:processSteps][3][:description]
+      
+      # citations within the methodologies
+      hCitation1 = hLineage[:processSteps][0][:references][0]
+      refute_nil hCitation1
+      assert_equal 'method citation one', hCitation1[:title]
+      
+      hCitation2 = hLineage[:processSteps][0][:references][1]
+      refute_nil hCitation2
+      assert_equal 'method citation two', hCitation2[:title]
+      
+      hCitation3 = hLineage[:processSteps][1][:references][0]
+      refute_nil hCitation3
+      assert_equal 1, hLineage[:processSteps][1][:references].length
+      assert_equal 'method citation three', hCitation3[:title]
+      
+      # lineageCitation
+      assert_equal 0, hLineage[:lineageCitation].length
+      
       # dataSource
+      assert_equal 2, hLineage[:dataSources].length
       hSource = hLineage[:dataSources][0]
       assert_equal 'source id', hSource[:sourceId]
       assert_equal 'my source 1 contribution', hSource[:description]

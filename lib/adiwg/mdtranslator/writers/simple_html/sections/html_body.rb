@@ -67,36 +67,24 @@ module ADIWG
                      @html.div('id' => 'sideNav') do
 
                         # add section buttons
-                        @html.a(' Top', {'href' => '#', 'class' => 'btn'})
                         @html.a(' Contacts', {'href' => '#body-contacts', 'class' => 'btn navBtn', 'id' => 'contactButton'})
                         @html.a(' Metadata', {'href' => '#body-metadataInfo', 'class' => 'btn navBtn', 'id' => 'metadataButton'})
                         @html.a(' Resource', {'href' => '#body-resourceInfo', 'class' => 'btn navBtn', 'id' => 'resourceButton'})
                         @html.a(' Lineage', {'href' => '#body-lineage', 'class' => 'btn navBtn', 'id' => 'lineageButton'})
                         @html.a(' Distribution', {'href' => '#body-distribution', 'class' => 'btn navBtn', 'id' => 'distributionButton'})
+                        @html.br
                         @html.a(' Associated', {'href' => '#body-associatedResource', 'class' => 'btn navBtn', 'id' => 'associatedButton'})
                         @html.a(' Additional', {'href' => '#body-additionalDocument', 'class' => 'btn navBtn', 'id' => 'additionalButton'})
                         @html.a(' Dictionary', {'href' => '#body-dataDictionary', 'class' => 'btn navBtn', 'id' => 'dictionaryButton'})
                         @html.a(' Funding', {'href' => '#body-funding', 'class' => 'btn navBtn', 'id' => 'fundingButton'})
                         @html.a(' Repository', {'href' => '#body-repository', 'class' => 'btn navBtn', 'id' => 'repositoryButton'})
 
-                        # add open and close buttons
-                        @html.span(' Open', {'class' => 'btn icon-caret-down', 'id' => 'openAllButton'})
-                        @html.span(' Close', {'class' => 'btn icon-caret-right', 'id' => 'closeAllButton'})
-
                      end
 
                      # main header
                      @html.h2('id' => 'mainHeader') do
                         # added blank to span tag to force builder to create closing tag
-                        @html.span('', 'id' => 'logo')
-                        @html.span('Metadata Record')
-                        @html.span('HTML5', 'class' => 'version')
                      end
-
-                     # report title
-                     # aShortVersion = version.split('.')
-                     # shortVersion = aShortVersion[0].to_s + '.' + aShortVersion[1].to_s
-                     @html.h1('mdTranslator ' + version + ' HTML Metadata Record', 'id' => 'mdtranslator-metadata-report')
 
                      # resource citation title
                      unless hResourceInfo.empty?
@@ -110,7 +98,7 @@ module ADIWG
                      # report date
                      @html.div(:class => 'block') do
                         @html.em('Report Generated:')
-                        @html.text!(Time.new.inspect)
+                        @html.text!(Time.new.strftime('%Y-%m-%d %H:%M:%S'))
                      end
 
                      # metadata source
@@ -137,6 +125,7 @@ module ADIWG
                                  end
                               end
                               @html.hr
+                              @html.br
                            end
                         end
                      end
