@@ -28,7 +28,7 @@ module ADIWG
                   graphicClass = Html_Graphic.new(@html)
 
                   @html.div do
-                     @html.div(hContact[:name], {'id' => 'CID_' + hContact[:contactId], 'class' => 'h3'})
+                     @html.h3(hContact[:name], {'id' => 'CID_' + hContact[:contactId], 'class' => 'h3'})
                      @html.div(:class => 'block') do
 
                         # contact - contact ID
@@ -70,7 +70,7 @@ module ADIWG
                         # contact - address
                         hContact[:addresses].each do |hAddress|
                            @html.div do
-                              @html.div('Address', {'class' => 'h5'})
+                              @html.h5('Address', {'class' => 'h5'})
                               @html.div(:class => 'block') do
 
                                  # address - delivery points
@@ -119,7 +119,7 @@ module ADIWG
                         # contact - phones
                         hContact[:phones].each do |hPhone|
                            @html.div do
-                              @html.div('Phone', {'class' => 'h5'})
+                              @html.h5('Phone', {'class' => 'h5'})
                               @html.div(:class => 'block') do
 
                                  # phone - name
@@ -159,7 +159,7 @@ module ADIWG
                         # contact - online resource []
                         hContact[:onlineResources].each do |hOnline|
                            @html.div do
-                              @html.div('Online Resource', {'class' => 'h5'})
+                              @html.h5('Online Resource', {'class' => 'h5'})
                               @html.div(:class => 'block') do
                                  onlineClass.writeHtml(hOnline)
                               end
@@ -169,7 +169,7 @@ module ADIWG
                         # contact - logos []
                         hContact[:logos].each do |hLogo|
                            @html.div do
-                              @html.div('Logo Graphic', {'class' => 'h5'})
+                              @html.h5('Logo Graphic', {'class' => 'h5'})
                               @html.div(:class => 'block') do
                                  graphicClass.writeHtml(hLogo)
                               end
@@ -188,6 +188,38 @@ module ADIWG
                            @html.em('Contact Instructions: ')
                            @html.text!(hContact[:contactInstructions])
                            @html.br
+                        end
+
+                        # contact - external identifiers []
+                        if hContact.key?(:externalIdentifier) && !hContact[:externalIdentifier].empty?
+                           hContact[:externalIdentifier].each do |identifier|
+                              @html.div do
+                                 @html.h5("External Identifier", {'class' => 'h5'})
+                                 @html.div(:class => 'block') do
+                                    @html.em('Identifier: ')
+                                    @html.text!(identifier[:identifier])
+                                    @html.br
+
+                                    unless identifier[:namespace].nil?
+                                       @html.em('Namespace: ')
+                                       @html.text!(identifier[:namespace])
+                                       @html.br
+                                    end
+
+                                    unless identifier[:version].nil?
+                                       @html.em('Version: ')
+                                       @html.text!(identifier[:version])
+                                       @html.br
+                                    end
+
+                                    unless identifier[:description].nil?
+                                       @html.em('Description: ')
+                                       @html.text!(identifier[:description])
+                                       @html.br
+                                    end
+                                 end
+                              end
+                           end
                         end
 
                      end

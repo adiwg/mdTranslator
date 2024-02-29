@@ -20,7 +20,7 @@ module ADIWG
                   # geometry object - coordinates
                   unless hObject[:coordinates].nil?
                      @html.div do
-                        @html.div('Coordinates', 'class' => 'h5')
+                        @html.h5('Coordinates', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            @html.text!(hObject[:coordinates].to_s)
                         end
@@ -30,7 +30,7 @@ module ADIWG
                   # geographic element - native GeoJson
                   unless hObject[:nativeGeoJson].empty?
                      @html.div do
-                        @html.div('GeoJson', 'class' => 'h5')
+                        @html.h5('GeoJson', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            @html.text!(hObject[:nativeGeoJson].to_json)
                         end

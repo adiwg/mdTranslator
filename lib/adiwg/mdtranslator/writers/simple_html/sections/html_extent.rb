@@ -39,7 +39,7 @@ module ADIWG
                   # extent - geographic extents
                   hExtent[:geographicExtents].each do |hGeographic|
                      @html.div do
-                        @html.div('Geographic Extent', {'class' => 'h5'})
+                        @html.h5('Geographic Extent', {'class' => 'h5'})
                         @html.div(:class => 'block extent-geographic') do
                            geographicClass.writeHtml(hGeographic)
                         end
@@ -49,7 +49,7 @@ module ADIWG
                   # extent - temporal extents
                   hExtent[:temporalExtents].each do |hTemporal|
                      @html.div do
-                        @html.div('Temporal Extent', {'class' => 'h5'})
+                        @html.h5('Temporal Extent', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            temporalClass.writeHtml(hTemporal)
                         end
@@ -59,7 +59,7 @@ module ADIWG
                   # extent - vertical extents
                   hExtent[:verticalExtents].each do |hVertical|
                      @html.div do
-                        @html.div('Vertical Extent', {'class' => 'h5'})
+                        @html.h5('Vertical Extent', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            verticalClass.writeHtml(hVertical)
                         end

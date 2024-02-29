@@ -49,7 +49,7 @@ module ADIWG
                   # graphic - uri [] {onlineResource}
                   hGraphic[:graphicURI].each do |hOnline|
                      @html.div do
-                        @html.div('Online Link ', {'class' => 'h5'})
+                        @html.h5('Online Link ', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            onlineClass.writeHtml(hOnline)
                         end
@@ -59,7 +59,7 @@ module ADIWG
                   # graphic - constraint [] {constraint}
                   hGraphic[:graphicConstraints].each do |hConstraint|
                      @html.div do
-                        @html.div('Constraint', {'class' => 'h5'})
+                        @html.h5('Constraint', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            constraintClass.writeHtml(hConstraint)
                         end

@@ -129,7 +129,7 @@ module ADIWG
                   # entity attribute - range of values [] {citation}
                   hAttribute[:valueRange].each do |hRange|
                      @html.div do
-                        @html.div('Range of Values', {'class' => 'h5'})
+                        @html.h5('Range of Values', {'class' => 'h5'})
                         @html.div(:class => 'block') do
 
                            # range of values - minimum value
@@ -153,7 +153,7 @@ module ADIWG
                   # entity attribute - time period of values {timePeriod}
                   hAttribute[:timePeriod].each do |hPeriod|
                      @html.div do
-                        @html.div('Time Period of Values', {'class' => 'h5'})
+                        @html.h5('Time Period of Values', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            periodClass.writeHtml(hPeriod)
                         end
@@ -163,7 +163,7 @@ module ADIWG
                   # entity attribute - attribute reference {citation}
                   unless hAttribute[:attributeReference].empty?
                      @html.div do
-                        @html.div('Reference', {'class' => 'h5'})
+                        @html.h5('Reference', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            citationClass.writeHtml(hAttribute[:attributeReference])
                         end

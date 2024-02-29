@@ -5,7 +5,7 @@
 #  Stan Smith 2017-11-16 original script
 
 require_relative 'class_identification'
-require_relative 'class_quality'
+require_relative 'class_dataQuality'
 require_relative 'class_spatialOrganization'
 require_relative 'class_spatialReference'
 require_relative 'class_dictionary'
@@ -33,7 +33,7 @@ module ADIWG
 
                   # classes used
                   idClass = Identification.new(@xml, @hResponseObj)
-                  qualityClass = Quality.new(@xml, @hResponseObj)
+                  dataQualityClass = DataQuality.new(@xml, @hResponseObj)
                   spaceOrgClass = SpatialOrganization.new(@xml, @hResponseObj)
                   spaceRefClass = SpatialReference.new(@xml, @hResponseObj)
                   dictionaryClass = DataDictionary.new(@xml, @hResponseObj)
@@ -62,7 +62,7 @@ module ADIWG
                      # currently only lineage is implemented
                      unless intObj[:metadata][:lineageInfo].empty?
                         @xml.tag!('dataqual') do
-                           qualityClass.writeXML(intObj)
+                           dataQualityClass.writeXML(intObj)
                         end
                      end
                      if intObj[:metadata][:lineageInfo].empty? && @hResponseObj[:writerShowTags]

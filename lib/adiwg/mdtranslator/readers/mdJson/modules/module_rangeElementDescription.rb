@@ -23,8 +23,8 @@ module ADIWG
               intRangeElementDescription[:definition] = hRangeElementDescription['definition']
             end
 
-            if hRangeElementDescription.has_key?('rangeElements')
-              intRangeElementDescription[:rangeElements] = hRangeElementDescription['rangeElements']
+            if hRangeElementDescription.has_key?('rangeElement')
+              intRangeElementDescription[:rangeElement] = hRangeElementDescription['rangeElement']
             end
 
             return intRangeElementDescription

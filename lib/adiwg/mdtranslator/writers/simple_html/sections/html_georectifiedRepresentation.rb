@@ -27,7 +27,7 @@ module ADIWG
                   # georectified representation - scope
                   hGeorectified[:scope].each do |scope|
                      @html.div do
-                        @html.div('Scope ', 'class' => 'h5')
+                        @html.h5('Scope ', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            scopeClass.writeHtml(hGeorectified[:scope])
                         end
@@ -37,7 +37,7 @@ module ADIWG
                   # georectified representation - grid {gridRepresentation}
                   unless hGeorectified[:gridRepresentation].empty?
                      @html.div do
-                        @html.div('Grid Information ', 'class' => 'h5')
+                        @html.h5('Grid Information ', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            gridClass.writeHtml(hGeorectified[:gridRepresentation])
                         end
