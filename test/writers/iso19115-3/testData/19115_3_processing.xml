@@ -35,58 +35,6 @@
 
   <mrl:processingInformation>
     <mrl:LE_Processing>
-      <mrl:algorithm>
-        <mrl:LE_Algorithm>
-          <mrl:citation>
-            <cit:CI_Citation>
-              <cit:title>
-                <gco:CharacterString>title only citation</gco:CharacterString>
-              </cit:title>
-              <cit:alternateTitle/>
-              <cit:date/>
-              <cit:edition/>
-              <cit:identifier/>
-              <cit:citedResponsibleParty/>
-              <cit:presentationForm/>
-              <cit:series/>
-              <cit:otherCitationDetails/>
-              <cit:ISBN/>
-              <cit:ISSN/>
-              <cit:onlineResource/>
-              <cit:graphic/>
-            </cit:CI_Citation>
-          </mrl:citation>
-          <mrl:description>
-            <gco:CharacterString>description</gco:CharacterString>
-          </mrl:description>
-        </mrl:LE_Algorithm>
-      </mrl:algorithm>
-      <mrl:algorithm>
-        <mrl:LE_Algorithm>
-          <mrl:citation>
-            <cit:CI_Citation>
-              <cit:title>
-                <gco:CharacterString>title only citation</gco:CharacterString>
-              </cit:title>
-              <cit:alternateTitle/>
-              <cit:date/>
-              <cit:edition/>
-              <cit:identifier/>
-              <cit:citedResponsibleParty/>
-              <cit:presentationForm/>
-              <cit:series/>
-              <cit:otherCitationDetails/>
-              <cit:ISBN/>
-              <cit:ISSN/>
-              <cit:onlineResource/>
-              <cit:graphic/>
-            </cit:CI_Citation>
-          </mrl:citation>
-          <mrl:description>
-            <gco:CharacterString>description</gco:CharacterString>
-          </mrl:description>
-        </mrl:LE_Algorithm>
-      </mrl:algorithm>
       <mrl:identifier>
         <mcc:MD_Identifier>
           <mcc:authority>
@@ -221,11 +169,6 @@
       <mrl:runTimeParameters>
         <gco:CharacterString>runtime parameters</gco:CharacterString>
       </mrl:runTimeParameters>
-    </mrl:LE_Processing>
-  </mrl:processingInformation>
-
-  <mrl:processingInformation>
-    <mrl:LE_Processing>
       <mrl:algorithm>
         <mrl:LE_Algorithm>
           <mrl:citation>
@@ -252,6 +195,37 @@
           </mrl:description>
         </mrl:LE_Algorithm>
       </mrl:algorithm>
+      <mrl:algorithm>
+        <mrl:LE_Algorithm>
+          <mrl:citation>
+            <cit:CI_Citation>
+              <cit:title>
+                <gco:CharacterString>title only citation</gco:CharacterString>
+              </cit:title>
+              <cit:alternateTitle/>
+              <cit:date/>
+              <cit:edition/>
+              <cit:identifier/>
+              <cit:citedResponsibleParty/>
+              <cit:presentationForm/>
+              <cit:series/>
+              <cit:otherCitationDetails/>
+              <cit:ISBN/>
+              <cit:ISSN/>
+              <cit:onlineResource/>
+              <cit:graphic/>
+            </cit:CI_Citation>
+          </mrl:citation>
+          <mrl:description>
+            <gco:CharacterString>description</gco:CharacterString>
+          </mrl:description>
+        </mrl:LE_Algorithm>
+      </mrl:algorithm>
+    </mrl:LE_Processing>
+  </mrl:processingInformation>
+
+  <mrl:processingInformation>
+    <mrl:LE_Processing>
       <mrl:identifier>
         <mcc:MD_Identifier>
           <mcc:authority>
@@ -367,12 +341,37 @@
       <mrl:runTimeParameters>
         <gco:CharacterString>runtime parameters</gco:CharacterString>
       </mrl:runTimeParameters>
+      <mrl:algorithm>
+        <mrl:LE_Algorithm>
+          <mrl:citation>
+            <cit:CI_Citation>
+              <cit:title>
+                <gco:CharacterString>title only citation</gco:CharacterString>
+              </cit:title>
+              <cit:alternateTitle/>
+              <cit:date/>
+              <cit:edition/>
+              <cit:identifier/>
+              <cit:citedResponsibleParty/>
+              <cit:presentationForm/>
+              <cit:series/>
+              <cit:otherCitationDetails/>
+              <cit:ISBN/>
+              <cit:ISSN/>
+              <cit:onlineResource/>
+              <cit:graphic/>
+            </cit:CI_Citation>
+          </mrl:citation>
+          <mrl:description>
+            <gco:CharacterString>description</gco:CharacterString>
+          </mrl:description>
+        </mrl:LE_Algorithm>
+      </mrl:algorithm>
     </mrl:LE_Processing>
   </mrl:processingInformation>
 
   <mrl:processingInformation>
     <mrl:LE_Processing>
-      <mrl:algorithm/>
       <mrl:identifier>
         <mcc:MD_Identifier>
           <mcc:authority>
@@ -448,6 +447,7 @@
       <mrl:procedureDescription/>
       <mrl:documentation/>
       <mrl:runTimeParameters/>
+      <mrl:algorithm/>
     </mrl:LE_Processing>
   </mrl:processingInformation>
 
