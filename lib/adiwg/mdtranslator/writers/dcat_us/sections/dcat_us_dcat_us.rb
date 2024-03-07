@@ -18,6 +18,7 @@ require_relative 'dcat_us_references'
 require_relative 'dcat_us_landing_page'
 require_relative 'dcat_us_system_of_records'
 require_relative 'dcat_us_description'
+require_relative 'dcat_us_language'
 
 module ADIWG
    module Mdtranslator
@@ -43,6 +44,7 @@ module ADIWG
                temporal = Temporal.build(intObj)
                license = License.build(intObj)
                issued = Issued.build(intObj)
+               language = Language.build(intObj)
                describedBy = DescribedBy.build(intObj)
                isPartOf = IsPartOf.build(intObj)
                theme = Theme.build(intObj)
@@ -73,7 +75,7 @@ module ADIWG
 
                   json.set!('issued', issued)
                   # json.set!('accrualPeriodicity', metadataInfo[:metadataMaintenance][:maintenanceFrequency])
-                  # json.set!('language', metadataInfo[:metadataLocales][0][:languageCode])
+                  json.set!('language', language)
                   # json.set!('dataQuality', metadataInfo[:metadataMaintenance][:maintenanceNote])
                   json.set!('theme', theme)
                   json.set!('references', references)
