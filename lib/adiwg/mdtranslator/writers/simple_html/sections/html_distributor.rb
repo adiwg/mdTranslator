@@ -30,7 +30,7 @@ module ADIWG
                   # distributor - contact {responsibility}
                   unless hDistributor[:contact].empty?
                      @html.div do
-                        @html.div('Contact', {'class' => 'h5'})
+                        @html.h5('Contact', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            responsibilityClass.writeHtml(hDistributor[:contact])
                         end
@@ -40,7 +40,7 @@ module ADIWG
                   # distributor - order process [] {orderProcess}
                   hDistributor[:orderProcess].each do |hOrder|
                      @html.div do
-                        @html.div('Order Process', {'class' => 'h5'})
+                        @html.h5('Order Process', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            orderClass.writeHtml(hOrder)
                         end
@@ -50,7 +50,7 @@ module ADIWG
                   # distributor - transfer options [] {transferOption}
                   hDistributor[:transferOptions].each do |hTransfer|
                      @html.div do
-                        @html.div('Transfer Option', {'class' => 'h5'})
+                        @html.h5('Transfer Option', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            transferClass.writeHtml(hTransfer)
                         end

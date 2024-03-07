@@ -51,7 +51,7 @@ module ADIWG
                   # dictionary - domains [] {domain}
                   unless hDictionary[:domains].empty?
                      @html.div do
-                        @html.div('Domains', {'class' => 'h5'})
+                        @html.h5('Domains', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            domainClass.writeHtml(hDictionary[:domains])
                         end
@@ -61,7 +61,7 @@ module ADIWG
                   # dictionary - entities [] {entity}
                   unless hDictionary[:entities].empty?
                      @html.div do
-                        @html.div('Entities', {'class' => 'h5'})
+                        @html.h5('Entities', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            entityClass.writeHtml(hDictionary[:entities])
                         end
@@ -71,7 +71,7 @@ module ADIWG
                   # dictionary - citation {citation}
                   unless hDictionary[:citation].empty?
                      @html.div do
-                        @html.div('Citation', {'class' => 'h5'})
+                        @html.h5('Citation', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            citationClass.writeHtml(hDictionary[:citation])
                         end
@@ -81,7 +81,7 @@ module ADIWG
                   # dictionary - locales {locale}
                   hDictionary[:locales].each do |hLocale|
                      @html.div do
-                        @html.div('Locale', {'class' => 'h5'})
+                        @html.h5('Locale', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            localeClass.writeHtml(hLocale)
                         end
@@ -91,7 +91,7 @@ module ADIWG
                   # dictionary - responsible party {responsibility}
                   unless hDictionary[:responsibleParty].empty?
                      @html.div do
-                        @html.div(hDictionary[:responsibleParty][:roleName], {'class' => 'h5'})
+                        @html.h5(hDictionary[:responsibleParty][:roleName], {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            responsibilityClass.writeHtml(hDictionary[:responsibleParty])
                         end

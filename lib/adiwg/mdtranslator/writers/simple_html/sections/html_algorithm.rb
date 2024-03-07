@@ -32,7 +32,7 @@ module ADIWG
                   # algorithm - citation {citation}
                   unless hAlgorithm[:citation].empty?
                      @html.div do
-                        @html.div('Algorithm citation', {'class' => 'h5'})
+                        @html.h5('Algorithm citation', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            citationClass.writeHtml(hAlgorithm[:citation])
                         end

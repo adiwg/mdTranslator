@@ -29,7 +29,7 @@ module ADIWG
                   georeferenceableClass = Html_GeoreferenceableRepresentation.new(@html)
 
                   # spatial Representation - grid {gridRepresentation}
-                  unless hRepresentation[:gridRepresentation].nil? || hRepresentation[:gridRepresentation].empty?
+                  unless hRepresentation[:gridRepresentation].empty?
                      @html.details do
                         @html.summary('Grid Representation ', 'class' => 'h5')
                         @html.section(:class => 'block') do
@@ -39,7 +39,7 @@ module ADIWG
                   end
 
                   # spatial Representation - vector {vectorRepresentation}
-                  unless hRepresentation[:vectorRepresentation].nil? || hRepresentation[:vectorRepresentation].empty?
+                  unless hRepresentation[:vectorRepresentation].empty?
                      @html.details do
                         @html.summary('Vector Representation ', 'class' => 'h5')
                         @html.section(:class => 'block') do
@@ -49,7 +49,7 @@ module ADIWG
                   end
 
                   # spatial Representation - georectified {georectifiedRepresentation}
-                  unless hRepresentation[:georectifiedRepresentation].nil? || hRepresentation[:georectifiedRepresentation].empty?
+                  unless hRepresentation[:georectifiedRepresentation].empty?
                      @html.details do
                         @html.summary('Georectified Representation ', 'class' => 'h5')
                         @html.section(:class => 'block') do
@@ -59,7 +59,7 @@ module ADIWG
                   end
 
                   # spatial Representation - georeferenceable {georeferenceableRepresentation}
-                  unless hRepresentation[:georeferenceableRepresentation].nil? || hRepresentation[:georeferenceableRepresentation].empty?
+                  unless hRepresentation[:georeferenceableRepresentation].empty?
                      @html.details do
                         @html.summary('Georeferenceable Representation ', 'class' => 'h5')
                         @html.section(:class => 'block') do

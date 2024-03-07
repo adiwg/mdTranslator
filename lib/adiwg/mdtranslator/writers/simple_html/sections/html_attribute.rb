@@ -48,7 +48,7 @@ module ADIWG
                   # attribute - attribute identifiers [] {identifier}
                   hAttribute[:attributeIdentifiers].each do |hIdentifier|
                      @html.div do
-                        @html.div('Identifier', 'class' => 'h5')
+                        @html.h5('Identifier', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            identifierClass.writeHtml(hIdentifier)
                         end
@@ -121,7 +121,7 @@ module ADIWG
                   # attribute - range element description
                   hAttribute[:rangeElementDescription].each do |red|
                      @html.div do
-                        @html.div('Range Element Description', 'class' => 'h5')
+                        @html.h5('Range Element Description', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            rangeElementDescriptionClass.writeHtml(red)
                         end
