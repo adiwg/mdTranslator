@@ -80,7 +80,7 @@ module ADIWG
                   json.set!('landingPage', landingPage)
                   json.set!('isPartOf', isPartOf)
                   json.set!('systemOfRecords', systemOfRecords)
-                  # json.set!('primaryITInvestmentUII', metadataInfo[:metadataId])
+                  json.set!('primaryITInvestmentUII', metadataInfo[:metadataIdentifier])
                   json.set!('describedBy', describedBy)
                   # json.set!('describedByType', metadataInfo[:metadataOnlineOptions][0][:olResProtocol])
                   # json.set!('conformsTo', metadataInfo[:metadataStandards][0][:standardName])
