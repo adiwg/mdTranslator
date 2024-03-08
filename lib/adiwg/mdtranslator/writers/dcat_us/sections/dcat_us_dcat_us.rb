@@ -72,7 +72,7 @@ module ADIWG
                   json.set!('temporal', temporal)
 
                   json.set!('issued', issued)
-                  # json.set!('accrualPeriodicity', metadataInfo[:metadataMaintenance][:maintenanceFrequency])
+                  json.set!('accrualPeriodicity', metadataInfo[:metadataMaintenance][:frequency])
                   # json.set!('language', metadataInfo[:metadataLocales][0][:languageCode])
                   # json.set!('dataQuality', metadataInfo[:metadataMaintenance][:maintenanceNote])
                   json.set!('theme', theme)
