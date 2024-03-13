@@ -28,16 +28,18 @@ module ADIWG
                   unless legalConstraints.empty?
                      legalConstraints.each do |legalConstraint|
                         codes = legalConstraint.dig(:legalConstraint, :accessCodes)
-                        accessLevelCodes << codes
+                        accessLevelCodes.push(*codes)
                      end
-                     
                   end
 
                   # return access level that is most restrictive
                   accessLevelCodes.uniq.each do |code|
                      if nonPublicArray.include? code
                         return 'non-public'
-                     elsif restrictedPublicArray.include? code
+                     end
+                  end
+                  accessLevelCodes.uniq.each do |code|
+                     if restrictedPublicArray.include? code
                         return 'restricted public'
                      end
                   end
