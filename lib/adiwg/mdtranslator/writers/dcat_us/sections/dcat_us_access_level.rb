@@ -18,8 +18,8 @@ module ADIWG
 
                   accessLevels = []
                   accessLevelCodes = []
-                  # Gather codes form security constraints and legal constraints
-                  # return access level that is most restrictive
+
+                  # Gather codes from security constraints and legal constraints
                   unless securityConstraints.empty?
                      securityConstraints.each do |securityConstraint|
                         code = securityConstraint[:securityConstraint][:classCode]
@@ -33,7 +33,8 @@ module ADIWG
                      end
                      
                   end
-
+                  
+                  # return access level that is most restrictive
                   accessLevelCodes.uniq.each do |code|
                      if nonPublicArray.include? code
                         return 'non-public'
