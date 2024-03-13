@@ -32,7 +32,7 @@ module ADIWG
                      end
                      
                   end
-                  puts accessLevelCodes
+                  
                   # return access level that is most restrictive
                   accessLevelCodes.uniq.each do |code|
                      if nonPublicArray.include? code
