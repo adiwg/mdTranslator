@@ -8,15 +8,14 @@ module ADIWG
 
                def self.build(intObj)
 
-                  publicArray = ['public','unclassified', 'unrestricted', 'licenseUnrestricted', 'licenseEndUser']
-                  nonPublicArray = ['Non-public','restricted','confidential','secret','topSecret','forOfficialUseOnly','protected','intellectualPropertyRights','restricted','otherRestrictions','private','statutory','confidential','traditionalKnowledge','personallyIdentifiableInformation']
-                  restrictedPublicArray = ['Restricted public','sensitiveButUnclassified','limitedDistribution','copyright','patent','patentPending','trademark','license','licenseDistributor','in-confidence','threatenedOrEndangered']
+                  publicArray = ['unclassified', 'unrestricted', 'licenseUnrestricted', 'licenseEndUser']
+                  nonPublicArray = ['restricted','confidential','secret','topSecret','forOfficialUseOnly','protected','intellectualPropertyRights','restricted','otherRestrictions','private','statutory','confidential','traditionalKnowledge','personallyIdentifiableInformation']
+                  restrictedPublicArray = ['sensitiveButUnclassified','limitedDistribution','copyright','patent','patentPending','trademark','license','licenseDistributor','in-confidence','threatenedOrEndangered']
 
                   resourceInfo = intObj[:metadata][:resourceInfo]
                   legalConstraints = resourceInfo[:constraints]&.select { |constraint| constraint[:type] == 'legal' }
                   securityConstraints = resourceInfo[:constraints]&.select { |constraint| constraint[:type] == 'security' }
 
-                  accessLevels = []
                   accessLevelCodes = []
 
                   # Gather codes from security constraints and legal constraints
@@ -33,7 +32,7 @@ module ADIWG
                      end
                      
                   end
-                  
+                  puts accessLevelCodes
                   # return access level that is most restrictive
                   accessLevelCodes.uniq.each do |code|
                      if nonPublicArray.include? code
