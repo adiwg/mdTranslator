@@ -18,6 +18,7 @@ require_relative 'dcat_us_references'
 require_relative 'dcat_us_landing_page'
 require_relative 'dcat_us_system_of_records'
 require_relative 'dcat_us_description'
+require_relative 'dcat_us_accrualPeriodicity'
 
 module ADIWG
    module Mdtranslator
@@ -49,6 +50,7 @@ module ADIWG
                references = References.build(intObj)
                landingPage = LandingPage.build(intObj)
                systemOfRecords = SystemOfRecords.build(intObj)
+               accrualPeriodicity = AccrualPeriodicity.build(intObj)
 
                @Namespace = ADIWG::Mdtranslator::Writers::Dcat_us
 
@@ -72,7 +74,7 @@ module ADIWG
                   json.set!('temporal', temporal)
 
                   json.set!('issued', issued)
-                  json.set!('accrualPeriodicity', metadataInfo[:metadataMaintenance][:frequency])
+                  json.set!('accrualPeriodicity', accrualPeriodicity)
                   # json.set!('language', metadataInfo[:metadataLocales][0][:languageCode])
                   # json.set!('dataQuality', metadataInfo[:metadataMaintenance][:maintenanceNote])
                   json.set!('theme', theme)
