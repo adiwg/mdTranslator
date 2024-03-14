@@ -30,7 +30,7 @@ module ADIWG
                   xAccuracy = xDataQual.xpath('./attracc')
                   accuracyReport = xAccuracy.xpath('./attraccr').text
                   report = intMetadataClass.newDataQualityReport
-                  report[:type] = 'DQ_NonQuantitativeAttributeAccuracy'
+                  report[:type] = 'NonQuantitativeAttributeAccuracy'
                   descriptiveResult = intMetadataClass.newDescriptiveResult
                   descriptiveResult[:statement] = accuracyReport
                   report[:descriptiveResult] << descriptiveResult
@@ -41,7 +41,7 @@ module ADIWG
                   unless xQuantitativeAccuracy.xpath('./attraccv').empty?
                      value = xQuantitativeAccuracy.xpath('./attraccv').text
                      report = intMetadataClass.newDataQualityReport
-                     report[:type] = 'DQ_QuantitativeAttributeAccuracy'
+                     report[:type] = 'QuantitativeAttributeAccuracy'
                      quantitativeResult = intMetadataClass.newQuantitativeResult
                      quantitativeResult[:values] << value
                      report[:quantitativeResult] << quantitativeResult
@@ -55,7 +55,7 @@ module ADIWG
                   else
                      logic = xLogic.text
                      report = intMetadataClass.newDataQualityReport
-                     report[:type] = 'DQ_ConceptualConsistency'
+                     report[:type] = 'ConceptualConsistency'
                      report[:qualityMeasure] = intMetadataClass.newQualityMeasure
                      report[:qualityMeasure][:description] = logic
                      hDataQuality[:report] << report
@@ -68,7 +68,7 @@ module ADIWG
                   else
                      complete = xComplete.text
                      report = intMetadataClass.newDataQualityReport
-                     report[:type] = 'DQ_CompletenessOmission'
+                     report[:type] = 'CompletenessOmission'
                      descriptiveResult = intMetadataClass.newDescriptiveResult
                      descriptiveResult[:statement] = complete
                      report[:descriptiveResult] << descriptiveResult
@@ -82,7 +82,7 @@ module ADIWG
                      xHorizontal = xPositionalAccuracy.xpath('./horizpa')
                      unless xHorizontal.empty?
                         report = intMetadataClass.newDataQualityReport
-                        report[:type] = 'DQ_AbsoluteExternalPositionalAccuracy'
+                        report[:type] = 'AbsoluteExternalPositionalAccuracy'
                         unless xHorizontal.xpath('qhorizpa/horizpae').empty?
                            report[:qualityMeasure] = intMetadataClass.newQualityMeasure
                            report[:qualityMeasure][:description] = xHorizontal.xpath('qhorizpa/horizpae').text
@@ -105,7 +105,7 @@ module ADIWG
                      xVertical = xPositionalAccuracy.xpath('./vertacc')
                      unless xVertical.empty?
                         report = intMetadataClass.newDataQualityReport
-                        report[:type] = 'DQ_AbsoluteExternalPositionalAccuracy'
+                        report[:type] = 'AbsoluteExternalPositionalAccuracy'
                         unless xVertical.xpath('qvertpa/vertacce').empty?
                            report[:qualityMeasure] = intMetadataClass.newQualityMeasure
                            report[:qualityMeasure][:description] = xVertical.xpath('qvertpa/vertacce').text
