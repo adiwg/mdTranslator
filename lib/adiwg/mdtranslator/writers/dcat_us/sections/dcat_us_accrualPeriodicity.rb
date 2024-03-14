@@ -31,8 +31,10 @@ module ADIWG
                   }
 
                   frequency = intObj[:metadata][:metadataInfo][:metadataMaintenance][:frequency]
-                  frequency_code = frequency_mapping[frequency.downcase]
-
+                  
+                  unless frequency.nil?
+                     frequency_code = frequency_mapping[frequency.downcase]
+                  end
                   return frequency_code
                 end                
 
