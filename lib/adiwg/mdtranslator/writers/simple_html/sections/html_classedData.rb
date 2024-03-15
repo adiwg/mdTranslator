@@ -33,7 +33,7 @@ module ADIWG
                         aClassItems = hClassD[:classedDataItems]
                         aClassItems.each do |hClassItem|
                             @html.div do
-                                @html.div(hClassItem[:className], {'class'=>'h5'})
+                                @html.h5(hClassItem[:className], {'class'=>'h5'})
                                 @html.div(:class=>'block') do
                                     htmlClassItem.writeHtml(hClassItem)
                                 end

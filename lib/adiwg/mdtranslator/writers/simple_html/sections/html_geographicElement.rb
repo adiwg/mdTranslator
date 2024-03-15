@@ -32,7 +32,7 @@ module ADIWG
                   case hElement[:type]
                      when 'Point', 'LineString', 'Polygon', 'MultiPoint', 'MultiLineString', 'MultiPolygon'
                         @html.div do
-                           @html.div(hElement[:type], 'class' => 'h5')
+                           @html.h5(hElement[:type], 'class' => 'h5')
                            @html.div(:class => 'block') do
                               geometryClass.writeHtml(hElement)
                            end
@@ -40,7 +40,7 @@ module ADIWG
 
                      when 'GeometryCollection'
                         @html.div do
-                           @html.div('Geometry Collection', 'class' => 'h5')
+                           @html.h5('Geometry Collection', 'class' => 'h5')
                            @html.div(:class => 'block') do
                               geoCollectionClass.writeHtml(hElement)
                            end
@@ -52,7 +52,7 @@ module ADIWG
                            unless hElement[:id].nil?
                               title += ': '+hElement[:id].to_s
                            end
-                           @html.div(title, 'class' => 'h5')
+                           @html.h5(title, 'class' => 'h5')
                            @html.div(:class => 'block') do
                               featureClass.writeHtml(hElement)
                            end
@@ -60,7 +60,7 @@ module ADIWG
 
                      when 'FeatureCollection'
                         @html.div do
-                           @html.div(hElement[:type], 'class' => 'h5')
+                           @html.h5(hElement[:type], 'class' => 'h5')
                            @html.div(:class => 'block') do
                               featCollectionClass.writeHtml(hElement)
                            end

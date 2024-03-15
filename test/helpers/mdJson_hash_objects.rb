@@ -148,6 +148,16 @@ class MdJsonHashWriter
                status: [
                   'status 1'
                ],
+               pointOfContact: [
+                  {
+                     role: 'pointOfContact',
+                     party: [
+                        {
+                           contactId: 'CID001'
+                        }
+                     ]
+                  }
+               ],
                extent: [
                   geographicExtent: [
                      {
@@ -161,16 +171,6 @@ class MdJsonHashWriter
                         }
                      }
                   ]
-               ],
-               pointOfContact: [
-                  {
-                     role: 'pointOfContact',
-                     party: [
-                        {
-                           contactId: 'CID001'
-                        }
-                     ]
-                  }
                ],
                keyword: [
                   {
@@ -245,14 +245,14 @@ class MdJsonHashWriter
    # associated resource ---------------------
    def associatedResource
       {
+         associationType: 'association type',
+         initiativeType: 'initiative type',
          resourceType: [
             {
                type: 'resource type',
                name: 'resource name'
             }
          ],
-         associationType: 'association type',
-         initiativeType: 'initiative type',
          resourceCitation: {
             title: 'citation title',
             date: [
@@ -766,7 +766,7 @@ class MdJsonHashWriter
             {
                name: 'range element name 1',
                definition: 'range element definition',
-               rangeElements: [ 'range element record 1' ]
+               rangeElement: [ 'range element record 1' ]
             }
          ],
          boundMin: 100,
@@ -1054,9 +1054,8 @@ class MdJsonHashWriter
    def dataQuality
       {
          scope: scope,
-         report: [{
-            qualityMeasure: qualityMeasure
-         }]
+         standaloneQualityReport: {},
+         report: []
       }
    end
 

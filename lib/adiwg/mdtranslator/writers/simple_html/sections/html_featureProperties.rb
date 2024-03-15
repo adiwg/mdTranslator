@@ -40,7 +40,7 @@ module ADIWG
                   # feature properties - identifier [] {identifier}
                   hProperty[:identifiers].each do |hIdentifier|
                      @html.div do
-                        @html.div('Identifier', 'class' => 'h5')
+                        @html.h5('Identifier', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            identifierClass.writeHtml(hIdentifier)
                         end

@@ -50,7 +50,7 @@ module ADIWG
                   # metadataInfo - metadata identifier {identifier}
                   unless hMetaInfo[:metadataIdentifier].empty?
                      @html.div do
-                        @html.div('Metadata Identifier', {'id' => 'metadataInfo-identifier', 'class' => 'h3'})
+                        @html.h3('Metadata Identifier', {'id' => 'metadataInfo-identifier', 'class' => 'h3', 'style' => 'font-style: italic'})
                         @html.div(:class => 'block') do
                            identifierClass.writeHtml(hMetaInfo[:metadataIdentifier])
                         end
@@ -60,7 +60,7 @@ module ADIWG
                   # metadataInfo - parent metadata {citation}
                   unless hMetaInfo[:parentMetadata].empty?
                      @html.div do
-                        @html.div('Parent Metadata', {'id' => 'metadataInfo-parent', 'class' => 'h3'})
+                        @html.h3('Parent Metadata', {'id' => 'metadataInfo-parent', 'class' => 'h3', 'style' => 'font-style: italic'})
                         @html.div(:class => 'block') do
                            citationClass.writeHtml(hMetaInfo[:parentMetadata])
                         end
@@ -70,7 +70,7 @@ module ADIWG
                   # metadataInfo - metadata locales
                   unless hMetaInfo[:defaultMetadataLocale].empty? && hMetaInfo[:otherMetadataLocales].empty?
                      @html.div do
-                        @html.div('Metadata Locales', {'id' => 'metadataInfo-locale', 'class' => 'h3'})
+                        @html.h3('Metadata Locales', {'id' => 'metadataInfo-locale', 'class' => 'h3', 'style' => 'font-style: italic'})
                         @html.div(:class => 'block') do
 
                            # default metadata locales {locale}
@@ -100,7 +100,7 @@ module ADIWG
                   # metadataInfo - contacts [] {responsibility}
                   unless hMetaInfo[:metadataContacts].empty?
                      @html.div do
-                        @html.div('Metadata Contacts', {'id' => 'metadataInfo-contacts', 'class' => 'h3'})
+                        @html.h3('Metadata Contacts', {'id' => 'metadataInfo-contacts', 'class' => 'h3', 'style' => 'font-style: italic'})
                         @html.div(:class => 'block') do
                            hMetaInfo[:metadataContacts].each do |hResponsibility|
                               @html.div do
@@ -117,7 +117,7 @@ module ADIWG
                   # metadataInfo - dates [] {date}
                   unless hMetaInfo[:metadataDates].empty?
                      @html.div do
-                        @html.div('Metadata Dates', {'id' => 'metadataInfo-dates', 'class' => 'h3'})
+                        @html.h3('Metadata Dates', {'id' => 'metadataInfo-dates', 'class' => 'h3', 'style' => 'font-style: italic'})
                         @html.div(:class => 'block') do
                            hMetaInfo[:metadataDates].each do |hDate|
                               @html.em('Date: ')
@@ -131,7 +131,7 @@ module ADIWG
                   # metadataInfo - linkages [] {onlineResource}
                   unless hMetaInfo[:metadataLinkages].empty?
                      @html.div do
-                        @html.div('Metadata Online Resource', {'id' => 'metadataInfo-links', 'class' => 'h3'})
+                        @html.h3('Metadata Online Resource', {'id' => 'metadataInfo-links', 'class' => 'h3', 'style' => 'font-style: italic'})
                         @html.div(:class => 'block') do
                            hMetaInfo[:metadataLinkages].each do |hOnline|
                               @html.div do
@@ -148,7 +148,7 @@ module ADIWG
                   # metadataInfo - constraints [] {constraint}
                   unless hMetaInfo[:metadataConstraints].empty?
                      @html.div do
-                        @html.div('Metadata Constraints', {'id' => 'metadataInfo-constraint', 'class' => 'h3'})
+                        @html.h3('Metadata Constraints', {'id' => 'metadataInfo-constraint', 'class' => 'h3', 'style' => 'font-style: italic'})
                         @html.div(:class => 'block') do
                            hMetaInfo[:metadataConstraints].each do |hConstraint|
                               @html.div do
@@ -165,7 +165,7 @@ module ADIWG
                   # metadataInfo - maintenance {maintenance}
                   unless hMetaInfo[:metadataMaintenance].empty?
                      @html.div do
-                        @html.div('Metadata Maintenance', {'id' => 'metadataInfo-maintenance', 'class' => 'h3'})
+                        @html.h3('Metadata Maintenance', {'id' => 'metadataInfo-maintenance', 'class' => 'h3', 'style' => 'font-style: italic'})
                         @html.div(:class => 'block') do
                            maintClass.writeHtml(hMetaInfo[:metadataMaintenance])
                         end
@@ -175,13 +175,14 @@ module ADIWG
                   # metadataInfo - alternate metadata references [] {citation}
                   unless hMetaInfo[:alternateMetadataReferences].empty?
                      @html.div do
-                        @html.div('Alternate Metadata Citations', {'id' => 'metadataInfo-alternate', 'class' => 'h3'})
+                        @html.h3('Alternate Metadata Citations', {'id' => 'metadataInfo-alternate', 'class' => 'h3', 'style' => 'font-style: italic'})
                         @html.div(:class => 'block') do
                            hMetaInfo[:alternateMetadataReferences].each do |hCitation|
                               @html.div do
                                  @html.div(hCitation[:title], 'class' => 'h5')
                                  @html.div(:class => 'block') do
                                     citationClass.writeHtml(hCitation)
+                                    @html.br
                                  end
                               end
                            end

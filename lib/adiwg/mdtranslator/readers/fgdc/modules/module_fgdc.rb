@@ -10,7 +10,7 @@ require 'uuidtools'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require_relative '../version'
 require_relative 'module_identification'
-require_relative 'module_quality'
+require_relative 'module_dataQuality'
 require_relative 'module_spatialOrganization'
 require_relative 'module_spatialReference'
 require_relative 'module_entityAttribute'
@@ -70,7 +70,7 @@ module ADIWG
                   # metadata (dataqual 2) - data quality
                   xDataQual = xMetadata.xpath('./dataqual')
                   unless xDataQual.empty?
-                     dataQuality = Quality.unpack(xDataQual, hMetadata, hDataQuality, hResponseObj)
+                     dataQuality = DataQuality.unpack(xDataQual, hMetadata, hDataQuality, hResponseObj)
                      hMetadata[:dataQuality] << dataQuality
                   end
 
