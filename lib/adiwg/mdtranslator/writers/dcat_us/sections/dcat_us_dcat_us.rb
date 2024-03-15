@@ -20,6 +20,7 @@ require_relative 'dcat_us_system_of_records'
 require_relative 'dcat_us_description'
 require_relative 'dcat_us_accrualPeriodicity'
 require_relative 'dcat_us_language'
+require_relative 'dcat_us_primaryITInvestmentUII'
 
 module ADIWG
    module Mdtranslator
@@ -53,6 +54,7 @@ module ADIWG
                landingPage = LandingPage.build(intObj)
                systemOfRecords = SystemOfRecords.build(intObj)
                accrualPeriodicity = AccrualPeriodicity.build(intObj)
+               primaryITInvestmentUII = PrimaryITInvestmentUII.build(intObj)
 
                @Namespace = ADIWG::Mdtranslator::Writers::Dcat_us
 
@@ -84,7 +86,7 @@ module ADIWG
                   json.set!('landingPage', landingPage)
                   json.set!('isPartOf', isPartOf)
                   json.set!('systemOfRecords', systemOfRecords)
-                  # json.set!('primaryITInvestmentUII', metadataInfo[:metadataId])
+                  json.set!('primaryITInvestmentUII', primaryITInvestmentUII)
                   json.set!('describedBy', describedBy)
                   # json.set!('describedByType', metadataInfo[:metadataOnlineOptions][0][:olResProtocol])
                   # json.set!('conformsTo', metadataInfo[:metadataStandards][0][:standardName])
