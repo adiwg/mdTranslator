@@ -1,4 +1,8 @@
 require 'jbuilder'
+require_relative 'dcat_us_access_url'
+require_relative 'dcat_us_download_url'
+require_relative 'dcat_us_media_type'
+
 
 module ADIWG
   module Mdtranslator
@@ -7,6 +11,7 @@ module ADIWG
         module Distribution
 
           def self.build(intObj)
+
             resourceDistributions = intObj.dig(:metadata, :distributorInfo)
             distributions = []
 
@@ -20,13 +25,12 @@ module ADIWG
                 distributor[:transferOptions]&.each do |transfer|
                   break if break_flag
 
-                  mediaType = transfer.dig(:distributionFormats)&.find { |format| format.dig(:formatSpecification, :title) }&.dig(:formatSpecification, :title) || ''
+                  mediaType = MediaType.build(transfer)
 
                   transfer[:onlineOptions]&.each do |option|
                     next unless option[:olResURI]
-
-                    accessURL = option[:olResURI] unless option[:olResURI].end_with?('.html')
-                    downloadURL = option[:olResURI] if option[:olResURI].end_with?('.html')
+                    accessURL = AccessURL.build(option)
+                    downloadURL = DownloadURL.build(option)
                     title = option[:olResName] || ''
 
                     distribution = Jbuilder.new do |json|
