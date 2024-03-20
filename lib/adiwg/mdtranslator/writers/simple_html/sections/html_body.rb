@@ -67,36 +67,24 @@ module ADIWG
                      @html.div('id' => 'sideNav') do
 
                         # add section buttons
-                        @html.a(' Top', {'href' => '#', 'class' => 'btn'})
                         @html.a(' Contacts', {'href' => '#body-contacts', 'class' => 'btn navBtn', 'id' => 'contactButton'})
                         @html.a(' Metadata', {'href' => '#body-metadataInfo', 'class' => 'btn navBtn', 'id' => 'metadataButton'})
                         @html.a(' Resource', {'href' => '#body-resourceInfo', 'class' => 'btn navBtn', 'id' => 'resourceButton'})
                         @html.a(' Lineage', {'href' => '#body-lineage', 'class' => 'btn navBtn', 'id' => 'lineageButton'})
                         @html.a(' Distribution', {'href' => '#body-distribution', 'class' => 'btn navBtn', 'id' => 'distributionButton'})
+                        @html.br
                         @html.a(' Associated', {'href' => '#body-associatedResource', 'class' => 'btn navBtn', 'id' => 'associatedButton'})
                         @html.a(' Additional', {'href' => '#body-additionalDocument', 'class' => 'btn navBtn', 'id' => 'additionalButton'})
                         @html.a(' Dictionary', {'href' => '#body-dataDictionary', 'class' => 'btn navBtn', 'id' => 'dictionaryButton'})
                         @html.a(' Funding', {'href' => '#body-funding', 'class' => 'btn navBtn', 'id' => 'fundingButton'})
                         @html.a(' Repository', {'href' => '#body-repository', 'class' => 'btn navBtn', 'id' => 'repositoryButton'})
 
-                        # add open and close buttons
-                        @html.span(' Open', {'class' => 'btn icon-caret-down', 'id' => 'openAllButton'})
-                        @html.span(' Close', {'class' => 'btn icon-caret-right', 'id' => 'closeAllButton'})
-
                      end
 
                      # main header
                      @html.h2('id' => 'mainHeader') do
                         # added blank to span tag to force builder to create closing tag
-                        @html.span('', 'id' => 'logo')
-                        @html.span('Metadata Record')
-                        @html.span('HTML5', 'class' => 'version')
                      end
-
-                     # report title
-                     # aShortVersion = version.split('.')
-                     # shortVersion = aShortVersion[0].to_s + '.' + aShortVersion[1].to_s
-                     @html.h1('mdTranslator ' + version + ' HTML Metadata Record', 'id' => 'mdtranslator-metadata-report')
 
                      # resource citation title
                      unless hResourceInfo.empty?
@@ -110,7 +98,7 @@ module ADIWG
                      # report date
                      @html.div(:class => 'block') do
                         @html.em('Report Generated:')
-                        @html.text!(Time.new.inspect)
+                        @html.text!(Time.new.strftime('%Y-%m-%d %H:%M:%S'))
                      end
 
                      # metadata source
@@ -129,6 +117,7 @@ module ADIWG
                      unless aContacts.empty?
                         @html.div do
                            @html.h2('Contacts', {'id' => 'body-contacts', 'class' => 'h2'})
+                           @html.span('', {'style' => 'mso-bookmark:body-contacts'})
                            @html.div(:class => 'block') do
                               aContacts.each do |hContact|
                                  @html.div(:class => 'block') do
@@ -136,6 +125,7 @@ module ADIWG
                                  end
                               end
                               @html.hr
+                              @html.br
                            end
                         end
                      end
@@ -144,6 +134,7 @@ module ADIWG
                      unless hMetaInfo.empty?
                         @html.div do
                         @html.h2('Metadata Information', {'id' => 'body-metadataInfo', 'class' => 'h2'})
+                        @html.span('', {'style' => 'mso-bookmark:body-metadataInfo'})
                         @html.div(:class => 'block') do
                               @html.div(:class => 'block') do
                                  metaInfoClass.writeHtml(hMetaInfo)
@@ -157,7 +148,8 @@ module ADIWG
                      unless hResourceInfo.empty?
                         @html.div do
                            @html.h2('Resource Information', {'id' => 'body-resourceInfo', 'class' => 'h2'})
-                           @html.div(:class => 'block') do
+                        @html.span('', {'style' => 'mso-bookmark:body-resourceInfo'})
+                        @html.div(:class => 'block') do
                               resourceClass.writeHtml(hResourceInfo)
                            end
                            @html.hr
@@ -167,6 +159,7 @@ module ADIWG
                      unless aDataQuality.nil? || aDataQuality.empty?
                         @html.div do
                            @html.h2('Data Quality', {'id' => 'body-dataQuality', 'class' => 'h2'})
+                           @html.span('', {'style' => 'mso-bookmark:body-dataQuality'})
                            aDataQuality.each do |hDataQuality|
                               @html.div(:class => 'block') do
                                  dataQualityClass.writeHtml(hDataQuality)
@@ -179,6 +172,7 @@ module ADIWG
                      unless aLineage.empty?
                         @html.div do
                            @html.h2('Resource Lineage', {'id' => 'body-lineage', 'class' => 'h2'})
+                           @html.span('', {'style' => 'mso-bookmark:body-lineage'})
                            @html.div(:class => 'block') do
                               aLineage.each do |hLineage|
                                  @html.div do
@@ -197,6 +191,7 @@ module ADIWG
                      unless aDistribution.empty?
                         @html.div do
                            @html.h2('Resource Distribution', {'id' => 'body-distribution', 'class' => 'h2'})
+                           @html.span('', {'style' => 'mso-bookmark:body-distribution'})
                            @html.div(:class => 'block') do
                               aDistribution.each do |hDistribution|
                                  @html.div do
@@ -215,6 +210,7 @@ module ADIWG
                      unless aAssociated.empty?
                         @html.div do
                            @html.h2('Associated Resources', {'id' => 'body-associatedResource', 'class' => 'h2'})
+                           @html.span('', {'style' => 'mso-bookmark:body-associatedResource'})
                            @html.div(:class => 'block') do
                               aAssociated.each do |hAssociated|
                                  @html.div do
@@ -233,6 +229,7 @@ module ADIWG
                      unless aAdditional.empty?
                         @html.div do
                            @html.h2('Additional Documentation', {'id' => 'body-additionalDocument', 'class' => 'h2'})
+                           @html.span('', {'style' => 'mso-bookmark:body-additionalDocument'})
                            @html.div(:class => 'block') do
                               aAdditional.each do |hAdditional|
                                  @html.div do
@@ -251,6 +248,7 @@ module ADIWG
                      unless aDictionaries.empty?
                         @html.div do
                            @html.h2('Data Dictionaries', {'id' => 'body-dataDictionary', 'class' => 'h2'})
+                           @html.span('', {'style' => 'mso-bookmark:body-dataDictionary'})
                            @html.div(:class => 'block') do
                               aDictionaries.each do |hDictionary|
                                  @html.div do
@@ -268,6 +266,7 @@ module ADIWG
                      unless aFunding.empty?
                         @html.div do
                            @html.h2('Funding', {'id' => 'body-funding', 'class' => 'h2'})
+                           @html.span('', {'style' => 'mso-bookmark:body-funding'})
                            @html.div(:class => 'block') do
                               aFunding.each do |hFunding|
                                  @html.div do
@@ -285,6 +284,7 @@ module ADIWG
                      unless aRepositories.empty?
                         @html.div do
                            @html.h2('Metadata Repositories', {'id' => 'body-repository', 'class' => 'h2'})
+                           @html.span('', {'style' => 'mso-bookmark:body-repository'})
                            @html.div(:class => 'block') do
                               aRepositories.each do |hRepository|
                                  @html.div do
@@ -296,22 +296,6 @@ module ADIWG
                               end
                            end
                         end
-                     end
-
-                     # load leaflet
-                     @html.link( :rel => 'stylesheet', :href => 'https://unpkg.com/leaflet@1.0.3/dist/leaflet.css')
-                     @html.script('', :src => 'https://unpkg.com/leaflet@1.0.3/dist/leaflet.js')
-                     @html.script('', :src => 'https://stamen-maps.a.ssl.fastly.net/js/tile.stamen.js')
-
-                     # add inline javascript
-                     # read javascript from file
-                     path = File.join(File.dirname(__FILE__), 'html_bodyScript.js')
-                     file = File.open(path, 'r')
-                     bodyJS = file.read
-                     file.close
-
-                     @html.script('type'=>'text/javascript') do
-                        @html << bodyJS
                      end
 
                   end # body

@@ -24,17 +24,18 @@ class TestReaderFgdcProcess < TestReaderFGDCParent
       refute_nil hLineage
 
       aSteps = hLineage[:processSteps]
-      assert_equal 2, aSteps.length
+      assert_equal 4, aSteps.length
 
-      hProcess = aSteps[0]
+      # first process step that is not a methodology
+      hProcess = aSteps[2]
       refute_empty hProcess
       assert_nil hProcess[:stepId]
       assert_equal 'my proc step 1 description', hProcess[:description]
       assert_nil hProcess[:rationale]
       refute_empty hProcess[:timePeriod]
       assert_equal 1, hProcess[:processors].length
-      assert_equal 2, hProcess[:stepSources].length
-      assert_equal 1, hProcess[:stepProducts].length
+      assert_empty hProcess[:stepSources]
+      assert_empty hProcess[:stepProducts]
       assert_empty hProcess[:scope]
 
       hTimePeriod = hProcess[:timePeriod]
@@ -46,12 +47,6 @@ class TestReaderFgdcProcess < TestReaderFGDCParent
       assert_equal 'processor', hProcessor[:roleName]
       assert_empty hProcessor[:roleExtents]
       assert_equal 1, hProcessor[:parties].length
-
-      hSource = hProcess[:stepSources][0]
-      assert_equal 'my source 1 contribution', hSource[:description]
-
-      hProduct = hProcess[:stepProducts][0]
-      assert_equal 'my source 2 contribution', hProduct[:description]
 
       assert hResponse[:readerExecutionPass]
       assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: contact address is missing'

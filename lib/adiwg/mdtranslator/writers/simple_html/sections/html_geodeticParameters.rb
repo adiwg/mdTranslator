@@ -25,7 +25,7 @@ module ADIWG
                   # geodetic parameters - datum identifier
                   unless hGeodetic[:datumIdentifier].empty?
                      @html.div do
-                        @html.div('Datum Identifier', {'id' => 'datum-identifier', 'class' => 'h5'})
+                        @html.h5('Datum Identifier', {'id' => 'datum-identifier', 'class' => 'h5'})
                         @html.div(:class => 'block') do
                            identifierClass.writeHtml(hGeodetic[:datumIdentifier])
                         end
@@ -35,7 +35,7 @@ module ADIWG
                   # geodetic parameters - ellipsoid identifier
                   unless hGeodetic[:ellipsoidIdentifier].empty?
                      @html.div do
-                        @html.div('Ellipsoid Identifier', {'id' => 'ellipsoid-identifier', 'class' => 'h5'})
+                        @html.h5('Ellipsoid Identifier', {'id' => 'ellipsoid-identifier', 'class' => 'h5'})
                         @html.div(:class => 'block') do
                            identifierClass.writeHtml(hGeodetic[:ellipsoidIdentifier])
                         end

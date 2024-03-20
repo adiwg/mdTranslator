@@ -27,7 +27,7 @@ module ADIWG
                   # geometry collection - objects
                   hCollection[:geometryObjects].each do |hObject|
                      @html.div do
-                        @html.div(hObject[:type], 'class' => 'h5')
+                        @html.h5(hObject[:type], 'class' => 'h5')
                         @html.div(:class => 'block') do
                            geometryClass.writeHtml(hObject)
                         end
@@ -37,7 +37,7 @@ module ADIWG
                   # geometry collection - user bounding box
                   unless hCollection[:bbox].empty?
                      @html.div do
-                        @html.div('User Provided Bounding Box', 'class' => 'h5')
+                        @html.h5('User Provided Bounding Box', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            bbox = {}
                            bbox[:westLongitude] = hCollection[:bbox][0]
@@ -52,7 +52,7 @@ module ADIWG
                   # geometry collection - computed bounding box
                   unless hCollection[:computedBbox].empty?
                      @html.div do
-                        @html.div('Computed Bounding Box', 'class' => 'h5')
+                        @html.h5('Computed Bounding Box', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            boxClass.writeHtml(hCollection[:computedBbox])
                         end
@@ -62,7 +62,7 @@ module ADIWG
                   # geographic element - native GeoJson
                   unless hCollection[:nativeGeoJson].empty?
                      @html.div do
-                        @html.div('GeoJson', 'class' => 'h5')
+                        @html.h5('GeoJson', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            @html.text!(hCollection[:nativeGeoJson].to_json)
                         end

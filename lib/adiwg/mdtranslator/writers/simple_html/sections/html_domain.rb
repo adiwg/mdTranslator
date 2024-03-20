@@ -38,7 +38,7 @@ module ADIWG
                      type = 'ENUMERATED' unless hDomain[:domainItems].empty?
 
                      @html.div do
-                        @html.div(dName, {'class' => 'h5'})
+                        @html.h5(dName, {'class' => 'h5'})
                         @html.div(:class => 'block') do
 
                            # domain - type
@@ -78,7 +78,7 @@ module ADIWG
                            # domain - domain reference {citation}
                            unless hDomain[:domainReference].empty?
                               @html.div do
-                                 @html.div('Reference', {'class' => 'h5'})
+                                 @html.h5('Reference', {'class' => 'h5'})
                                  @html.div(:class => 'block') do
                                     citationClass.writeHtml(hDomain[:domainReference])
                                  end
@@ -88,7 +88,7 @@ module ADIWG
                            # domain - domain items [] {domainItem}
                            hDomain[:domainItems].each do |hItem|
                               @html.div do
-                                 @html.div(hItem[:itemValue], {'class' => 'h5'})
+                                 @html.h5(hItem[:itemValue], {'class' => 'h5'})
                                  @html.div(:class => 'block') do
                                     itemClass.writeHtml(hItem)
                                  end

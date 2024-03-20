@@ -55,7 +55,7 @@ module ADIWG
                   # geologic age - age references [] {citation}
                   hGeoAge[:ageReferences].each do |hCitation|
                      @html.div do
-                        @html.div('Age Reference', {'class' => 'h5'})
+                        @html.h5('Age Reference', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            citationClass.writeHtml(hCitation)
                         end

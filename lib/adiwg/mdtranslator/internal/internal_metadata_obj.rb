@@ -513,6 +513,14 @@ class InternalMetadata
       }
    end
 
+   def newRangeElementDescription
+      {
+         name: nil,
+         definition: nil,
+         rangeElement: []
+      }
+   end
+
    def newImageDescription
       {
          illuminationElevationAngle: nil,
@@ -650,13 +658,22 @@ class InternalMetadata
       }
    end
 
+   def newQualityResultFile
+      {
+         fileName: nil,
+         fileType: nil,
+         fileDescription: nil,
+         fileFormat: {}
+      }
+   end
+
    def newCoverageResult
       {
          dateTime: nil,
          scope: {},
-         spatialRepresentationType: {},
+         spatialRepresentationType: nil,
          spatialRepresentation: {},
-         resultContent: [],
+         resultContentDescription: {},
          resourceFormat: {},
          resultFile: {}
       }
@@ -705,23 +722,22 @@ class InternalMetadata
 
    def newDataQualityReport
       {
-         # standaloneQualityReportDetails: nil,
+         type: nil,
+         standaloneQualityReportDetails: nil,
+         qualityMeasure: {},
+         evaluationMethod: {},
+         quantitativeResult: [],
+         descriptiveResult: [],
          conformanceResult: [],
          coverageResult: [],
-         # derivedElementReport: [],
-         descriptiveResult: [],
-         evaluationMethod: {},
-         qualityMeasure: {},
-         quantitativeResult: [],
-         # relatedElementReport: []
+         derivedElementReport: []
       }
    end
 
    def newStandaloneReport
       {
-         reportReference: {},
          abstract: nil,
-         elementReports: []
+         reportReference: {},
       }
    end
 
@@ -935,8 +951,8 @@ class InternalMetadata
          statement: nil,
          resourceScope: {},
          lineageCitation: [],
-         dataSources: [],
-         processSteps: []
+         processSteps: [],
+         dataSources: []
       }
    end
 

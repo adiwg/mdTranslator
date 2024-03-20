@@ -29,7 +29,7 @@ module ADIWG
                   # georeferenceable representation - scope
                   hGeoreferenceable[:scope].each do |scope|
                      @html.div do
-                        @html.div('Scope ', 'class' => 'h5')
+                        @html.h5('Scope ', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            scopeClass.writeHtml(hGeoreferenceable[:scope])
                         end
@@ -40,7 +40,7 @@ module ADIWG
                   # georeferenceable representation - grid {gridRepresentation}
                   unless hGeoreferenceable[:gridRepresentation].empty?
                      @html.div do
-                        @html.div('Grid Information ', 'class' => 'h5')
+                        @html.h5('Grid Information ', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            gridClass.writeHtml(hGeoreferenceable[:gridRepresentation])
                         end
@@ -75,7 +75,7 @@ module ADIWG
                   # georeferenceable representation - parameter citation {citation}
                   hGeoreferenceable[:parameterCitation].each do |hCitation|
                      @html.div do
-                        @html.div('Parameter Citation ', 'class' => 'h5')
+                        @html.h5('Parameter Citation ', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            citationClass.writeHtml(hCitation)
                         end

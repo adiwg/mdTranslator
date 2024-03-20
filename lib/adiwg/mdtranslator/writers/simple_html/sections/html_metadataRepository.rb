@@ -40,7 +40,7 @@ module ADIWG
                   # metadata repository - citation
                   unless hRepository[:citation].empty?
                      @html.div do
-                        @html.div('Citation', {'class' => 'h5'})
+                        @html.h5('Citation', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            citationClass.writeHtml(hRepository[:citation])
                         end
