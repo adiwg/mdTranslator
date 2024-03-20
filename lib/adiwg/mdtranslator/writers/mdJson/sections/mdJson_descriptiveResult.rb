@@ -9,9 +9,9 @@ module ADIWG
         module DescriptiveResult
           def self.build(hResult)
             Jbuilder.new do |json|
-              json.dateTime hResult[:dateTime]
-              json.scope Scope.build(hResult[:scope]) unless hResult[:scope].nil?
-              json.statement hResult[:statement]
+              json.dateTime hResult[:dateTime] unless hResult[:dateTime].nil?
+              json.scope Scope.build(hResult[:scope]) unless hResult[:scope].empty?
+              json.statement hResult[:statement] unless hResult[:statement].nil?
             end
           end
 

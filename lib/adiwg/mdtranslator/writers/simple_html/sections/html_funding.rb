@@ -44,7 +44,7 @@ module ADIWG
                   # funding - allocations [] {allocation}
                   hFunding[:allocations].each do |hAllocation|
                      @html.div do
-                        @html.div('Allocation', {'class' => 'h5'})
+                        @html.h5('Allocation', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            allocationClass.writeHtml(hAllocation)
                         end

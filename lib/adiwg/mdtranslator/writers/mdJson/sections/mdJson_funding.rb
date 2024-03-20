@@ -20,9 +20,9 @@ module ADIWG
                def self.build(hFunding)
 
                   Jbuilder.new do |json|
-                     json.description hFunding[:description]
-                     json.timePeriod TimePeriod.build(hFunding[:timePeriod]) unless hFunding[:timePeriod].empty?
                      json.allocation @Namespace.json_map(hFunding[:allocations], Allocation)
+                     json.timePeriod TimePeriod.build(hFunding[:timePeriod]) unless hFunding[:timePeriod].empty?
+                     json.description hFunding[:description]
                   end
 
                end # build

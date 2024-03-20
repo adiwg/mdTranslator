@@ -82,7 +82,7 @@ module ADIWG
                   # source - spatial resolution {resolution}
                   unless hSource[:spatialResolution].empty?
                      @html.div do
-                        @html.div('Resolution', {'class' => 'h5'})
+                        @html.h5('Resolution', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            resolutionClass.writeHtml(hSource[:spatialResolution])
                         end
@@ -119,7 +119,7 @@ module ADIWG
                   # source - scope {scope}
                   unless hSource[:scope].empty?
                      @html.div do
-                        @html.div('Scope', {'class' => 'h5'})
+                        @html.h5('Scope', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            scopeClass.writeHtml(hSource[:scope])
                         end

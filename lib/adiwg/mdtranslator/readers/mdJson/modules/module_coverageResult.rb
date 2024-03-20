@@ -1,5 +1,8 @@
 require_relative 'module_scope'
 require_relative 'module_spatialRepresentation'
+require_relative 'module_qualityResultFile'
+require_relative 'module_format'
+require_relative 'module_coverageDescription'
 
 module ADIWG
   module Mdtranslator
@@ -7,7 +10,7 @@ module ADIWG
       module MdJson
 
         module CoverageResult
-          def self.unpack(hResult, responseObj, inContext)
+          def self.unpack(hResult, responseObj)
 
             intMetadataClass = InternalMetadata.new
             intResult = intMetadataClass.newCoverageResult
@@ -25,7 +28,6 @@ module ADIWG
 
 
             # spatialRepresentationType
-            # https://github.com/ISO-TC211/XML/blob/master/standards.iso.org/iso/19115/resources/Codelists/gml/MD_SpatialRepresentationTypeCode.xml
             if hResult.has_key?('spatialRepresentationType')
               intResult[:spatialRepresentationType] = hResult['spatialRepresentationType']
             end
@@ -38,21 +40,20 @@ module ADIWG
 
 
             # resultContent
-            if hResult.has_key?('resultContent')
-              intResult[:resultContent] = hResult['resultContent']
+            if hResult.has_key?('resultContentDescription')
+              intResult[:resultContentDescription] = CoverageDescription.unpack(hResult['resultContentDescription'], responseObj)
             end
 
 
             # resourceFormat
             if hResult.has_key?('resourceFormat')
-              intResult[:resourceFormat] = hResult['resourceFormat']
+              intResult[:resourceFormat] = Format.unpack(hResult['resourceFormat'], responseObj)
             end
 
 
             # resultFile
-            resultFile
             if hResult.has_key?('resultFile')
-              intResult[:resultFile] = hResult['resultFile']
+              intResult[:resultFile] = QualiltyResultFile.unpack(hResult['resultFile'], responseObj)
             end
 
             return intResult

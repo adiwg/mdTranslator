@@ -4,6 +4,7 @@ require_relative 'module_coverageResult'
 require_relative 'module_descriptiveResult'
 require_relative 'module_quantitativeResult'
 require_relative 'module_evaluationMethod'
+require_relative 'module_qualityMeasure'
 
 module ADIWG
   module Mdtranslator
@@ -27,6 +28,10 @@ module ADIWG
             intReport = intMetadataClass.newDataQualityReport
 
             intReport[:type] = hReport["type"]
+
+            if hReport.has_key?('standaloneQualityReportDetails')
+              intReport[:standaloneQualityReportDetails] = hReport['standaloneQualityReportDetails']
+            end
 
             if hReport.has_key?('conformanceResult')
               hReport['conformanceResult'].each do |item|
@@ -68,23 +73,10 @@ module ADIWG
             end
 
             if hReport.has_key?('qualityMeasure')
-              qualityMeasure = hReport['qualityMeasure']
-              identifier = qualityMeasure['identifier']
+              hReturn = QualityMeasure.unpack(hReport['qualityMeasure'], responseObj)
 
-              intReport[:qualityMeasure] = {}
-
-              if identifier
-                intReport[:qualityMeasure][:identifier] = {
-                  identifier: identifier['identifier'],
-                  namespace: identifier['namespace'],
-                  version: identifier['version'],
-                  description: identifier['description']
-                }
-              end
-
-              if qualityMeasure
-                intReport[:qualityMeasure][:name] = qualityMeasure['name']
-                intReport[:qualityMeasure][:description] = qualityMeasure['description']
+              unless hReturn.nil?
+                intReport[:qualityMeasure] = hReturn
               end
             end
 

@@ -28,7 +28,7 @@ module ADIWG
                   # grid representation - scope
                   hGrid[:scope].each do |scope|
                      @html.div do
-                        @html.div('Scope ', 'class' => 'h5')
+                        @html.h5('Scope ', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            scopeClass.writeHtml(hGrid[:scope])
                         end
@@ -48,7 +48,7 @@ module ADIWG
                   hGrid[:dimension].each do |hDimension|
                      dimensionCount += 1
                      @html.div do
-                        @html.div('Dimension '+dimensionCount.to_s, 'class' => 'h5')
+                        @html.h5('Dimension '+dimensionCount.to_s, 'class' => 'h5')
                         @html.div(:class => 'block') do
                            dimensionClass.writeHtml(hDimension)
                         end

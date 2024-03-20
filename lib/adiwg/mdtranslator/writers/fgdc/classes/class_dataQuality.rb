@@ -12,7 +12,7 @@ module ADIWG
       module Writers
          module Fgdc
 
-            class Quality
+            class DataQuality
 
                def initialize(xml, hResponseObj)
                   @xml = xml
@@ -30,7 +30,7 @@ module ADIWG
                   if hDataQuality && hDataQuality[:report]
                      # data quality 2.1 (attracc) - attribute accuracy (not implemented)
                      attribute_completeness_report = hDataQuality[:report].find do |report|
-                        report[:type] == 'DQ_NonQuantitativeAttributeCompleteness' &&
+                        report[:type] == 'NonQuantitativeAttributeCompleteness' &&
                         !report.dig(:descriptiveResult, 0, :statement).nil?
                      end
 
@@ -44,11 +44,11 @@ module ADIWG
 
                      # data quality 2.2 (logic) - logical consistency (not implemented) (required)
                      logic_report = hDataQuality[:report].find do |report|
-                        report[:type] == 'DQ_ConceptualConsistency' &&
+                        report[:type] == 'ConceptualConsistency' &&
                         !report.dig(:qualityMeasure, :description).nil?
                      end
 
-                     if logic = logic_report&.dig(:qualityMeasure, :decription)
+                     if logic = logic_report&.dig(:qualityMeasure, :description)
                         @xml.tag!('logic', logic)
                      else
                         @xml.tag!('logic', 'Not Reported')
@@ -56,7 +56,7 @@ module ADIWG
 
                      # data quality 2.3 (complete) - completion report (not implemented) (required)
                      completeness_report = hDataQuality[:report].find do |report|
-                        report[:type] == 'DQ_CompletenessOmission' &&
+                        report[:type] == 'CompletenessOmission' &&
                         !report.dig(:descriptiveResult, 0, :statement).nil?
                      end
 
@@ -66,20 +66,24 @@ module ADIWG
                         @xml.tag!('complete', 'Not Reported')
                      end
 
-                     # data quality 2.4 (position) - positional accuracy (not implemented)
+                     # data quality 2.4 (position) - positional accuracy
 
 
                      horizontal_positional_accuracy_report = hDataQuality[:report].find do |report|
-                        report[:type] == 'DQ_AbsoluteExternalPositionalAccuracy' &&
-                        report.dig(:qualityMeasure, :name) == 'Horizontal Positional Accuracy Report'
+                        report[:type] == 'AbsoluteExternalPositionalAccuracy' &&
+                        report.dig(:qualityMeasure, :nameOfMeasure)&.any? { |name|
+                           name == 'Horizontal Positional Accuracy Report'
+                        }
                      end
 
                      horizpar = horizontal_positional_accuracy_report&.dig(:evaluationMethod, :methodDescription)
 
 
                      vertical_positional_accuracy_report = hDataQuality[:report].find do |report|
-                        report[:type] == 'DQ_AbsoluteExternalPositionalAccuracy' &&
-                        report.dig(:qualityMeasure, :name) == 'Vertical Positional Accuracy Report'
+                        report[:type] == 'AbsoluteExternalPositionalAccuracy' &&
+                        report.dig(:qualityMeasure, :nameOfMeasure)&.any? { |name|
+                           name == 'Vertical Positional Accuracy Report'
+                        }
                      end
 
                      vertaccr = vertical_positional_accuracy_report&.dig(:evaluationMethod, :methodDescription)

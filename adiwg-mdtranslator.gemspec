@@ -34,11 +34,11 @@ Gem::Specification.new do |spec|
    spec.add_runtime_dependency "thor", "~> 0.19"
    spec.add_runtime_dependency "uuidtools", "~> 2.1"
    spec.add_runtime_dependency "json-schema", "~> 2.7"
-   spec.add_runtime_dependency "adiwg-mdjson_schemas", "2.8.1"
-   spec.add_runtime_dependency "adiwg-mdcodes", "2.8.4"
+   spec.add_runtime_dependency "adiwg-mdjson_schemas", "2.9.1"
+   spec.add_runtime_dependency "adiwg-mdcodes", "2.9.2"
    spec.add_runtime_dependency "jbuilder", "~> 2.5"
    spec.add_runtime_dependency "kramdown", ">= 1.13", "< 3.0"
    spec.add_runtime_dependency "coderay", "~> 1.1"
-   spec.add_runtime_dependency "nokogiri", "~> 1.7"
+   spec.add_runtime_dependency "nokogiri", "~> 1.15"
 
 end

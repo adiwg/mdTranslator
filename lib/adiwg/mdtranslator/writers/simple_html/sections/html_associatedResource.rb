@@ -47,7 +47,7 @@ module ADIWG
                   # associated resource - resource citation {citation}
                   unless hResource[:resourceCitation].empty?
                      @html.div do
-                        @html.div('Resource citation', {'class' => 'h5'})
+                        @html.h5('Resource citation', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            citationClass.writeHtml(hResource[:resourceCitation])
                         end
@@ -57,7 +57,7 @@ module ADIWG
                   # associated resource - metadata citation
                   unless hResource[:metadataCitation].empty?
                      @html.div do
-                        @html.div('Metadata citation', {'class' => 'h5'})
+                        @html.h5('Metadata citation', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            citationClass.writeHtml(hResource[:metadataCitation])
                         end

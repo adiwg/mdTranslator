@@ -61,7 +61,7 @@ module ADIWG
                   # image information - image quality code {identifier}
                   unless hImage[:imageQualityCode].empty?
                      @html.div do
-                        @html.div('Image Quality Code', {'class' => 'h5'})
+                        @html.h5('Image Quality Code', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            identifierClass.writeHtml(hImage[:imageQualityCode])
                         end
