@@ -67,12 +67,6 @@ module ADIWG
                      @xml.tag!('mrc:scaleFactor')
                   end
 
-                  hAttribute[:rangeElementDescription].each do |red|
-                     @xml.tag!('mrc:rangeElementDescription') do
-                        rangeElementDescription.writeXML(red, inContext)
-                     end
-                  end
-
                   # sample dimension - offset {real}
                   unless hAttribute[:offset].nil?
                      @xml.tag!('mrc:offset') do
@@ -124,6 +118,12 @@ module ADIWG
                   end
                   if hAttribute[:bitsPerValue].nil? && @hResponseObj[:writerShowTags]
                      @xml.tag!('mrc:bitsPerValue')
+                  end
+
+                  hAttribute[:rangeElementDescription].each do |red|
+                     @xml.tag!('mrc:rangeElementDescription') do
+                        rangeElementDescription.writeXML(red, inContext)
+                     end
                   end
 
                end # writeXML
