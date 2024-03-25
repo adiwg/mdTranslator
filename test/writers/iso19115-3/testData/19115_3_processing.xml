@@ -372,6 +372,7 @@
 
   <mrl:processingInformation>
     <mrl:LE_Processing>
+      <mrl:algorithm/>
       <mrl:identifier>
         <mcc:MD_Identifier>
           <mcc:authority>
@@ -447,7 +448,6 @@
       <mrl:procedureDescription/>
       <mrl:documentation/>
       <mrl:runTimeParameters/>
-      <mrl:algorithm/>
     </mrl:LE_Processing>
   </mrl:processingInformation>
 

@@ -525,6 +525,7 @@
       </mrl:source>
       <mrl:processingInformation>
         <mrl:LE_Processing>
+          <mrl:algorithm/>
           <mrl:identifier>
             <mcc:MD_Identifier>
               <mcc:authority>
@@ -604,7 +605,6 @@
           <mrl:runTimeParameters>
             <gco:CharacterString>runtime parameters</gco:CharacterString>
           </mrl:runTimeParameters>
-          <mrl:algorithm/>
         </mrl:LE_Processing>
       </mrl:processingInformation>
       <mrl:report>
