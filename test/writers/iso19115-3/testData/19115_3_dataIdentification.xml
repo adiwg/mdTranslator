@@ -256,7 +256,7 @@
           <gex:temporalElement>
             <gex:EX_TemporalExtent>
               <gex:extent>
-                <gml:TimePeriod gml:id="timePeriod_001">
+                <gml:TimePeriod gml:id="timePeriod001">
                   <gml:description>resource time period</gml:description>
                   <gml:identifier codeSpace=""/>
                   <gml:name/>
@@ -603,7 +603,7 @@
           <gex:temporalElement>
             <gex:EX_TemporalExtent>
               <gex:extent>
-                <gml:TimePeriod gml:id="timePeriod_001">
+                <gml:TimePeriod gml:id="timePeriod001">
                   <gml:description>resource time period</gml:description>
                   <gml:identifier codeSpace=""/>
                   <gml:name/>
@@ -1269,7 +1269,7 @@
           <gex:temporalElement>
             <gex:EX_TemporalExtent>
               <gex:extent>
-                <gml:TimePeriod gml:id="timePeriod_001">
+                <gml:TimePeriod gml:id="timePeriod001">
                   <gml:description>resource time period</gml:description>
                   <gml:identifier codeSpace=""/>
                   <gml:name/>
@@ -2270,7 +2270,7 @@
           <gex:temporalElement>
             <gex:EX_TemporalExtent>
               <gex:extent>
-                <gml:TimePeriod gml:id="timePeriod_001">
+                <gml:TimePeriod gml:id="timePeriod001">
                   <gml:description>resource time period</gml:description>
                   <gml:identifier codeSpace=""/>
                   <gml:name/>

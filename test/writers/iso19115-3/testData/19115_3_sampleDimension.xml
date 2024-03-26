@@ -81,7 +81,7 @@
         <gco:Real>0</gco:Real>
       </mrc:minValue>
       <mrc:units>
-        <gml:UnitDefinition gml:id="unit_002">
+        <gml:UnitDefinition gml:id="unit002">
           <gml:identifier codeSpace="">min/max units</gml:identifier>
         </gml:UnitDefinition>
       </mrc:units>

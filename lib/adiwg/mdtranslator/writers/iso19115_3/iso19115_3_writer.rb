@@ -20,6 +20,8 @@ module ADIWG
 
             def self.startWriter(intObj, hResponseObj)
 
+               hResponseObj[:writerMissingIdCount] = '000'
+
                # make contact available to the instance
                @contacts = intObj[:contacts]
                @hResponseObj = hResponseObj
