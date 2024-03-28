@@ -62,15 +62,15 @@
           <gco:Boolean>true</gco:Boolean>
         </gex:extentTypeCode>
         <gex:polygon>
-          <gml:MultiGeometry gml:id="geometryCollection_001" srsName="WGS84">
+          <gml:MultiGeometry gml:id="geometryCollection001" srsName="WGS84">
             <gml:geometryMembers>
-              <gml:Point gml:id="point_002" srsDimension="2" srsName="WGS84">
+              <gml:Point gml:id="point002" srsDimension="2" srsName="WGS84">
                 <gml:description/>
                 <gml:identifier codeSpace=""/>
                 <gml:name/>
                 <gml:pos>100.0 10.0</gml:pos>
               </gml:Point>
-              <gml:LineString gml:id="line_003" srsDimension="2" srsName="WGS84">
+              <gml:LineString gml:id="line003" srsDimension="2" srsName="WGS84">
                 <gml:description/>
                 <gml:identifier codeSpace=""/>
                 <gml:name/>
@@ -96,7 +96,7 @@
           <gco:Boolean>true</gco:Boolean>
         </gex:extentTypeCode>
         <gex:polygon>
-          <gml:MultiGeometry gml:id="geometryCollection_001" srsName="WGS84">
+          <gml:MultiGeometry gml:id="geometryCollection001" srsName="WGS84">
           </gml:MultiGeometry>
         </gex:polygon>
       </gex:EX_BoundingPolygon>

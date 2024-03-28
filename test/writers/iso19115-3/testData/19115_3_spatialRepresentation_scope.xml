@@ -190,7 +190,7 @@
         <gco:CharacterString>check point description</gco:CharacterString>
       </msr:checkPointDescription>
       <msr:cornerPoints>
-        <gml:Point gml:id="point_001" srsDimension="2" srsName="WGS84">
+        <gml:Point gml:id="point001" srsDimension="2" srsName="WGS84">
           <gml:description/>
           <gml:identifier codeSpace=""/>
           <gml:name/>
@@ -198,7 +198,7 @@
         </gml:Point>
       </msr:cornerPoints>
       <msr:cornerPoints>
-        <gml:Point gml:id="point_002" srsDimension="2" srsName="WGS84">
+        <gml:Point gml:id="point002" srsDimension="2" srsName="WGS84">
           <gml:description/>
           <gml:identifier codeSpace=""/>
           <gml:name/>
@@ -206,7 +206,7 @@
         </gml:Point>
       </msr:cornerPoints>
       <msr:centrePoint>
-        <gml:Point gml:id="point_003" srsDimension="2" srsName="WGS84">
+        <gml:Point gml:id="point003" srsDimension="2" srsName="WGS84">
           <gml:description/>
           <gml:identifier codeSpace=""/>
           <gml:name/>
