@@ -114,7 +114,7 @@
         <gco:Boolean>true</gco:Boolean>
       </gex:extentTypeCode>
       <gex:polygon>
-        <gml:MultiPoint gml:id="multipoint001" srsDimension="2" srsName="WGS84">
+        <gml:MultiPoint gml:id="multiPoint001" srsDimension="2" srsName="WGS84">
           <gml:description/>
           <gml:identifier codeSpace=""/>
           <gml:name/>
