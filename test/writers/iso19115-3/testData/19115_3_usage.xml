@@ -77,6 +77,8 @@
               </cit:partyIdentifier>
               <cit:logo/>
               <cit:individual/>
+            </cit:CI_Organisation>
+          </cit:party>
         </cit:CI_Responsibility>
       </mri:userContactInfo>
       <mri:response>
