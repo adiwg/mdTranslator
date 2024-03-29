@@ -33,7 +33,7 @@
         xsi:schemaLocation="http://standards.iso.org/iso/19115/-3/mdt/2.0
         http://standards.iso.org/iso/19115/-3/mdt/2.0/mdt.xsd">
 
-<mri:resourceSpecificUsage>
+  <mri:resourceSpecificUsage>
     <mri:MD_Usage>
       <mri:specificUsage>
         <gco:CharacterString>usage one</gco:CharacterString>
