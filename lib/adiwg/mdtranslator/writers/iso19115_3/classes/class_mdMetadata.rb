@@ -85,7 +85,7 @@ module ADIWG
                   # schema locations
                   # set to 'remoteSchema' before publishing
                   localSchema = 'C:\Users\StanSmith\Projects\ISO\19115\-3\mdt\1.0\mdt.xsd'
-                  remoteSchema = 'http://standards.iso.org/iso/19115/-3/mdt/2.0/mdt.xsd'
+                  remoteSchema = 'https://schemas.isotc211.org/19115/-3/mdt/2.0/mdt.xsd'
 
                   # MD_Metadata
                   @xml.tag!('mdb:MD_Metadata',

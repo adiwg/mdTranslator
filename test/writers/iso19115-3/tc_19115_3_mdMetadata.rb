@@ -50,7 +50,7 @@ class TestWriter191151MDMetadata < TestWriter191151Parent
       assert_equal 'xml', hResponseObj[:writerOutputFormat]
       assert hResponseObj[:writerShowTags]
       assert_nil hResponseObj[:writerCSSlink]
-      assert_equal '_001', hResponseObj[:writerMissingIdCount]
+      assert_equal '001', hResponseObj[:writerMissingIdCount]
       assert_equal translatorVersion, hResponseObj[:translatorVersion]
 
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])

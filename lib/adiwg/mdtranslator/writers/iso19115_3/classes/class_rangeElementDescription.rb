@@ -17,23 +17,24 @@ module ADIWG
           end
 
           def writeXML(hAttribute, inContext = nil)
-
-            unless hAttribute[:name].nil?
-              @xml.tag!('mrc:name') do
-                @xml.tag!('gco:CharacterString', hAttribute[:name])
+            @xml.tag!('mrc:MI_RangeElementDescription') do
+              unless hAttribute[:name].nil?
+                @xml.tag!('mrc:name') do
+                  @xml.tag!('gco:CharacterString', hAttribute[:name])
+                end
               end
-            end
 
-            unless hAttribute[:definition].nil?
-              @xml.tag!('mrc:definition') do
-                @xml.tag!('gco:CharacterString', hAttribute[:definition])
+              unless hAttribute[:definition].nil?
+                @xml.tag!('mrc:definition') do
+                  @xml.tag!('gco:CharacterString', hAttribute[:definition])
+                end
               end
-            end
 
-            hAttribute[:rangeElement].each do |hRangeElement|
-              @xml.tag!('mrc:rangeElement') do
-                @xml.tag!('gco:Record') do
-                  @xml.tag!('gco:CharacterString', hRangeElement)
+              hAttribute[:rangeElement].each do |hRangeElement|
+                @xml.tag!('mrc:rangeElement') do
+                  @xml.tag!('gco:Record') do
+                    @xml.tag!('gco:CharacterString', hRangeElement)
+                  end
                 end
               end
             end

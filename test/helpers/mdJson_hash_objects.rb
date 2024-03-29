@@ -57,7 +57,7 @@ class MdJsonHashWriter
                isOrganization: true,
                name: 'organization name',
                externalIdentifier: [
-                  { identifier: '0000-00002', namespace: 'ORCID' }
+                  { identifier: '0000-00002', namespace: 'ROR' }
                ],
                phone: [
                   {

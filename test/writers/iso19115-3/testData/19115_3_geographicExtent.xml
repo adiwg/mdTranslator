@@ -78,7 +78,7 @@
           <gco:Boolean>true</gco:Boolean>
         </gex:extentTypeCode>
         <gex:polygon>
-          <gml:Point gml:id="point_001" srsDimension="2" srsName="WGS84">
+          <gml:Point gml:id="point001" srsDimension="2" srsName="WGS84">
             <gml:description/>
             <gml:identifier codeSpace=""/>
             <gml:name/>
@@ -167,7 +167,7 @@
           <gco:Boolean>false</gco:Boolean>
         </gex:extentTypeCode>
         <gex:polygon>
-          <gml:Point gml:id="point_001" srsDimension="2" srsName="WGS84">
+          <gml:Point gml:id="point001" srsDimension="2" srsName="WGS84">
             <gml:description/>
             <gml:identifier codeSpace=""/>
             <gml:name/>

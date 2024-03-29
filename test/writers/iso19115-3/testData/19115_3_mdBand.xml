@@ -81,26 +81,13 @@
         <gco:Real>0</gco:Real>
       </mrc:minValue>
       <mrc:units>
-        <gml:UnitDefinition gml:id="unit_002">
+        <gml:UnitDefinition gml:id="unit002">
           <gml:identifier codeSpace="">min/max units</gml:identifier>
         </gml:UnitDefinition>
       </mrc:units>
       <mrc:scaleFactor>
         <gco:Real>99.9</gco:Real>
       </mrc:scaleFactor>
-      <mrc:rangeElementDescription>
-        <mrc:name>
-          <gco:CharacterString>range element name 1</gco:CharacterString>
-        </mrc:name>
-        <mrc:definition>
-          <gco:CharacterString>range element definition</gco:CharacterString>
-        </mrc:definition>
-        <mrc:rangeElement>
-          <gco:Record>
-            <gco:CharacterString>range element record 1</gco:CharacterString>
-          </gco:Record>
-        </mrc:rangeElement>
-      </mrc:rangeElementDescription>
       <mrc:offset>
         <gco:Real>1.0</gco:Real>
       </mrc:offset>
@@ -116,6 +103,21 @@
       <mrc:bitsPerValue>
         <gco:Integer>9</gco:Integer>
       </mrc:bitsPerValue>
+      <mrc:rangeElementDescription>
+        <mrc:MI_RangeElementDescription>
+          <mrc:name>
+            <gco:CharacterString>range element name 1</gco:CharacterString>
+          </mrc:name>
+          <mrc:definition>
+            <gco:CharacterString>range element definition</gco:CharacterString>
+          </mrc:definition>
+          <mrc:rangeElement>
+            <gco:Record>
+               <gco:CharacterString>range element record 1</gco:CharacterString>
+            </gco:Record>
+          </mrc:rangeElement>
+        </mrc:MI_RangeElementDescription>
+      </mrc:rangeElementDescription>
       <mrc:boundMax>
         <gco:Real>999</gco:Real>
       </mrc:boundMax>
@@ -123,7 +125,7 @@
         <gco:Real>100</gco:Real>
       </mrc:boundMin>
       <mrc:boundUnits>
-        <gml:UnitDefinition gml:id="unit_003">
+        <gml:UnitDefinition gml:id="unit003">
           <gml:identifier codeSpace="">bound min/max units</gml:identifier>
         </gml:UnitDefinition>
       </mrc:boundUnits>
@@ -184,26 +186,13 @@
         <gco:Real>0</gco:Real>
       </mrc:minValue>
       <mrc:units>
-        <gml:UnitDefinition gml:id="unit_002">
+        <gml:UnitDefinition gml:id="unit002">
           <gml:identifier codeSpace="">min/max units</gml:identifier>
         </gml:UnitDefinition>
       </mrc:units>
       <mrc:scaleFactor>
         <gco:Real>99.9</gco:Real>
       </mrc:scaleFactor>
-      <mrc:rangeElementDescription>
-        <mrc:name>
-          <gco:CharacterString>range element name 1</gco:CharacterString>
-        </mrc:name>
-        <mrc:definition>
-          <gco:CharacterString>range element definition</gco:CharacterString>
-        </mrc:definition>
-        <mrc:rangeElement>
-          <gco:Record>
-            <gco:CharacterString>range element record 1</gco:CharacterString>
-          </gco:Record>
-        </mrc:rangeElement>
-      </mrc:rangeElementDescription>
       <mrc:offset>
         <gco:Real>1.0</gco:Real>
       </mrc:offset>
@@ -219,6 +208,21 @@
       <mrc:bitsPerValue>
         <gco:Integer>9</gco:Integer>
       </mrc:bitsPerValue>
+      <mrc:rangeElementDescription>
+        <mrc:MI_RangeElementDescription>
+          <mrc:name>
+            <gco:CharacterString>range element name 1</gco:CharacterString>
+          </mrc:name>
+          <mrc:definition>
+            <gco:CharacterString>range element definition</gco:CharacterString>
+          </mrc:definition>
+          <mrc:rangeElement>
+            <gco:Record>
+              <gco:CharacterString>range element record 1</gco:CharacterString>
+            </gco:Record>
+          </mrc:rangeElement>
+        </mrc:MI_RangeElementDescription>
+      </mrc:rangeElementDescription>
       <mrc:boundMax/>
       <mrc:boundMin/>
       <mrc:boundUnits/>
@@ -277,26 +281,13 @@
         <gco:Real>0</gco:Real>
       </mrc:minValue>
       <mrc:units>
-        <gml:UnitDefinition gml:id="unit_002">
+        <gml:UnitDefinition gml:id="unit002">
           <gml:identifier codeSpace="">min/max units</gml:identifier>
         </gml:UnitDefinition>
       </mrc:units>
       <mrc:scaleFactor>
         <gco:Real>99.9</gco:Real>
       </mrc:scaleFactor>
-      <mrc:rangeElementDescription>
-        <mrc:name>
-          <gco:CharacterString>range element name 1</gco:CharacterString>
-        </mrc:name>
-        <mrc:definition>
-          <gco:CharacterString>range element definition</gco:CharacterString>
-        </mrc:definition>
-        <mrc:rangeElement>
-          <gco:Record>
-            <gco:CharacterString>range element record 1</gco:CharacterString>
-          </gco:Record>
-        </mrc:rangeElement>
-      </mrc:rangeElementDescription>
       <mrc:offset>
         <gco:Real>1.0</gco:Real>
       </mrc:offset>
@@ -312,6 +303,21 @@
       <mrc:bitsPerValue>
         <gco:Integer>9</gco:Integer>
       </mrc:bitsPerValue>
+      <mrc:rangeElementDescription>
+        <mrc:MI_RangeElementDescription>
+          <mrc:name>
+            <gco:CharacterString>range element name 1</gco:CharacterString>
+          </mrc:name>
+          <mrc:definition>
+            <gco:CharacterString>range element definition</gco:CharacterString>
+          </mrc:definition>
+          <mrc:rangeElement>
+            <gco:Record>
+              <gco:CharacterString>range element record 1</gco:CharacterString>
+            </gco:Record>
+          </mrc:rangeElement>
+        </mrc:MI_RangeElementDescription>
+      </mrc:rangeElementDescription>
       <mrc:boundMax/>
       <mrc:boundMin/>
       <mrc:boundUnits/>

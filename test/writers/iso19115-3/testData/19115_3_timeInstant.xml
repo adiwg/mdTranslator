@@ -50,7 +50,7 @@
   <gex:temporalElement>
     <gex:EX_TemporalExtent>
       <gex:extent>
-        <gml:TimeInstant gml:id="timeInstant_001">
+        <gml:TimeInstant gml:id="timeInstant001">
           <gml:description/>
           <gml:identifier codeSpace=""/>
           <gml:name/>
