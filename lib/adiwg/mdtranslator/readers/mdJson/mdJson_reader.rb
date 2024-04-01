@@ -96,7 +96,7 @@ module ADIWG
                aReqVersion = requestedVersion.split('.')
                approved = false
                if aReqVersion[0] == aCurVersion[0]
-                  if aReqVersion[1] <= aCurVersion[1]
+                  if aReqVersion[1].to_i <= aCurVersion[1].to_i
                      approved = true
                   end
                end
