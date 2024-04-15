@@ -103,27 +103,28 @@ module ADIWG
                      end
                   end
 
-                  if hAcquisition.has_key?('environment')
-                     aItems = hAcquisition['environment']
+                  if hAcquisition.has_key?('pass')
+                     aItems = hAcquisition['pass']
                      aItems.each do |item|
-                        hReturn = AcqEnvironment.unpack(item, responseObj, outContext)
+                        hReturn = AcqPass.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
-                           intAttGroup[:environments] << hReturn
-                        end
-                     end
-                  end
-
-                  if hAcquisition.has_key?('scope')
-                     unless hAcquisition['scope'].empty?
-                        hReturn = Scope.unpack(hAcquisition['scope'], responseObj, outContext)
-                        unless hReturn.nil?
-                           intAlgorithm[:scope] = hReturn
+                           intAttGroup[:passs] << hReturn
                         end
                      end
                   end
                   
                   return intAcquisition
 
+               end
+
+               if hAcquisition.has_key?('environment')
+                  aItems = hAcquisition['environment']
+                  aItems.each do |item|
+                     hReturn = AcqEnvironment.unpack(item, responseObj, outContext)
+                     unless hReturn.nil?
+                        intAttGroup[:environments] << hReturn
+                     end
+                  end
                end
 
             end
