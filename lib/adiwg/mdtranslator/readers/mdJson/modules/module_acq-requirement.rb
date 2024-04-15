@@ -21,7 +21,7 @@ module ADIWG
 
                         intAcqRequirement = intMetadataClass.newRequirement
 
-                        if intAcqRequirement.has_key('requirementId')
+                        if hAcqRequirement.has_key('requirementId')
                             intAcqRequirement[:requirementId] = hAcqPlan['requirementId']
                         end
 
