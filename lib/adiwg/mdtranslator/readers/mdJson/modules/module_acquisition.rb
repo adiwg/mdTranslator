@@ -122,7 +122,9 @@ module ADIWG
                         end
                      end
 
-                     return intAcquisition
+                  end
+
+                  return intAcquisition
 
                end
 
