@@ -13,6 +13,7 @@ require_relative 'module_associatedResource'
 require_relative 'module_additionalDocumentation'
 require_relative 'module_funding'
 require_relative 'module_dataQuality'
+require_relative 'module_acquisition'
 
 module ADIWG
    module Mdtranslator
@@ -124,6 +125,16 @@ module ADIWG
                         hReturn = DataQuality.unpack(item, responseObj)
                         unless hReturn.nil?
                            intMetadata[:dataQuality] << hReturn
+                        end
+                     end
+                  end
+
+                  if hMetadata.has_key?('acquisition')
+                     aItems = hMetadata['acquisition']
+                     aItems.each do |item|
+                        hReturn = Acquisition.unpack(item, responseObj)
+                        unless hReturn.nil?
+                           intMetadata[:acquisition] << hReturn
                         end
                      end
                   end

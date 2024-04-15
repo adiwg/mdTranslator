@@ -158,6 +158,7 @@ class InternalMetadata
    # acquisition ----------------------------
    def newAcquisition
       {
+         scope: {},
          plans: [],
          requirements: [],
          objectives: [],
