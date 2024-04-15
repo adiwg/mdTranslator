@@ -28,7 +28,7 @@ module ADIWG
                      unless hAcquisition['scope'].empty?
                         hReturn = Scope.unpack(hAcquisition['scope'], responseObj, outContext)
                         unless hReturn.nil?
-                           intAlgorithm[:scope] = hReturn
+                           intAcquisition[:scope] = hReturn
                         end
                      end
                   end
@@ -38,7 +38,7 @@ module ADIWG
                      aItems.each do |item|
                         hReturn = AcqPlan.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
-                           intAttGroup[:plans] << hReturn
+                           intAcquisition[:plans] << hReturn
                         end
                      end
                   end
@@ -48,7 +48,7 @@ module ADIWG
                      aItems.each do |item|
                         hReturn = AcqRequirement.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
-                           intAttGroup[:requirements] << hReturn
+                           intAcquisition[:requirements] << hReturn
                         end
                      end
                   end
@@ -58,7 +58,7 @@ module ADIWG
                      aItems.each do |item|
                         hReturn = AcqObjective.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
-                           intAttGroup[:objectives] << hReturn
+                           intAcquisition[:objectives] << hReturn
                         end
                      end
                   end
@@ -68,7 +68,7 @@ module ADIWG
                      aItems.each do |item|
                         hReturn = AcqPlatform.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
-                           intAttGroup[:platforms] << hReturn
+                           intAcquisition[:platforms] << hReturn
                         end
                      end
                   end
@@ -78,7 +78,7 @@ module ADIWG
                      aItems.each do |item|
                         hReturn = AcqInstrument.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
-                           intAttGroup[:instruments] << hReturn
+                           intAcquisition[:instruments] << hReturn
                         end
                      end
                   end
@@ -88,7 +88,7 @@ module ADIWG
                      aItems.each do |item|
                         hReturn = AcqOperation.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
-                           intAttGroup[:operations] << hReturn
+                           intAcquisition[:operations] << hReturn
                         end
                      end
                   end
@@ -98,7 +98,7 @@ module ADIWG
                      aItems.each do |item|
                         hReturn = AcqEvent.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
-                           intAttGroup[:events] << hReturn
+                           intAcquisition[:events] << hReturn
                         end
                      end
                   end
@@ -108,23 +108,22 @@ module ADIWG
                      aItems.each do |item|
                         hReturn = AcqPass.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
-                           intAttGroup[:passs] << hReturn
+                           intAcquisition[:passs] << hReturn
                         end
                      end
                   end
                   
-                  return intAcquisition
-
-               end
-
-               if hAcquisition.has_key?('environment')
-                  aItems = hAcquisition['environment']
-                  aItems.each do |item|
-                     hReturn = AcqEnvironment.unpack(item, responseObj, outContext)
-                     unless hReturn.nil?
-                        intAttGroup[:environments] << hReturn
+                  if hAcquisition.has_key?('environment')
+                     aItems = hAcquisition['environment']
+                     aItems.each do |item|
+                        hReturn = AcqEnvironment.unpack(item, responseObj, outContext)
+                        unless hReturn.nil?
+                           intAcquisition[:environments] << hReturn
+                        end
                      end
-                  end
+
+                     return intAcquisition
+
                end
 
             end
