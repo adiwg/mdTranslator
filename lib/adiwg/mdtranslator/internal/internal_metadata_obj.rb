@@ -176,7 +176,10 @@ class InternalMetadata
          averageAirTemperature: nil,
          maxRelativeHumidity: nil,
          maxAltitude: nil,
-         meteorologicalConditions: nil
+         meteorologicalConditions: nil,
+         solarAzimuth: nil,
+         solarElevation: nil
+         
       }
    end
 
