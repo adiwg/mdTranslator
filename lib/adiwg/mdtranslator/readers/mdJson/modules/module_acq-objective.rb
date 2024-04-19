@@ -1,3 +1,5 @@
+require_relative 'module_identifier'
+
 module ADIWG
     module Mdtranslator
         module Readers
