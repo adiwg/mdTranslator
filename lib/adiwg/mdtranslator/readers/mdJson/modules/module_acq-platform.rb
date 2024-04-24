@@ -46,7 +46,7 @@ module ADIWG
                         if hAcqPlatform.has_key?('sponsor')
                             hReturn = ResponsibileParty.unpack(hAcqPlatform['sponsor'], responseObj, inContext)
                             unless hReturn.nil?
-                                intAcqPlatform[:sponsor] = hReturn
+                                intAcqPlatform[:sponsors] = hReturn
                             end
                         end
 
