@@ -204,6 +204,16 @@ class InternalMetadata
       }
    end
 
+   def newInstrumentationEventList
+      {
+         citations: [],
+         description: nil,
+         locale: {},
+         constraints: [],
+         instrumentationEvent: []
+      }
+   end
+
    def newObjective
       {
          objectiveId: nil,
