@@ -204,6 +204,16 @@ class InternalMetadata
       }
    end
 
+   def newInstrumentationEvent
+      {
+         citation: {},
+         description: nil,
+         extent: {},
+         eventType: nil,
+         revisionHistories: [],
+      }
+   end
+
    def newObjective
       {
          objectiveId: nil,
