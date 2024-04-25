@@ -268,6 +268,14 @@ class InternalMetadata
       }
    end
 
+   def newRevision
+      {
+         description: nil,
+         responsibleParty: {},
+         dateInfo: []
+      }
+   end
+
    def newPlatform
       {
          platformId: nil,
