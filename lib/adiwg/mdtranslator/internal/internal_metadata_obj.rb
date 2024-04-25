@@ -200,7 +200,9 @@ class InternalMetadata
          identifier: {},
          instrumentType: nil,
          description: nil,
-         mountedOn: nil
+         mountedOn: nil,
+         histrory: [],
+         hostId: {}
       }
    end
 
