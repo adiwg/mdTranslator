@@ -134,7 +134,7 @@ module ADIWG
                      aItems.each do |item|
                         hReturn = Acquisition.unpack(item, responseObj)
                         unless hReturn.nil?
-                           intMetadata[:acquisition] << hReturn
+                           intMetadata[:acquisitions] << hReturn
                         end
                      end
                   end
