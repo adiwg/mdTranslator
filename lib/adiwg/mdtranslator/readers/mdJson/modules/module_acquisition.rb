@@ -1,6 +1,6 @@
 require_relative 'module_scope'
 require_relative 'module_acq-requirement'
-require_relative 'module_acq-objective'
+require_relative 'module_objective'
 require_relative 'module_acq-platform'
 require_relative 'module_acq-instrument'
 require_relative 'module_acq-operation'
@@ -35,15 +35,15 @@ module ADIWG
                      end
                   end
 
-                  if hAcquisition.has_key?('plan')
-                     aItems = hAcquisition['plan']
-                     aItems.each do |item|
-                        hReturn = AcqPlan.unpack(item, responseObj, outContext)
-                        unless hReturn.nil?
-                           intAcquisition[:plans] << hReturn
-                        end
-                     end
-                  end
+                  # if hAcquisition.has_key?('plan')
+                  #    aItems = hAcquisition['plan']
+                  #    aItems.each do |item|
+                  #       hReturn = AcqPlan.unpack(item, responseObj, outContext)
+                  #       unless hReturn.nil?
+                  #          intAcquisition[:plans] << hReturn
+                  #       end
+                  #    end
+                  # end
 
                   if hAcquisition.has_key?('requirement')
                      aItems = hAcquisition['requirement']
@@ -58,7 +58,7 @@ module ADIWG
                   if hAcquisition.has_key?('objective')
                      aItems = hAcquisition['objective']
                      aItems.each do |item|
-                        hReturn = AcqObjective.unpack(item, responseObj, outContext)
+                        hReturn = Objective.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intAcquisition[:objectives] << hReturn
                         end
