@@ -19,6 +19,8 @@ module ADIWG
  
                   @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
+                  outContext = 'acquisition'
+                  outContext = inContext + ' > ' + outContext unless inContext.nil?
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
