@@ -6,7 +6,7 @@ require_relative 'module_acq-instrument'
 require_relative 'module_acq-operation'
 require_relative 'module_acq-event'
 require_relative 'module_acq-pass'
-require_relative 'module_acq-environment'
+require_relative 'module_environment'
 
 module ADIWG
    module Mdtranslator
@@ -116,16 +116,9 @@ module ADIWG
                   end
                   
                   if hAcquisition.has_key?('environment')
-                     aItems = hAcquisition['environment']
-                     aItems.each do |item|
-                        hReturn = AcqEnvironment.unpack(item, responseObj, outContext)
-                        unless hReturn.nil?
-                           intAcquisition[:environments] << hReturn
-                        end
-                     end
-
+                     intAcquisition[:environments] = hAcquisition['environment']
                   end
-
+                  puts intAcquisition
                   return intAcquisition
 
                end
