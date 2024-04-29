@@ -5,18 +5,18 @@ module ADIWG
         module Readers
             module MdJson
   
-                module AcqPlan
-                    def self.unpack(hAcqPlan, responseObj, inContext = nil)
+                module Plan
+                    def self.unpack(hPlan, responseObj, inContext = nil)
                         
                         @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                         # return nil object if input is empty
-                        if hAcqPlan.empty?
+                        if hPlan.empty?
                             @MessagePath.issueWarning(40, responseObj, inContext)
                             return nil
                         end
 
-                        intAcqPlan = intMetadataClass.newPlan
+                        intPlan = intMetadataClass.newPlan
 
                         statusArray = [
                             "accepted",
@@ -42,39 +42,39 @@ module ADIWG
                             "withdrawn"
                         ]
 
-                        if hAcqPlan.has_key('planId')
-                            intAcqPlan[:planId] = hAcqPlan['planId']
+                        if hPlan.has_key('planId')
+                            intPlan[:planId] = hPlan['planId']
                             
                         else
                             @MessagePath.issueError(42, responseObj, inContext)
                         end
 
-                        if hAcqPlan.has_key('planType')
-                            intAcqPlan[:planType] = hAcqPlan['planType']
+                        if hPlan.has_key('planType')
+                            intPlan[:planType] = hPlan['planType']
                         end
 
-                        if hAcqPlan.has_key('status') && statusArray.include?(hAcqPlan['status'])
-                            intAcqPlan[:status] = hAcqPlan['status']
+                        if hPlan.has_key('status') && statusArray.include?(hPlan['status'])
+                            intPlan[:status] = hPlan['status']
                         else
                             @MessagePath.issueError(43, responseObj, inContext)
                         end
 
-                        if hAcqPlan.has_key('citation')
-                            hReturn = Citation.unpack(hAcqPlan['citation'], responseObj, inContext)
+                        if hPlan.has_key('citation')
+                            hReturn = Citation.unpack(hPlan['citation'], responseObj, inContext)
                             unless hReturn.nil?
-                                intAcqPlan[:citation] = hReturn
+                                intPlan[:citation] = hReturn
                             end
                         else
                             @MessagePath.issueError(44, responseObj, inContext)
                         end
 
-                        if hAcqPlan.has_key?('planOperations')
-                            intAcqPlan[:planOperations] = hAcqPlan['planOperations']
+                        if hPlan.has_key?('planOperations')
+                            intPlan[:planOperations] = hPlan['planOperations']
                             
                         end
 
-                        if hAcqPlan.has_key?('satisfiedRequirements')
-                            intAcqPlan[:satisfiedRequirements] = hAcqPlan['satisfiedRequirements']
+                        if hPlan.has_key?('satisfiedRequirements')
+                            intPlan[:satisfiedRequirements] = hPlan['satisfiedRequirements']
                         end
 
                     end
