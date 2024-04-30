@@ -85,7 +85,7 @@ class MdJsonHashWriter
                description: 'description'
             },
             evaluationMethod: {
-               type: 'DQ_EvaluationMethod',
+               type: 'evaluationMethod',
                dateTime: ['2019-06-11T08:35:00', '2019-06-11T09:00:00'],
                methodDescription: 'evaluation method description',
                evaluationProcedure: { title: 'EP Title' },
