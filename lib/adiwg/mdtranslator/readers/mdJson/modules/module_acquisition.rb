@@ -1,5 +1,5 @@
 require_relative 'module_scope'
-require_relative 'module_acq-requirement'
+require_relative 'module_requirement'
 require_relative 'module_acq-objective'
 require_relative 'module_acq-platform'
 require_relative 'module_acq-instrument'
@@ -48,7 +48,7 @@ module ADIWG
                   if hAcquisition.has_key?('requirement')
                      aItems = hAcquisition['requirement']
                      aItems.each do |item|
-                        hReturn = AcqRequirement.unpack(item, responseObj, outContext)
+                        hReturn = Requirement.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intAcquisition[:requirements] << hReturn
                         end
