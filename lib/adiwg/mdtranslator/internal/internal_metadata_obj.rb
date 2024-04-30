@@ -206,6 +206,26 @@ class InternalMetadata
       }
    end
 
+   def newInstrumentationEvent
+      {
+         citation: {},
+         description: nil,
+         extent: {},
+         eventType: nil,
+         revisionHistories: [],
+      }
+   end
+
+   def newInstrumentationEventList
+      {
+         citations: [],
+         description: nil,
+         locale: {},
+         constraints: [],
+         instrumentationEvent: []
+      }
+   end
+
    def newObjective
       {
          objectiveId: nil,
@@ -267,6 +287,14 @@ class InternalMetadata
          requestedDate: {},
          expiryDate: nil,
          satisfiedPlans: []
+      }
+   end
+
+   def newRevision
+      {
+         description: nil,
+         responsibleParty: {},
+         dateInfo: []
       }
    end
 
