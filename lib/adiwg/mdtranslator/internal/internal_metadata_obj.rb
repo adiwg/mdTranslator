@@ -143,7 +143,8 @@ class InternalMetadata
          associatedResources: [],
          additionalDocuments: [],
          funding: [],
-         dataQuality: []
+         dataQuality: [],
+         acquisitions: []
       }
    end
 
