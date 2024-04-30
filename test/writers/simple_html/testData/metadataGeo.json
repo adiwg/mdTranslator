@@ -2957,7 +2957,7 @@
                   }
                 ],
                 "evaluationMethod": {
-                  "type": "DQ_EvaluationMethod",
+                  "type": "evaluationMethod",
                   "dateTime": ["2019-06-11T08:35:00"],
                   "methodDescription": "evaluation method description",
                   "evaluationProcedure": {

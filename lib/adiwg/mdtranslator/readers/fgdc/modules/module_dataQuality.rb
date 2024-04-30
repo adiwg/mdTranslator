@@ -82,7 +82,7 @@ module ADIWG
                      xHorizontal = xPositionalAccuracy.xpath('./horizpa')
                      unless xHorizontal.empty?
                         report = intMetadataClass.newDataQualityReport
-                        report[:type] = 'AbsoluteExternalPositionalAccuracy'
+                        report[:type] = 'AbsolutePositionalAccuracy'
                         unless xHorizontal.xpath('qhorizpa/horizpae').empty?
                            report[:qualityMeasure] = intMetadataClass.newQualityMeasure
                            report[:qualityMeasure][:description] = xHorizontal.xpath('qhorizpa/horizpae').text
@@ -105,7 +105,7 @@ module ADIWG
                      xVertical = xPositionalAccuracy.xpath('./vertacc')
                      unless xVertical.empty?
                         report = intMetadataClass.newDataQualityReport
-                        report[:type] = 'AbsoluteExternalPositionalAccuracy'
+                        report[:type] = 'AbsolutePositionalAccuracy'
                         unless xVertical.xpath('qvertpa/vertacce').empty?
                            report[:qualityMeasure] = intMetadataClass.newQualityMeasure
                            report[:qualityMeasure][:description] = xVertical.xpath('qvertpa/vertacce').text
