@@ -216,7 +216,8 @@ class MdJsonHashWriter
                   }
                ]
             },
-            dataQuality: []
+            dataQuality: [],
+            acquisition: []
          },
          metadataRepository: [],
          dataDictionary: []
@@ -1379,7 +1380,8 @@ class MdJsonHashWriter
          associatedResource: [],
          additionalDocumentation: [],
          funding: [],
-         dataQuality: []
+         dataQuality: [],
+         acquisition: []
       }
    end
 
