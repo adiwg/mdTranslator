@@ -1,10 +1,10 @@
 require_relative 'module_scope'
-require_relative 'module_acq-requirement'
 require_relative 'module_objective'
+require_relative 'module_requirement'
 require_relative 'module_acq-platform'
-require_relative 'module_acq-instrument'
+require_relative 'module_instrument'
 require_relative 'module_acq-operation'
-require_relative 'module_acq-event'
+require_relative 'module_event'
 require_relative 'module_acq-pass'
 require_relative 'module_acq-environment'
 
@@ -48,7 +48,7 @@ module ADIWG
                   if hAcquisition.has_key?('requirement')
                      aItems = hAcquisition['requirement']
                      aItems.each do |item|
-                        hReturn = AcqRequirement.unpack(item, responseObj, outContext)
+                        hReturn = Requirement.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intAcquisition[:requirements] << hReturn
                         end
@@ -78,7 +78,7 @@ module ADIWG
                   if hAcquisition.has_key?('instrument')
                      aItems = hAcquisition['instrument']
                      aItems.each do |item|
-                        hReturn = AcqInstrument.unpack(item, responseObj, outContext)
+                        hReturn = Instrument.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intAcquisition[:instruments] << hReturn
                         end
@@ -98,7 +98,7 @@ module ADIWG
                   if hAcquisition.has_key?('event')
                      aItems = hAcquisition['event']
                      aItems.each do |item|
-                        hReturn = AcqEvent.unpack(item, responseObj, outContext)
+                        hReturn = Event.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intAcquisition[:events] << hReturn
                         end
