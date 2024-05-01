@@ -184,12 +184,13 @@ class InternalMetadata
    def newEvent
       {
          eventId: nil,
+         identifier: {},
          trigger: nil,
          context: nil,
          sequence: nil,
          dateTime: nil,
          expectedObjectives: [],
-         relatedPass: nil,
+         relatedPass: {},
          relatedSensors: []
       }
    end
