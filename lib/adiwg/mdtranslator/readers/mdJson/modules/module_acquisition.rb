@@ -2,7 +2,7 @@ require_relative 'module_scope'
 require_relative 'module_acq-requirement'
 require_relative 'module_acq-objective'
 require_relative 'module_acq-platform'
-require_relative 'module_acq-instrument'
+require_relative 'module_instrument'
 require_relative 'module_acq-operation'
 require_relative 'module_acq-event'
 require_relative 'module_acq-pass'
@@ -78,7 +78,7 @@ module ADIWG
                   if hAcquisition.has_key?('instrument')
                      aItems = hAcquisition['instrument']
                      aItems.each do |item|
-                        hReturn = AcqInstrument.unpack(item, responseObj, outContext)
+                        hReturn = Instrument.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intAcquisition[:instruments] << hReturn
                         end

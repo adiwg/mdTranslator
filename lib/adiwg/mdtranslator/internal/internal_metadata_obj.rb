@@ -202,7 +202,7 @@ class InternalMetadata
          instrumentType: nil,
          description: nil,
          mountedOn: nil,
-         histrory: [],
+         histories: [],
          hostId: {}
       }
    end
@@ -223,7 +223,7 @@ class InternalMetadata
          description: nil,
          locale: {},
          constraints: [],
-         instrumentationEvent: []
+         instrumentationEvents: []
       }
    end
 

@@ -1,5 +1,5 @@
 require_relative 'module_responsibleParty'
-require_relative 'module_date'
+require_relative 'module_dateTime'
 
 module ADIWG
     module Mdtranslator
@@ -10,31 +10,37 @@ module ADIWG
                     def self.unpack(hRevision, responseObj, inContext = nil)
                         @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
+                        intMetadataClass = InternalMetadata.new
                         intRevision = intMetadataClass.newRevision
 
-                        if hRevision.has_key('description')
+                        outContext = 'revision'
+                        outContext = inContext + ' > ' + outContext unless inContext.nil?
+
+                        if hRevision.has_key?('description')
                             intRevision[:description] = hRevision['description']
                         else
-                            @MessagePath.issueWarning(40, responseObj, inContext, 'revision description')
+                            @MessagePath.issueWarning(40, responseObj, outContext)
                         end
 
-                        if hRevision.has_key('responsibleParty')
-                            intRevision[:responsibleParty] = responsibleParty.unpack(hRevision['responsibleParty'], responseObj, inContext)
+                        if hRevision.has_key?('responsibleParty')
+                            intRevision[:responsibleParty] = ResponsibleParty.unpack(hRevision['responsibleParty'], responseObj, outContext)
                         else
-                            @MessagePath.issueWarning(41, responseObj, inContext, 'revision responsible party')
+                            @MessagePath.issueWarning(41, responseObj, outContext)
                         end
 
-                        if hRevision.has_key('dateInfo')
+                        if hRevision.has_key?('dateInfo')
                             intRevision[:dateInfo].each do |item|
-                                hReturn = Date.unpack(item, responseObj, inContext)
-                            unless hReturn.nil?
-                                intRevision[:dateInfo] << hReturn
+                                hReturn = DateTime.unpack(item, responseObj, outContex)
+                                unless hReturn.nil?
+                                    intRevision[:dateInfo] << hReturn
+                                end
                             end
                         else
-                            @MessagePath.issueWarning(41, responseObj, inContext, 'revision date info')
+                            @MessagePath.issueWarning(41, responseObj, outContext)
                         end
 
                         intRevision
+
                     end
                 end
 

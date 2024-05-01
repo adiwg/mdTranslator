@@ -11,7 +11,11 @@ module ADIWG
                     def self.unpack(hInstrumentationEvent, responseObj, inContext = nil)
                         @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
+                        intMetadataClass = InternalMetadata.new
                         intInstrumentationEvent = intMetadataClass.newInstrumentationEvent
+
+                        outContext = 'instrumentation event'
+                        outContext = inContext + ' > ' + outContext unless inContext.nil?
 
                         eventTypeArray = [
                             "announcement",
@@ -29,31 +33,32 @@ module ADIWG
                             "clean"
                         ]
 
-                        if hInstrumentationEvent.has_key('citation')
-                            intInstrumentationEvent[:citation] = Citation.unpack(hInstrumentationEvent['citation'], responseObj, inContext)
+                        if hInstrumentationEvent.has_key?('citation')
+                            intInstrumentationEvent[:citation] = Citation.unpack(hInstrumentationEvent['citation'], responseObj, outContext)
                         end
 
-                        if hInstrumentationEvent.has_key('description')
+                        if hInstrumentationEvent.has_key?('description')
                             intInstrumentationEvent[:description] = hInstrumentationEvent['description']
                         else
-                            @MessagePath.issueWarning(40, responseObj, inContext, 'instrumentation event description')
+                            @MessagePath.issueWarning(40, responseObj, outContext)
                         end
 
-                        if hInstrumentationEvent.has_key('extent')
-                            intInstrumentationEvent[:extent] = Extent.unpack(hInstrumentationEvent['extent'], responseObj, inContext)
+                        if hInstrumentationEvent.has_key?('extent')
+                            intInstrumentationEvent[:extent] = Extent.unpack(hInstrumentationEvent['extent'], responseObj, outContext)
                         end
 
-                        if hInstrumentationEvent.has_key('eventType') && eventTypeArray.include?(hInstrumentationEvent['eventType'])
+                        if hInstrumentationEvent.has_key?('eventType') && eventTypeArray.include?(hInstrumentationEvent['eventType'])
                             intInstrumentationEvent[:eventType] = hInstrumentationEvent['eventType']
                         else
-                            @MessagePath.issueWarning(41, responseObj, inContext, 'instrumentation event type')
+                            @MessagePath.issueWarning(41, responseObj, outContext)
                         end
 
-                        if hInstrumentationEvent.has_key('revisionHistory')
-                            hrevisionHistory['revisionHistory'].each do |item|
-                                hReturn = Revision.unpack(item, responseObj, inContext)
-                            unless hReturn.nil?
-                                intrevisionHistory[:revisionHistories] << hReturn
+                        if hInstrumentationEvent.has_key?('revisionHistory')
+                            hInstrumentationEvent['revisionHistory'].each do |item|
+                                hReturn = Revision.unpack(item, responseObj, outContext)
+                                unless hReturn.nil?
+                                    intInstrumentationEvent[:revisionHistories] << hReturn
+                                end
                             end
                         end
 
