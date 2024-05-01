@@ -184,12 +184,13 @@ class InternalMetadata
    def newEvent
       {
          eventId: nil,
+         identifier: {},
          trigger: nil,
          context: nil,
          sequence: nil,
          dateTime: nil,
          expectedObjectives: [],
-         relatedPass: nil,
+         relatedPass: {},
          relatedSensors: []
       }
    end
@@ -201,7 +202,29 @@ class InternalMetadata
          identifier: {},
          instrumentType: nil,
          description: nil,
-         mountedOn: nil
+         mountedOn: nil,
+         histories: [],
+         hostId: {}
+      }
+   end
+
+   def newInstrumentationEvent
+      {
+         citation: {},
+         description: nil,
+         extent: {},
+         eventType: nil,
+         revisionHistories: [],
+      }
+   end
+
+   def newInstrumentationEventList
+      {
+         citations: [],
+         description: nil,
+         locale: {},
+         constraints: [],
+         instrumentationEvents: []
       }
    end
 
@@ -266,6 +289,14 @@ class InternalMetadata
          requestedDate: {},
          expiryDate: nil,
          satisfiedPlans: []
+      }
+   end
+
+   def newRevision
+      {
+         description: nil,
+         responsibleParty: {},
+         dateInfo: []
       }
    end
 
