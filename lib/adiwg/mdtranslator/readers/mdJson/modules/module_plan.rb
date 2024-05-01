@@ -69,7 +69,6 @@ module ADIWG
                             end
                         end
 
-                        puts intPlan
                         intPlan
 
                     end
