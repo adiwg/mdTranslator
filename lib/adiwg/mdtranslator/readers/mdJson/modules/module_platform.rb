@@ -9,7 +9,7 @@ module ADIWG
         module Readers
             module MdJson
   
-                module AcqPlatform
+                module Platform
                     def self.unpack(hAcqPlatform, responseObj, inContext = nil)
                         @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 

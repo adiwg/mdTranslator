@@ -1,7 +1,7 @@
 require_relative 'module_scope'
 require_relative 'module_acq-requirement'
 require_relative 'module_acq-objective'
-require_relative 'module_acq-platform'
+require_relative 'module_platform'
 require_relative 'module_acq-instrument'
 require_relative 'module_acq-operation'
 require_relative 'module_acq-event'
@@ -68,7 +68,7 @@ module ADIWG
                   if hAcquisition.has_key?('platform')
                      aItems = hAcquisition['platform']
                      aItems.each do |item|
-                        hReturn = AcqPlatform.unpack(item, responseObj, outContext)
+                        hReturn = Platform.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intAcquisition[:platforms] << hReturn
                         end
