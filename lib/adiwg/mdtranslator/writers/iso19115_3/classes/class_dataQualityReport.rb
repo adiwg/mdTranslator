@@ -99,12 +99,9 @@ module ADIWG
                           end
                         end
                       end
-                      #  TODO the following will not work until the iso_evaluationMethodType codelist is added to mdCodes
-                      # unless evaluationMethod[:evaluationMethodType].nil?
-                      #   @xml.tag!('mdq:evaluationMethodType') do
-                      #     codeListClass.writeXML('mcc', 'iso_evaluationMethodType', evaluationMethod[:evaluationMethodType])
-                      #   end
-                      # end
+                      @xml.tag!('mdq:evaluationMethodType') do
+                        codeListClass.writeXML('mcc', 'iso_evaluationMethodType', evaluationMethod[:evaluationMethodType])
+                      end
                     end
                   end
                 end # evaluationMethod
