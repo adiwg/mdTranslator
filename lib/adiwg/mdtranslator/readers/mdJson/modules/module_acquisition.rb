@@ -4,8 +4,8 @@ require_relative 'module_acq-objective'
 require_relative 'module_platform'
 require_relative 'module_instrument'
 require_relative 'module_acq-operation'
+require_relative 'module_pass'
 require_relative 'module_event'
-require_relative 'module_acq-pass'
 require_relative 'module_acq-environment'
 
 module ADIWG
@@ -108,9 +108,9 @@ module ADIWG
                   if hAcquisition.has_key?('pass')
                      aItems = hAcquisition['pass']
                      aItems.each do |item|
-                        hReturn = AcqPass.unpack(item, responseObj, outContext)
+                        hReturn = Pass.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
-                           intAcquisition[:passs] << hReturn
+                           intAcquisition[:passes] << hReturn
                         end
                      end
                   end
