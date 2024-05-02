@@ -27,7 +27,7 @@ module ADIWG
                             json.time DateTime.build(hEvent[:time])
                             # json.expectedObjective @Namespace.json_map(hEvent[:expectedObjectives], Objective)
                             # json.relatedPass Pass.build(hEvent[:relatedPass])
-                            # json.relatedSensor @Namespace.json_map(hEvent[:Instruments], Instrument)
+                            # json.relatedSensor @Namespace.json_map(hEvent[:relatedSensors], Instrument)
                         end
 
                     end 
