@@ -13,6 +13,7 @@ require_relative 'mdJson_associatedResource'
 require_relative 'mdJson_additionalDocumentation'
 require_relative 'mdJson_funding'
 require_relative 'mdJson_dataQuality'
+require_relative 'mdJson_acquisition'
 
 module ADIWG
    module Mdtranslator
@@ -34,6 +35,7 @@ module ADIWG
                      json.associatedResource @Namespace.json_map(hMetadata[:associatedResources], AssociatedResource)
                      json.additionalDocumentation @Namespace.json_map(hMetadata[:additionalDocuments], AdditionalDocument)
                      json.funding @Namespace.json_map(hMetadata[:funding], Funding)
+                     json.acquisition @Namespace.json_map(hMetadata[:acquisitions], Acquisition)
                   end
 
                end # build
