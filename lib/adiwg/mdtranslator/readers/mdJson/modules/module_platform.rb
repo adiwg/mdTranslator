@@ -45,9 +45,11 @@ module ADIWG
                         end
                         
                         if hPlatform.has_key?('sponsor')
-                            hReturn = ResponsibileParty.unpack(hPlatform['sponsor'], responseObj, inContext)
-                            unless hReturn.nil?
-                                intPlatform[:sponsors] = hReturn
+                            hPlatform['sponsor'].each do |sponsor|
+                                hReturn = ResponsibleParty.unpack(sponsor, responseObj, inContext)
+                                unless hReturn.nil?
+                                    intPlatform[:sponsors] = hReturn
+                                end
                             end
                         end
 
