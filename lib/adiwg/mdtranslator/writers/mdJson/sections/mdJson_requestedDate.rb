@@ -6,7 +6,7 @@ module ADIWG
         module Writers
             module MdJson
 
-                module Requirement
+                module RequestedDate
 
                     @Namespace = ADIWG::Mdtranslator::Writers::MdJson
 
