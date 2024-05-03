@@ -54,18 +54,22 @@ module ADIWG
                         end
 
                         if hPlatform.has_key?('instrument')
-                            hReturn = AcqInstrument.unpack(hPlatform['instrument'], responseObj, inContext)
-                            unless hReturn.nil?
-                                intPlatform[:instruments] = hReturn
-                            else
-                                @MessagePath.issueError(461, responseObj, inContext)
+                            hPlatform['instrument'].each do |instrument|
+                                hReturn = AcqInstrument.unpack(instrument, responseObj, inContext)
+                                unless hReturn.nil?
+                                    intPlatform[:instruments] = hReturn
+                                else
+                                    @MessagePath.issueError(461, responseObj, inContext)
+                                end
                             end
                         end
 
                         if hPlatform.has_key?('history')
-                            hReturn = AcqInstrumentationEventList.unpack(hPlatform['history'], responseObj, inContext)
-                            unless hReturn.nil?
-                                intPlatform[:history] = hReturn
+                            hPlatform['history'].each do |history|
+                                hReturn = AcqInstrumentationEventList.unpack(history, responseObj, inContext)
+                                unless hReturn.nil?
+                                    intPlatform[:history] = hReturn
+                                end
                             end
                         end
 
