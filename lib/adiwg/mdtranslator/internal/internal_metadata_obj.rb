@@ -310,7 +310,8 @@ class InternalMetadata
          identifier: {},
          description: nil,
          sponsors: [],
-         instruments: []
+         instruments: [],
+         history: []
       }
    end
 
