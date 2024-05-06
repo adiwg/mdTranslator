@@ -33,10 +33,10 @@ module ADIWG
                                 hReturn = Identifier.unpack(item, responseObj, outContext)
                                 unless hReturn.nil?
                                     intObjective[:identifiers] << hReturn
-                                else
-                                    @MessagePath.issueError(201, responseObj, outContext)
                                 end
                             end
+                        else
+                            @MessagePath.issueError(201, responseObj, outContext)
                         end
 
                         if hObjective.has_key?('priority')

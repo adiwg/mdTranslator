@@ -1,8 +1,8 @@
 require_relative 'module_citation'
 require_relative 'module_identifier'
 require_relative 'module_responsibleParty'
-require_relative 'module_acq-instrument'
-require_relative 'module_acq-instrumentationEventList'
+require_relative 'module_instrument'
+require_relative 'module_instrumentationEventList'
 
 module ADIWG
     module Mdtranslator
