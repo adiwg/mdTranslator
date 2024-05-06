@@ -1,11 +1,12 @@
 require_relative 'module_scope'
 require_relative 'module_objective'
 require_relative 'module_requirement'
-require_relative 'module_acq-platform'
+require_relative 'module_platform'
 require_relative 'module_instrument'
 require_relative 'module_acq-operation'
+require_relative 'module_pass'
 require_relative 'module_event'
-require_relative 'module_acq-pass'
+require_relative 'module_plan'
 require_relative 'module_acq-environment'
 
 module ADIWG
@@ -35,15 +36,15 @@ module ADIWG
                      end
                   end
 
-                  # if hAcquisition.has_key?('plan')
-                  #    aItems = hAcquisition['plan']
-                  #    aItems.each do |item|
-                  #       hReturn = AcqPlan.unpack(item, responseObj, outContext)
-                  #       unless hReturn.nil?
-                  #          intAcquisition[:plans] << hReturn
-                  #       end
-                  #    end
-                  # end
+                  if hAcquisition.has_key?('plan')
+                     aItems = hAcquisition['plan']
+                     aItems.each do |item|
+                        hReturn = Plan.unpack(item, responseObj, outContext)
+                        unless hReturn.nil?
+                           intAcquisition[:plans] << hReturn
+                        end
+                     end
+                  end
 
                   if hAcquisition.has_key?('requirement')
                      aItems = hAcquisition['requirement']
@@ -68,7 +69,7 @@ module ADIWG
                   if hAcquisition.has_key?('platform')
                      aItems = hAcquisition['platform']
                      aItems.each do |item|
-                        hReturn = AcqPlatform.unpack(item, responseObj, outContext)
+                        hReturn = Platform.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intAcquisition[:platforms] << hReturn
                         end
@@ -108,9 +109,9 @@ module ADIWG
                   if hAcquisition.has_key?('pass')
                      aItems = hAcquisition['pass']
                      aItems.each do |item|
-                        hReturn = AcqPass.unpack(item, responseObj, outContext)
+                        hReturn = Pass.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
-                           intAcquisition[:passs] << hReturn
+                           intAcquisition[:passes] << hReturn
                         end
                      end
                   end
