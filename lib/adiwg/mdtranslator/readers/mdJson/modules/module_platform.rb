@@ -16,57 +16,60 @@ module ADIWG
                         intMetadataClass = InternalMetadata.new
                         intPlatform = intMetadataClass.newPlatform
 
+                        outContext = 'platform'
+                        outContext = inContext + ' > ' + outContext unless inContext.nil?
+
                         if hPlatform.has_key?('platformId')
                             intPlatform[:platformId] = hPlatform['platformId']
                         else
-                            @MessagePath.issueError(460, responseObj, inContext)
+                            @MessagePath.issueError(460, responseObj, outContext)
                         end
 
                         if hPlatform.has_key?('citation')
-                            hReturn = Citation.unpack(hPlatform['citation'], responseObj, inContext)
+                            hReturn = Citation.unpack(hPlatform['citation'], responseObj, outContext)
                             unless hReturn.nil?
                                 intPlatform[:citation] = hReturn
                             end
                         end
 
                         if hPlatform.has_key?('identifier')
-                            hReturn = Identifier.unpack(hPlatform['identifier'], responseObj, inContext)
+                            hReturn = Identifier.unpack(hPlatform['identifier'], responseObj, outContext)
                             unless hReturn.nil?
                                 intPlatform[:identifier] = hReturn
                             else
-                                @MessagePath.issueError(461, responseObj, inContext)
+                                @MessagePath.issueError(461, responseObj, outContext)
                             end
                         end
                         
                         if hPlatform.has_key?('description')
                             intPlatform[:description] = hPlatform['description']
                         else
-                            @MessagePath.issueError(460, responseObj, inContext)
+                            @MessagePath.issueError(460, responseObj, outContext)
                         end
                         
                         if hPlatform.has_key?('sponsor')
                             hPlatform['sponsor'].each do |sponsor|
-                                hReturn = ResponsibleParty.unpack(sponsor, responseObj, inContext)
+                                hReturn = ResponsibleParty.unpack(sponsor, responseObj, outContext)
                                 unless hReturn.nil?
-                                    intPlatform[:sponsors] = hReturn
+                                    intPlatform[:sponsors] << hReturn
                                 end
                             end
                         end
 
                         if hPlatform.has_key?('instrument')
                             hPlatform['instrument'].each do |instrument|
-                                hReturn = AcqInstrument.unpack(instrument, responseObj, inContext)
+                                hReturn = AcqInstrument.unpack(instrument, responseObj, outContext)
                                 unless hReturn.nil?
                                     intPlatform[:instruments] = hReturn
                                 else
-                                    @MessagePath.issueError(461, responseObj, inContext)
+                                    @MessagePath.issueError(461, responseObj, outContext)
                                 end
                             end
                         end
 
                         if hPlatform.has_key?('history')
                             hPlatform['history'].each do |history|
-                                hReturn = AcqInstrumentationEventList.unpack(history, responseObj, inContext)
+                                hReturn = AcqInstrumentationEventList.unpack(history, responseObj, outContext)
                                 unless hReturn.nil?
                                     intPlatform[:history] = hReturn
                                 end
