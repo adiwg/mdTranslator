@@ -119,7 +119,7 @@ module ADIWG
                   if hAcquisition.has_key?('environment')
                      intAcquisition[:environments] = hAcquisition['environment']
                   end
-                  puts intAcquisition
+                  
                   return intAcquisition
 
                end

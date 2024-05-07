@@ -51,8 +51,8 @@ module ADIWG
                             @MessagePath.issueError(44, responseObj, outContext)
                         end
 
-                        if hPlan.has_key?('planOperations')
-                            hPlan['planOperations'].each do |item|
+                        if hPlan.has_key?('planOperation')
+                            hPlan['planOperation'].each do |item|
                                 hReturn = Operation.unpack(item, responseObj, outContext)
                                 unless hReturn.nil?
                                     intPlan[:planOperations] << hReturn
@@ -60,8 +60,8 @@ module ADIWG
                             end                            
                         end
 
-                        if hPlan.has_key?('satisfiedRequirements')
-                            hPlan['satisfiedRequirements'].each do |item|
+                        if hPlan.has_key?('satisfiedRequirement')
+                            hPlan['satisfiedRequirement'].each do |item|
                                 hReturn = Requirement.unpack(item, responseObj, outContext)
                                 unless hReturn.nil?
                                     intPlan[:satisfiedRequirements] << hReturn
