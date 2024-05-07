@@ -30,7 +30,7 @@ module ADIWG
                         end
 
                         if hInstrument.has_key?('identifier')
-                            intInstrument[:identifier] = hInstrument['identifier']
+                            intInstrument[:identifier] = Identifier.unpack(hInstrument['identifier'], responseObj, outContext)
                         else
                             @MessagePath.issueWarning(40, responseObj, outContext)
                         end
