@@ -3,7 +3,7 @@ require_relative 'module_requirement'
 require_relative 'module_acq-objective'
 require_relative 'module_platform'
 require_relative 'module_instrument'
-require_relative 'module_acq-operation'
+require_relative 'module_operation'
 require_relative 'module_pass'
 require_relative 'module_event'
 require_relative 'module_environment'
@@ -89,7 +89,7 @@ module ADIWG
                   if hAcquisition.has_key?('operation')
                      aItems = hAcquisition['operation']
                      aItems.each do |item|
-                        hReturn = AcqOperation.unpack(item, responseObj, outContext)
+                        hReturn = Operation.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intAcquisition[:operations] << hReturn
                         end
