@@ -39,7 +39,7 @@ module ADIWG
                         if hRequirement.has_key?('identifier')
                             hReturn = Identifier.unpack(hRequirement['identifier'], responseObj, outContext)
                             unless hReturn.nil?
-                                intRequirement[:identifiers] = hReturn
+                                intRequirement[:identifier] = hReturn
                             end
                         end
 
