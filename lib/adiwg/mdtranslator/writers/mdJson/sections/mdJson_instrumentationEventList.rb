@@ -14,9 +14,9 @@ module ADIWG
                     @Namespace = ADIWG::Mdtranslator::Writers::MdJson
 
                     def self.build(hInstrumentationEventList)
-
+                        puts hInstrumentationEventList
                         Jbuilder.new do |json|
-                            json.citation Citation.build(hInstrumentationEventList[:citation]) unless hInstrumentationEventList[:citation].empty?
+                            json.citation @Namespace.json_map(hInstrumentationEventList[:citations], Citation) unless hInstrumentationEventList[:citations].empty?
                             json.description hInstrumentationEventList[:description] 
                             json.locale Locale.build(hInstrumentationEventList[:locale]) unless hInstrumentationEventList[:locale].empty?
                             json.constraints @Namespace.json_map(hInstrumentationEventList[:constraints], Constraint) unless hInstrumentationEventList[:constraints].empty?

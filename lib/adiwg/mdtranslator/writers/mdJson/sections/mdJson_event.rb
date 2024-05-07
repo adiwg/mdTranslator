@@ -16,7 +16,6 @@ module ADIWG
                     @Namespace = ADIWG::Mdtranslator::Writers::MdJson
 
                     def self.build(hEvent)
-                        puts hEvent
 
                         Jbuilder.new do |json|
                             json.eventId hEvent[:eventId]

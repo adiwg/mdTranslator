@@ -12,10 +12,10 @@ module ADIWG
                @Namespace = ADIWG::Mdtranslator::Writers::MdJson
 
                def self.build(hRevision)
-                  # "required": ["description", "responsibleParty", "dateInfo"]
+                  
                   Jbuilder.new do |json|
                      json.description hRevision[:description]
-                     json.responsibleParty @Namespace.json_map(hRevision[:responsibleParties], ResponsibileParty)
+                     json.responsibleParty @Namespace.json_map(hRevision[:responsibleParties], ResponsibleParty)
                      json.dateInfo @Namespace.json_map(hRevision[:dateInfo], DateTime)
                   end
 
