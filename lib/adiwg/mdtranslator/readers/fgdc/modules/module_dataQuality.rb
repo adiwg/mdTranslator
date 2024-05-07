@@ -30,7 +30,7 @@ module ADIWG
                   xAccuracy = xDataQual.xpath('./attracc')
                   accuracyReport = xAccuracy.xpath('./attraccr').text
                   report = intMetadataClass.newDataQualityReport
-                  report[:type] = 'NonQuantitativeAttributeAccuracy'
+                  report[:type] = 'NonQuantitativeAttributeCorrectness'
                   descriptiveResult = intMetadataClass.newDescriptiveResult
                   descriptiveResult[:statement] = accuracyReport
                   report[:descriptiveResult] << descriptiveResult
@@ -68,7 +68,7 @@ module ADIWG
                   else
                      complete = xComplete.text
                      report = intMetadataClass.newDataQualityReport
-                     report[:type] = 'CompletenessOmission'
+                     report[:type] = 'Omission'
                      descriptiveResult = intMetadataClass.newDescriptiveResult
                      descriptiveResult[:statement] = complete
                      report[:descriptiveResult] << descriptiveResult
