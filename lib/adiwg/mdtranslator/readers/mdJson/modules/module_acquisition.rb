@@ -6,6 +6,7 @@ require_relative 'module_instrument'
 require_relative 'module_acq-operation'
 require_relative 'module_pass'
 require_relative 'module_event'
+require_relative 'module_plan'
 require_relative 'module_acq-environment'
 
 module ADIWG
@@ -35,15 +36,15 @@ module ADIWG
                      end
                   end
 
-                  # if hAcquisition.has_key?('plan')
-                  #    aItems = hAcquisition['plan']
-                  #    aItems.each do |item|
-                  #       hReturn = AcqPlan.unpack(item, responseObj, outContext)
-                  #       unless hReturn.nil?
-                  #          intAcquisition[:plans] << hReturn
-                  #       end
-                  #    end
-                  # end
+                  if hAcquisition.has_key?('plan')
+                     aItems = hAcquisition['plan']
+                     aItems.each do |item|
+                        hReturn = Plan.unpack(item, responseObj, outContext)
+                        unless hReturn.nil?
+                           intAcquisition[:plans] << hReturn
+                        end
+                     end
+                  end
 
                   if hAcquisition.has_key?('requirement')
                      aItems = hAcquisition['requirement']
