@@ -1,13 +1,13 @@
 require_relative 'module_scope'
+require_relative 'module_objective'
 require_relative 'module_requirement'
-require_relative 'module_acq-objective'
 require_relative 'module_platform'
 require_relative 'module_instrument'
-require_relative 'module_acq-operation'
+require_relative 'module_operation'
 require_relative 'module_pass'
 require_relative 'module_event'
+require_relative 'module_environment'
 require_relative 'module_plan'
-require_relative 'module_acq-environment'
 
 module ADIWG
    module Mdtranslator
@@ -59,7 +59,7 @@ module ADIWG
                   if hAcquisition.has_key?('objective')
                      aItems = hAcquisition['objective']
                      aItems.each do |item|
-                        hReturn = AcqObjective.unpack(item, responseObj, outContext)
+                        hReturn = Objective.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intAcquisition[:objectives] << hReturn
                         end
@@ -89,7 +89,7 @@ module ADIWG
                   if hAcquisition.has_key?('operation')
                      aItems = hAcquisition['operation']
                      aItems.each do |item|
-                        hReturn = AcqOperation.unpack(item, responseObj, outContext)
+                        hReturn = Operation.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intAcquisition[:operations] << hReturn
                         end
@@ -117,16 +117,9 @@ module ADIWG
                   end
                   
                   if hAcquisition.has_key?('environment')
-                     aItems = hAcquisition['environment']
-                     aItems.each do |item|
-                        hReturn = AcqEnvironment.unpack(item, responseObj, outContext)
-                        unless hReturn.nil?
-                           intAcquisition[:environments] << hReturn
-                        end
-                     end
-
+                     intAcquisition[:environments] = hAcquisition['environment']
                   end
-
+                  puts intAcquisition
                   return intAcquisition
 
                end
