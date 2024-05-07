@@ -1,7 +1,9 @@
 require 'jbuilder'
 require_relative 'mdJson_citation'
 require_relative 'mdJson_identifier'
+require_relative 'mdJson_responsibleParty'
 require_relative 'mdJson_requestedDate'
+require_relative 'mdJson_plan'
 
 module ADIWG
     module Mdtranslator
@@ -18,8 +20,8 @@ module ADIWG
                             json.requirementId hRequirement[:requirementId]
                             json.citation Citation.build(hRequirement[:citation])
                             json.identifier Identifier.build(hRequirement[:identifier])
-                            json.requestor @Namespace.json_map(hRequirement[:requestors], Requestor)
-                            json.recipient @Namespace.json_map(hRequirement[:recipients], Recipient)
+                            json.requestor @Namespace.json_map(hRequirement[:requestors], ResponsibleParty)
+                            json.recipient @Namespace.json_map(hRequirement[:recipients], ResponsibleParty)
                             json.priority hRequirement[:priority]
                             json.requestedDate RequestedDate.build(hRequirement[:requestedDate])
                             json.expiryDate hRequirement[:expiryDate]

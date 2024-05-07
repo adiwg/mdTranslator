@@ -1,7 +1,7 @@
 require 'jbuilder'
 require_relative 'mdJson_scope'
 # require_relative 'mdJson_plan'
-# require_relative 'mdJson_requirement'
+require_relative 'mdJson_requirement'
 require_relative 'mdJson_objective'
 require_relative 'mdJson_platform'
 require_relative 'mdJson_instrument'
@@ -24,7 +24,7 @@ module ADIWG
                         Jbuilder.new do |json|
                             # json.scope Scope.build(hAcquisition[:scope])
                             # json.plan @Namespace.json_map(hAcquisition[:plans], Plan)
-                            # json.requirement @Namespace.json_map(hAcquisition[:requirements], Requirement)
+                            json.requirement @Namespace.json_map(hAcquisition[:requirements], Requirement)
                             json.objective @Namespace.json_map(hAcquisition[:objectives], Objective)
                             json.platform @Namespace.json_map(hAcquisition[:platforms], Platform)
                             json.instrument @Namespace.json_map(hAcquisition[:instruments], Instrument)
