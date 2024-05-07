@@ -79,7 +79,7 @@ module ADIWG
                                 end
                             end
                         end
-                        puts intRequirement
+
                         intRequirement
 
                     end
