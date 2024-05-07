@@ -1,8 +1,8 @@
 require_relative 'module_identifier'
 require_relative 'module_dateTime'
-# require_relative 'module_objective'
-# require_relative 'module_pass'
-# require_relative 'module_instrument'
+require_relative 'module_objective'
+require_relative 'module_pass'
+require_relative 'module_instrument'
 
 module ADIWG
     module Mdtranslator
@@ -56,7 +56,7 @@ module ADIWG
                         end
 
                         if hEvent.has_key?('expectedObjective')
-                            intEvent['expectedObjective'].each do |item|
+                            hEvent['expectedObjective'].each do |item|
                                 hReturn = Objective.unpack(item, responseObj, outContext)
                                 unless hReturn.nil?
                                     intEvent[:expectedObjectives] << hReturn
@@ -65,7 +65,7 @@ module ADIWG
                         end
 
                         if hEvent.has_key?('relatedPass')
-                            intEvent[:relatedPass] = Pass.unpack(hEvent['relatedPass'], response)
+                            intEvent[:relatedPass] = Pass.unpack(hEvent['relatedPass'], responseObj, outContext)
                         end
 
                         if hEvent.has_key?('relatedSensor')

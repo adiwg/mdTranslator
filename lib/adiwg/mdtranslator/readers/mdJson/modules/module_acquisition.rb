@@ -1,6 +1,6 @@
 require_relative 'module_scope'
+require_relative 'module_objective'
 require_relative 'module_requirement'
-require_relative 'module_acq-objective'
 require_relative 'module_platform'
 require_relative 'module_instrument'
 require_relative 'module_operation'
@@ -59,7 +59,7 @@ module ADIWG
                   if hAcquisition.has_key?('objective')
                      aItems = hAcquisition['objective']
                      aItems.each do |item|
-                        hReturn = AcqObjective.unpack(item, responseObj, outContext)
+                        hReturn = Objective.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intAcquisition[:objectives] << hReturn
                         end
