@@ -8,7 +8,7 @@ require_relative 'mdJson_instrument'
 # require_relative 'mdJson_operation'
 require_relative 'mdJson_event'
 require_relative 'mdJson_pass'
-# require_relative 'mdJson_environment'
+require_relative 'mdJson_environment'
 
 module ADIWG
     module Mdtranslator
@@ -22,7 +22,7 @@ module ADIWG
                     def self.build(hAcquisition)
 
                         Jbuilder.new do |json|
-                            # json.scope Scope.build(hAcquisition[:scope])
+                            json.scope Scope.build(hAcquisition[:scope])
                             json.plan @Namespace.json_map(hAcquisition[:plans], Plan)
                             json.requirement @Namespace.json_map(hAcquisition[:requirements], Requirement)
                             json.objective @Namespace.json_map(hAcquisition[:objectives], Objective)
@@ -31,7 +31,7 @@ module ADIWG
                             # json.operation @Namespace.json_map(hAcquisition[:operations], Operation)
                             json.event @Namespace.json_map(hAcquisition[:events], Event)
                             json.pass @Namespace.json_map(hAcquisition[:passes], Pass)
-                            # json.environment Environment.build(hAcquisition[:environment])
+                            json.environment Environment.build(hAcquisition[:environment])
                         end
 
                     end 
