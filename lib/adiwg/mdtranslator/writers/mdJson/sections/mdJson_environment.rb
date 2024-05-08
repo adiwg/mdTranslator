@@ -10,7 +10,7 @@ module ADIWG
                     @Namespace = ADIWG::Mdtranslator::Writers::MdJson
 
                     def self.build(hEnvironment)
-                        puts hEnvironment
+
                         Jbuilder.new do |json|
                             json.averageAirTemperature hEnvironment[:averageAirTemperature] unless hEnvironment[:averageAirTemperature].nil?
                             json.maxRelativeHumidity hEnvironment[:maxRelativeHumidity] unless hEnvironment[:maxRelativeHumidity].nil?
