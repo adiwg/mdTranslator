@@ -117,7 +117,7 @@ module ADIWG
                   end
                   
                   if hAcquisition.has_key?('environment')
-                     intAcquisition[:environments] = Environment.unpack(hAcquisition['environment'], responseObj, outContext)
+                     intAcquisition[:environment] = Environment.unpack(hAcquisition['environment'], responseObj, outContext)
                   end
                   
                   return intAcquisition
