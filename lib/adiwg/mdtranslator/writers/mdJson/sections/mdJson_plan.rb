@@ -25,7 +25,7 @@ module ADIWG
                         end
 
                     end
-                end # Requirement
+                end # Plan
             end
         end
     end
