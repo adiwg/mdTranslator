@@ -22,6 +22,8 @@ require_relative 'dcat_us_described_by_type'
 require_relative 'dcat_us_accrualPeriodicity'
 require_relative 'dcat_us_language'
 require_relative 'dcat_us_primaryITInvestmentUII'
+# require_relative 'dcat_us_program_code'
+require_relative 'dcat_us_bureau_code'
 
 module ADIWG
    module Mdtranslator
@@ -57,6 +59,8 @@ module ADIWG
                describedByType = DescribedByType.build(intObj)
                accrualPeriodicity = AccrualPeriodicity.build(intObj)
                primaryITInvestmentUII = PrimaryITInvestmentUII.build(intObj)
+               # programCode = ProgramCode.build(intObj)
+               bureauCode = BureauCode.build(intObj)
 
                @Namespace = ADIWG::Mdtranslator::Writers::Dcat_us
 
@@ -70,8 +74,8 @@ module ADIWG
                   json.set!('contactPoint', contactPoint)
                   json.set!('identifier', identifier)
                   json.set!('accessLevel', accessLevel)
-                  # json.set!('bureauCode', 'ToDo')
-                  # json.set!('programCode', 'ToDo')
+                  json.set!('bureauCode', bureauCode)
+                  # json.set!('programCode', programCode)
                   json.set!('distribution', distribution)
 
                   json.set!('license', license)
