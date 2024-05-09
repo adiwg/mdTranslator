@@ -4,7 +4,7 @@ module ADIWG
    module Mdtranslator
       module Writers
          module Dcat_us
-            module BureauCode
+            module ProgramCode
 
                def self.build(intObj)
                 
@@ -15,15 +15,15 @@ module ADIWG
                         contacts << Dcat_us.get_contact_by_id(contactId)
                     end
 
-                    bureauContacts = contacts&.select { |contact| contact[:externalIdentifier].any? { |id| id[:namespace] == 'bureauCode'} }
+                    programContacts = contacts&.select { |contact| contact[:externalIdentifier].any? { |id| id[:namespace] == 'programCode'} }
 
-                    bureauCodes = []
-                    bureauContacts.each do |contact|
-                        bureauCode = contact[:externalIdentifier].find { |id| id[:namespace] == 'bureauCode' }
-                        bureauCodes << bureauCode[:identifier]
+                    programsCodes = []
+                    programContacts.each do |contact|
+                        programCode = contact[:externalIdentifier].find { |id| id[:namespace] == 'programCode' }
+                        programsCodes << programCode[:identifier]
                     end
 
-                    return bureauCodes
+                    return programsCodes
                 end
                 
             end
