@@ -58,9 +58,9 @@ module ADIWG
 
                         if hPlatform.has_key?('instrument')
                             hPlatform['instrument'].each do |instrument|
-                                hReturn = AcqInstrument.unpack(instrument, responseObj, outContext)
+                                hReturn = Instrument.unpack(instrument, responseObj, outContext)
                                 unless hReturn.nil?
-                                    intPlatform[:instruments] = hReturn
+                                    intPlatform[:instruments] << hReturn
                                 else
                                     @MessagePath.issueError(461, responseObj, outContext)
                                 end

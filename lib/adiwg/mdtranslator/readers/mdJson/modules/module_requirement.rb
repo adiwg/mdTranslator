@@ -43,8 +43,8 @@ module ADIWG
                             end
                         end
 
-                        if hRequirement.has_key?('requestors')
-                            hRequirement['requestors'].each do |requestor|
+                        if hRequirement.has_key?('requestor')
+                            hRequirement['requestor'].each do |requestor|
                                 intRequirement[:requestors] << requestor
                             end
                         end

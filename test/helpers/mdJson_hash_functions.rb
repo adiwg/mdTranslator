@@ -3,6 +3,11 @@ require 'adiwg/mdtranslator/internal/module_dateTimeFun'
 
 class MdJsonHashWriter
 
+   def build_acquisition
+      hAcquisition = acquisition
+      return hAcquisition
+   end
+
    def build_additionalDocumentation
       hDoc = additionalDocumentation
       return hDoc
@@ -72,7 +77,7 @@ class MdJsonHashWriter
 
       hDataQuality[:report] = [
          {
-            type: 'AbsolutePositionalAccuracy',
+            type: 'AbsoluteExternalPositionalAccuracy',
             standaloneQualityReportDetails: "standalone quality report details 1",
             qualityMeasure: {
                identifier: {
@@ -473,6 +478,7 @@ class MdJsonHashWriter
       hMetadata[:funding] << build_funding
       hMetadata[:funding] << build_funding
       hMetadata[:dataQuality] << build_dataQuality
+      hMetadata[:acquisition] << build_acquisition
       removeEmptyObjects(hMetadata)
       return hMetadata
    end
