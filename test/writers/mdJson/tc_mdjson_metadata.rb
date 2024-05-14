@@ -27,11 +27,6 @@ class TestWriterMdJsonMetadata < TestWriterMdJsonParent
    mdHash[:metadata][:resourceLineage] << TDClass.build_lineage
    mdHash[:metadata][:resourceLineage] << TDClass.build_lineage
 
-   # data quality []
-   mdHash[:metadata][:acquisition] = []
-   mdHash[:metadata][:acquisition] << TDClass.build_acquisition
-   mdHash[:metadata][:acquisition] << TDClass.build_acquisition
-
    # distribution []
    mdHash[:metadata][:resourceDistribution] = []
    mdHash[:metadata][:resourceDistribution] << TDClass.build_distribution
@@ -51,6 +46,11 @@ class TestWriterMdJsonMetadata < TestWriterMdJsonParent
    mdHash[:metadata][:funding] = []
    mdHash[:metadata][:funding] << TDClass.build_funding
    mdHash[:metadata][:funding] << TDClass.build_funding
+
+   # acquisition []
+   mdHash[:metadata][:acquisition] = []
+   mdHash[:metadata][:acquisition] << TDClass.build_acquisition
+   mdHash[:metadata][:acquisition] << TDClass.build_acquisition
 
    TDClass.removeEmptyObjects(mdHash)
 
