@@ -2,6 +2,7 @@ require_relative 'module_citation'
 require_relative 'module_identifier'
 require_relative 'module_requestedDate'
 require_relative 'module_plan'
+require_relative 'module_responsibleParty'
 
 module ADIWG
     module Mdtranslator
@@ -45,13 +46,19 @@ module ADIWG
 
                         if hRequirement.has_key?('requestor')
                             hRequirement['requestor'].each do |requestor|
-                                intRequirement[:requestors] << requestor
+                                hReturn = ResponsibleParty.unpack(requestor, responseObj, outContext)
+                                unless hReturn.nil?
+                                    intRequirement[:requestors] << hReturn
+                                end
                             end
                         end
 
-                        if hRequirement.has_key?('recipients')
-                            hRequirement['recipients'].each do |recipient|
-                                intRequirement[:recipients] << recipient
+                        if hRequirement.has_key?('recipient')
+                            hRequirement['recipient'].each do |recipient|
+                                hReturn = ResponsibleParty.unpack(recipient, responseObj, outContext)
+                                unless hReturn.nil?
+                                    intRequirement[:recipients] << hReturn
+                                end
                             end
                         end
 
@@ -70,8 +77,8 @@ module ADIWG
                             intRequirement[:expiryDate] = hRequirement['expiryDate']
                         end
 
-                        if hRequirement.has_key?('satisfiedPlans')
-                            aItems = hRequirement['satisfiedPlans']
+                        if hRequirement.has_key?('satisfiedPlan')
+                            aItems = hRequirement['satisfiedPlan']
                             aItems.each do |item|
                                 hReturn = Plan.unpack(item, responseObj, outContext)
                                 unless hReturn.nil?

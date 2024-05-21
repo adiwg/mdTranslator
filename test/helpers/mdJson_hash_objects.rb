@@ -244,7 +244,7 @@ class MdJsonHashWriter
                         "periodName0",
                         "periodName1"
                      ],
-                     startDateTime: "2016-10-14T11:10:15.2-10:00",
+                     startDateTime: "2016-10-14T11:10:15.200-10:00",
                      endDateTime: "2016-12-31",
                      timeInterval: {
                         interval: 9,
@@ -299,7 +299,7 @@ class MdJsonHashWriter
                                  "periodName0",
                                  "periodName1"
                               ],
-                              startDateTime: "2016-10-14T11:10:15.2-10:00",
+                              startDateTime: "2016-10-14T11:10:15.200-10:00",
                               endDateTime: "2016-12-31",
                               timeInterval: {
                                  interval: 9.9,
@@ -317,7 +317,7 @@ class MdJsonHashWriter
                         }]
                      }],
                      party: [{
-                        contactId: "individualId0"
+                        contactId: "CID001"
                      }]
                   }
                ],
@@ -337,7 +337,7 @@ class MdJsonHashWriter
                                  "periodName0",
                                  "periodName1"
                               ],
-                              startDateTime: "2016-10-14T11:10:15.2-10:00",
+                              startDateTime: "2016-10-14T11:10:15.200-10:00",
                               endDateTime: "2016-12-31",
                               timeInterval: {
                                  interval: 9.9,
@@ -355,7 +355,7 @@ class MdJsonHashWriter
                         }]
                      }],
                      party: [{
-                        contactId: "individualId0"
+                        contactId: "CID003"
                      }]
                   }
                ],
