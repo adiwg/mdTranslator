@@ -20,6 +20,7 @@ require_relative 'html_additionalDocumentation'
 require_relative 'html_funding'
 require_relative 'html_dataDictionary'
 require_relative 'html_metadataRepository'
+require_relative 'html_acquisition'
 
 module ADIWG
    module Mdtranslator
@@ -47,6 +48,7 @@ module ADIWG
                      fundingClass = Html_Funding.new(@html)
                      dictionaryClass = Html_DataDictionary.new(@html)
                      repositoryClass = Html_Repository.new(@html)
+                     acquisitionClass = Html_Acquisition.new(@html)
 
                      # make sections of the internal data store convenient
                      hSchema = intObj[:schema]
@@ -61,6 +63,7 @@ module ADIWG
                      aFunding = intObj[:metadata][:funding]
                      aDictionaries = intObj[:dataDictionaries]
                      aRepositories = intObj[:metadataRepositories]
+                     aAcquisitions = intObj[:metadata][:acquisition]
 
                      # set page title and logo
                      # side navigation
@@ -212,6 +215,21 @@ module ADIWG
                               end
                            end
                            @html.hr
+                        end
+                     end
+
+                     # acquisition section
+                     unless aAcquisitions.empty?
+                        @html.details do
+                           @html.summary('Acquisition', {'id' => 'body-acquisition', 'class' => 'h2'})
+                           aAcquisitions.each do |hAcquisition|
+                              @html.section(:class => 'block') do
+                                 @html.details do
+                                    @html.summary('Acquisition', {'class' => 'h3'})
+                                    acquisitionClass.writeHtml(hAcquisitions)
+                                 end
+                              end
+                           end
                         end
                      end
 
