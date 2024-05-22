@@ -77,7 +77,7 @@ class MdJsonHashWriter
 
       hDataQuality[:report] = [
          {
-            type: 'AbsoluteExternalPositionalAccuracy',
+            type: 'DQ_AbsoluteExternalPositionalAccuracy',
             standaloneQualityReportDetails: "standalone quality report details 1",
             qualityMeasure: {
                identifier: {
