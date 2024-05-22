@@ -60,7 +60,7 @@ module ADIWG
                             hOperation['objective'].each do |item|
                                 hReturn = Objective.unpack(item, responseObj, outContext)
                                 unless hReturn.nil?
-                                    intOperation[:objective] << hReturn
+                                    intOperation[:objectives] << hReturn
                                 end
                             end
                         end
@@ -78,7 +78,7 @@ module ADIWG
                             hOperation['childOperation'].each do |item|
                                 hReturn = Operation.unpack(item, responseObj, outContext)
                                 unless hReturn.nil?
-                                    intOperation[:childOperation] << hReturn
+                                    intOperation[:childOperations] << hReturn
                                 end
                             end
                         end
@@ -94,7 +94,7 @@ module ADIWG
                             hOperation['platform'].each do |item|
                                 hReturn = Platform.unpack(item, responseObj, outContext)
                                 unless hReturn.nil?
-                                    intOperation[:platform] << hReturn
+                                    intOperation[:platforms] << hReturn
                                 end
                             end
                         end
@@ -103,7 +103,7 @@ module ADIWG
                             hOperation['significantEvent'].each do |item|
                                 hReturn = Event.unpack(item, responseObj, outContext)
                                 unless hReturn.nil?
-                                    intOperation[:significantEvent] << hReturn
+                                    intOperation[:significantEvents] << hReturn
                                 end
                             end
                         end

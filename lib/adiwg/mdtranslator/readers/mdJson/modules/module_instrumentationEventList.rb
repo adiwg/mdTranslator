@@ -15,31 +15,28 @@ module ADIWG
                         intMetadataClass = InternalMetadata.new
                         intInstrumentationEventList = intMetadataClass.newInstrumentationEventList
 
+                        outContext = 'instrumentation event list'
+                        outContext = inContext + ' > ' + outContext unless inContext.nil?
+
                         if hInstrumentationEventList.has_key?('citation')
-                            citations = hInstrumentationEventList['citation']
-                            citations.each do |citation|
-                                hReturn = Citation.unpack(hInstrumentationEventList['citation'], responseObj, inContext)
-                                unless hReturn.nil?
-                                    intInstrumentationEventList[:citations] << hReturn
-                                end
-                            end
+                            intInstrumentationEventList[:citation] = Citation.unpack(hInstrumentationEventList['citation'], responseObj, outContext)
                         end
 
                         if hInstrumentationEventList.has_key?('description')
                             intInstrumentationEventList[:description] = hInstrumentationEventList['description']
                         else
-                            @MessagePath.issueWarning(40, responseObj, inContext, 'instrumentation event description')
+                            @MessagePath.issueWarning(40, responseObj, outContext, 'instrumentation event description')
                         end
 
                         if hInstrumentationEventList.has_key?('locale')
-                            hReturn = Locale.unpack(hInstrumentationEventList['locale'], responseObj, inContext)
+                            hReturn = Locale.unpack(hInstrumentationEventList['locale'], responseObj, outContext)
                             
                         end
 
                         if hInstrumentationEventList.has_key?('constraint')
                             constraints = hInstrumentationEventList['constraint']
                             constraints.each do |constraint|
-                                hReturn = Constraint.unpack(hInstrumentationEventList['constraint'], responseObj, inContext)
+                                hReturn = Constraint.unpack(hInstrumentationEventList['constraint'], responseObj, outContext)
                                 unless hReturn.nil?
                                     intInstrumentationEventList[:constraints] << hReturn
                                 end
@@ -48,7 +45,7 @@ module ADIWG
 
                         if hInstrumentationEventList.has_key?('instrumentationEvent')
                             hInstrumentationEventList['instrumentationEvent'].each do |item|
-                                hReturn = InstrumentationEvent.unpack(item, responseObj, inContext)
+                                hReturn = InstrumentationEvent.unpack(item, responseObj, outContext)
                                 unless hReturn.nil?
                                     intInstrumentationEventList[:instrumentationEvents] << hReturn
                                 end

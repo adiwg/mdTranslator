@@ -1,6 +1,6 @@
 require 'jbuilder'
 require_relative 'mdJson_citation'
-# require_relative 'mdJson_operation'
+require_relative 'mdJson_operation'
 require_relative 'mdJson_requirement'
 
 module ADIWG
@@ -19,7 +19,7 @@ module ADIWG
                             json.planType hPlan[:planType] unless hPlan[:planType].nil?
                             json.status hPlan[:status]
                             json.citation Citation.build(hPlan[:citation])
-                            # json.planOperation @Namespace.json_map(hPlan[:operations], Operation)
+                            json.planOperation @Namespace.json_map(hPlan[:operations], Operation)
                             json.satisfiedRequirement @Namespace.json_map(hPlan[:satisfiedRequirements], Requirement)
 
                         end

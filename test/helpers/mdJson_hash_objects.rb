@@ -456,7 +456,182 @@ class MdJsonHashWriter
                instrumentType: "instrument type"
             }
          ],
-         operation: [],
+         operation: [
+            { 
+            operationId: 'operation ID', 
+            description: 'operation description', 
+            citation: {
+               title: 'title'
+            },
+            identifier: {
+               identifier: 'identifier'
+            },
+            status: 'pending', 
+            operationType: 'real', 
+            objective: [
+               {
+                  objectiveId: 'objective ID', 
+                  identifier: [
+                  {
+                     identifier: 'objective identifier'
+                  }
+                  ],
+                  priority: 'objective priority', 
+                  objectiveType: [
+                  'instantaneousCollection'
+                  ],
+                  function: [],
+                  extent: [],
+                  objectiveOccurrence: [],
+                  pass: [],
+                  sensingInstrument: []
+               }
+            ],
+            plan: {
+               planId: 'plan ID', 
+               planType: 'linear', 
+               status: 'accepted', 
+               citation: {
+                  title: 'USGS US Topo Map Collection', 
+                  date: [
+                  {
+                     date: '2022', 
+                     dateType: 'publication'
+                  }
+                  ],
+                  responsibleParty: [
+                  {
+                     role: 'publisher', 
+                     party: [
+                        {
+                        contactId: 'CID002'
+                        }
+                     ]
+                  }
+                  ],
+                  presentationForm: [
+                  'map, raster digital data'
+                  ],
+                  onlineResource: [
+                  {
+                     uri: 'https://thor-f5.er.usgs.gov/ngtoc/metadata/waf/ustopo/geopdf/', 
+                     description: 'Link to the resource described in this citation'
+                  }
+                  ]
+               },
+               planOperation: [],
+               satisfiedRequirement: [
+                  {
+                  requirementId: 'requirement ID', 
+                  citation: {
+                     title: 'title'
+                  },
+                  identifier: {
+                     identifier: 'identifier'
+                  },
+                  requestor: [],
+                  recipient: [],
+                  priority: 'critical', 
+                  requestedDate: {
+                     requestedDateOfCollection: '2019-06-10T15:50:00', 
+                     latestAcceptableDate: '2019-06-10T15:50:00'
+                  },
+                  expiryDate: '2019-06-10T15:50:00', 
+                  satisfiedPlan: []
+                  }
+               ]
+            },
+            platform: [
+               {
+                  platformId: 'platform ID', 
+                  citation: {
+                  title: 'title'
+                  },
+                  identifier: {
+                  identifier: 'identifier'
+                  },
+                  description: 'platform description', 
+                  sponsor: [
+                  {
+                     role: 'role', 
+                     roleExtent: [
+                        {
+                        temporalExtent: [
+                           {
+                              timePeriod: {
+                              id: 'id', 
+                              description: 'description', 
+                              identifier: {
+                                 identifier: 'identifier', 
+                                 namespace: 'namespace'
+                              },
+                              periodName: [
+                                 'periodName0', 
+                                 'periodName1'
+                              ],
+                              startDateTime: '2016-10-14T11:10:15.200-10:00', 
+                              endDateTime: '2016-12-31', 
+                              timeInterval: {
+                                 interval: 9.9,
+                                 units: 'year'
+                              },
+                              duration: {
+                                 years: 1,
+                                 months: 1,
+                                 days: 1,
+                                 hours: 1,
+                                 minutes: 1,
+                                 seconds: 1
+                              }
+                              }
+                           }
+                        ]
+                        }
+                     ],
+                     party: [
+                        {
+                        contactId: 'CID002'
+                        }
+                     ]
+                  }
+                  ],
+                  instrument: [
+                  {
+                     instrumentId: 'instrument ID', 
+                     citation: {
+                        title: 'title'
+                     },
+                     identifier: {
+                        identifier: 'identifier'
+                     },
+                     instrumentType: 'instrument type'
+                  }
+                  ],
+                  history: []
+               }
+            ],
+            significantEvent: [
+               {
+                  eventId: 'event ID', 
+                  identifier: {
+                  identifier: 'identifier'
+                  },
+                  trigger: 'manual', 
+                  context: 'pass', 
+                  sequence: 'start', 
+                  time: '2019-06-10T16:07:00', 
+                  expectedObjective: [],
+                  relatedPass: {
+                  passId: 'pass ID', 
+                  identifier: {
+                     identifier: 'identifier'
+                  }
+                  },
+                  relatedSensor: []
+               }
+            ]
+            }
+         ],
          event: [
             {
                eventId: "event ID",

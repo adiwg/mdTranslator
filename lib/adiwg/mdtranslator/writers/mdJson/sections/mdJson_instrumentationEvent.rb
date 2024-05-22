@@ -14,7 +14,7 @@ module ADIWG
                     def self.build(hInstrumentationEvent)
                         # "required": ["description","eventType"],
                         Jbuilder.new do |json|
-                            json.citation Citation.build(hInstrumentationEvent[:citation]) unless hInstrumentationEvent[:citation].empty?
+                            json.citation @Namespace.json_map(hInstrumentationEvent[:citations], Citation) unless hInstrumentationEvent[:citations].empty?
                             json.description hInstrumentationEvent[:description]
                             json.extent hInstrumentationEvent[:extent] unless hInstrumentationEvent[:extent].empty?
                             json.eventType hInstrumentationEvent[:eventType]

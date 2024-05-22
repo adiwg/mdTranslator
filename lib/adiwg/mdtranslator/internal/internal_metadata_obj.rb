@@ -213,7 +213,7 @@ class InternalMetadata
 
    def newInstrumentationEvent
       {
-         citation: {},
+         citations: [],
          description: nil,
          extent: {},
          eventType: nil,
@@ -223,7 +223,7 @@ class InternalMetadata
 
    def newInstrumentationEventList
       {
-         citations: [],
+         citation: {},
          description: nil,
          locale: {},
          constraints: [],
@@ -268,14 +268,15 @@ class InternalMetadata
    def newOperation
       {
          operationId: nil,
+         description: nil,
          citation: {},
          identifier: {},
          status: nil,
          operationType: nil,
          objectives: [],
-         parentOperations: nil,
+         parentOperation: {},
          childOperations: [],
-         plan: nil,
+         plan: {},
          platforms: [],
          significantEvents: []
       }

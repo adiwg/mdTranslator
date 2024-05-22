@@ -34,7 +34,12 @@ module ADIWG
                         ]
 
                         if hInstrumentationEvent.has_key?('citation')
-                            intInstrumentationEvent[:citation] = Citation.unpack(hInstrumentationEvent['citation'], responseObj, outContext)
+                            hInstrumentationEvent['citation'].each do |citation|
+                                hReturn = Citation.unpack(citation, responseObj, outContext)
+                                unless hReturn.nil?
+                                    intInstrumentationEvent[:citations] << hReturn
+                                end
+                            end
                         end
 
                         if hInstrumentationEvent.has_key?('description')
