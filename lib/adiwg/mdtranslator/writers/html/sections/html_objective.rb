@@ -29,10 +29,19 @@ module ADIWG
                         end
 
                         # identifier
-                        unless hObjective[:identifier].empty?
-                            @html.em('Identifier: ')
+                        unless hObjective[:identifiers].empty?
                             @html.section(:class => 'block') do
-                                identifierClass.writeHtml(hObjective[:identifier])
+                                @html.details do
+                                    @html.summary('Identifiers', {'class' => 'h4'})
+                                    hObjective[:identifiers].each do |identifier|
+                                        @html.section(:class => 'block') do
+                                        @html.details do
+                                            @html.summary('Identifier', {'class' => 'h5'})
+                                                @html.text!(identifier)
+                                            end
+                                        end
+                                    end
+                                end
                             end
                         end
 
