@@ -1,3 +1,8 @@
+require_relative 'html_pass'
+require_relative 'html_instrument'
+require_relative 'html_extent'
+require_relative 'html_identifier'
+
 module ADIWG
     module Mdtranslator
         module Writers
@@ -8,6 +13,10 @@ module ADIWG
                     end
 
                     def writeHtml(hEvent)
+                        passClass = Html_Pass.new(@html)
+                        instrumentClass = Html_Instrument.new(@html)
+                        extentClass = Html_Extent.new(@html)
+                        identifierClass = Html_Identifier.new(@html)
 
                         # eventId
                         unless hEvent[:eventId].empty?
@@ -16,11 +25,12 @@ module ADIWG
                                 @html.text!(hEvent[:eventId])
                             end
                         end
+                        
                         # identifier
-                        unless hEvnet[:identifier].empty?
+                        unless hEvent[:identifier].empty?
                             @html.em('Identifier: ')
                             @html.section(:class => 'block') do
-                                identifierClass.writeHtml(hEvnet[:identifier])
+                                identifierClass.writeHtml(hEvent[:identifier])
                             end
                         end
 
@@ -39,6 +49,7 @@ module ADIWG
                                 @html.text!(hEvent[:eventId])
                             end
                         end
+
                         # sequence
                         unless hEvent[:eventId].empty?
                             @html.em('Event ID', {'class' => 'h4'})
