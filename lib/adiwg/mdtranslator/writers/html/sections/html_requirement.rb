@@ -100,7 +100,7 @@ module ADIWG
                         unless hRequirement[:expiryDate].empty?
                             @html.em('Expiry Date: ')
                             @html.section(:class => 'block') do
-                                dateClass.writeHtml(hRequirement[:expiryDate])
+                                @html.text!(hRequirement[:expiryDate])
                             end
                         end
 
@@ -109,11 +109,11 @@ module ADIWG
                             @html.section(:class => 'block') do
                                 @html.details do
                                     @html.summary('Satisfied Plans', {'class' => 'h4'})
-                                    hRequirement[:satisfiedPlans].each do |recipient|
+                                    hRequirement[:satisfiedPlans].each do |plan|
                                         @html.section(:class => 'block') do
                                         @html.details do
                                             @html.summary('Plan', {'class' => 'h5'})
-                                                operationClass.writeHtml(recipient)
+                                                planClass.writeHtml(plan)
                                             end
                                         end
                                     end

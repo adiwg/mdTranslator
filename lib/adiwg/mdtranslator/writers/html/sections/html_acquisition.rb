@@ -43,11 +43,11 @@ module ADIWG
             end
 
             # plan
-            unless hAcquisition[:plan].empty?
+            unless hAcquisition[:plans].empty?
               @html.section(:class => 'block') do
                 @html.details do
                   @html.summary('Plans', {'class' => 'h4'})
-                  hAcquisition[:plan].each do |plan|
+                  hAcquisition[:plans].each do |plan|
                     @html.section(:class => 'block') do
                       @html.details do
                         @html.summary('Plan', {'class' => 'h5'})
@@ -60,11 +60,11 @@ module ADIWG
             end
 
             # requirement
-            unless hAcquisition[:requirement].empty?
+            unless hAcquisition[:requirements].empty?
               @html.section(:class => 'block') do
                 @html.details do
                   @html.summary('Requirements', {'class' => 'h4'})
-                  hAcquisition[:requirement].each do |requirement|
+                  hAcquisition[:requirements].each do |requirement|
                     @html.section(:class => 'block') do
                       @html.details do
                         @html.summary('Requirement', {'class' => 'h5'})
@@ -77,11 +77,11 @@ module ADIWG
             end
 
             # objective
-            unless hAcquisition[:objective].empty?
+            unless hAcquisition[:objectives].empty?
               @html.section(:class => 'block') do
                 @html.details do
                   @html.summary('Objectives', {'class' => 'h4'})
-                  hAcquisition[:objective].each do |objective|
+                  hAcquisition[:objectives].each do |objective|
                     @html.section(:class => 'block') do
                       @html.details do
                         @html.summary('Objective', {'class' => 'h5'})
@@ -93,29 +93,13 @@ module ADIWG
               end
             end
 
-            # platform
-            unless hAcquisition[:objective].empty?
-              @html.section(:class => 'block') do
-                @html.details do
-                  @html.summary('Objectives', {'class' => 'h4'})
-                  hAcquisition[:objective].each do |objective|
-                    @html.section(:class => 'block') do
-                      @html.details do
-                        @html.summary('Objective', {'class' => 'h5'})
-                        planClass.writeHtml(objective)
-                      end
-                    end
-                  end
-                end
-              end
-            end
 
             # platform
-            unless hAcquisition[:platform].empty?
+            unless hAcquisition[:platforms].empty?
               @html.section(:class => 'block') do
                 @html.details do
                   @html.summary('Platforms', {'class' => 'h4'})
-                  hAcquisition[:platform].each do |platform|
+                  hAcquisition[:platforms].each do |platform|
                     @html.section(:class => 'block') do
                       @html.details do
                         @html.summary('Platform', {'class' => 'h5'})
@@ -128,11 +112,11 @@ module ADIWG
             end
 
             # Instrument
-            unless hAcquisition[:instrument].empty?
+            unless hAcquisition[:instruments].empty?
               @html.section(:class => 'block') do
                 @html.details do
                   @html.summary('Instruments', {'class' => 'h4'})
-                  hAcquisition[:instrument].each do |instrument|
+                  hAcquisition[:instruments].each do |instrument|
                     @html.section(:class => 'block') do
                       @html.details do
                         @html.summary('Instrument', {'class' => 'h5'})
@@ -145,11 +129,11 @@ module ADIWG
             end
 
             # operation
-            unless hAcquisition[:operation].empty?
+            unless hAcquisition[:operations].empty?
               @html.section(:class => 'block') do
                 @html.details do
                   @html.summary('Operations', {'class' => 'h4'})
-                  hAcquisition[:operation].each do |operation|
+                  hAcquisition[:operations].each do |operation|
                     @html.section(:class => 'block') do
                       @html.details do
                         @html.summary('Operation', {'class' => 'h5'})
@@ -162,11 +146,11 @@ module ADIWG
             end
 
             # Event
-            unless hAcquisition[:event].empty?
+            unless hAcquisition[:events].empty?
               @html.section(:class => 'block') do
                 @html.details do
                   @html.summary('Events', {'class' => 'h4'})
-                  hAcquisition[:event].each do |event|
+                  hAcquisition[:events].each do |event|
                     @html.section(:class => 'block') do
                       @html.details do
                         @html.summary('Event', {'class' => 'h5'})
@@ -179,11 +163,11 @@ module ADIWG
             end
 
             # Pass
-            unless hAcquisition[:pass].empty?
+            unless hAcquisition[:passes].empty?
               @html.section(:class => 'block') do
                 @html.details do
                   @html.summary('Passes', {'class' => 'h4'})
-                  hAcquisition[:pass].each do |pass|
+                  hAcquisition[:passes].each do |pass|
                     @html.section(:class => 'block') do
                       @html.details do
                         @html.summary('Pass', {'class' => 'h5'})

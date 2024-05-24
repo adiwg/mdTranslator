@@ -63,7 +63,7 @@ module ADIWG
                      aFunding = intObj[:metadata][:funding]
                      aDictionaries = intObj[:dataDictionaries]
                      aRepositories = intObj[:metadataRepositories]
-                     aAcquisitions = intObj[:metadata][:acquisition]
+                     aAcquisitions = intObj[:metadata][:acquisitions]
 
                      # set page title and logo
                      # side navigation
@@ -226,7 +226,7 @@ module ADIWG
                               @html.section(:class => 'block') do
                                  @html.details do
                                     @html.summary('Acquisition', {'class' => 'h3'})
-                                    acquisitionClass.writeHtml(hAcquisitions)
+                                    acquisitionClass.writeHtml(hAcquisition)
                                  end
                               end
                            end

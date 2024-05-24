@@ -15,6 +15,9 @@ module ADIWG
                         citationClass = Html_Citation.new(@html)
                         operationClass = Html_Operation.new(@html)
                         requirementClass = Html_Requirement.new(@html)
+                        planClass = Html_Plan.new(@html)
+
+                        puts hPlan unless hPlan.key?(:planId)
                     
                         # planId
                         unless hPlan[:planId].empty?
@@ -41,12 +44,12 @@ module ADIWG
                         end
 
                         # citation
-                        unless hAcquisition[:citation].empty?
+                        unless hPlan[:citation].empty?
                             @html.section(:class => 'block') do
                                 @html.details do
                                     @html.summary('Citation', {'class' => 'h4'})
                                     @html.section(:class => 'block') do
-                                        citationClass.writeHtml(hAcquisition[:citation])
+                                        citationClass.writeHtml(hPlan[:citation])
                                     end
                                 end
                             end
@@ -78,7 +81,7 @@ module ADIWG
                                         @html.section(:class => 'block') do
                                         @html.details do
                                             @html.summary('Plan', {'class' => 'h5'})
-                                                planClass.writeHtml(requirement)
+                                                requirementClass.writeHtml(requirement)
                                             end
                                         end
                                     end

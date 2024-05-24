@@ -1,4 +1,4 @@
-require_relative 'html_date'
+require_relative 'html_datetime'
 
 module ADIWG
     module Mdtranslator
@@ -10,13 +10,13 @@ module ADIWG
                     end
 
                     def writeHtml(hRequestedDate)
-                        dateClass = Html_Date.new(@html)
+                        datetimeClass = Html_Datetime.new(@html)
 
                         # requestedDateOfCollection
                         unless hRequestedDate[:requestedDateOfCollection].empty?
                             @html.em('Requested Date of Collection', {'class' => 'h4'})
                             @html.section(:class => 'block') do
-                                dateClass.writeHtml(hRequestedDate[:requestedDateOfCollection])
+                                @html.text!(hRequestedDate[:requestedDateOfCollection][:dateTime].to_s)
                             end
                         end
 
@@ -24,7 +24,7 @@ module ADIWG
                         unless hRequestedDate[:latestAcceptableDate].empty?
                             @html.em('Latest Acceptable Date', {'class' => 'h4'})
                             @html.section(:class => 'block') do
-                                dateClass.writeHtml(hRequestedDate[:latestAcceptableDate])
+                                @html.text!(hRequestedDate[:latestAcceptableDate][:dateTime].to_s)
                             end
                         end
 
