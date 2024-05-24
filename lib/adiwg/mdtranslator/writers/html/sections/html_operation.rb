@@ -24,6 +24,7 @@ module ADIWG
                         platformClass = Html_Platform.new(@html)
                         eventClass = Html_Event.new(@html)
 
+
                         # operationId
                         unless hOperation[:operationId].empty?
                             @html.em('Operation ID', {'class' => 'h4'})
@@ -88,7 +89,7 @@ module ADIWG
                                         @html.section(:class => 'block') do
                                         @html.details do
                                             @html.summary('Plan', {'class' => 'h5'})
-                                                operationClass.writeHtml(operation)
+                                                objectiveClass.writeHtml(operation)
                                             end
                                         end
                                     end

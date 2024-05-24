@@ -53,11 +53,11 @@ module ADIWG
                         end
 
                         # sponsor
-                        unless hEvent[:sponsors].empty?
+                        unless hPlatform[:sponsors].empty?
                             @html.section(:class => 'block') do
                                 @html.details do
                                     @html.summary('Sponsors', {'class' => 'h4'})
-                                    hEvent[:sponsors].each do |responsibility|
+                                    hPlatform[:sponsors].each do |responsibility|
                                         @html.section(:class => 'block') do
                                         @html.details do
                                             @html.summary('Responsibility', {'class' => 'h5'})
@@ -70,11 +70,11 @@ module ADIWG
                         end
 
                         # instrument
-                        unless hEvent[:instruments].empty?
+                        unless hPlatform[:instruments].empty?
                             @html.section(:class => 'block') do
                                 @html.details do
                                     @html.summary('Instruments', {'class' => 'h4'})
-                                    hEvent[:instruments].each do |instrument|
+                                    hPlatform[:instruments].each do |instrument|
                                         @html.section(:class => 'block') do
                                         @html.details do
                                             @html.summary('Instrument', {'class' => 'h5'})
@@ -87,11 +87,11 @@ module ADIWG
                         end
 
                         # history
-                        unless hEvent[:history].empty?
+                        unless hPlatform[:history].empty?
                             @html.section(:class => 'block') do
                                 @html.details do
                                     @html.summary('History', {'class' => 'h4'})
-                                    hEvent[:history].each do |instrumentationEventList|
+                                    hPlatform[:history].each do |instrumentationEventList|
                                         @html.section(:class => 'block') do
                                         @html.details do
                                             @html.summary('Instrumentation Event List', {'class' => 'h5'})

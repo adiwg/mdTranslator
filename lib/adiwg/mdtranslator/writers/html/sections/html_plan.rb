@@ -21,26 +21,23 @@ module ADIWG
                     
                         # planId
                         unless hPlan[:planId].empty?
-                            @html.em('Scope', {'class' => 'h4'})
-                            @html.section(:class => 'block') do
-                                @html.text!(hPlan[:planId])
-                            end
+                            @html.em('Plan ID: ')
+                            @html.text!(hPlan[:planId])
+                            @html.br
                         end
 
                         # planType
                         unless hPlan[:planType].empty?
-                            @html.em('Type', {'class' => 'h4'})
-                            @html.section(:class => 'block') do
-                                @html.text!(hPlan[:planType])
-                            end
+                            @html.em('Type: ')
+                            @html.text!(hPlan[:planType])
+                            @html.br
                         end
 
                         # status
                         unless hPlan[:status].empty?
-                            @html.em('Status', {'class' => 'h4'})
-                            @html.section(:class => 'block') do
-                                @html.text!(hPlan[:status])
-                            end
+                            @html.em('Status: ')
+                            @html.text!(hPlan[:status])
+                            @html.br
                         end
 
                         # citation

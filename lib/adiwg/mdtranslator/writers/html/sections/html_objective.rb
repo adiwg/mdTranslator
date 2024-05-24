@@ -37,7 +37,7 @@ module ADIWG
                                         @html.section(:class => 'block') do
                                         @html.details do
                                             @html.summary('Identifier', {'class' => 'h5'})
-                                                @html.text!(identifier)
+                                                identifierClass.writeHtml(identifier)
                                             end
                                         end
                                     end
@@ -104,12 +104,12 @@ module ADIWG
                             end
                         end
 
-                        # objectiveOccurrence
-                        unless hObjective[:objectiveOccurrences].empty?
+                        # Occurrence
+                        unless hObjective[:occurrences].empty?
                             @html.section(:class => 'block') do
                                 @html.details do
                                     @html.summary('Occurrences', {'class' => 'h4'})
-                                    hObjective[:objectiveOccurrences].each do |occurrence|
+                                    hObjective[:occurrences].each do |occurrence|
                                         @html.section(:class => 'block') do
                                         @html.details do
                                             @html.summary('Occurrence', {'class' => 'h5'})

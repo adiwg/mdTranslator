@@ -19,7 +19,7 @@ module ADIWG
                         identifierClass = Html_Identifier.new(@html)
 
                         # eventId
-                        unless hEvent[:eventId].empty?
+                        unless hEvent[:eventId].nil?
                             @html.em('Event ID', {'class' => 'h4'})
                             @html.section(:class => 'block') do
                                 @html.text!(hEvent[:eventId])
@@ -35,43 +35,43 @@ module ADIWG
                         end
 
                         # trigger
-                        unless hEvent[:eventId].empty?
-                            @html.em('Event ID', {'class' => 'h4'})
+                        unless hEvent[:trigger].nil?
+                            @html.em('Trigger', {'class' => 'h4'})
                             @html.section(:class => 'block') do
-                                @html.text!(hEvent[:eventId])
+                                @html.text!(hEvent[:trigger])
                             end
                         end
 
                         # context
-                        unless hEvent[:eventId].empty?
-                            @html.em('Event ID', {'class' => 'h4'})
+                        unless hEvent[:context].nil?
+                            @html.em('Context', {'class' => 'h4'})
                             @html.section(:class => 'block') do
-                                @html.text!(hEvent[:eventId])
+                                @html.text!(hEvent[:context])
                             end
                         end
 
                         # sequence
-                        unless hEvent[:eventId].empty?
-                            @html.em('Event ID', {'class' => 'h4'})
+                        unless hEvent[:sequence].empty?
+                            @html.em('Sequence', {'class' => 'h4'})
                             @html.section(:class => 'block') do
-                                @html.text!(hEvent[:eventId])
+                                @html.text!(hEvent[:sequence])
                             end
                         end
 
                         # time
-                        unless hEvent[:identifier].empty?
-                            @html.em('Identifier: ')
+                        unless hEvent[:dateTime].nil?
+                            @html.em('Datetime: ')
                             @html.section(:class => 'block') do
-                                dateClass.writeHtml(hEvent[:identifier])
+                                @html.text!.writeHtml(hEvent[:dateTime])
                             end
                         end
 
                         # expectedObjective
-                        unless hEvent[:extents].empty?
+                        unless hEvent[:expectedObjectives].empty?
                             @html.section(:class => 'block') do
                                 @html.details do
                                     @html.summary('Expected Objective', {'class' => 'h4'})
-                                    hEvent[:extents].each do |objective|
+                                    hEvent[:expectedObjectives].each do |objective|
                                         @html.section(:class => 'block') do
                                         @html.details do
                                             @html.summary('Objective', {'class' => 'h5'})
@@ -90,6 +90,7 @@ module ADIWG
                                 passClass.writeHtml(hEvent[:relatedPass])
                             end
                         end
+
                         #relatedSensor
                         unless hEvent[:relatedSensors].empty?
                             @html.section(:class => 'block') do

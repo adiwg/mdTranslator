@@ -23,19 +23,10 @@ module ADIWG
                         end
 
                         # responsibleParty
-                        unless hRevision[:responsibleParties].empty?
+                        unless hRevision[:responsibleParty].empty?
+                            @html.em('Responsible Party: ')
                             @html.section(:class => 'block') do
-                                @html.details do
-                                    @html.summary('Responsible Parties', {'class' => 'h4'})
-                                    hRevision[:responsibleParties].each do |party|
-                                        @html.section(:class => 'block') do
-                                        @html.details do
-                                            @html.summary('Responsible Party', {'class' => 'h5'})
-                                                responsibilityClass.writeHtml(party)
-                                            end
-                                        end
-                                    end
-                                end
+                                responsibilityClass.writeHtml(hRevision[:responsibleParty])
                             end
                         end
 

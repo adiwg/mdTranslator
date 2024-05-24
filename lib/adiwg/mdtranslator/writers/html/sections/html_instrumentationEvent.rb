@@ -58,11 +58,11 @@ module ADIWG
                         end
 
                         # revisionHistory
-                        unless hInstrumentationEvent[:revisionHistory].empty?
+                        unless hInstrumentationEvent[:revisionHistories].empty?
                             @html.section(:class => 'block') do
                                 @html.details do
                                     @html.summary('Revision History', {'class' => 'h4'})
-                                    hInstrumentationEvent[:revisionHistory].each do |revision|
+                                    hInstrumentationEvent[:revisionHistories].each do |revision|
                                         @html.section(:class => 'block') do
                                         @html.details do
                                             @html.summary('Revision', {'class' => 'h5'})

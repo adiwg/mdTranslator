@@ -17,7 +17,7 @@ module ADIWG
                         instrumentationEventListClass = Html_InstrumentationEventList.new(@html)
 
                         # instrumentId
-                        unless hInstrument[:instrumentId].empty?
+                        unless hInstrument[:instrumentId].nil?
                             @html.em('Instrument ID', {'class' => 'h4'})
                             @html.section(:class => 'block') do
                                 @html.text!(hInstrument[:instrumentId])
@@ -33,7 +33,7 @@ module ADIWG
                         end
 
                         # instrumentType
-                        unless hInstrument[:instrumentType].empty?
+                        unless hInstrument[:instrumentType].nil?
                             @html.em('Instrument Type', {'class' => 'h4'})
                             @html.section(:class => 'block') do
                                 @html.text!(hInstrument[:instrumentType])
@@ -41,7 +41,7 @@ module ADIWG
                         end
 
                         # description
-                        unless hInstrument[:description].empty?
+                        unless hInstrument[:description].nil?
                             @html.em('Description', {'class' => 'h4'})
                             @html.section(:class => 'block') do
                                 @html.text!(hInstrument[:description])
@@ -57,11 +57,11 @@ module ADIWG
                         end
 
                         # history
-                        unless hEvent[:histories].empty?
+                        unless hInstrument[:histories].empty?
                             @html.section(:class => 'block') do
                                 @html.details do
                                     @html.summary('Histories', {'class' => 'h4'})
-                                    hEvent[:histories].each do |instrumentationEventList|
+                                    hInstrument[:histories].each do |instrumentationEventList|
                                         @html.section(:class => 'block') do
                                         @html.details do
                                             @html.summary('Instrumentation Event List', {'class' => 'h5'})
