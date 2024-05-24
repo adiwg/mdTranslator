@@ -75,6 +75,7 @@ module ADIWG
                         @html.a(' Metadata', {'href' => '#body-metadataInfo', 'class' => 'btn navBtn', 'id' => 'metadataButton'})
                         @html.a(' Resource', {'href' => '#body-resourceInfo', 'class' => 'btn navBtn', 'id' => 'resourceButton'})
                         @html.a(' Quality', {'href' => '#body-dataQuality', 'class' => 'btn navBtn', 'id' => 'qualityButton'})
+                        @html.a(' Acquistion', {'href' => '#body-acquisition', 'class' => 'btn navBtn', 'id' => 'acquisitionButton'})
                         @html.a(' Lineage', {'href' => '#body-lineage', 'class' => 'btn navBtn', 'id' => 'lineageButton'})
                         @html.a(' Distribution', {'href' => '#body-distribution', 'class' => 'btn navBtn', 'id' => 'distributionButton'})
                         @html.a(' Associated', {'href' => '#body-associatedResource', 'class' => 'btn navBtn', 'id' => 'associatedButton'})
