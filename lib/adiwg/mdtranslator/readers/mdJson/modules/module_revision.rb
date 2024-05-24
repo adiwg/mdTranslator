@@ -29,8 +29,8 @@ module ADIWG
                         end
 
                         if hRevision.has_key?('dateInfo')
-                            intRevision[:dateInfo].each do |item|
-                                hReturn = DateTime.unpack(item, responseObj, outContex)
+                            hRevision['dateInfo'].each do |item|
+                                hReturn = DateTime.unpack(item, responseObj, outContext)
                                 unless hReturn.nil?
                                     intRevision[:dateInfo] << hReturn
                                 end
