@@ -1,3 +1,9 @@
+require_relative 'html_identifier'
+require_relative 'html_citation'
+require_relative 'html_responsibility'
+require_relative 'html_instrument'
+require_relative 'html_instrumentationEventList'
+
 module ADIWG
     module Mdtranslator
         module Writers
@@ -8,6 +14,12 @@ module ADIWG
                     end
 
                     def writeHtml(hPlatform)
+                        identifierClass = Html_Identifier.new(@html)
+                        citationClass = Html_Citation.new(@html)
+                        responsibilityClass = Html_Responsibility.new(@html)
+                        instrumentClass = Html_Instrument.new(@html)
+                        instrumentationEventListClass = Html_InstrumentationEventList.new(@html)
+
                         # platformId
                         unless hPlatform[:platformId].empty?
                             @html.em('Platform ID', {'class' => 'h4'})
