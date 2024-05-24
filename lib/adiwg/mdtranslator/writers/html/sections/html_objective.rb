@@ -21,11 +21,10 @@ module ADIWG
                         instrumentClass = Html_Instrument.new(@html)
 
                         # objectiveId
-                        unless hObjective[:objectiveId].empty?
-                            @html.em('Objective ID', {'class' => 'h4'})
-                            @html.section(:class => 'block') do
-                                @html.text!(hObjective[:objectiveId])
-                            end
+                        unless hObjective[:objectiveId].nil?
+                            @html.em('Objective ID: ')
+                            @html.text!(hObjective[:objectiveId])
+                            @html.br
                         end
 
                         # identifier
@@ -46,11 +45,10 @@ module ADIWG
                         end
 
                         # priority
-                        unless hObjective[:priority].empty?
-                            @html.em('Priority', {'class' => 'h4'})
-                            @html.section(:class => 'block') do
-                                @html.text!(hObjective[:priority])
-                            end
+                        unless hObjective[:priority].nil?
+                            @html.em('Priority: ')
+                            @html.text!(hObjective[:priority])
+                            @html.br
                         end
 
                         # objectiveType
@@ -59,12 +57,9 @@ module ADIWG
                                 @html.details do
                                     @html.summary('Objective Types', {'class' => 'h4'})
                                     hObjective[:objectiveTypes].each do |type|
-                                        @html.section(:class => 'block') do
-                                        @html.details do
-                                            @html.summary('Type', {'class' => 'h5'})
-                                                @html.text!(type)
-                                            end
-                                        end
+                                        @html.em('Type: ')
+                                        @html.text!(type)
+                                        @html.br
                                     end
                                 end
                             end
@@ -76,12 +71,9 @@ module ADIWG
                                 @html.details do
                                     @html.summary('Functions', {'class' => 'h4'})
                                     hObjective[:functions].each do |function|
-                                        @html.section(:class => 'block') do
-                                        @html.details do
-                                            @html.summary('Function', {'class' => 'h5'})
-                                                @html.text!(function)
-                                            end
-                                        end
+                                        @html.em('Function: ')
+                                        @html.text!(function)
+                                        @html.br
                                     end
                                 end
                             end

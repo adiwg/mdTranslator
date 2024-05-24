@@ -26,20 +26,19 @@ module ADIWG
 
 
                         # operationId
-                        unless hOperation[:operationId].empty?
-                            @html.em('Operation ID', {'class' => 'h4'})
-                            @html.section(:class => 'block') do
-                                @html.text!(hOperation[:operationId])
-                            end
+                        unless hOperation[:operationId].nil?
+                            @html.em('Operation ID: ')
+                            @html.text!(hOperation[:operationId])
+                            @html.br
                         end
 
                         # description
-                        unless hOperation[:description].empty?
-                            @html.em('Description', {'class' => 'h4'})
-                            @html.section(:class => 'block') do
-                                @html.text!(hOperation[:description])
-                            end
+                        unless hOperation[:description].nil?
+                            @html.em('Description: ')
+                            @html.text!(hOperation[:description])
+                            @html.br
                         end
+
                         # citation
                         unless hOperation[:citation].empty?
                             @html.section(:class => 'block') do
@@ -65,31 +64,29 @@ module ADIWG
                         end
 
                         # status
-                        unless hOperation[:status].empty?
-                            @html.em('Status', {'class' => 'h4'})
-                            @html.section(:class => 'block') do
-                                @html.text!(hOperation[:status])
-                            end
+                        unless hOperation[:status].nil?
+                            @html.em('Status: ')
+                            @html.text!(hOperation[:status])
+                            @html.br
                         end
 
                         # operationType
-                        unless hOperation[:operationType].empty?
-                            @html.em('Operation Type', {'class' => 'h4'})
-                            @html.section(:class => 'block') do
-                                @html.text!(hOperation[:operationType])
-                            end
+                        unless hOperation[:operationType].nil?
+                            @html.em('Operation Type: ')
+                            @html.text!(hOperation[:operationType])
+                            @html.br
                         end
 
                         # objective
                         unless hOperation[:objectives].empty?
                             @html.section(:class => 'block') do
                                 @html.details do
-                                    @html.summary('Plans', {'class' => 'h4'})
-                                    hOperation[:objectives].each do |operation|
+                                    @html.summary('Objectives', {'class' => 'h4'})
+                                    hOperation[:objectives].each do |objective|
                                         @html.section(:class => 'block') do
                                         @html.details do
-                                            @html.summary('Plan', {'class' => 'h5'})
-                                                objectiveClass.writeHtml(operation)
+                                            @html.summary('Objective', {'class' => 'h5'})
+                                                objectiveClass.writeHtml(objective)
                                             end
                                         end
                                     end

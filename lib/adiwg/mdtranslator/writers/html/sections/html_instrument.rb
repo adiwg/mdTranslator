@@ -18,41 +18,46 @@ module ADIWG
 
                         # instrumentId
                         unless hInstrument[:instrumentId].nil?
-                            @html.em('Instrument ID', {'class' => 'h4'})
-                            @html.section(:class => 'block') do
-                                @html.text!(hInstrument[:instrumentId])
-                            end
+                            @html.em('Instrument ID: ')
+                            @html.text!(hInstrument[:instrumentId])
+                            @html.br
                         end
 
                         # identifier
                         unless hInstrument[:identifier].empty?
-                            @html.em('Identifier: ')
                             @html.section(:class => 'block') do
-                                identifierClass.writeHtml(hInstrument[:identifier])
+                                @html.details do
+                                    @html.summary('Identifier', {'class' => 'h4'})
+                                    @html.section(:class => 'block') do
+                                        identifierClass.writeHtml(hInstrument[:identifier])
+                                    end
+                                end
                             end
                         end
 
                         # instrumentType
                         unless hInstrument[:instrumentType].nil?
-                            @html.em('Instrument Type', {'class' => 'h4'})
-                            @html.section(:class => 'block') do
-                                @html.text!(hInstrument[:instrumentType])
-                            end
+                            @html.em('Instrument Type: ')
+                            @html.text!(hInstrument[:instrumentType])
+                            @html.br
                         end
 
                         # description
                         unless hInstrument[:description].nil?
-                            @html.em('Description', {'class' => 'h4'})
-                            @html.section(:class => 'block') do
-                                @html.text!(hInstrument[:description])
-                            end
+                            @html.em('Description: ')
+                            @html.text!(hInstrument[:description])
+                            @html.br
                         end
 
                         # mountedOn
                         unless hInstrument[:mountedOn].empty?
-                            @html.em('Mounted On', {'class' => 'h4'})
                             @html.section(:class => 'block') do
-                                platformClass.writeHtml(hInstrument[:mountedOn])
+                                @html.details do
+                                    @html.summary('Mounted On', {'class' => 'h4'})
+                                    @html.section(:class => 'block') do
+                                        platformClass.writeHtml(hInstrument[:mountedOn])
+                                    end
+                                end
                             end
                         end
 
@@ -72,7 +77,19 @@ module ADIWG
                                 end
                             end
                         end
+
                         # hostId
+                        unless hInstrument[:hostId].empty?
+                            @html.section(:class => 'block') do
+                                @html.details do
+                                    @html.summary('Host ID', {'class' => 'h4'})
+                                    @html.section(:class => 'block') do
+                                        identifierClass.writeHtml(hInstrument[:hostId])
+                                    end
+                                end
+                            end
+                        end
+
                     end # writeHtml
                 end # Html_Instrument
             end

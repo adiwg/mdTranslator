@@ -23,26 +23,33 @@ module ADIWG
                         planClass = Html_Plan.new(@html)
 
                         # requirementId
-                        unless hRequirement[:requirementId].empty?
-                            @html.em('Requirement ID', {'class' => 'h4'})
-                            @html.section(:class => 'block') do
-                                @html.text!(hRequirement[:requirementId])
-                            end
+                        unless hRequirement[:requirementId].nil?
+                            @html.em('Requirement ID: ')
+                            @html.text!(hRequirement[:requirementId])
+                            @html.br
                         end
 
                         # citation
                         unless hRequirement[:citation].empty?
-                            @html.em('Citation: ')
                             @html.section(:class => 'block') do
-                                citationClass.writeHtml(hRequirement[:citation])
+                                @html.details do
+                                    @html.summary('Citation', {'class' => 'h4'})
+                                    @html.section(:class => 'block') do
+                                        citationClass.writeHtml(hRequirement[:citation])
+                                    end
+                                end
                             end
                         end
 
                         # identifier
                         unless hRequirement[:identifier].empty?
-                            @html.em('Identifier: ')
                             @html.section(:class => 'block') do
-                                identifierClass.writeHtml(hRequirement[:identifier])
+                                @html.details do
+                                    @html.summary('Identifier ', {'class' => 'h4'})
+                                    @html.section(:class => 'block') do
+                                        identifierClass.writeHtml(hRequirement[:identifier])
+                                    end
+                                end
                             end
                         end
 
@@ -83,25 +90,27 @@ module ADIWG
                         # priority
                         unless hRequirement[:priority].nil?
                             @html.em('Priority: ')
-                            @html.section(:class => 'block') do
-                                @html.text!(hRequirement[:priority])
-                            end
+                            @html.text!(hRequirement[:priority])
+                            @html.br
                         end
 
                         # requested date
                         unless hRequirement[:requestedDate].empty?
-                            @html.em('Requested Date: ')
                             @html.section(:class => 'block') do
-                                requestedDateClass.writeHtml(hRequirement[:requestedDate])
+                                @html.details do
+                                    @html.summary('Requested Date ', {'class' => 'h4'})
+                                    @html.section(:class => 'block') do
+                                        requestedDateClass.writeHtml(hRequirement[:requestedDate])
+                                    end
+                                end
                             end
                         end
 
                         # expiry date
-                        unless hRequirement[:expiryDate].empty?
+                        unless hRequirement[:expiryDate].nil?
                             @html.em('Expiry Date: ')
-                            @html.section(:class => 'block') do
-                                @html.text!(hRequirement[:expiryDate])
-                            end
+                            @html.text!(hRequirement[:expiryDate])
+                            @html.br
                         end
 
                         # satisfied plan

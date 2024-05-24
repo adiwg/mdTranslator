@@ -15,18 +15,21 @@ module ADIWG
                         dateClass = Html_Date.new(@html)
 
                         # description
-                        unless hRevision[:description].empty?
+                        unless hRevision[:description].nil?
                             @html.em('Description: ')
-                            @html.section(:class => 'block') do
-                                @html.text!(hRevision[:description])
-                            end
+                            @html.text!(hRevision[:description])
+                            @html.br
                         end
 
                         # responsibleParty
                         unless hRevision[:responsibleParty].empty?
-                            @html.em('Responsible Party: ')
                             @html.section(:class => 'block') do
-                                responsibilityClass.writeHtml(hRevision[:responsibleParty])
+                                @html.details do
+                                    @html.summary('Responsible Party', {'class' => 'h4'})
+                                    @html.section(:class => 'block') do
+                                        responsibilityClass.writeHtml(hRevision[:responsibleParty])
+                                    end
+                                end
                             end
                         end
 
@@ -36,12 +39,9 @@ module ADIWG
                                 @html.details do
                                     @html.summary('Date Info', {'class' => 'h4'})
                                     hRevision[:dateInfo].each do |date|
-                                        @html.section(:class => 'block') do
-                                        @html.details do
-                                            @html.summary('Date', {'class' => 'h5'})
-                                                dateClass.writeHtml(date)
-                                            end
-                                        end
+                                        @html.em('Datetime: ')
+                                        @html.text!(date[:dateTime].to_s)
+                                        @html.br
                                     end
                                 end
                             end

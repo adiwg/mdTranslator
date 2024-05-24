@@ -14,18 +14,15 @@ module ADIWG
 
                         # requestedDateOfCollection
                         unless hRequestedDate[:requestedDateOfCollection].empty?
-                            @html.em('Requested Date of Collection', {'class' => 'h4'})
-                            @html.section(:class => 'block') do
-                                @html.text!(hRequestedDate[:requestedDateOfCollection][:dateTime].to_s)
-                            end
+                            @html.em('Requested Date of Collection: ')
+                            @html.text!(hRequestedDate[:requestedDateOfCollection][:dateTime].to_s)
+                            @html.br
                         end
 
                         # latestAcceptableDate
                         unless hRequestedDate[:latestAcceptableDate].empty?
-                            @html.em('Latest Acceptable Date', {'class' => 'h4'})
-                            @html.section(:class => 'block') do
-                                @html.text!(hRequestedDate[:latestAcceptableDate][:dateTime].to_s)
-                            end
+                            @html.em('Latest Acceptable Date: ')
+                            @html.text!(hRequestedDate[:latestAcceptableDate][:dateTime].to_s)
                         end
 
                     end

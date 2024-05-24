@@ -20,49 +20,49 @@ module ADIWG
 
                         # eventId
                         unless hEvent[:eventId].nil?
-                            @html.em('Event ID', {'class' => 'h4'})
-                            @html.section(:class => 'block') do
-                                @html.text!(hEvent[:eventId])
-                            end
+                            @html.em('Event ID: ')
+                            @html.text!(hEvent[:eventId])
+                            @html.br
                         end
                         
                         # identifier
                         unless hEvent[:identifier].empty?
-                            @html.em('Identifier: ')
                             @html.section(:class => 'block') do
-                                identifierClass.writeHtml(hEvent[:identifier])
+                                @html.details do
+                                    @html.summary('Identifier', {'class' => 'h4'})
+                                    @html.section(:class => 'block') do
+                                        identifierClass.writeHtml(hEvent[:identifier])
+                                    end
+                                end
                             end
                         end
 
                         # trigger
                         unless hEvent[:trigger].nil?
-                            @html.em('Trigger', {'class' => 'h4'})
-                            @html.section(:class => 'block') do
-                                @html.text!(hEvent[:trigger])
-                            end
+                            @html.em('Trigger: ')
+                            @html.text!(hEvent[:trigger])
+                            @html.br
                         end
 
                         # context
                         unless hEvent[:context].nil?
-                            @html.em('Context', {'class' => 'h4'})
-                            @html.section(:class => 'block') do
-                                @html.text!(hEvent[:context])
-                            end
+                            @html.em('Context: ')
+                            @html.text!(hEvent[:context])
+                            @html.br
                         end
 
                         # sequence
-                        unless hEvent[:sequence].empty?
-                            @html.em('Sequence', {'class' => 'h4'})
-                            @html.section(:class => 'block') do
-                                @html.text!(hEvent[:sequence])
-                            end
+                        unless hEvent[:sequence].nil?
+                            @html.em('Sequence: ')
+                            @html.text!(hEvent[:sequence])
+                            @html.br
                         end
 
                         # time
-                        unless hEvent[:dateTime].nil?
+                        unless hEvent[:dateTime].nil? || hEvent[:dateTime].empty?
                             @html.em('Datetime: ')
                             @html.section(:class => 'block') do
-                                @html.text!.writeHtml(hEvent[:dateTime])
+                                @html.text!.writeHtml(hEvent[:dateTime][:dateTime].to_s)
                             end
                         end
 
@@ -85,9 +85,13 @@ module ADIWG
 
                         # relatedPass
                         unless hEvent[:relatedPass].empty?
-                            @html.em('Related Pass: ')
                             @html.section(:class => 'block') do
-                                passClass.writeHtml(hEvent[:relatedPass])
+                                @html.details do
+                                    @html.summary('Related Pass', {'class' => 'h4'})
+                                    @html.section(:class => 'block') do
+                                        passClass.writeHtml(hEvent[:relatedPass])
+                                    end
+                                end
                             end
                         end
 

@@ -20,27 +20,35 @@ module ADIWG
 
                         # citation
                         unless hInstrumentationEventList[:citation].empty?
-                            @html.em('Citation: ')
                             @html.section(:class => 'block') do
-                                citationClass.writeHtml(hInstrumentationEventList[:citation])
+                                @html.details do
+                                    @html.summary('Citation', {'class' => 'h4'})
+                                    @html.section(:class => 'block') do
+                                        citationClass.writeHtml(hInstrumentationEventList[:citation])
+                                    end
+                                end
                             end
                         end
 
                         # desctiption  
-                        unless hInstrumentationEventList[:description].empty?
+                        unless hInstrumentationEventList[:description].nil?
                             @html.em('Description: ')
-                            @html.section(:class => 'block') do
-                                @html.text!(hInstrumentationEventList[:description])
-                            end
+                            @html.text!(hInstrumentationEventList[:description])
+                            @html.br
                         end
 
                         # locale
                         unless hInstrumentationEventList[:locale].empty?
-                            @html.em('Locale: ')
                             @html.section(:class => 'block') do
-                                localeClass.writeHtml(hInstrumentationEventList[:locale])
+                                @html.details do
+                                    @html.summary('Locale', {'class' => 'h4'})
+                                    @html.section(:class => 'block') do
+                                        localeClass.writeHtml(hInstrumentationEventList[:locale])
+                                    end
+                                end
                             end
                         end
+
                         # constraints
                         unless hInstrumentationEventList[:constraints].empty?
                             @html.section(:class => 'block') do

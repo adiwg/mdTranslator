@@ -21,35 +21,41 @@ module ADIWG
                         instrumentationEventListClass = Html_InstrumentationEventList.new(@html)
 
                         # platformId
-                        unless hPlatform[:platformId].empty?
-                            @html.em('Platform ID', {'class' => 'h4'})
-                            @html.section(:class => 'block') do
-                                @html.text!(hPlatform[:platformId])
-                            end
+                        unless hPlatform[:platformId].nil?
+                            @html.em('Platform ID: ')
+                            @html.text!(hPlatform[:platformId])
+                            @html.br
                         end
 
                         # citation
                         unless hPlatform[:citation].empty?
-                            @html.em('Citation: ')
                             @html.section(:class => 'block') do
-                                citationClass.writeHtml(hPlatform[:citation])
+                                @html.details do
+                                    @html.summary('Citation', {'class' => 'h4'})
+                                    @html.section(:class => 'block') do
+                                        citationClass.writeHtml(hPlatform[:citation])
+                                    end
+                                end
                             end
                         end
 
                         # identifier
                         unless hPlatform[:identifier].empty?
-                            @html.em('Identifier: ')
                             @html.section(:class => 'block') do
-                                identifierClass.writeHtml(hPlatform[:identifier])
+                                @html.details do
+                                    @html.summary('Identifier', {'class' => 'h4'})
+                                    @html.section(:class => 'block') do
+                                        identifierClass.writeHtml(hPlatform[:identifier])
+                                    end
+                                end
                             end
                         end
 
                         # description
-                        unless hPlatform[:description].empty?
+                        unless hPlatform[:description].nil?
                             @html.em('Description: ')
-                            @html.section(:class => 'block') do
-                                @html.text!(hPlatform[:description])
-                            end
+                            @html.text!(hPlatform[:description])
+                            @html.br
                         end
 
                         # sponsor

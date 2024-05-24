@@ -34,27 +34,29 @@ module ADIWG
                         end
 
                         # description
-                        unless hInstrumentationEvent[:description].empty?
+                        unless hInstrumentationEvent[:description].nil?
                             @html.em('Description: ')
-                            @html.section(:class => 'block') do
-                                @html.text!(hInstrumentationEvent[:description])
-                            end
+                            @html.text!(hInstrumentationEvent[:description])
+                            @html.br
                         end
 
                         # extent
                         unless hInstrumentationEvent[:extent].empty?
-                            @html.em('Extent: ')
                             @html.section(:class => 'block') do
-                                extentClass.writeHtml(hInstrumentationEvent[:extent])
+                                @html.details do
+                                    @html.summary('Extent', {'class' => 'h4'})
+                                    @html.section(:class => 'block') do
+                                        extentClass.writeHtml(hInstrumentationEvent[:extent])
+                                    end
+                                end
                             end
                         end
 
                         # eventType
-                        unless hInstrumentationEvent[:eventType].empty?
+                        unless hInstrumentationEvent[:eventType].nil?
                             @html.em('Event Type: ')
-                            @html.section(:class => 'block') do
-                                @html.text!(hInstrumentationEvent[:eventType])
-                            end
+                            @html.text!(hInstrumentationEvent[:eventType])
+                            @html.br
                         end
 
                         # revisionHistory

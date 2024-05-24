@@ -16,8 +16,6 @@ module ADIWG
                         operationClass = Html_Operation.new(@html)
                         requirementClass = Html_Requirement.new(@html)
                         planClass = Html_Plan.new(@html)
-
-                        puts hPlan unless hPlan.key?(:planId)
                     
                         # planId
                         unless hPlan[:planId].empty?
@@ -56,11 +54,11 @@ module ADIWG
                         unless hPlan[:planOperations].empty?
                             @html.section(:class => 'block') do
                                 @html.details do
-                                    @html.summary('Plans', {'class' => 'h4'})
+                                    @html.summary('Operations', {'class' => 'h4'})
                                     hPlan[:planOperations].each do |operation|
                                         @html.section(:class => 'block') do
                                         @html.details do
-                                            @html.summary('Plan', {'class' => 'h5'})
+                                            @html.summary('Operation', {'class' => 'h5'})
                                                 operationClass.writeHtml(operation)
                                             end
                                         end
@@ -73,11 +71,11 @@ module ADIWG
                         unless hPlan[:satisfiedRequirements].empty?
                             @html.section(:class => 'block') do
                                 @html.details do
-                                    @html.summary('Plans', {'class' => 'h4'})
+                                    @html.summary('Requirements', {'class' => 'h4'})
                                     hPlan[:satisfiedRequirements].each do |requirement|
                                         @html.section(:class => 'block') do
                                         @html.details do
-                                            @html.summary('Plan', {'class' => 'h5'})
+                                            @html.summary('Requirement', {'class' => 'h5'})
                                                 requirementClass.writeHtml(requirement)
                                             end
                                         end

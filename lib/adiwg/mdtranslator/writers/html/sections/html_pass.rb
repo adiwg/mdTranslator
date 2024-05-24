@@ -17,26 +17,33 @@ module ADIWG
                         eventClass = Html_Event.new(@html)
 
                         # passId
-                        unless hPass[:passId].empty?
-                            @html.em('Pass ID', {'class' => 'h4'})
-                            @html.section(:class => 'block') do
-                                @html.text!(hPass[:passId])
-                            end
+                        unless hPass[:passId].nil?
+                            @html.em('Pass ID: ')
+                            @html.text!(hPass[:passId])
+                            @html.br
                         end
 
                         # identifier
                         unless hPass[:identifier].empty?
-                            @html.em('Identifier: ')
                             @html.section(:class => 'block') do
-                                identifierClass.writeHtml(hPass[:identifier])
+                                @html.details do
+                                    @html.summary('Identifier', {'class' => 'h4'})
+                                    @html.section(:class => 'block') do
+                                        identifierClass.writeHtml(hPass[:identifier])
+                                    end
+                                end
                             end
                         end
 
                         # extent
                         unless hPass[:extent].empty?
-                            @html.em('Extent: ')
                             @html.section(:class => 'block') do
-                                extentClass.writeHtml(hPass[:extent])
+                                @html.details do
+                                    @html.summary('Extent', {'class' => 'h4'})
+                                    @html.section(:class => 'block') do
+                                        extentClass.writeHtml(hPass[:extent])
+                                    end
+                                end
                             end
                         end
 
@@ -44,7 +51,7 @@ module ADIWG
                         unless hPass[:relatedEvents].empty?
                             @html.section(:class => 'block') do
                                 @html.details do
-                                    @html.summary('Related Event', {'class' => 'h4'})
+                                    @html.summary('Related Events', {'class' => 'h4'})
                                     hPass[:relatedEvents].each do |event|
                                         @html.section(:class => 'block') do
                                         @html.details do
