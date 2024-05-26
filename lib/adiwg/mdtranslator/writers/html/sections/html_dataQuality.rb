@@ -16,6 +16,22 @@ module ADIWG
             scopeClass = Html_Scope.new(@html)
             dataQualityReportClass = Html_DataQualityReport.new(@html)
 
+            # system identifier
+            unless hDataQuality[:systemIdentifier].nil?
+              systemIdentifier = hDataQuality[:systemIdentifier]
+              @html.section(:class => 'block') do
+                @html.details do
+                  @html.summary('System Identifier', {'class' => 'h4'})
+                    @html.em('UUID: ')
+                    @html.text!(systemIdentifier[:uid])
+                    @html.br
+                    @html.em('Label:')
+                    @html.text!(systemIdentifier[:label])
+                    @html.br
+                end
+              end
+            end
+
             # scope
             unless hDataQuality[:scope].empty?
               @html.section(:class => 'block') do
@@ -64,7 +80,7 @@ module ADIWG
                   hDataQuality[:report].each do |report|
                     @html.section(:class => 'block') do
                       @html.details do
-                        @html.summary('Report', {'class' => 'h5'})
+                        @html.summary(report[:type], {'class' => 'h5'})
                         dataQualityReportClass.writeHtml(report)
                       end
                     end

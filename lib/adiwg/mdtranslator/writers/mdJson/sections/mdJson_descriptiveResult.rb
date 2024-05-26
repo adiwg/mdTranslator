@@ -11,6 +11,7 @@ module ADIWG
             Jbuilder.new do |json|
               json.dateTime hResult[:dateTime] unless hResult[:dateTime].nil?
               json.scope Scope.build(hResult[:scope]) unless hResult[:scope].empty?
+              json.name hResult[:name] unless hResult[:name].nil?
               json.statement hResult[:statement] unless hResult[:statement].nil?
             end
           end

@@ -277,6 +277,33 @@ module ADIWG
 
                      # data identification - resource constraints [] {MD_Constraints}
                      aConstraint = hResource[:constraints]
+                     legalConstraint = aConstraint.find { |hCon| hCon[:type] == 'legal' }
+                     # handle distribution liability statements - add to legal constraint -> other constraints
+                     aDistInfo = hMetadata[:distributorInfo]
+                     liabilityStatements = []
+                     aDistInfo.each do |hDistribution|
+                        unless hDistribution.empty?
+                           unless hDistribution[:liabilityStatement].nil?
+                              liabilityStatements << hDistribution[:liabilityStatement]
+                           end
+                        end
+                     end
+                     if liabilityStatements.any?
+                        # Create a new legal constraint if it doesn't exist
+                        unless legalConstraint
+                           legalConstraint = {
+                              type: 'legal',
+                              legalConstraint: {
+                                 otherCons: []
+                              }
+                           }
+                           aConstraint << legalConstraint
+                        end
+                        liabilityStatements.each do |liabilityStatement|
+                           legalConstraint[:legalConstraint][:otherCons] << liabilityStatement
+                        end
+                     end
+
                      aConstraint.each do |hCon|
                         @xml.tag!('mri:resourceConstraints') do
                            constraintClass.writeXML(hCon, 'resource information')
@@ -285,6 +312,8 @@ module ADIWG
                      if aConstraint.empty? && @hResponseObj[:writerShowTags]
                         @xml.tag!('mri:resourceConstraints')
                      end
+
+                     # data identification - resource constraints {}  from distribution liability statement
 
                      # data identification - associated resource [] {MD_AssociatedResource}
                      aAssocRes.each do |hAssocRes|

@@ -19,7 +19,7 @@ class TestWriterSbJsonCitation < TestWriterSbJsonParent
          file: @@jsonIn, reader: 'mdJson', validate: 'normal',
          writer: 'sbJson', showAllTags: false)
 
-      expect = 'Person 001(Principal Investigator), Person 002(Principal Investigator), Organization 001(funder), Person 003(funder), Person 004(funder), Person 001(funder), 2017-05(creation), 2017-05-16(Publication), 2017-05-16(revision), myCitationTitle, http://ISO.uri/adiwg/0, http://ISO.uri/adiwg/1'
+      expect = 'Person 001, myCitationTitle'
       hJsonOut = JSON.parse(metadata[:writerOutput])
       got = hJsonOut['citation']
 
@@ -28,5 +28,3 @@ class TestWriterSbJsonCitation < TestWriterSbJsonParent
    end
 
 end
-
-

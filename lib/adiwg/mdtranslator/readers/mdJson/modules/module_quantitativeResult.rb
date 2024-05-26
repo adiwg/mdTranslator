@@ -25,8 +25,12 @@ module ADIWG
               intResult[:scope] = Scope.unpack(hResult['scope'], responseObj)
             end
 
+            if hResult.has_key?('name')
+              intResult[:name] = hResult['name']
+            end
+
             if hResult.has_key?('value')
-              intResult[:value] = hResult['value']
+              intResult[:values] = hResult['value']
             end
 
             if hResult.has_key?('valueUnits')

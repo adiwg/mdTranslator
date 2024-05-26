@@ -26,6 +26,10 @@ module ADIWG
               intResult[:scope] = Scope.unpack(hResult['scope'], responseObj)
             end
 
+            # name
+            if hResult.has_key?('name')
+              intResult[:name] = hResult['name']
+            end
 
             # spatialRepresentationType
             if hResult.has_key?('spatialRepresentationType')

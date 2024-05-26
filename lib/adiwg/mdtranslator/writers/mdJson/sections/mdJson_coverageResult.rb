@@ -15,6 +15,7 @@ module ADIWG
             Jbuilder.new do |json|
                 json.dateTime hCoverageResult[:dateTime]
                 json.scope Scope.build(hCoverageResult[:scope]) unless hCoverageResult[:scope].empty?
+                json.name hCoverageResult[:name] unless hCoverageResult[:name].nil?
                 json.spatialRepresentationType hCoverageResult[:spatialRepresentationType]
                 json.spatialRepresentation SpatialRepresentation.build(hCoverageResult[:spatialRepresentation]) unless hCoverageResult[:spatialRepresentation].empty?
                 json.resultContentDescription CoverageDescription.build(hCoverageResult[:resultContentDescription]) unless hCoverageResult[:resultContentDescription].empty?

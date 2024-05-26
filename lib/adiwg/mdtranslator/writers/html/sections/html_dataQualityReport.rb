@@ -185,6 +185,13 @@ module ADIWG
                       end
                     end
                   end
+
+                  # Name
+                  unless result[:name].nil?
+                    @html.em('Name: ')
+                    @html.text!(result[:name])
+                    @html.br
+                  end
             
                   # Specification (citation)
                   unless result[:specification].empty?
@@ -240,6 +247,13 @@ module ADIWG
                         scopeClass.writeHtml(result[:scope])
                       end
                     end
+                  end
+            
+                  # Name
+                  unless result[:name].nil?
+                    @html.em('Name: ')
+                    @html.text!(result[:name])
+                    @html.br
                   end
             
                   # SpatialRepresentationType
@@ -317,6 +331,13 @@ module ADIWG
                       end
                     end
                   end
+
+                  # Name
+                  unless result[:name].nil?
+                    @html.em('Name: ')
+                    @html.text!(result[:name])
+                    @html.br
+                  end
             
                   # Statement
                   unless result[:statement].nil?
@@ -351,6 +372,13 @@ module ADIWG
                         scopeClass.writeHtml(result[:scope])
                       end
                     end
+                  end
+
+                  # Name
+                  unless result[:name].nil?
+                    @html.em('Name: ')
+                    @html.text!(result[:name])
+                    @html.br
                   end
             
                   # Value

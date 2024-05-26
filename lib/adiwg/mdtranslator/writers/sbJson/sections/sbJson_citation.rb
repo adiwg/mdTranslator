@@ -12,14 +12,14 @@ module ADIWG
 
             module Citation
 
-               # build from citation as follows ...
-               # names, [] {citation.responsibleParty[]}
-               # dates(type), [] {citation.dates[]}
-               # title, {citation.title}
-               # uri, [] {citation.onlineResource[]}
                def self.build(hCitation)
 
                   citation = ''
+
+                  if hCitation[:otherDetails].length > 0
+                     citation = hCitation[:otherDetails][0]
+                     return citation
+                  end
 
                   # names
                   aParties = []
@@ -45,32 +45,15 @@ module ADIWG
                         unless hContact[:name].nil?
                            sbRole = Codelists.codelist_adiwg2sb('role_adiwg2sb', hParty[:role])
                            sbRole = sbRole.nil? ? hParty[:role] : sbRole
-                           citation += hContact[:name] + '(' + sbRole + '), '
+                           if sbRole.downcase == 'author'
+                              citation += hContact[:name] + ', '
+                           end
                         end
                      end
                   end
 
-                  # dates
-                  hCitation[:dates].each do |hDate|
-                     dateStr = AdiwgDateTimeFun.stringDateFromDateObject(hDate)
-                     dateType = Codelists.codelist_adiwg2sb('date_adiwg2sb', hDate[:dateType])
-                     unless dateType.nil?
-                        citation += dateStr + '(' + dateType + '), '
-                     end
-                  end
-
                   # title
-                  citation += hCitation[:title] + ', '
-
-                  # uri
-                  hCitation[:onlineResources].each do |hOnline|
-                     citation += hOnline[:olResURI] + ', '
-                  end
-
-                  # clean off last comma
-                  if citation.length > 0
-                     citation = citation[0...-2]
-                  end
+                  citation += hCitation[:title]
 
                   citation
 

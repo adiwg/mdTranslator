@@ -27,9 +27,13 @@ class TestReaderFgdcQuality < TestReaderFGDCParent
 
       # require 'pry'; binding.pry
 
-      horizpa = hDataQuality[:report].find{ |h| h.dig(:qualityMeasure, :nameOfMeasure) == ['Horizontal Positional Accuracy Report'] }
-      assert_equal 'GPS Unit', horizpa.dig(:evaluationMethod, :methodDescription)
-      assert_equal 'Instrument parameters', horizpa.dig(:qualityMeasure, :description)
+      horizpa = hDataQuality[:report].find do |h| 
+         h[:type] == 'DQ_AbsoluteExternalPositionalAccuracy' && 
+         h.dig(:descriptiveResult, 0, :name) == 'Horizontal Positional Accuracy Report'
+      end
+      assert_equal 'GPS Unit', horizpa.dig(:descriptiveResult, 0, :statement)
+      assert_equal 'Horizontal Positional Accuracy Explanation', horizpa.dig(:descriptiveResult, 1, :name)
+      assert_equal 'Instrument parameters', horizpa.dig(:descriptiveResult, 1, :statement)
 
       assert hResponse[:readerExecutionPass]
       assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: lineage procedure date is missing'

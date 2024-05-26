@@ -42,8 +42,8 @@ module ADIWG
                      json.abstract hResInfo[:abstract]
                      json.shortAbstract hResInfo[:shortAbstract]
                      json.purpose hResInfo[:purpose]
-                     json.credit hResInfo[:credits] unless hResInfo[:credits].empty?
                      json.timePeriod TimePeriod.build(hResInfo[:timePeriod]) unless hResInfo[:timePeriod].empty?
+                     json.credit hResInfo[:credits] unless hResInfo[:credits].empty?
                      json.status hResInfo[:status] unless hResInfo[:status].empty?
                      json.pointOfContact @Namespace.json_map(hResInfo[:pointOfContacts], ResponsibleParty)
                      json.spatialReferenceSystem @Namespace.json_map(hResInfo[:spatialReferenceSystems], SpatialReference)

@@ -41,7 +41,7 @@
       <mmi:maintenanceDate>
         <cit:CI_Date>
           <cit:date>
-            <gco:DateTime>2018-05-25T00:00:00</gco:DateTime>
+            <gco:Date>2018-05-25</gco:Date>
           </cit:date>
           <cit:dateType>
             <cit:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="lastUpdate" codeSpace="005"/>
@@ -99,7 +99,7 @@
       <mmi:maintenanceDate>
         <cit:CI_Date>
           <cit:date>
-            <gco:DateTime>2018-05-25T00:00:00</gco:DateTime>
+            <gco:Date>2018-05-25</gco:Date>
           </cit:date>
           <cit:dateType>
             <cit:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="lastUpdate" codeSpace="005"/>
@@ -109,7 +109,7 @@
       <mmi:maintenanceDate>
         <cit:CI_Date>
           <cit:date>
-            <gco:DateTime>2019-04-01T00:00:00</gco:DateTime>
+            <gco:Date>2019-04</gco:Date>
           </cit:date>
           <cit:dateType>
             <cit:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="nextUpdate" codeSpace="007"/>

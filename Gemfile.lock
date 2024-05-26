@@ -35,7 +35,7 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
-    adiwg-mdcodes (2.9.3)
+    adiwg-mdcodes (2.9.4.pre.beta.4)
       json (~> 2.0)
     adiwg-mdjson_schemas (2.10.0.pre.beta.1)
     base64 (0.2.0)

@@ -19,10 +19,10 @@ module ADIWG
                   Jbuilder.new do |json|
                      json.uri hOlRes[:olResURI]
                      json.name hOlRes[:olResName]
+                     json.protocol hOlRes[:olResProtocol]
                      json.description hOlRes[:olResDesc]
                      json.function hOlRes[:olResFunction]
                      json.applicationProfile hOlRes[:olResApplicationProfile]
-                     json.protocol hOlRes[:olResProtocol]
                      json.protocolRequest hOlRes[:olResProtocolRequest]
                   end
 

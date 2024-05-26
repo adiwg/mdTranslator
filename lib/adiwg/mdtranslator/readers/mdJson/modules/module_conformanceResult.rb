@@ -23,6 +23,11 @@ module ADIWG
               intConformanceResult[:scope] = Scope.unpack(hConformanceResult['scope'], responseObj)
             end
 
+            # name
+            if hConformanceResult.has_key?('name')
+              intConformanceResult[:name] = hConformanceResult['name']
+            end
+
             #specification
             if hConformanceResult.has_key?('specification')
               intConformanceResult[:specification] = Citation.unpack(hConformanceResult['specification'], responseObj)

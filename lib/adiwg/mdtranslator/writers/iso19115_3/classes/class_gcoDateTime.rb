@@ -24,7 +24,16 @@ module ADIWG
                   # date - date (required)
                   unless date.nil?
                      case dateRes
-                        when 'Y', 'YM', 'YMD', 'YMDh', 'YMDhm', 'YMDhms'
+                        when 'Y'
+                           dateStr = AdiwgDateTimeFun.stringDateFromDateTime(date, 'Y')
+                           @xml.tag!('gco:Date', dateStr)
+                        when 'YM'
+                           dateStr = AdiwgDateTimeFun.stringDateFromDateTime(date, 'YM')
+                           @xml.tag!('gco:Date', dateStr)
+                        when 'YMD'
+                           dateStr = AdiwgDateTimeFun.stringDateFromDateTime(date, 'YMD')
+                           @xml.tag!('gco:Date', dateStr)
+                        when 'YMDh', 'YMDhm', 'YMDhms'
                            dateStr = AdiwgDateTimeFun.stringDateTimeFromDateTime(date, 'YMDhms')
                            @xml.tag!('gco:DateTime', dateStr)
                         when 'YMDhZ', 'YMDhmZ', 'YMDhmsZ'

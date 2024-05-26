@@ -35,6 +35,13 @@ module ADIWG
               end
             end
 
+            if hDataQuality.has_key?('systemIdentifier')
+              systemIdentifier = hDataQuality['systemIdentifier']
+              intDataQuality[:systemIdentifier] = {}
+              intDataQuality[:systemIdentifier][:uid] = systemIdentifier['uid']
+              intDataQuality[:systemIdentifier][:label] = systemIdentifier['label']
+            end
+
             if hDataQuality.has_key?('standaloneQualityReport')
               hObject = hDataQuality['standaloneQualityReport']
               unless hObject.empty?

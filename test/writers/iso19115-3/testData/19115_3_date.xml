@@ -36,7 +36,7 @@
 <cit:date>
     <cit:CI_Date>
       <cit:date>
-        <gco:DateTime>2018-01-01T00:00:00</gco:DateTime>
+        <gco:Date>2018</gco:Date>
       </cit:date>
       <cit:dateType>
         <cit:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="none" codeSpace="userCode"/>
@@ -47,7 +47,7 @@
   <cit:date>
     <cit:CI_Date>
       <cit:date>
-        <gco:DateTime>2018-04-01T00:00:00</gco:DateTime>
+        <gco:Date>2018-04</gco:Date>
       </cit:date>
       <cit:dateType>
         <cit:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="none" codeSpace="userCode"/>
@@ -58,7 +58,7 @@
   <cit:date>
     <cit:CI_Date>
       <cit:date>
-        <gco:DateTime>2018-04-19T00:00:00</gco:DateTime>
+        <gco:Date>2018-04-19</gco:Date>
       </cit:date>
       <cit:dateType>
         <cit:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="none" codeSpace="userCode"/>

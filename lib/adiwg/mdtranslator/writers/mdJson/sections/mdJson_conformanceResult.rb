@@ -10,11 +10,12 @@ module ADIWG
         module ConformanceResult
           def self.build(hConformanceResult)
             Jbuilder.new do |json|
-              json.dateTime hConformanceResult[:dateTime]
-              json.scope Scope.build(hConformanceResult[:scope])
-              json.specification Citation.build(hConformanceResult[:specification])
-              json.explanation hConformanceResult[:explanation]
-              json.pass hConformanceResult[:pass]
+              json.dateTime hConformanceResult[:dateTime] unless hConformanceResult[:dateTime].nil?
+              json.scope Scope.build(hConformanceResult[:scope]) unless hConformanceResult[:scope].empty?
+              json.name hConformanceResult[:name] unless hConformanceResult[:name].nil?
+              json.specification Citation.build(hConformanceResult[:specification]) unless hConformanceResult[:specification].empty?
+              json.explanation hConformanceResult[:explanation] unless hConformanceResult[:explanation].nil?
+              json.pass hConformanceResult[:pass] unless hConformanceResult[:pass].nil?
             end
           end
         end

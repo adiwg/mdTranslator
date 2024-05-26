@@ -44,7 +44,7 @@
           <cit:date>
             <cit:CI_Date>
               <cit:date>
-                <gco:DateTime>2017-11-22T00:00:00</gco:DateTime>
+                <gco:Date>2017-11-22</gco:Date>
               </cit:date>
               <cit:dateType>
                 <cit:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="publication" codeSpace="002"/>
@@ -303,7 +303,7 @@
               <cit:date>
                 <cit:CI_Date>
                   <cit:date>
-                    <gco:DateTime>2017-11-22T00:00:00</gco:DateTime>
+                    <gco:Date>2017-11-22</gco:Date>
                   </cit:date>
                   <cit:dateType>
                     <cit:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="publication" codeSpace="002"/>
@@ -375,7 +375,7 @@
           <cit:date>
             <cit:CI_Date>
               <cit:date>
-                <gco:DateTime>2017-11-22T00:00:00</gco:DateTime>
+                <gco:Date>2017-11-22</gco:Date>
               </cit:date>
               <cit:dateType>
                 <cit:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="publication" codeSpace="002"/>
@@ -672,7 +672,7 @@
               <cit:date>
                 <cit:CI_Date>
                   <cit:date>
-                    <gco:DateTime>2018-02-01T00:00:00</gco:DateTime>
+                    <gco:Date>2018-02-01</gco:Date>
                   </cit:date>
                   <cit:dateType>
                     <cit:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="revision" codeSpace="003"/>
@@ -733,7 +733,7 @@
               <cit:date>
                 <cit:CI_Date>
                   <cit:date>
-                    <gco:DateTime>2017-11-22T00:00:00</gco:DateTime>
+                    <gco:Date>2017-11-22</gco:Date>
                   </cit:date>
                   <cit:dateType>
                     <cit:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="publication" codeSpace="002"/>
@@ -878,7 +878,7 @@
               <cit:date>
                 <cit:CI_Date>
                   <cit:date>
-                    <gco:DateTime>2017-11-22T00:00:00</gco:DateTime>
+                    <gco:Date>2017-11-22</gco:Date>
                   </cit:date>
                   <cit:dateType>
                     <cit:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="publication" codeSpace="002"/>
@@ -997,7 +997,7 @@
           <cit:date>
             <cit:CI_Date>
               <cit:date>
-                <gco:DateTime>2017-11-22T00:00:00</gco:DateTime>
+                <gco:Date>2017-11-22</gco:Date>
               </cit:date>
               <cit:dateType>
                 <cit:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="publication" codeSpace="002"/>
@@ -1388,7 +1388,7 @@
               <cit:date>
                 <cit:CI_Date>
                   <cit:date>
-                    <gco:DateTime>2018-02-01T00:00:00</gco:DateTime>
+                    <gco:Date>2018-02-01</gco:Date>
                   </cit:date>
                   <cit:dateType>
                     <cit:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="revision" codeSpace="003"/>
@@ -1440,7 +1440,7 @@
               <cit:date>
                 <cit:CI_Date>
                   <cit:date>
-                    <gco:DateTime>2018-02-01T00:00:00</gco:DateTime>
+                    <gco:Date>2018-02-01</gco:Date>
                   </cit:date>
                   <cit:dateType>
                     <cit:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="revision" codeSpace="003"/>
@@ -1501,7 +1501,7 @@
               <cit:date>
                 <cit:CI_Date>
                   <cit:date>
-                    <gco:DateTime>2017-11-22T00:00:00</gco:DateTime>
+                    <gco:Date>2017-11-22</gco:Date>
                   </cit:date>
                   <cit:dateType>
                     <cit:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="publication" codeSpace="002"/>
@@ -1542,7 +1542,7 @@
               <cit:date>
                 <cit:CI_Date>
                   <cit:date>
-                    <gco:DateTime>2017-11-22T00:00:00</gco:DateTime>
+                    <gco:Date>2017-11-22</gco:Date>
                   </cit:date>
                   <cit:dateType>
                     <cit:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="publication" codeSpace="002"/>
@@ -1583,7 +1583,7 @@
               <cit:date>
                 <cit:CI_Date>
                   <cit:date>
-                    <gco:DateTime>2017-11-22T00:00:00</gco:DateTime>
+                    <gco:Date>2017-11-22</gco:Date>
                   </cit:date>
                   <cit:dateType>
                     <cit:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="publication" codeSpace="002"/>
@@ -1844,7 +1844,7 @@
               <cit:date>
                 <cit:CI_Date>
                   <cit:date>
-                    <gco:DateTime>2017-11-22T00:00:00</gco:DateTime>
+                    <gco:Date>2017-11-22</gco:Date>
                   </cit:date>
                   <cit:dateType>
                     <cit:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="publication" codeSpace="002"/>
@@ -1928,7 +1928,7 @@
               <cit:date>
                 <cit:CI_Date>
                   <cit:date>
-                    <gco:DateTime>2017-11-22T00:00:00</gco:DateTime>
+                    <gco:Date>2017-11-22</gco:Date>
                   </cit:date>
                   <cit:dateType>
                     <cit:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="publication" codeSpace="002"/>
@@ -2060,7 +2060,7 @@
           <cit:date>
             <cit:CI_Date>
               <cit:date>
-                <gco:DateTime>2017-11-22T00:00:00</gco:DateTime>
+                <gco:Date>2017-11-22</gco:Date>
               </cit:date>
               <cit:dateType>
                 <cit:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="publication" codeSpace="002"/>
