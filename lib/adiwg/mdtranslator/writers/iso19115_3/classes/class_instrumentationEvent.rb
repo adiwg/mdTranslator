@@ -19,57 +19,59 @@ module ADIWG
                         extentClass = EX_Extent.new(@xml, @hResponseObj)
                         revisionClass = MI_Revision.new(@xml, @hResponseObj)
 
-                        unless hInstrumentationEvent[:citations].empty?
-                            hInstrumentationEvent[:citations].each do |hCitation|
-                                @xml.tag!('mac:citation') do
-                                    citationClass.writeXML(hCitation)
+                        @xml.tag!('mac:MI_InstrumentationEvent') do
+                            unless hInstrumentationEvent[:citations].empty?
+                                hInstrumentationEvent[:citations].each do |hCitation|
+                                    @xml.tag!('mac:citation') do
+                                        citationClass.writeXML(hCitation)
+                                    end
+                                end
+                            else
+                                if @hResponseObj[:writerShowTags]
+                                    @xml.tag!('mac:citation')
                                 end
                             end
-                        else
-                            if @hResponseObj[:writerShowTags]
-                                @xml.tag!('mac:citation')
-                            end
-                        end
 
-                        unless hInstrumentationEvent[:description].nil?
-                            @xml.tag!('mac:description') do
-                                @xml.tag!('gco:CharacterString', hInstrumentationEvent[:description])
-                            end
-                        else
-                            if @hResponseObj[:writerShowTags]
-                                @xml.tag!('mac:description')
-                            end
-                        end
-
-                        unless hInstrumentationEvent[:extent].empty?
-                            @xml.tag!('mac:extent') do
-                                extentClass.writeXML(hInstrumentationEvent[:extent])
-                            end
-                        else
-                            if @hResponseObj[:writerShowTags]
-                                @xml.tag!('mac:extent')
-                            end
-                        end
-
-                        unless hInstrumentationEvent[:eventType].nil?
-                            @xml.tag!('mac:eventType') do
-                                @xml.tag!('gco:CharacterString', hInstrumentationEvent[:eventType])
-                            end
-                        else
-                            if @hResponseObj[:writerShowTags]
-                                @xml.tag!('mac:eventType')
-                            end
-                        end
-
-                        unless hInstrumentationEvent[:revisionHistories].empty?
-                            hInstrumentationEvent[:revisionHistories].each do |hRevision|
-                                @xml.tag!('mac:revision') do
-                                    revisionClass.writeXML(hRevision)
+                            unless hInstrumentationEvent[:description].nil?
+                                @xml.tag!('mac:description') do
+                                    @xml.tag!('gco:CharacterString', hInstrumentationEvent[:description])
+                                end
+                            else
+                                if @hResponseObj[:writerShowTags]
+                                    @xml.tag!('mac:description')
                                 end
                             end
-                        else
-                            if @hResponseObj[:writerShowTags]
-                                @xml.tag!('mac:revision')
+
+                            unless hInstrumentationEvent[:extent].empty?
+                                @xml.tag!('mac:extent') do
+                                    extentClass.writeXML(hInstrumentationEvent[:extent])
+                                end
+                            else
+                                if @hResponseObj[:writerShowTags]
+                                    @xml.tag!('mac:extent')
+                                end
+                            end
+
+                            unless hInstrumentationEvent[:eventType].nil?
+                                @xml.tag!('mac:eventType') do
+                                    @xml.tag!('gco:CharacterString', hInstrumentationEvent[:eventType])
+                                end
+                            else
+                                if @hResponseObj[:writerShowTags]
+                                    @xml.tag!('mac:eventType')
+                                end
+                            end
+
+                            unless hInstrumentationEvent[:revisionHistories].empty?
+                                hInstrumentationEvent[:revisionHistories].each do |hRevision|
+                                    @xml.tag!('mac:revision') do
+                                        revisionClass.writeXML(hRevision)
+                                    end
+                                end
+                            else
+                                if @hResponseObj[:writerShowTags]
+                                    @xml.tag!('mac:revision')
+                                end
                             end
                         end
                     end

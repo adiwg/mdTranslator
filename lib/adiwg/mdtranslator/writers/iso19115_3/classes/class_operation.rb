@@ -1,3 +1,9 @@
+require_relative 'class_citation'
+require_relative 'class_identifier'
+require_relative 'class_objective'
+require_relative 'class_plan'
+require_relative 'class_platform'
+
 module ADIWG
     module Mdtranslator
         module Writers
@@ -10,6 +16,14 @@ module ADIWG
                     end
 
                     def writeXML(hOperation)
+
+                        codelistClass = MD_Codelist.new(@xml, @hResponseObj)
+                        citationClass = CI_Citation.new(@xml, @hResponseObj)
+                        identifierClass = MD_Identifier.new(@xml, @hResponseObj)
+                        objectiveClass = MI_Objective.new(@xml, @hResponseObj)
+                        planClass = MI_Plan.new(@xml, @hResponseObj)
+                        platformClass = MI_Platform.new(@xml, @hResponseObj)
+                        operationClass = MI_Operation.new(@xml, @hResponseObj)
 
                         @xml.tag!('mac:MI_Operation') do
 

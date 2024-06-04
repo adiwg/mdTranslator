@@ -17,32 +17,34 @@ module ADIWG
                         responsibilityClass = CI_Responsibility.new(@xml, @hResponseObj)
                         gcoDateTimeClass = GcoDateTime.new(@xml, @hResponseObj)
 
-                        unless hRevision[:description].nil?
-                            @xml.tag!('mac:description') do
-                                @xml.tag!('gco:CharacterString', hRevision[:description])
-                            end
-                        else
-                            if @hResponseObj[:writerShowTags]
-                                @xml.tag!('mac:description')
-                            end
-                        end
-
-                        unless hRevision[:responsibleParty].empty?
-                            @xml.tag!('mac:responsibleParty') do
-                                responsibilityClass.writeXML(hRevision[:responsibleParty])
-                            end
-                        else
-                            @xml.tag!('mac:responsibleParty')
-                        end
-
-                        unless hRevision[:dateInfo].empty?
-                            @xml.tag!('mac:dateInfo') do
-                                hRevision[:dateInfo].each do |hDate|
-                                    gcoDateTimeClass.writeXML(hDate)
+                        @xml.tag!('mac:MI_Revision') do
+                            unless hRevision[:description].nil?
+                                @xml.tag!('mac:description') do
+                                    @xml.tag!('gco:CharacterString', hRevision[:description])
+                                end
+                            else
+                                if @hResponseObj[:writerShowTags]
+                                    @xml.tag!('mac:description')
                                 end
                             end
-                        else
-                            @xml.tag!('mac:dateInfo')
+
+                            unless hRevision[:responsibleParty].empty?
+                                @xml.tag!('mac:responsibleParty') do
+                                    responsibilityClass.writeXML(hRevision[:responsibleParty])
+                                end
+                            else
+                                @xml.tag!('mac:responsibleParty')
+                            end
+
+                            unless hRevision[:dateInfo].empty?
+                                @xml.tag!('mac:dateInfo') do
+                                    hRevision[:dateInfo].each do |hDate|
+                                        gcoDateTimeClass.writeXML(hDate)
+                                    end
+                                end
+                            else
+                                @xml.tag!('mac:dateInfo')
+                            end
                         end
                     end
                 end
