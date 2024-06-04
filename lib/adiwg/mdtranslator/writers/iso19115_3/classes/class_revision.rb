@@ -1,3 +1,6 @@
+require_relative 'class_responsibility'
+require_relative 'class_gcoDateTime'
+
 module ADIWG
     module Mdtranslator
         module Writers
@@ -12,7 +15,7 @@ module ADIWG
                     def writeXML(hRevision)
 
                         responsibilityClass = CI_Responsibility.new(@xml, @hResponseObj)
-                        dateClass = CI_Date.new(@xml, @hResponseObj)
+                        gcoDateTimeClass = GcoDateTime.new(@xml, @hResponseObj)
 
                         unless hRevision[:description].nil?
                             @xml.tag!('mac:description') do
@@ -35,7 +38,7 @@ module ADIWG
                         unless hRevision[:dateInfo].empty?
                             @xml.tag!('mac:dateInfo') do
                                 hRevision[:dateInfo].each do |hDate|
-                                    dateClass.writeXML(hDate)
+                                    gcoDateTimeClass.writeXML(hDate)
                                 end
                             end
                         else

@@ -1,4 +1,5 @@
 require_relative 'class_scope'
+require_relative 'class_plan'
 require_relative 'class_instrument'
 
 module ADIWG
@@ -15,6 +16,7 @@ module ADIWG
                     def writeXML(hAcquisition)
 
                         scopeClass = MD_Scope.new(@xml, @hResponseObj)
+                        planClass = MI_Plan.new(@xml, @hResponseObj)
                         instrumentClass = MI_Instrument.new(@xml, @hResponseObj)
 
                         unless hAcquisition.empty?
@@ -22,6 +24,14 @@ module ADIWG
                                 unless hAcquisition[:scope].empty?
                                     @xml.tag!('mac:scope') do
                                         scopeClass.writeXML(hAcquisition[:scope])
+                                    end
+                                end
+
+                                unless hAcquisition[:plans].empty?
+                                    hAcquisition[:plans].each do |hPlan|
+                                        @xml.tag!('mac:acquisitionPlan') do
+                                            planClass.writeXML(hPlan)
+                                        end
                                     end
                                 end
 
