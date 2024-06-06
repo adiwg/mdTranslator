@@ -18,7 +18,6 @@ module ADIWG
 
                     def writeXML(hInstrument)
 
-                        # classes used
                         codelistClass = MD_Codelist.new(@xml, @hResponseObj)
                         citationClass = CI_Citation.new(@xml, @hResponseObj)
                         identifierClass = MD_Identifier.new(@xml, @hResponseObj)
@@ -31,7 +30,7 @@ module ADIWG
                                     citationClass.writeXML(hInstrument[:citation])
                                 end
                             else
-                                if hInstrument[:citation].empty? && @hResponseObj[:writerShowTags]
+                                if @hResponseObj[:writerShowTags]
                                     @xml.tag!('mac:citation')
                                 end
                             end
@@ -41,7 +40,7 @@ module ADIWG
                                     identifierClass.writeXML(hInstrument[:identifier])
                                 end
                             else
-                                if hInstrument[:identifier].empty? && @hResponseObj[:writerShowTags]
+                                if @hResponseObj[:writerShowTags]
                                     @xml.tag!('mac:identifier')
                                 end
                             end
@@ -51,7 +50,7 @@ module ADIWG
                                     @xml.tag!('gco:CharacterString', hInstrument[:instrumentType])
                                 end
                             else
-                                if hInstrument[:instrumentType].empty? && @hResponseObj[:writerShowTags]
+                                if @hResponseObj[:writerShowTags]
                                     @xml.tag!('mac:type')
                                 end
                             end
@@ -61,7 +60,7 @@ module ADIWG
                                     @xml.tag!('gco:CharacterString', hInstrument[:description])
                                 end
                             else
-                                if hInstrument[:description].empty? && @hResponseObj[:writerShowTags]
+                                if @hResponseObj[:writerShowTags]
                                     @xml.tag!('mac:description')
                                 end
                             end
@@ -71,7 +70,7 @@ module ADIWG
                                     platformClass.writeXML(hInstrument[:mountedOn])
                                 end
                             else
-                                if hInstrument[:mountedOn].empty? && @hResponseObj[:writerShowTags]
+                                if @hResponseObj[:writerShowTags]
                                     @xml.tag!('mac:mountedOn')
                                 end
                             end

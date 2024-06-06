@@ -395,7 +395,7 @@ module ADIWG
 
                      aAcquisition.each do |hAcquisition|
                         unless hAcquisition.empty?
-                           @xml.tag!('mdb:acquisition') do
+                           @xml.tag!('mdb:acquisitionInformation') do
                               acquisitionClass.writeXML(hAcquisition)
                            end
                         end

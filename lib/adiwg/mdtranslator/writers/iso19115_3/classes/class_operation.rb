@@ -83,11 +83,9 @@ module ADIWG
                                 end
                             end
 
-                            unless hOperation[:parentOperations].empty?
-                                hOperation[:parentOperations].each do |hParentOp|
-                                    @xml.tag!('mac:parentOperation') do
-                                        operationClass.writeXML(hParentOp)
-                                    end
+                            unless hOperation[:parentOperation].empty?
+                                @xml.tag!('mac:parentOperation') do
+                                    operationClass.writeXML(hOperation[:parentOperation])
                                 end
                             else
                                 if @hResponseObj[:writerShowTags]
@@ -105,9 +103,11 @@ module ADIWG
                                 end
                             end
 
-                            unless hOperation[:platform].empty?
-                                @xml.tag!('mac:platform') do
-                                    platformClass.writeXML(hOperation[:platform])
+                            unless hOperation[:platforms].empty?
+                                hOperation[:platforms].each do |hPlatform|
+                                    @xml.tag!('mac:platform') do
+                                        platformClass.writeXML(hPlatform)
+                                    end
                                 end
                             else
                                 if @hResponseObj[:writerShowTags]
