@@ -20,6 +20,7 @@ require_relative 'html_additionalDocumentation'
 require_relative 'html_funding'
 require_relative 'html_dataDictionary'
 require_relative 'html_metadataRepository'
+require_relative 'html_acquisition'
 
 module ADIWG
    module Mdtranslator
@@ -47,6 +48,7 @@ module ADIWG
                      fundingClass = Html_Funding.new(@html)
                      dictionaryClass = Html_DataDictionary.new(@html)
                      repositoryClass = Html_Repository.new(@html)
+                     aquisitionClass = Html_Acquisition.new(@html)
 
                      # make sections of the internal data store convenient
                      hSchema = intObj[:schema]
@@ -61,6 +63,7 @@ module ADIWG
                      aFunding = intObj[:metadata][:funding]
                      aDictionaries = intObj[:dataDictionaries]
                      aRepositories = intObj[:metadataRepositories]
+                     aAcquisitions = intObj[:acquisitions]
 
                      # set page title and logo
                      # side navigation
@@ -78,6 +81,7 @@ module ADIWG
                         @html.a(' Dictionary', {'href' => '#body-dataDictionary', 'class' => 'btn navBtn', 'id' => 'dictionaryButton'})
                         @html.a(' Funding', {'href' => '#body-funding', 'class' => 'btn navBtn', 'id' => 'fundingButton'})
                         @html.a(' Repository', {'href' => '#body-repository', 'class' => 'btn navBtn', 'id' => 'repositoryButton'})
+                        @html.a(' Acquisition', {'href' => '#body-acquisition', 'class' => 'btn navBtn', 'id' => 'acquisitionButton'})
 
                      end
 
@@ -293,6 +297,18 @@ module ADIWG
                                        repositoryClass.writeHtml(hRepository)
                                     end
                                  end
+                              end
+                           end
+                        end
+                     end
+
+                     unless aAcquisitions.nil? || aAcquisitions.empty?
+                        @html.div do
+                           @html.h2('Acquisitions', {'id' => 'body-acquisition', 'class' => 'h2'})
+                           @html.span('', {'style' => 'mso-bookmark:body-acquisition'})
+                           aAcquisitions.each do |hAcquisition|
+                              @html.div(:class => 'block') do
+                                 acquisitionClass.writeHtml(hAcquisition)
                               end
                            end
                         end
