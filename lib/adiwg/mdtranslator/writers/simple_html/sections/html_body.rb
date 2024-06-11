@@ -63,7 +63,7 @@ module ADIWG
                      aFunding = intObj[:metadata][:funding]
                      aDictionaries = intObj[:dataDictionaries]
                      aRepositories = intObj[:metadataRepositories]
-                     aAcquisitions = intObj[:acquisitions]
+                     aAcquisitions = intObj[:metadata][:acquisitions]
 
                      # set page title and logo
                      # side navigation
@@ -308,7 +308,7 @@ module ADIWG
                            @html.span('', {'style' => 'mso-bookmark:body-acquisition'})
                            aAcquisitions.each do |hAcquisition|
                               @html.div(:class => 'block') do
-                                 acquisitionClass.writeHtml(hAcquisition)
+                                 aquisitionClass.writeHtml(hAcquisition)
                               end
                            end
                         end
