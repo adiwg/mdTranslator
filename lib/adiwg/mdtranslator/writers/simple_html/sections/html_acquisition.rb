@@ -12,7 +12,7 @@ require_relative 'html_environment'
 module ADIWG
     module Mdtranslator
         module Writers
-            module Html
+            module Simple_html
                 class Html_Acquisition
                     def initialize(html)
                         @html = html
