@@ -25,7 +25,7 @@ module ADIWG
                         passClass = MI_Pass.new(@xml, @hResponseObj)
                         instrumentClass = MI_Instrument.new(@xml, @hResponseObj)
 
-                        @xml.tag!('mac:MI_Event') do
+                        @xml.tag!('mac:MI_Event', id: hEvent[:eventId]) do
 
                             unless hEvent[:identifier].empty?
                                 @xml.tag!('mac:identifier') do

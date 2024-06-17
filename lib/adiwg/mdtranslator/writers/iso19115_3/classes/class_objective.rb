@@ -25,7 +25,7 @@ module ADIWG
                         passClass = MI_Pass.new(@xml, @hResponseObj)
                         instrumentClass = MI_Instrument.new(@xml, @hResponseObj)
 
-                        @xml.tag!('mac:MI_Objective') do
+                        @xml.tag!('mac:MI_Objective', id: hObjective[:objectiveId]) do
                             unless hObjective[:identifiers].empty?
                                 hObjective[:identifiers].each do |hIdentifier|
                                     @xml.tag!('mac:identifier') do
@@ -40,7 +40,7 @@ module ADIWG
 
                             unless hObjective[:priority].nil?
                                 @xml.tag!('mac:priority') do
-                                    @xml.tag!('gco:Integer', hObjective[:priority])
+                                    @xml.tag!('gco:CharacterString', hObjective[:priority])
                                 end
                             else
                                 if @hResponseObj[:writerShowTags]

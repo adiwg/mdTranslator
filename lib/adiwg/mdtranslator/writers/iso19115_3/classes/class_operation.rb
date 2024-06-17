@@ -25,7 +25,7 @@ module ADIWG
                         platformClass = MI_Platform.new(@xml, @hResponseObj)
                         operationClass = MI_Operation.new(@xml, @hResponseObj)
 
-                        @xml.tag!('mac:MI_Operation') do
+                        @xml.tag!('mac:MI_Operation', id: hOperation[:operationId]) do
 
                             unless hOperation[:description].nil?
                                 @xml.tag!('mac:description') do
@@ -55,7 +55,25 @@ module ADIWG
 
                             unless hOperation[:status].nil?
                                 @xml.tag!('mac:status') do
-                                    codelistClass.writeXML('mcc', 'iso_progress', hOperation[:status])
+                                    codelistClass.writeXML('mac', 'iso_progress', hOperation[:status])
+                                end
+                            end
+
+                            unless hOperation[:operationType].nil?
+                                @xml.tag!('mac:type') do
+                                    codelistClass.writeXML('mac', 'iso_operationTypeCode', hOperation[:operationType])
+                                end
+                            end
+
+                            unless hOperation[:platforms].empty?
+                                hOperation[:platforms].each do |hPlatform|
+                                    @xml.tag!('mac:platform') do
+                                        platformClass.writeXML(hPlatform)
+                                    end
+                                end
+                            else
+                                if @hResponseObj[:writerShowTags]
+                                    @xml.tag!('mac:platform')
                                 end
                             end
 
@@ -103,17 +121,6 @@ module ADIWG
                                 end
                             end
 
-                            unless hOperation[:platforms].empty?
-                                hOperation[:platforms].each do |hPlatform|
-                                    @xml.tag!('mac:platform') do
-                                        platformClass.writeXML(hPlatform)
-                                    end
-                                end
-                            else
-                                if @hResponseObj[:writerShowTags]
-                                    @xml.tag!('mac:platform')
-                                end
-                            end
                         end
                     end
                 end

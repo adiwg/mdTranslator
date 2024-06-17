@@ -18,6 +18,7 @@ module ADIWG
                         citationClass = CI_Citation.new(@xml, @hResponseObj)
                         extentClass = EX_Extent.new(@xml, @hResponseObj)
                         revisionClass = MI_Revision.new(@xml, @hResponseObj)
+                        codeListClass = MD_Codelist.new(@xml, @hResponseObj)
 
                         @xml.tag!('mac:MI_InstrumentationEvent') do
                             unless hInstrumentationEvent[:citations].empty?
@@ -53,24 +54,24 @@ module ADIWG
                             end
 
                             unless hInstrumentationEvent[:eventType].nil?
-                                @xml.tag!('mac:eventType') do
-                                    @xml.tag!('gco:CharacterString', hInstrumentationEvent[:eventType])
+                                @xml.tag!('mac:type') do
+                                    codeListClass.writeXML('mac', 'iso_eventTypeCode', hInstrumentationEvent[:eventType])
                                 end
                             else
                                 if @hResponseObj[:writerShowTags]
-                                    @xml.tag!('mac:eventType')
+                                    @xml.tag!('mac:type')
                                 end
                             end
 
                             unless hInstrumentationEvent[:revisionHistories].empty?
                                 hInstrumentationEvent[:revisionHistories].each do |hRevision|
-                                    @xml.tag!('mac:revision') do
+                                    @xml.tag!('mac:revisionHistory') do
                                         revisionClass.writeXML(hRevision)
                                     end
                                 end
                             else
                                 if @hResponseObj[:writerShowTags]
-                                    @xml.tag!('mac:revision')
+                                    @xml.tag!('mac:revisionHistory')
                                 end
                             end
                         end

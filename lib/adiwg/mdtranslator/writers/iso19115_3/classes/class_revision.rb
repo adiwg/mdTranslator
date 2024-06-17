@@ -29,11 +29,11 @@ module ADIWG
                             end
 
                             unless hRevision[:responsibleParty].empty?
-                                @xml.tag!('mac:responsibleParty') do
+                                @xml.tag!('mac:author') do
                                     responsibilityClass.writeXML(hRevision[:responsibleParty])
                                 end
                             else
-                                @xml.tag!('mac:responsibleParty')
+                                @xml.tag!('mac:author')
                             end
 
                             unless hRevision[:dateInfo].empty?

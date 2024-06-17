@@ -20,7 +20,7 @@ module ADIWG
                         operationClass = MI_Operation.new(@xml, @hResponseObj)
                         requirementClass = MI_Requirement.new(@xml, @hResponseObj)
 
-                        @xml.tag!('mac:MI_Plan', type: hPlan[:planType], id: hPlan[:planId]) do
+                        @xml.tag!('mac:MI_Plan', id: hPlan[:planId]) do
                             unless hPlan[:planType].nil?
                                 @xml.tag!('mac:type') do
                                     codelistClass.writeXML('mac', 'iso_geometryTypeCode', hPlan[:planType])
@@ -33,7 +33,7 @@ module ADIWG
 
                             unless hPlan[:status].nil?
                                 @xml.tag!('mac:status') do
-                                    codelistClass.writeXML('mcc', 'iso_progress', hPlan[:status])
+                                    codelistClass.writeXML('mac', 'iso_progress', hPlan[:status])
                                 end
                             end
 

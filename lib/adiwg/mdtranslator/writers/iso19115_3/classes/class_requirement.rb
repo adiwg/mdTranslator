@@ -27,7 +27,7 @@ module ADIWG
                         gcoDateTimeClass = GcoDateTime.new(@xml, @hResponseObj)
                         planClass = MI_Plan.new(@xml, @hResponseObj)
 
-                        @xml.tag!('mac:MI_Requirement') do
+                        @xml.tag!('mac:MI_Requirement', id: hRequirement[:requirementId]) do
                             unless hRequirement[:citation].empty?
                                 @xml.tag!('mac:citation') do
                                     citationClass.writeXML(hRequirement[:citation])
@@ -50,7 +50,7 @@ module ADIWG
 
                             unless hRequirement[:requestors].empty?
                                 hRequirement[:requestors].each do |hResponsibility|
-                                    @xml.tag!('mac:request') do
+                                    @xml.tag!('mac:requestor') do
                                         responsibilityClass.writeXML(hResponsibility)
                                     end
                                 end
@@ -66,7 +66,7 @@ module ADIWG
 
                             unless hRequirement[:priority].nil?
                                 @xml.tag!('mac:priority') do
-                                    codelistClass.writeXML('mcc', 'iso_priorityCode', hRequirement[:priority])
+                                    codelistClass.writeXML('mac', 'iso_priorityCode', hRequirement[:priority])
                                 end
                             end
 
