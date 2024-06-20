@@ -33,31 +33,42 @@ module ADIWG
                         report[:type] == 'DQ_NonQuantitativeAttributeCorrectness' &&
                         !report.dig(:descriptiveResult, 0, :statement).nil?
                      end
-                     attribute_accuracy_value = hDataQuality[:report].find do |report|
-                        report[:type] == 'DQ_QuantitativeAttributeAccuracy' &&
-                        !report.dig(:quantitativeResult, 0, :values).nil?
+                     thematic_classification_report = hDataQuality[:report].find do |report|
+                        report[:type] == 'DQ_ThematicClassificationCorrectness'
                      end
-                     attribute_evaluation_method = hDataQuality[:report].find do |report|
-                        report[:type] == 'DQ_QuantitativeAttributeAccuracy' &&
-                        !report.dig(:evaluationMethod, :methodDescription).nil?
+                     attribute_accuracy_report_text = ''
+                     if attribute_accuracy_report
+                        attribute_accuracy_report_text = attribute_accuracy_report[:descriptiveResult][0][:statement]
                      end
-                     if attribute_accuracy_report || attribute_accuracy_value || attribute_evaluation_method
+                     if thematic_classification_report
+                        if attribute_accuracy_report_text != ''
+                           attribute_accuracy_report_text = attribute_accuracy_report_text + ' ' + thematic_classification_report[:descriptiveResult][0][:statement]
+                        else
+                           attribute_accuracy_report_text = thematic_classification_report[:descriptiveResult][0][:statement]
+                        end
+                     end
+                     quantitative_attribute_accuracy = hDataQuality[:report].find do |report|
+                        report[:type] == 'DQ_QuantitativeAttributeAccuracy'
+                     end
+                     attribute_accuracy_value = quantitative_attribute_accuracy.dig(:quantitativeResult, 0, :values, 0) if quantitative_attribute_accuracy
+                     attribute_evaluation_method = quantitative_attribute_accuracy.dig(:evaluationMethod, :methodDescription) if quantitative_attribute_accuracy
+                     if attribute_accuracy_report_text != '' || attribute_accuracy_value || attribute_evaluation_method
                         # data quality 2.1 (attracc) - Attribute Accuracy
                         @xml.tag!('attracc') do
-                           if attribute_accuracy_report
+                           if attribute_accuracy_report_text != ''
                               # data quality 2.1.1 (attraccr) - Attribute Accuracy Report
-                              @xml.tag!('attraccr', attribute_accuracy_report[:descriptiveResult][0][:statement])
+                              @xml.tag!('attraccr', attribute_accuracy_report_text)
                            end
                            if attribute_accuracy_value || attribute_evaluation_method
                               # data quality 2.1.2 (qattracc) - Quantitative Attribute Accuracy Assessment
                               @xml.tag!('qattracc') do
                                  if attribute_accuracy_value
                                     # data quality 2.1.2.1 (attraccv) - Attribute Accuracy Value
-                                    @xml.tag!('attraccv', attribute_accuracy_value[:quantitativeResult][0][:values][0])
+                                    @xml.tag!('attraccv', attribute_accuracy_value)
                                  end
                                  if attribute_evaluation_method
                                     # data quality 2.1.2.2 (attracce) - Attribute Accuracy Explanation
-                                    @xml.tag!('attracce', attribute_evaluation_method[:evaluationMethod][:methodDescription])
+                                    @xml.tag!('attracce', attribute_evaluation_method)
                                  end
                               end
                            end
@@ -71,7 +82,44 @@ module ADIWG
                         report[:type] == 'DQ_ConceptualConsistency' &&
                         !report.dig(:descriptiveResult, 0, :statement).nil?
                      end
-                     if logic = logic_report&.dig(:descriptiveResult, 0, :statement)
+                     domain_report = hDataQuality[:report].find do |report|
+                        report[:type] == 'DQ_DomainConsistency' &&
+                        !report.dig(:descriptiveResult, 0, :statement).nil?
+                     end
+                     format_report = hDataQuality[:report].find do |report|
+                        report[:type] == 'DQ_FormatConsistency' &&
+                        !report.dig(:descriptiveResult, 0, :statement).nil?
+                     end
+                     topological_report = hDataQuality[:report].find do |report|
+                        report[:type] == 'DQ_TopologicalConsistency' &&
+                        !report.dig(:descriptiveResult, 0, :statement).nil?
+                     end
+                     logic = ''
+                     if logic_report
+                        logic = logic_report[:descriptiveResult][0][:statement]
+                     end
+                     if domain_report
+                        if logic != ''
+                           logic = logic + ' ' + domain_report[:descriptiveResult][0][:statement]
+                        else
+                           logic = domain_report[:descriptiveResult][0][:statement]
+                        end
+                     end
+                     if format_report
+                        if logic != ''
+                           logic = logic + ' ' + format_report[:descriptiveResult][0][:statement]
+                        else
+                           logic = format_report[:descriptiveResult][0][:statement]
+                        end
+                     end
+                     if topological_report
+                        if logic != ''
+                           logic = logic + ' ' + topological_report[:descriptiveResult][0][:statement]
+                        else
+                           logic = topological_report[:descriptiveResult][0][:statement]
+                        end
+                     end
+                     if logic != ''
                         @xml.tag!('logic', logic)
                      else
                         @xml.tag!('logic', 'Not Reported')
@@ -105,66 +153,113 @@ module ADIWG
                         @xml.tag!('complete', 'Not Reported')
                      end
 
-                     # data quality 2.4 (position) - Positional Accuracy
-
+                     # data quality 2.4 (posacc) - Positional Accuracy
                      # data quality 2.4.1 (horizpa) - Horizontal Positional Accuracy
-                     horizontal_positional_accuracy_report = hDataQuality[:report].find do |report|
-                        report[:type] == 'DQ_AbsoluteExternalPositionalAccuracy' &&
+                     reports = hDataQuality[:report].select do |report|
+                        [
+                          'DQ_AbsoluteExternalPositionalAccuracy',
+                          'DQ_RelativeInternalPositionalAccuracy',
+                          'DQ_GriddedDataPositionalAccuracy'
+                        ].include?(report[:type]) &&
                         report.dig(:descriptiveResult, 0, :name) == 'Horizontal Positional Accuracy Report' &&
-                        !report.dig(:descriptiveResult, 0, :statement).nil? 
-                     end
-                     horizpar = horizontal_positional_accuracy_report&.dig(:descriptiveResult, 0, :statement)
-                     horizpav = horizontal_positional_accuracy_report&.dig(:quantitativeResult, 0, :values, 0)
-                     horizpae = horizontal_positional_accuracy_report&.dig(:descriptiveResult, 1, :statement)
-
-                     # data quality 2.4.2 (vertacc) - Vertical Positional Accuracy
-                     vertical_positional_accuracy_report = hDataQuality[:report].find do |report|
-                        report[:type] == 'DQ_AbsoluteExternalPositionalAccuracy' &&
-                        report.dig(:descriptiveResult, 0, :name) == 'Vertical Positional Accuracy Report' &&
                         !report.dig(:descriptiveResult, 0, :statement).nil?
                      end
-                     vertaccr = vertical_positional_accuracy_report&.dig(:descriptiveResult, 0, :statement)
-                     vertaccv = vertical_positional_accuracy_report&.dig(:quantitativeResult, 0, :values, 0)
-                     vertacce = vertical_positional_accuracy_report&.dig(:descriptiveResult, 1, :statement)
+                     
+                     horizpar = ''
+                     horizpav = ''
+                     horizpae = ''
+                      
+                     reports.each do |report|
+                        if report[:descriptiveResult]
+                           report[:descriptiveResult].each do |result|
+                              if result[:name] == 'Horizontal Positional Accuracy Report'
+                                 horizpar = horizpar.empty? ? result[:statement] : "#{horizpar} #{result[:statement]}"
+                              elsif result[:name] == 'Horizontal Positional Accuracy Explanation'
+                                 horizpae = horizpae.empty? ? result[:statement] : "#{horizpae} #{result[:statement]}"
+                              end
+                           end
+                        end
+                        if report[:quantitativeResult]
+                           report[:quantitativeResult].each do |result|
+                              if result[:name] == 'Horizontal Positional Accuracy Value' && horizpav.empty?
+                                 horizpav = result[:values][0]
+                              end
+                           end
+                        end
+                     end
+                      
+                     # data quality 2.4.2 (vertacc) - Vertical Positional Accuracy
+                     reports = hDataQuality[:report].select do |report|
+                        [
+                          'DQ_AbsoluteExternalPositionalAccuracy',
+                          'DQ_RelativeInternalPositionalAccuracy',
+                          'DQ_GriddedDataPositionalAccuracy'
+                        ].include?(report[:type]) &&
+                        report.dig(:descriptiveResult, 0, :name) == 'Vertical Positional Accuracy Report' &&
+                        !report.dig(:descriptiveResult, 0, :statement).nil?
+                      end
+                     
+                     vertaccr = ''
+                     vertaccv = ''
+                     vertacce = ''
 
-                     if horizpar || vertaccr
-                        # data quality 2.4 (posacc) - Positional Accuracy
+                     reports.each do |report|
+                        if report[:descriptiveResult]
+                           report[:descriptiveResult].each do |result|
+                              if result[:name] == 'Vertical Positional Accuracy Report'
+                                 vertaccr = vertaccr.empty? ? result[:statement] : "#{vertaccr} #{result[:statement]}"
+                              elsif result[:name] == 'Vertical Positional Accuracy Explanation'
+                                 vertacce = vertacce.empty? ? result[:statement] : "#{vertacce} #{result[:statement]}"
+                              end
+                           end
+                        end
+                        if report[:quantitativeResult]
+                           report[:quantitativeResult].each do |result|
+                              if result[:name] == 'Vertical Positional Accuracy Value' && vertaccv.empty?
+                                 vertaccv = result[:values][0]
+                              end
+                           end
+                        end
+                     end
+
+                     if !horizpar.empty? || !vertaccr.empty?
+                        # Data quality 2.4 (posacc) - Positional Accuracy
                         @xml.tag!('posacc') do
-                           if horizpar
-                              # data quality 2.4.1 (horizpa) - Horizontal Positional Accuracy
+                           if !horizpar.empty?
+                              # Data quality 2.4.1 (horizpa) - Horizontal Positional Accuracy
                               @xml.tag!('horizpa') do
-                                 # data quality 2.4.1.1 (horizpar) - Horizontal Positional Accuracy Report
+                                 # Data quality 2.4.1.1 (horizpar) - Horizontal Positional Accuracy Report
                                  @xml.tag!('horizpar', horizpar)
-                                 if horizpav || horizpae
-                                    # data quality 2.4.1.2 (qhorizpa) - Quantitative Horizontal Positional Accuracy
+                                 if horizpav != '' || !horizpae.empty?
+                                    # Data quality 2.4.1.2 (qhorizpa) - Quantitative Horizontal Positional Accuracy
                                     @xml.tag!('qhorizpa') do
-                                       if horizpav
-                                          # data quality 2.4.1.2.1 (horizpav) - Horizontal Positional Accuracy Value
+                                       if horizpav != ''
+                                          # Data quality 2.4.1.2.1 (horizpav) - Horizontal Positional Accuracy Value
                                           @xml.tag!('horizpav', horizpav)
                                        end
-                                       if horizpae
-                                          # data quality 2.4.1.2.2 (horizpae) - Horizontal Positional Accuracy Explanation
+                                       if !horizpae.empty?
+                                          # Data quality 2.4.1.2.2 (horizpae) - Horizontal Positional Accuracy Explanation
                                           @xml.tag!('horizpae', horizpae)
                                        end
                                     end
                                  end
                               end
                            end
-
-                           if vertaccr
-                              # data quality 2.4.2 (vertacc) - Vertical Positional Accuracy
+                        
+                           if !vertaccr.empty?
+                              # Data quality 2.4.2 (vertacc) - Vertical Positional Accuracy
                               @xml.tag!('vertacc') do
-                                 # data quality 2.4.2.1 (vertaccr) - Vertical Positional Accuracy Report
+                                 # Data quality 2.4.2.1 (vertaccr) - Vertical Positional Accuracy Report
                                  @xml.tag!('vertaccr', vertaccr)
-                                 if vertaccv || vertacce
-                                    # data quality 2.4.2.2 (qvertpa) - Quantitative Vertical Positional Accuracy
+                                 if vertaccv != '' || !vertacce.empty?
+                                    # Data quality 2.4.2.2 (qvertpa) - Quantitative Vertical Positional Accuracy
                                     @xml.tag!('qvertpa') do
-                                       if vertaccv
-                                          # data quality 2.4.2.2.1 (vertaccv) - Vertical Positional Accuracy Value
+                                       if vertaccv != ''
+                                          # Data quality 2.4.2.2.1 (vertaccv) - Vertical Positional Accuracy Value
                                           @xml.tag!('vertaccv', vertaccv)
                                        end
-                                       if vertacce
-                                          # data quality 2.4.2.2.2 (vertacce) - Vertical Positional Accuracy Explanation
+                                       if !vertacce.empty?
+                                          # Data quality 2.4.2.2.2 (vertacce) - Vertical Positional Accuracy Explanation
                                           @xml.tag!('vertacce', vertacce)
                                        end
                                     end
