@@ -56,8 +56,10 @@ module ADIWG
                         # data quality 2.1.2.2 (attracce) - Attribute Accuracy Explanation
                         xEvaluationMethod = xQuantitativeAccuracy.xpath('./attracce')
                         unless xEvaluationMethod.empty?
-                           report[:evaluationMethod] = intMetadataClass.newEvaluationMethod
-                           report[:evaluationMethod][:methodDescription] = xEvaluationMethod.text
+                           evaluationMethod = intMetadataClass.newEvaluationMethod
+                           evaluationMethod[:name] = 'Attribute Accuracy Explanation'
+                           evaluationMethod[:methodDescription] = xEvaluationMethod.text
+                           report[:evaluationMethod] << evaluationMethod
                         end
                         hDataQuality[:report] << report unless report[:quantitativeResult].empty? && report[:evaluationMethod].empty?
                      end
