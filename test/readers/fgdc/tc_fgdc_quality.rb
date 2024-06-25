@@ -31,9 +31,10 @@ class TestReaderFgdcQuality < TestReaderFGDCParent
          h[:type] == 'DQ_AbsoluteExternalPositionalAccuracy' && 
          h.dig(:descriptiveResult, 0, :name) == 'Horizontal Positional Accuracy Report'
       end
-      assert_equal 'GPS Unit', horizpa.dig(:descriptiveResult, 0, :statement)
-      assert_equal 'Horizontal Positional Accuracy Explanation', horizpa.dig(:descriptiveResult, 1, :name)
-      assert_equal 'Instrument parameters', horizpa.dig(:descriptiveResult, 1, :statement)
+      assert_equal 'GPS Unit Value: 1 Explanation: Instrument parameters', horizpa.dig(:descriptiveResult, 0, :statement)
+      # The following assertions have been disabled because the implementation for positional accuracy has changed and these are no longer valid.
+      # assert_equal 'Horizontal Positional Accuracy Explanation', horizpa.dig(:descriptiveResult, 1, :name)
+      # assert_equal 'Instrument parameters', horizpa.dig(:descriptiveResult, 1, :statement)
 
       assert hResponse[:readerExecutionPass]
       assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: lineage procedure date is missing'
