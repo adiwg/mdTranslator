@@ -103,34 +103,28 @@ module ADIWG
                      unless xHorizontalAccuracy.empty?
                         report = intMetadataClass.newDataQualityReport
                         report[:type] = 'DQ_AbsoluteExternalPositionalAccuracy'
-                        # data quality 2.4.1.1 (horizpar) - Horizontal Positional Accuracy Report
+                        # Combine Horizontal Positional Accuracy Report and Explanation
+                        descriptive_result_text = ''
                         xHorizontalAccuracyReport = xHorizontalAccuracy.xpath('./horizpar')
                         unless xHorizontalAccuracyReport.empty?
-                           descriptiveResult = intMetadataClass.newDescriptiveResult
-                           descriptiveResult[:name] = 'Horizontal Positional Accuracy Report'
-                           descriptiveResult[:statement] = xHorizontalAccuracyReport.text
-                           report[:descriptiveResult] << descriptiveResult
+                           descriptive_result_text += xHorizontalAccuracyReport.text
                         end
-                        # data quality 2.4.1.2 (qhorizpa) - Quantitative Horizontal Positional Accuracy Assessment
                         xQuantitativeHorizontalAccuracy = xHorizontalAccuracy.xpath('./qhorizpa')
                         unless xQuantitativeHorizontalAccuracy.empty?
-                           # data quality 2.4.1.2.1 (horizpav) - Horizontal Positional Accuracy Value
                            xHorizontalAccuracyValue = xQuantitativeHorizontalAccuracy.xpath('horizpav')
                            unless xHorizontalAccuracyValue.empty?
-                              quantitativeResult = intMetadataClass.newQuantitativeResult
-                              value = xHorizontalAccuracyValue.text
-                              quantitativeResult[:name] = 'Horizontal Positional Accuracy Value'
-                              quantitativeResult[:values] << value
-                              report[:quantitativeResult] << quantitativeResult
+                              descriptive_result_text += " Value: #{xHorizontalAccuracyValue.text}"
                            end
-                           # data quality 2.4.1.2.2 (horizpae) - Horizontal Positional Accuracy Explanation
                            xHorizontalAccuracyExplanation = xQuantitativeHorizontalAccuracy.xpath('horizpae')
                            unless xHorizontalAccuracyExplanation.empty?
-                              descriptiveResult = intMetadataClass.newDescriptiveResult
-                              descriptiveResult[:name] = 'Horizontal Positional Accuracy Explanation'
-                              descriptiveResult[:statement] = xHorizontalAccuracyExplanation.text
-                              report[:descriptiveResult] << descriptiveResult
+                              descriptive_result_text += " Explanation: #{xHorizontalAccuracyExplanation.text}"
                            end
+                        end
+                        unless descriptive_result_text.empty?
+                           descriptiveResult = intMetadataClass.newDescriptiveResult
+                           descriptiveResult[:name] = 'Horizontal Positional Accuracy Report'
+                           descriptiveResult[:statement] = descriptive_result_text
+                           report[:descriptiveResult] << descriptiveResult
                         end
                         hDataQuality[:report] << report
                      end
@@ -139,34 +133,28 @@ module ADIWG
                      unless xVerticalAccuracy.empty?
                         report = intMetadataClass.newDataQualityReport
                         report[:type] = 'DQ_AbsoluteExternalPositionalAccuracy'
-                        # data quality 2.4.2.1 (vertaccr) - Vertical Positional Accuracy Report
+                        # Combine Vertical Positional Accuracy Report and Explanation
+                        descriptive_result_text = ''
                         xVerticalAccuracyReport = xVerticalAccuracy.xpath('./vertaccr')
                         unless xVerticalAccuracyReport.empty?
-                           descriptiveResult = intMetadataClass.newDescriptiveResult
-                           descriptiveResult[:name] = 'Vertical Positional Accuracy Report'
-                           descriptiveResult[:statement] = xVerticalAccuracyReport.text
-                           report[:descriptiveResult] << descriptiveResult
+                           descriptive_result_text += xVerticalAccuracyReport.text
                         end
-                        # data quality 2.4.2.2 (qvertpa) - Quantitative Vertical Positional Accuracy Assessment
                         xVerticalAccuracyAssessment = xVerticalAccuracy.xpath('./qvertpa')
                         unless xVerticalAccuracyAssessment.empty?
-                           # data quality 2.4.2.2.1 (vertaccv) - Vertical Positional Accuracy Value
                            xVerticalAccuracyValue = xVerticalAccuracyAssessment.xpath('vertaccv')
                            unless xVerticalAccuracyValue.empty?
-                              quantitativeResult = intMetadataClass.newQuantitativeResult
-                              value = xVerticalAccuracyValue.text
-                              quantitativeResult[:name] = 'Vertical Positional Accuracy Value'
-                              quantitativeResult[:values] << value
-                              report[:quantitativeResult] << quantitativeResult
+                              descriptive_result_text += " Value: #{xVerticalAccuracyValue.text}"
                            end
-                           # data quality 2.4.2.2.2 (vertacce) - Vertical Positional Accuracy Explanation
                            xVerticalAccuracyExplanation = xVerticalAccuracyAssessment.xpath('vertacce')
                            unless xVerticalAccuracyExplanation.empty?
-                              descriptiveResult = intMetadataClass.newDescriptiveResult
-                              descriptiveResult[:name] = 'Vertical Positional Accuracy Explanation'
-                              descriptiveResult[:statement] = xVerticalAccuracyExplanation.text
-                              report[:descriptiveResult] << descriptiveResult
+                              descriptive_result_text += " Explanation: #{xVerticalAccuracyExplanation.text}"
                            end
+                        end
+                        unless descriptive_result_text.empty?
+                           descriptiveResult = intMetadataClass.newDescriptiveResult
+                           descriptiveResult[:name] = 'Vertical Positional Accuracy Report'
+                           descriptiveResult[:statement] = descriptive_result_text
+                           report[:descriptiveResult] << descriptiveResult
                         end
                         hDataQuality[:report] << report
                      end
