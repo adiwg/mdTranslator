@@ -33,7 +33,7 @@
         <southbc>24.0</southbc>
         <boundalt>
           <altmin>250.0</altmin>
-          <altmax>250.0</altmax>
+          <altmax>1500.0</altmax>
           <altunits>meters</altunits>
         </boundalt>
       </bounding>
