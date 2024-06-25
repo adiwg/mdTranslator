@@ -155,6 +155,63 @@
   <mdb:metadataLinkage/>
   <mdb:spatialRepresentationInfo/>
   <mdb:referenceSystemInfo/>
+  <gmd:metadataExtensionInfo>
+    <gmd:MD_MetadataExtensionInformation>
+      <gmd:extensionOnLineResource/>
+      <gmd:extendedElementInformation>
+        <gmd:MD_ExtendedElementInformation>
+          <gmd:name>
+            <gco:CharacterString>Taxonomy System</gco:CharacterString>
+          </gmd:name>
+          <gmd:shortName>
+            <gco:CharacterString>TaxonSys</gco:CharacterString>
+          </gmd:shortName>
+          <gmd:definition>
+            <gco:CharacterString>Documentation of taxonomic sources, procedures, and treatments</gco:CharacterString>
+          </gmd:definition>
+          <gmd:obligation>
+            <gmd:MD_ObligationCode>optional</gmd:MD_ObligationCode>
+          </gmd:obligation>
+          <gmd:dataType>
+            <gmd:MD_DatatypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_DatatypeCode" codeListValue="class" codeSpace="001"/>
+          </gmd:dataType>
+          <gmd:maximumOccurrence>
+            <gco:CharacterString>1</gco:CharacterString>
+          </gmd:maximumOccurrence>
+          <gmd:parentEntity>
+            <gco:CharacterString>MD_Identification</gco:CharacterString>
+          </gmd:parentEntity>
+          <gmd:rule>
+            <gco:CharacterString>New Metadata section as a class to MD_Identification</gco:CharacterString>
+          </gmd:rule>
+          <gmd:rationale>
+            <gco:CharacterString>The set of data elements contained within this class element represents an attempt to provide better documentation of taxonomic sources, procedures, and treatments.</gco:CharacterString>
+          </gmd:rationale>
+          <gmd:source>
+            <gmd:CI_ResponsibleParty>
+              <gmd:organisationName>
+                <gco:CharacterString>National Biological Information Infrastructure</gco:CharacterString>
+              </gmd:organisationName>
+              <gmd:contactInfo>
+                <gmd:CI_Contact>
+                  <gmd:onlineResource>
+                    <gmd:CI_OnlineResource>
+                      <gmd:linkage>
+                        <gmd:URL>https://www2.usgs.gov/core_science_systems/Access/p1111-1.html</gmd:URL>
+                      </gmd:linkage>
+                    </gmd:CI_OnlineResource>
+                  </gmd:onlineResource>
+                </gmd:CI_Contact>
+              </gmd:contactInfo>
+              <gmd:role>
+                <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="author" codeSpace="011"/>
+              </gmd:role>
+            </gmd:CI_ResponsibleParty>
+          </gmd:source>
+        </gmd:MD_ExtendedElementInformation>
+      </gmd:extendedElementInformation>
+    </gmd:MD_MetadataExtensionInformation>
+  </gmd:metadataExtensionInfo>
   <mdb:identificationInfo>
     <mri:MD_DataIdentification>
       <mri:citation>
