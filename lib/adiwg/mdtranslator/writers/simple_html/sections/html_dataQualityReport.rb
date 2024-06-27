@@ -262,7 +262,7 @@ module ADIWG
                   # ResultContentDescription
                   unless result[:resultContentDescription].empty?
                     @html.div do
-                      @html.div('Result Content Description', {'class' => 'h5'})
+                      @html.h5('Result Content Description', {'class' => 'h5'})
                       @html.div(:class => 'block') do
                         coverageInfoClass.writeHtml(result[:resultContentDescription])
                       end
@@ -272,7 +272,7 @@ module ADIWG
                   # ResourceFormat
                   unless result[:resourceFormat].empty?
                     @html.div do
-                      @html.div('Resource Format', {'class' => 'h5'})
+                      @html.h5('Resource Format', {'class' => 'h5'})
                       @html.div(:class => 'block') do
                         formatClass.writeHtml(result[:resourceFormat])
                       end
@@ -282,7 +282,7 @@ module ADIWG
                   # ResultFile
                   unless result[:resultFile].empty?
                     @html.div do
-                      @html.div('Result File', {'class' => 'h5'})
+                      @html.h5('Result File', {'class' => 'h5'})
                       @html.div(:class => 'block') do
                         resultFileClass.writeHtml(result[:resultFile])
                       end

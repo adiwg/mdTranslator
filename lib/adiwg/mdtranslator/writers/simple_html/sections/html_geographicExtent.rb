@@ -82,7 +82,7 @@ module ADIWG
                   # geographic extent - identifier {identifier}
                   unless hExtent[:identifier].empty?
                      @html.div do
-                        @html.div('Identifier', 'class' => 'h5')
+                        @html.h5('Identifier', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            identifierClass.writeHtml(hExtent[:identifier])
                         end

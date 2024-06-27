@@ -31,7 +31,7 @@ module ADIWG
                   # spatial Representation - grid {gridRepresentation}
                   unless hRepresentation[:gridRepresentation].empty?
                      @html.div do
-                        @html.div('Grid Representation ', 'class' => 'h5')
+                        @html.h5('Grid Representation ', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            gridClass.writeHtml(hRepresentation[:gridRepresentation])
                         end
@@ -41,7 +41,7 @@ module ADIWG
                   # spatial Representation - vector {vectorRepresentation}
                   unless hRepresentation[:vectorRepresentation].empty?
                      @html.div do
-                        @html.div('Vector Representation ', 'class' => 'h5')
+                        @html.h5('Vector Representation ', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            vectorClass.writeHtml(hRepresentation[:vectorRepresentation])
                         end
@@ -51,7 +51,7 @@ module ADIWG
                   # spatial Representation - georectified {georectifiedRepresentation}
                   unless hRepresentation[:georectifiedRepresentation].empty?
                      @html.div do
-                        @html.div('Georectified Representation ', 'class' => 'h5')
+                        @html.h5('Georectified Representation ', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            georectifiedClass.writeHtml(hRepresentation[:georectifiedRepresentation])
                         end
@@ -61,7 +61,7 @@ module ADIWG
                   # spatial Representation - georeferenceable {georeferenceableRepresentation}
                   unless hRepresentation[:georeferenceableRepresentation].empty?
                      @html.div do
-                        @html.div('Georeferenceable Representation ', 'class' => 'h5')
+                        @html.h5('Georeferenceable Representation ', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            georeferenceableClass.writeHtml(hRepresentation[:georeferenceableRepresentation])
                         end
