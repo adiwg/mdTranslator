@@ -147,14 +147,14 @@ module ADIWG
                      end
                   end
 
-                  # citation - other div []
-                  # unless hCitation[:otherdiv].empty?
-                  #    hCitation[:otherdiv].each do |detail|
-                  #       @html.em('Other div: ')
-                  #       @html.text!(detail)
-                  #       @html.br
-                  #    end
-                  # end
+                  # citation - other details []
+                  unless hCitation[:otherDetails].empty?
+                     hCitation[:otherDetails].each do |detail|
+                        @html.em('Other Details: ')
+                        @html.text!(detail)
+                        @html.br
+                     end
+                  end
 
                end # writeHtml
             end # Html_Citation
