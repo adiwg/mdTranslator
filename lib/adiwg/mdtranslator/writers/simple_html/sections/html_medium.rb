@@ -29,7 +29,7 @@ module ADIWG
                   # medium - specification {citation}
                   unless hMedium[:mediumSpecification].empty?
                      @html.div do
-                        @html.div('Medium Specification', {'class' => 'h5'})
+                        @html.h5('Medium Specification', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            citationClass.writeHtml(hMedium[:mediumSpecification])
                         end
@@ -74,7 +74,7 @@ module ADIWG
                   # medium - identifier {identifier}
                   unless hMedium[:identifier].empty?
                      @html.div do
-                        @html.div('Identifier for the Medium', {'class' => 'h5'})
+                        @html.h5('Identifier for the Medium', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            identifierClass.writeHtml(hMedium[:identifier])
                         end

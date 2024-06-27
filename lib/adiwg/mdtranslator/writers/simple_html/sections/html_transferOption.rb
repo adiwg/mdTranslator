@@ -68,7 +68,7 @@ module ADIWG
                   # transfer options - transfer frequency {duration}
                   unless hOption[:transferFrequency].empty?
                      @html.div do
-                        @html.div('Transfer Frequency', 'class' => 'h5')
+                        @html.h5('Transfer Frequency', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            durationClass.writeHtml(hOption[:transferFrequency])
                         end
@@ -78,7 +78,7 @@ module ADIWG
                   # transfer options - distribution formats [] {format}
                   hOption[:distributionFormats].each do |hFormat|
                      @html.div do
-                        @html.div('Distribution Format Option', 'class' => 'h5')
+                        @html.h5('Distribution Format Option', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            formatClass.writeHtml(hFormat)
                         end

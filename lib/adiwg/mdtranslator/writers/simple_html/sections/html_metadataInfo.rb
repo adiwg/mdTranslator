@@ -76,7 +76,7 @@ module ADIWG
                            # default metadata locales {locale}
                            unless hMetaInfo[:defaultMetadataLocale].empty?
                               @html.div do
-                                 @html.div('Default Locale', {'class' => 'h5'})
+                                 @html.h5('Default Locale', {'class' => 'h5'})
                                  @html.div(:class => 'block') do
                                     localeClass.writeHtml(hMetaInfo[:defaultMetadataLocale])
                                  end
@@ -86,7 +86,7 @@ module ADIWG
                            # other metadata locales [] {locale}
                            hMetaInfo[:otherMetadataLocales].each do |hLocale|
                               @html.div do
-                                 @html.div('Other Locale', {'class' => 'h5'})
+                                 @html.h5('Other Locale', {'class' => 'h5'})
                                  @html.div(:class => 'block') do
                                     localeClass.writeHtml(hLocale)
                                  end
@@ -104,7 +104,7 @@ module ADIWG
                         @html.div(:class => 'block') do
                            hMetaInfo[:metadataContacts].each do |hResponsibility|
                               @html.div do
-                                 @html.div(hResponsibility[:roleName], 'class' => 'h5')
+                                 @html.h5(hResponsibility[:roleName], 'class' => 'h5')
                                  @html.div(:class => 'block') do
                                     responsibilityClass.writeHtml(hResponsibility)
                                  end
@@ -179,7 +179,7 @@ module ADIWG
                         @html.div(:class => 'block') do
                            hMetaInfo[:alternateMetadataReferences].each do |hCitation|
                               @html.div do
-                                 @html.div(hCitation[:title], 'class' => 'h5')
+                                 @html.h5(hCitation[:title], 'class' => 'h5')
                                  @html.div(:class => 'block') do
                                     citationClass.writeHtml(hCitation)
                                     @html.br

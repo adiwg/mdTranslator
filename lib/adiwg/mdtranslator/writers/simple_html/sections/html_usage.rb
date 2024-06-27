@@ -37,7 +37,7 @@ module ADIWG
                   # resource usage - temporal extent
                   unless hUsage[:temporalExtents].empty?
                      @html.div do
-                        @html.div('Times and Periods of Usage', 'class' => 'h5')
+                        @html.h5('Times and Periods of Usage', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            hUsage[:temporalExtents].each do |hTemporal|
                               temporalClass.writeHtml(hTemporal)
@@ -49,7 +49,7 @@ module ADIWG
                   # resource usage - limitation
                   unless hUsage[:userLimitation].nil? && hUsage[:limitationResponses].empty?
                      @html.div do
-                        @html.div('User Defined Limitations', 'class' => 'h5')
+                        @html.h5('User Defined Limitations', 'class' => 'h5')
                         @html.div(:class => 'block') do
 
                            # user limitation
@@ -75,7 +75,7 @@ module ADIWG
                   # resource usage - documented issue
                   unless hUsage[:identifiedIssue].empty?
                      @html.div do
-                        @html.div('Cited Issue', 'class' => 'h5')
+                        @html.h5('Cited Issue', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            citationClass.writeHtml(hUsage[:identifiedIssue])
                         end
@@ -85,7 +85,7 @@ module ADIWG
                   # resource usage - additional documentation
                   hUsage[:additionalDocumentation].each do |hCitation|
                      @html.div do
-                        @html.div('Additional Documentation', 'class' => 'h5')
+                        @html.h5('Additional Documentation', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            citationClass.writeHtml(hCitation)
                         end
@@ -99,7 +99,7 @@ module ADIWG
                         @html.div(:class => 'block') do
                            hUsage[:userContacts].each do |hContact|
                               @html.div do
-                                 @html.div(hContact[:roleName], 'class' => 'h5')
+                                 @html.h5(hContact[:roleName], 'class' => 'h5')
                                  @html.div(:class => 'block') do
                                     responsibilityClass.writeHtml(hContact)
                                  end
