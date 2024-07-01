@@ -69,7 +69,8 @@ class MdJsonHashWriter
          reportReference: build_citation('standalone quality report 1'),
          abstract: "standalone quality report 1"
       }
-
+      # NOTE: This object should be in the file mdJson_hash_objects.rb so at some point it should be moved
+      # refer to other build_ functions for examples and references on how build_dataQuality should be structured
       hDataQuality[:report] = [
          {
             type: 'DQ_AbsoluteExternalPositionalAccuracy',
