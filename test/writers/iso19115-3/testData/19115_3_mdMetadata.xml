@@ -382,7 +382,7 @@
                   <gml:description>resource time period</gml:description>
                   <gml:identifier codeSpace=""/>
                   <gml:name/>
-                  <gml:beginPosition>2017-12-01T00:00:00</gml:beginPosition>
+                  <gml:beginPosition>2017-12-01</gml:beginPosition>
                   <gml:endPosition indeterminatePosition="unknown"/>
                 </gml:TimePeriod>
               </gex:extent>

@@ -44,8 +44,8 @@
           <gml:identifier codeSpace="">time period identifier</gml:identifier>
           <gml:name>period name one</gml:name>
           <gml:name>period name two</gml:name>
-          <gml:beginPosition>2018-05-02T00:00:00</gml:beginPosition>
-          <gml:endPosition>2016-12-31T00:00:00</gml:endPosition>
+          <gml:beginPosition>2018-05-02</gml:beginPosition>
+          <gml:endPosition>2016-12-31</gml:endPosition>
           <gml:timeInterval unit="year">1.1</gml:timeInterval>
         </gml:TimePeriod>
       </mri:usageDateTime>
@@ -139,8 +139,8 @@
           <gml:identifier codeSpace="">time period identifier</gml:identifier>
           <gml:name>period name one</gml:name>
           <gml:name>period name two</gml:name>
-          <gml:beginPosition>2018-06-24T00:00:00</gml:beginPosition>
-          <gml:endPosition>2016-12-31T00:00:00</gml:endPosition>
+          <gml:beginPosition>2018-06-24</gml:beginPosition>
+          <gml:endPosition>2016-12-31</gml:endPosition>
           <gml:timeInterval unit="year">1.1</gml:timeInterval>
         </gml:TimePeriod>
       </mri:usageDateTime>
@@ -150,8 +150,8 @@
           <gml:identifier codeSpace="">time period identifier</gml:identifier>
           <gml:name>period name one</gml:name>
           <gml:name>period name two</gml:name>
-          <gml:beginPosition>2019-05-15T00:00:00</gml:beginPosition>
-          <gml:endPosition>2016-12-31T00:00:00</gml:endPosition>
+          <gml:beginPosition>2019-05-15</gml:beginPosition>
+          <gml:endPosition>2016-12-31</gml:endPosition>
           <gml:timeInterval unit="year">1.1</gml:timeInterval>
         </gml:TimePeriod>
       </mri:usageDateTime>
