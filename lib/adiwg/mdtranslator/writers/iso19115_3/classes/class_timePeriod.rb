@@ -65,9 +65,7 @@ module ADIWG
                      # if empty add indeterminatePosition="unknown"
                      unless hPeriod[:startDateTime].empty?
                         hDateTime = hPeriod[:startDateTime]
-                        dateTime = hDateTime[:dateTime]
-                        timeResolution = hDateTime[:dateResolution]
-                        dateStr = AdiwgDateTimeFun.stringDateTimeFromDateTime(dateTime, timeResolution)
+                        dateStr = AdiwgDateTimeFun.stringDateTimeFromDateObject(hDateTime)
                         @xml.tag!('gml:beginPosition', dateStr)
                      end
                      if hPeriod[:startDateTime].empty?
@@ -79,9 +77,7 @@ module ADIWG
                      # if empty add indeterminatePosition="unknown"
                      unless hPeriod[:endDateTime].empty?
                         hDateTime = hPeriod[:endDateTime]
-                        dateTime = hDateTime[:dateTime]
-                        timeResolution = hDateTime[:dateResolution]
-                        dateStr = AdiwgDateTimeFun.stringDateTimeFromDateTime(dateTime, timeResolution)
+                        dateStr = AdiwgDateTimeFun.stringDateTimeFromDateObject(hDateTime)
                         @xml.tag!('gml:endPosition', dateStr)
                      end
                      if hPeriod[:endDateTime].empty?
