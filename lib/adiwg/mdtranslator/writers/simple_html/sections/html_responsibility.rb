@@ -27,7 +27,7 @@ module ADIWG
                   hResponsibility[:parties].each do |hParty|
                      hContact = Html_Document.getContact(hParty[:contactId])
                      @html.div do
-                        @html.div(hContact[:name], 'class' => 'h5')
+                        @html.h5(hContact[:name], 'class' => 'h5')
                         @html.div(:class => 'block') do
 
                            # party - contact ID

@@ -47,11 +47,11 @@ module ADIWG
                      # maintenance - scopes [] {scope}
                      unless hMaint[:scopes].empty?
                         @html.div do
-                           @html.div('Maintenance Scopes', {'class' => 'h5'})
+                           @html.h5('Maintenance Scopes', {'class' => 'h5'})
                            @html.div(:class => 'block') do
                               hMaint[:scopes].each do |hScope|
                                  @html.div do
-                                    @html.div(hScope[:scopeCode], 'class' => 'h5')
+                                    @html.h5(hScope[:scopeCode], 'class' => 'h5')
                                     @html.div(:class => 'block') do
                                        scopeClass.writeHtml(hScope)
                                     end
@@ -64,11 +64,11 @@ module ADIWG
                      # maintenance - contacts [] {responsibility}
                      unless hMaint[:contacts].empty?
                         @html.div do
-                           @html.div('Maintenance Contacts', {'class' => 'h5'})
+                           @html.h5('Maintenance Contacts', {'class' => 'h5'})
                            @html.div(:class => 'block') do
                               hMaint[:contacts].each do |hContact|
                                  @html.div do
-                                    @html.div(hContact[:roleName], 'class' => 'h5')
+                                    @html.h5(hContact[:roleName], 'class' => 'h5')
                                     @html.div(:class => 'block') do
                                        responsibilityClass.writeHtml(hContact)
                                     end

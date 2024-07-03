@@ -41,7 +41,7 @@
           <gml:identifier codeSpace="">time period identifier</gml:identifier>
           <gml:name>period name one</gml:name>
           <gml:name>period name two</gml:name>
-          <gml:beginPosition>2017-05-02T00:00:00</gml:beginPosition>
+          <gml:beginPosition>2017-05-02T00:00</gml:beginPosition>
           <gml:endPosition>2018-05-02T08:46</gml:endPosition>
           <gml:timeInterval unit="year">1.1</gml:timeInterval>
         </gml:TimePeriod>

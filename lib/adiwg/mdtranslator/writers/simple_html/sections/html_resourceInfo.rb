@@ -154,7 +154,7 @@ module ADIWG
                            hResource[:graphicOverviews].each do |hGraphic|
                               counter += 1
                               @html.div do
-                                 @html.div('Overview '+counter.to_s, 'class' => 'h5')
+                                 @html.h5('Overview '+counter.to_s, 'class' => 'h5')
                                  @html.div(:class => 'block') do
                                     graphicClass.writeHtml(hGraphic)
                                  end
@@ -173,7 +173,7 @@ module ADIWG
                            # contacts - responsibility
                            hResource[:pointOfContacts].each do |hContact|
                               @html.div do
-                                 @html.div(hContact[:roleName], 'class' => 'h5')
+                                 @html.h5(hContact[:roleName], 'class' => 'h5')
                                  @html.div(:class => 'block') do
                                     responsibilityClass.writeHtml(hContact)
                                  end
@@ -183,7 +183,7 @@ module ADIWG
                            # contacts - credits
                            unless hResource[:credits].empty?
                               @html.div do
-                                 @html.div('Other Credits', 'class' => 'h5')
+                                 @html.h5('Other Credits', 'class' => 'h5')
                                  @html.div(:class => 'block') do
                                     hResource[:credits].each do |credit|
                                        @html.em('Credit: ')
@@ -216,7 +216,7 @@ module ADIWG
                            unless hResource[:temporalResolutions].empty?
                               hResource[:temporalResolutions].each do |hResolution|
                                  @html.div do
-                                    @html.div('Resolution', 'class' => 'h5')
+                                    @html.h5('Resolution', 'class' => 'h5')
                                     @html.div(:class => 'block') do
                                        durationClass.writeHtml(hResolution)
                                     end
@@ -347,7 +347,7 @@ module ADIWG
                            hResource[:taxonomy].each do |hTaxonomy|
                               counter += 1
                               @html.div do
-                                 @html.div('Taxonomic Structure '+counter.to_s, 'class' => 'h5')
+                                 @html.h5('Taxonomic Structure '+counter.to_s, 'class' => 'h5')
                                  @html.div(:class => 'block') do
                                     taxonomyClass.writeHtml(hTaxonomy)
                                  end

@@ -44,7 +44,7 @@ module ADIWG
                         @html.div(:class => 'block') do
                            hRelease[:addressee].each do |hAddressee|
                               @html.div do
-                                 @html.div(hAddressee[:roleName], 'class' => 'h5')
+                                 @html.h5(hAddressee[:roleName], 'class' => 'h5')
                                  @html.div(:class => 'block') do
                                     responsibilityClass.writeHtml(hAddressee)
                                  end

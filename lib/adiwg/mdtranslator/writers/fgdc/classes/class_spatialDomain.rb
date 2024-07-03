@@ -127,7 +127,7 @@ module ADIWG
 
                                     # altitude bounding (altmax) - maximum altitude (required)
                                     unless hBBox[:maximumAltitude].nil?
-                                       @xml.tag!('altmax', hBBox[:minimumAltitude])
+                                       @xml.tag!('altmax', hBBox[:maximumAltitude])
                                     end
                                     if hBBox[:maximumAltitude].nil?
                                        @NameSpace.issueWarning(372, 'altmax')

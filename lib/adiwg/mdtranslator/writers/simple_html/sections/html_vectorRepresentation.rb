@@ -28,7 +28,7 @@ module ADIWG
                   # vector representation - scope
                   hVector[:scope].each do |scope|
                      @html.div do
-                        @html.div('Scope ', 'class' => 'h5')
+                        @html.h5('Scope ', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            scopeClass.writeHtml(hVector[:scope])
                         end
@@ -46,7 +46,7 @@ module ADIWG
                   # vector representation - vector object []
                   hVector[:vectorObject].each do |hObject|
                      @html.div do
-                        @html.div('Vector Object ', 'class' => 'h5')
+                        @html.h5('Vector Object ', 'class' => 'h5')
                         @html.div(:class => 'block') do
                            objectClass.writeHtml(hObject)
                         end

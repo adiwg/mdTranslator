@@ -41,7 +41,7 @@ module ADIWG
                   # lineage - scope
                   unless hLineage[:resourceScope].empty?
                      @html.div do
-                        @html.div('Scope', {'class' => 'h5'})
+                        @html.h5('Scope', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            scopeClass.writeHtml(hLineage[:resourceScope])
                         end
@@ -51,7 +51,7 @@ module ADIWG
                   # lineage - citation
                   hLineage[:lineageCitation].each do |hCitation|
                      @html.div do
-                        @html.div('Citation', {'class' => 'h5'})
+                        @html.h5('Citation', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            citationClass.writeHtml(hCitation)
                         end
@@ -61,7 +61,7 @@ module ADIWG
                   # lineage - data sources
                   hLineage[:dataSources].each do |hsource|
                      @html.div do
-                        @html.div('Data Source', {'class' => 'h5'})
+                        @html.h5('Data Source', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            sourceClass.writeHtml(hsource)
                         end
@@ -71,7 +71,7 @@ module ADIWG
                   # lineage - process steps
                   hLineage[:processSteps].each do |hStep|
                      @html.div do
-                        @html.div('Process Step', {'class' => 'h5'})
+                        @html.h5('Process Step', {'class' => 'h5'})
                         @html.div(:class => 'block') do
                            stepClass.writeHtml(hStep)
                         end

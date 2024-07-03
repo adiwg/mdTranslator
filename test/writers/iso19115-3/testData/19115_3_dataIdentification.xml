@@ -260,7 +260,7 @@
                   <gml:description>resource time period</gml:description>
                   <gml:identifier codeSpace=""/>
                   <gml:name/>
-                  <gml:beginPosition>2017-12-01T00:00:00</gml:beginPosition>
+                  <gml:beginPosition>2017-12-01</gml:beginPosition>
                   <gml:endPosition indeterminatePosition="unknown"/>
                 </gml:TimePeriod>
               </gex:extent>
@@ -607,7 +607,7 @@
                   <gml:description>resource time period</gml:description>
                   <gml:identifier codeSpace=""/>
                   <gml:name/>
-                  <gml:beginPosition>2017-12-01T00:00:00</gml:beginPosition>
+                  <gml:beginPosition>2017-12-01</gml:beginPosition>
                   <gml:endPosition indeterminatePosition="unknown"/>
                 </gml:TimePeriod>
               </gex:extent>
@@ -765,8 +765,8 @@
               <gml:identifier codeSpace="">time period identifier</gml:identifier>
               <gml:name>period name one</gml:name>
               <gml:name>period name two</gml:name>
-              <gml:beginPosition>2018-05-02T00:00:00</gml:beginPosition>
-              <gml:endPosition>2016-12-31T00:00:00</gml:endPosition>
+              <gml:beginPosition>2018-05-02</gml:beginPosition>
+              <gml:endPosition>2016-12-31</gml:endPosition>
               <gml:timeInterval unit="year">1.1</gml:timeInterval>
             </gml:TimePeriod>
           </mri:usageDateTime>
@@ -1273,7 +1273,7 @@
                   <gml:description>resource time period</gml:description>
                   <gml:identifier codeSpace=""/>
                   <gml:name/>
-                  <gml:beginPosition>2017-12-01T00:00:00</gml:beginPosition>
+                  <gml:beginPosition>2017-12-01</gml:beginPosition>
                   <gml:endPosition indeterminatePosition="unknown"/>
                 </gml:TimePeriod>
               </gex:extent>
@@ -1615,8 +1615,8 @@
               <gml:identifier codeSpace="">time period identifier</gml:identifier>
               <gml:name>period name one</gml:name>
               <gml:name>period name two</gml:name>
-              <gml:beginPosition>2018-05-02T00:00:00</gml:beginPosition>
-              <gml:endPosition>2016-12-31T00:00:00</gml:endPosition>
+              <gml:beginPosition>2018-05-02</gml:beginPosition>
+              <gml:endPosition>2016-12-31</gml:endPosition>
               <gml:timeInterval unit="year">1.1</gml:timeInterval>
             </gml:TimePeriod>
           </mri:usageDateTime>
@@ -1709,8 +1709,8 @@
               <gml:identifier codeSpace="">time period identifier</gml:identifier>
               <gml:name>period name one</gml:name>
               <gml:name>period name two</gml:name>
-              <gml:beginPosition>2018-05-02T00:00:00</gml:beginPosition>
-              <gml:endPosition>2016-12-31T00:00:00</gml:endPosition>
+              <gml:beginPosition>2018-05-02</gml:beginPosition>
+              <gml:endPosition>2016-12-31</gml:endPosition>
               <gml:timeInterval unit="year">1.1</gml:timeInterval>
             </gml:TimePeriod>
           </mri:usageDateTime>
@@ -2274,7 +2274,7 @@
                   <gml:description>resource time period</gml:description>
                   <gml:identifier codeSpace=""/>
                   <gml:name/>
-                  <gml:beginPosition>2017-12-01T00:00:00</gml:beginPosition>
+                  <gml:beginPosition>2017-12-01</gml:beginPosition>
                   <gml:endPosition indeterminatePosition="unknown"/>
                 </gml:TimePeriod>
               </gex:extent>
