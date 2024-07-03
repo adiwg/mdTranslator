@@ -16,7 +16,7 @@ class TestWriter191151TimePeriod < TestWriter191151Parent
    # build mdJson test file in hash
    mdHash = TDClass.base
 
-   hTimeP = TDClass.build_timePeriod('TPID001',nil,'2017-05-02','2018-05-02T08:46')
+   hTimeP = TDClass.build_timePeriod('TPID001',nil,'2017-05-02T00:00','2018-05-02T08:46')
    mdHash[:metadata][:resourceInfo][:extent][0][:temporalExtent] = []
    mdHash[:metadata][:resourceInfo][:extent][0][:temporalExtent] << { timePeriod: hTimeP }
    mdHash[:metadata][:resourceInfo][:extent][0].delete(:geographicExtent)
