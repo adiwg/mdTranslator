@@ -23,6 +23,27 @@ Or install it yourself as:
 
     $ mdtranslator help translate
 
+## Development
+
+### Requirements
+
+Requires
+- [Ruby](https://www.ruby-lang.org/en/documentation/installation/)
+- bundler (`gem install bundler`)
+- rake (`gem install rake`)
+
+### Tests
+
+In order to run the tests, first install the dependencies
+
+    $ bundle install
+
+Then, run the rake command
+
+    $ bundle exec rake
+
+_TODO: There are currently 4 tests that are not passing, related to mdJSON readers and writers_
+
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/mdTranslator/fork )

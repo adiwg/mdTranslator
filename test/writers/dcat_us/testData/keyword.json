@@ -1,0 +1,254 @@
+{
+    "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+    },
+    "contact": [
+      {
+        "contactId": "CID001",
+        "isOrganization": false,
+        "name": "Person 001"
+      }
+    ],
+    "metadata": {
+      "metadataInfo": {
+        "metadataIdentifier": {
+           "identifier": "myMetadataIdentifierID",
+           "namespace": "gov.sciencebase.catalog",
+           "description": "metadata identifier"
+        },
+        "metadataContact": [
+           {
+              "role": "metadataContact",
+              "party": [
+                 {
+                    "contactId": "CID001"
+                 }
+              ]
+           }
+        ]
+     },
+      "resourceInfo": {
+        "resourceType": [
+          {
+            "type": "tableDigital",
+            "name": "My Table Name"
+          },
+          {
+            "type": "website",
+            "name": "My Website Name"
+          }
+        ],
+        "citation": {
+          "title": "Main Resource Title - Citation",
+          "alternateTitle": [
+            "How I spent my summer",
+            "Research under the midnight-sun"
+          ],
+          "date": [
+            {
+              "date": "2017-06-13",
+              "dateType": "publication"
+            },
+            {
+              "date": "2017-06-22T16:15:14",
+              "dateType": "revision"
+            }
+          ],
+          "edition": "edition",
+          "responsibleParty": [
+            {
+              "role": "principalInvestigator",
+              "roleExtent": [
+                {
+                  "description": "Extent 1: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                },
+                {
+                  "description": "Extent 2: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                }
+              ],
+              "party": [
+                {
+                  "contactId": "CID001"
+                }
+              ]
+            },
+            {
+              "role": "funder",
+              "party": [{
+                "contactId": "CID001"
+              }]
+            },
+            {
+              "role": "originator",
+              "party": [{
+                "contactId": "CID001"
+              }]
+            }
+          ],
+          "presentationForm": [
+            "presentationForm0",
+            "presentationForm1"
+          ],
+          "identifier": [
+            {
+              "identifier": "identifier0"
+            },
+            {
+              "identifier": "identifier1"
+            }
+          ],
+          "series": {
+            "seriesName": "seriesName",
+            "seriesIssue": "seriesIssue",
+            "issuePage": "issuePage"
+          },
+          "otherCitationDetails": [
+            "otherCitationDetails0",
+            "otherCitationDetails1"
+          ],
+          "onlineResource": [
+            {
+              "uri": "http://ISO.uri/adiwg/0"
+            },
+            {
+              "uri": "http://ISO.uri/adiwg/1"
+            }
+          ],
+          "graphic": [
+            {
+              "fileName": "fileName"
+            },
+            {
+              "fileName": "fileName"
+            }
+          ]
+        },
+        "abstract": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "shortAbstract": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+        "purpose": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "status": [
+          "incomplete",
+          "suspended"
+        ],
+        "pointOfContact": [
+          {
+            "role": "pointOfContact",
+            "party": [{
+                "contactId": "CID001"
+              }
+            ]
+          },
+          {
+            "role": "principalInvestigator",
+            "party": [{
+              "contactId": "CID001"
+            }]
+          }
+        ],
+        "defaultResourceLocale": {
+          "language": "eng",
+          "country": "USA",
+          "characterSet": "UTF-8"
+        },
+        "keyword": [
+          {
+            "keyword": [
+              {
+                "keyword": "Barrow"
+              },
+              {
+                "keyword": "Prudhoe Bay"
+              },
+              {
+                "keyword": "Kaparuk"
+              }
+            ],
+            "keywordType": "place",
+            "thesaurus": {
+              "title": "USGS Geographic Names Information System"
+            }
+          },
+          {
+            "keyword": [
+              {
+                "keyword": "Brown Bear",
+                "keywordId": "TSN12365741"
+              },
+              {
+                "keyword": "Polar Bear",
+                "keywordId": "TSN125415741"
+              },
+              {
+                "keyword": "Black Bear",
+                "keywordId": "TSN123689426"
+              },
+              {
+                "keyword": "Cinnamon Bear",
+                "keywordId": "TSN123842165"
+              },
+              {
+                "keyword": "Teddy Bear"
+              }
+            ],
+            "keywordType": "taxon",
+            "thesaurus": {
+              "title": "ITIS - Integrated Taxonomic Information System"
+            }
+          },
+          {
+            "keyword": [
+              {
+                "keyword": "butter"
+              },
+              {
+                "keyword": "sugar"
+              },
+              {
+                "keyword": "eggs"
+              }
+            ],
+            "keywordType": "theme",
+            "thesaurus": {
+              "title": "Exploring Cookies"
+            }
+          },
+          {
+            "keyword": [
+              {
+                "keyword": "inlandWaters",
+                "keywordId": "012"
+              },
+              {
+                "keyword": "location",
+                "keywordId": "013"
+              },
+              {
+                "keyword": "climatologyMeteorologyAtmosphere",
+                "keywordId": "004"
+              }
+            ],
+            "keywordType": "isoTopicCategory",
+            "thesaurus": {
+              "title": "ISO Topic Categories"
+            }
+          },
+          {
+            "keyword": [
+              {
+                "keyword": "carbon dating"
+              },
+              {
+                "keyword": "ionization"
+              }
+            ],
+            "keywordType": "method",
+            "thesaurus": {
+              "title": "Lineage Methodology keyword set"
+            }
+          }
+        ]
+      }
+    }
+  }
+  

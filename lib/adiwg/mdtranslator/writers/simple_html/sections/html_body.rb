@@ -76,6 +76,7 @@ module ADIWG
                         @html.a(' Lineage', {'href' => '#body-lineage', 'class' => 'btn navBtn', 'id' => 'lineageButton'})
                         @html.a(' Distribution', {'href' => '#body-distribution', 'class' => 'btn navBtn', 'id' => 'distributionButton'})
                         @html.br
+                        @html.br
                         @html.a(' Associated', {'href' => '#body-associatedResource', 'class' => 'btn navBtn', 'id' => 'associatedButton'})
                         @html.a(' Additional', {'href' => '#body-additionalDocument', 'class' => 'btn navBtn', 'id' => 'additionalButton'})
                         @html.a(' Dictionary', {'href' => '#body-dataDictionary', 'class' => 'btn navBtn', 'id' => 'dictionaryButton'})
@@ -103,6 +104,7 @@ module ADIWG
                      @html.div(:class => 'block') do
                         @html.em('Report Generated:')
                         @html.text!(Time.new.strftime('%Y-%m-%d %H:%M:%S'))
+                        @html.text!(Time.new.strftime('%Y-%m-%d %H:%M:%S'))
                      end
 
                      # metadata source
@@ -122,6 +124,7 @@ module ADIWG
                         @html.div do
                            @html.h2('Contacts', {'id' => 'body-contacts', 'class' => 'h2'})
                            @html.span('', {'style' => 'mso-bookmark:body-contacts'})
+                           @html.span('', {'style' => 'mso-bookmark:body-contacts'})
                            @html.div(:class => 'block') do
                               aContacts.each do |hContact|
                                  @html.div(:class => 'block') do
@@ -129,6 +132,7 @@ module ADIWG
                                  end
                               end
                               @html.hr
+                              @html.br
                               @html.br
                            end
                         end
@@ -138,6 +142,7 @@ module ADIWG
                      unless hMetaInfo.empty?
                         @html.div do
                         @html.h2('Metadata Information', {'id' => 'body-metadataInfo', 'class' => 'h2'})
+                        @html.span('', {'style' => 'mso-bookmark:body-metadataInfo'})
                         @html.span('', {'style' => 'mso-bookmark:body-metadataInfo'})
                         @html.div(:class => 'block') do
                               @html.div(:class => 'block') do
@@ -154,6 +159,8 @@ module ADIWG
                            @html.h2('Resource Information', {'id' => 'body-resourceInfo', 'class' => 'h2'})
                         @html.span('', {'style' => 'mso-bookmark:body-resourceInfo'})
                         @html.div(:class => 'block') do
+                        @html.span('', {'style' => 'mso-bookmark:body-resourceInfo'})
+                        @html.div(:class => 'block') do
                               resourceClass.writeHtml(hResourceInfo)
                            end
                            @html.hr
@@ -163,6 +170,7 @@ module ADIWG
                      unless aDataQuality.nil? || aDataQuality.empty?
                         @html.div do
                            @html.h2('Data Quality', {'id' => 'body-dataQuality', 'class' => 'h2'})
+                           @html.span('', {'style' => 'mso-bookmark:body-dataQuality'})
                            @html.span('', {'style' => 'mso-bookmark:body-dataQuality'})
                            aDataQuality.each do |hDataQuality|
                               @html.div(:class => 'block') do
@@ -176,6 +184,7 @@ module ADIWG
                      unless aLineage.empty?
                         @html.div do
                            @html.h2('Resource Lineage', {'id' => 'body-lineage', 'class' => 'h2'})
+                           @html.span('', {'style' => 'mso-bookmark:body-lineage'})
                            @html.span('', {'style' => 'mso-bookmark:body-lineage'})
                            @html.div(:class => 'block') do
                               aLineage.each do |hLineage|
@@ -196,6 +205,7 @@ module ADIWG
                         @html.div do
                            @html.h2('Resource Distribution', {'id' => 'body-distribution', 'class' => 'h2'})
                            @html.span('', {'style' => 'mso-bookmark:body-distribution'})
+                           @html.span('', {'style' => 'mso-bookmark:body-distribution'})
                            @html.div(:class => 'block') do
                               aDistribution.each do |hDistribution|
                                  @html.div do
@@ -214,6 +224,7 @@ module ADIWG
                      unless aAssociated.empty?
                         @html.div do
                            @html.h2('Associated Resources', {'id' => 'body-associatedResource', 'class' => 'h2'})
+                           @html.span('', {'style' => 'mso-bookmark:body-associatedResource'})
                            @html.span('', {'style' => 'mso-bookmark:body-associatedResource'})
                            @html.div(:class => 'block') do
                               aAssociated.each do |hAssociated|
@@ -234,6 +245,7 @@ module ADIWG
                         @html.div do
                            @html.h2('Additional Documentation', {'id' => 'body-additionalDocument', 'class' => 'h2'})
                            @html.span('', {'style' => 'mso-bookmark:body-additionalDocument'})
+                           @html.span('', {'style' => 'mso-bookmark:body-additionalDocument'})
                            @html.div(:class => 'block') do
                               aAdditional.each do |hAdditional|
                                  @html.div do
@@ -253,6 +265,7 @@ module ADIWG
                         @html.div do
                            @html.h2('Data Dictionaries', {'id' => 'body-dataDictionary', 'class' => 'h2'})
                            @html.span('', {'style' => 'mso-bookmark:body-dataDictionary'})
+                           @html.span('', {'style' => 'mso-bookmark:body-dataDictionary'})
                            @html.div(:class => 'block') do
                               aDictionaries.each do |hDictionary|
                                  @html.div do
@@ -271,6 +284,7 @@ module ADIWG
                         @html.div do
                            @html.h2('Funding', {'id' => 'body-funding', 'class' => 'h2'})
                            @html.span('', {'style' => 'mso-bookmark:body-funding'})
+                           @html.span('', {'style' => 'mso-bookmark:body-funding'})
                            @html.div(:class => 'block') do
                               aFunding.each do |hFunding|
                                  @html.div do
@@ -288,6 +302,7 @@ module ADIWG
                      unless aRepositories.empty?
                         @html.div do
                            @html.h2('Metadata Repositories', {'id' => 'body-repository', 'class' => 'h2'})
+                           @html.span('', {'style' => 'mso-bookmark:body-repository'})
                            @html.span('', {'style' => 'mso-bookmark:body-repository'})
                            @html.div(:class => 'block') do
                               aRepositories.each do |hRepository|

@@ -1,0 +1,93 @@
+{
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "Person 001"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataIdentifier": {
+            "identifier": "myMetadataIdentifierID",
+            "namespace": "gov.sciencebase.catalog",
+            "description": "metadata identifier"
+         },
+         "metadataContact": [
+            {
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "myCitationTitle",
+            "identifier": [
+               {
+                  "identifier": "myDoiIdentifier0",
+                  "namespace": "ISBN",
+                  "description": "myDescription0"
+               },
+               {
+                  "identifier": "myMetadataIdentifierID",
+                  "namespace": "gov.sciencebase.catalog"
+               },
+               {
+                  "identifier": "myIdentifier1",
+                  "namespace": "mySchema1",
+                  "description": "myDescription1"
+               },
+               {
+                  "identifier": "myIdentifier1",
+                  "namespace": "mySchema1",
+                  "description": "myDescription1"
+               },
+               {
+                  "identifier": "myIdentifier0",
+                  "namespace": "mySchema0",
+                  "description": "myDescription1"
+               }
+            ],
+            "onlineResource": [
+               {
+                  "uri": "http://myOnlineResource-doi.com"
+               }
+            ]
+         },
+         "abstract": "myBody",
+         "status": [
+            "status"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         }
+      }
+   }
+}

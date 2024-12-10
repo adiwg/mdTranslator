@@ -178,6 +178,10 @@ module ADIWG
                                     @html.summary('Quality', {'class' => 'h3'})
                                     dataQualityClass.writeHtml(hDataQuality)
                                  end
+                                 @html.details do
+                                    @html.summary('Quality', {'class' => 'h3'})
+                                    dataQualityClass.writeHtml(hDataQuality)
+                                 end
                               end
                            end
                         end

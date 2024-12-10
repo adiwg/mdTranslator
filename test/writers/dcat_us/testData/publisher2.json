@@ -1,0 +1,413 @@
+{
+  "schema": {
+    "name": "mdJson",
+    "version": "2.6.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "Stan Smith",
+      "positionName": "Associate - retired",
+      "memberOfOrganization": ["CID002", "CID003"],
+      "logoGraphic": [
+        {
+          "fileName": "fileName0",
+          "fileDescription": "fileDescription0",
+          "fileType": "fileType0",
+          "fileConstraint": [
+            {
+              "type": "use",
+              "useLimitation": ["useLimitation0", "useLimitation1"]
+            },
+            {
+              "type": "legal",
+              "legal": {
+                "useConstraint": ["useConstraint0", "useConstraint1"],
+                "accessConstraint": ["accessConstraint0", "accessConstraint1"],
+                "otherConstraint": ["otherConstraint0", "otherConstraint1"]
+              }
+            },
+            {
+              "type": "security",
+              "security": {
+                "classification": "classification",
+                "classificationSystem": "classificationSystem",
+                "userNote": "userNote",
+                "handlingDescription": "handlingDescription"
+              }
+            }
+          ],
+          "fileUri": [
+            {
+              "uri": "http://ISO.uri/adiwg/0"
+            }
+          ]
+        },
+        {
+          "fileName": "fileName1",
+          "fileDescription": "fileDescription1",
+          "fileType": "fileType1"
+        },
+        {
+          "fileName": "fileName2"
+        }
+      ],
+      "phone": [
+        {
+          "phoneName": "mobile",
+          "phoneNumber": "111-111-1111",
+          "service": ["voice", "sms", "message"]
+        },
+        {
+          "phoneName": "office",
+          "phoneNumber": "222-222-2222",
+          "service": ["voice", "message"]
+        }
+      ],
+      "address": [
+        {
+          "addressType": ["mailing", "physical"],
+          "description": "work location",
+          "deliveryPoint": ["address line 1", "address line 2"],
+          "city": "city",
+          "administrativeArea": "state",
+          "postalCode": "zip",
+          "country": "country"
+        },
+        {
+          "addressType": ["mailing"],
+          "description": "telework location",
+          "deliveryPoint": ["address line 3"],
+          "city": "city",
+          "administrativeArea": "state",
+          "postalCode": "zip",
+          "country": "country"
+        }
+      ],
+      "electronicMailAddress": ["e.mail@address.com1", "e.mail@address.com2"],
+      "onlineResource": [
+        {
+          "uri": "http://ISO.uri/adiwg/1",
+          "protocol": "protocol",
+          "name": "name",
+          "description": "description",
+          "function": "function"
+        },
+        {
+          "uri": "http://ISO.uri/adiwg/2"
+        }
+      ],
+      "hoursOfService": ["hoursOfService1", "hoursOfService2"],
+      "contactInstructions": "contactInstructions",
+      "contactType": "individual"
+    },
+    {
+      "contactId": "CID003",
+      "isOrganization": true,
+      "name": "US Geological Survey",
+      "memberOfOrganization": ["CID005"],
+      "logoGraphic": [
+        {
+          "fileName": "fileName"
+        }
+      ],
+      "phone": [
+        {
+          "phoneName": "single service",
+          "phoneNumber": "111-111-1111",
+          "service": ["voice"]
+        }
+      ],
+      "address": [
+        {
+          "addressType": ["addressType"],
+          "city": "Anchorage",
+          "administrativeArea": "AK",
+          "postalCode": "99508"
+        }
+      ],
+      "electronicMailAddress": ["e.mail@address.com2"],
+      "onlineResource": [
+        {
+          "uri": "http://ISO.uri/adiwg/2"
+        }
+      ],
+      "hoursOfService": ["hoursOfService"],
+      "contactInstructions": "contactInstructions",
+      "contactType": "federal"
+    },
+    {
+      "contactId": "CID002",
+      "isOrganization": true,
+      "name": "Arctic Landscape Conservation Cooperative",
+      "contactType": "federal",
+      "phone": [
+        {
+          "phoneName": "single service",
+          "phoneNumber": "111-111-1111",
+          "service": ["voice"]
+        }
+      ],
+      "address": [
+        {
+          "addressType": ["addressType"],
+          "city": "Anchorage",
+          "administrativeArea": "AK",
+          "postalCode": "99508"
+        }
+      ]
+    },
+    {
+      "contactId": "CID004",
+      "isOrganization": false,
+      "name": "Joshua Bradley",
+      "positionName": "Data Manager",
+      "memberOfOrganization": ["CID003"],
+      "phone": [
+        {
+          "phoneName": "single service",
+          "phoneNumber": "111-111-1111",
+          "service": ["voice"]
+        }
+      ],
+      "address": [
+        {
+          "addressType": ["addressType"],
+          "city": "Anchorage",
+          "administrativeArea": "AK",
+          "postalCode": "99508"
+        }
+      ]
+    },
+    {
+      "contactId": "CID005",
+      "isOrganization": true,
+      "name": "US Department of the Interior",
+      "contactType": "federal"
+    },
+    {
+      "contactId": "CID006",
+      "isOrganization": false,
+      "name": "Dennis Walworth",
+      "memberOfOrganization": ["CID002"],
+      "contactType": "individual",
+      "phone": [
+        {
+          "phoneName": "single service",
+          "phoneNumber": "111-111-1111",
+          "service": ["voice"]
+        }
+      ],
+      "address": [
+        {
+          "addressType": ["addressType"],
+          "city": "Anchorage",
+          "administrativeArea": "AK",
+          "postalCode": "99508"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "metadataIdentifier": {
+        "identifier": "myMetadataIdentifierID",
+        "namespace": "gov.sciencebase.catalog",
+        "description": "metadata identifier"
+      },
+      "metadataContact": [
+        {
+          "role": "metadataContact",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ]
+    },
+    "resourceInfo": {
+      "resourceType": [
+        {
+          "type": "tableDigital",
+          "name": "My Table Name"
+        },
+        {
+          "type": "website",
+          "name": "My Website Name"
+        }
+      ],
+      "citation": {
+        "title": "Main Resource Title - Citation",
+        "alternateTitle": [
+          "How I spent my summer",
+          "Research under the midnight-sun"
+        ],
+        "date": [
+          {
+            "date": "2017-06-13",
+            "dateType": "publication"
+          },
+          {
+            "date": "2017-06-22T16:15:14",
+            "dateType": "revision"
+          }
+        ],
+        "edition": "edition",
+        "responsibleParty": [
+          {
+            "role": "person",
+            "roleExtent": [
+              {
+                "description": "Extent 1: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+              },
+              {
+                "description": "Extent 2: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                "geographicExtent": [
+                  {
+                    "containsData": true,
+                    "geographicElement": [
+                      {
+                        "type": "Feature",
+                        "id": "polygon-75",
+                        "bbox": [-10.0, -10.0, 10.0, 10.0],
+                        "geometry": {
+                          "type": "Polygon",
+                          "coordinates": [
+                            [
+                              [-161.74223, 67.663378],
+                              [-161.440345, 67.630173],
+                              [-161.294611, 67.656257],
+                              [-161.228063, 67.625736],
+                              [-161.247712, 67.585909],
+                              [-161.334662, 67.591324],
+                              [-161.566245, 67.491263],
+                              [-161.812338, 67.455299],
+                              [-161.825019, 67.40123],
+                              [-162.128301, 67.414364],
+                              [-162.167825, 67.363047],
+                              [-162.383403, 67.293329],
+                              [-162.633432, 67.272237],
+                              [-162.645587, 67.356665],
+                              [-162.369023, 67.455264],
+                              [-162.287324, 67.551235],
+                              [-162.171139, 67.559356],
+                              [-161.99344, 67.646806],
+                              [-161.857964, 67.620329],
+                              [-161.769431, 67.629407],
+                              [-161.74223, 67.663378]
+                            ]
+                          ]
+                        },
+                        "properties": {
+                          "description": "Agashashok River site",
+                          "featureName": ["Agashashok River", "Camp Mosquito"],
+                          "identifier": [
+                            {
+                              "identifier": "AGAR"
+                            },
+                            {
+                              "identifier": "Kup25"
+                            }
+                          ],
+                          "featureScope": "collectionSite",
+                          "acquisitionMethod": "butterfly net",
+                          "customField": "not in schema",
+                          "customArray": ["string 1", "string 2"]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "party": [
+              {
+                "contactId": "CID001"
+              },
+              {
+                "contactId": "CID004"
+              }
+            ]
+          },
+          {
+            "role": "funding",
+            "party": [
+              {
+                "contactId": "CID003",
+                "organizationMembers": ["CID004", "CID001"]
+              }
+            ]
+          },
+          {
+            "role": "originator",
+            "party": [
+              {
+                "contactId": "CID004"
+              }
+            ]
+          }
+        ]
+      },
+      "abstract": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "shortAbstract": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+      "purpose": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "status": ["incomplete", "suspended"],
+      "pointOfContact": [
+        {
+          "role": "pointOfContact",
+          "party": [
+            {
+              "contactId": "CID001"
+            },
+            {
+              "contactId": "CID006"
+            }
+          ]
+        },
+        {
+          "role": "principalInvestigator",
+          "party": [
+            {
+              "contactId": "CID004"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
+      }
+    },
+    "resourceDistribution": [
+      {
+        "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+        "liabilityStatement": "Blah blah blah liability. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "distributor": [
+          {
+            "contact": {
+              "role": "distributor",
+              "party": [
+                {
+                  "contactId": "CID002"
+                }
+              ]
+            }
+          },
+          {
+            "contact": {
+              "role": "distributor",
+              "party": [
+                {
+                  "contactId": "CID003"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

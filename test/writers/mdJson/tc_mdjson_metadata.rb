@@ -22,6 +22,11 @@ class TestWriterMdJsonMetadata < TestWriterMdJsonParent
    mdHash[:metadata][:dataQuality] << TDClass.build_dataQuality
    mdHash[:metadata][:dataQuality] << TDClass.build_dataQuality
 
+   # data quality []
+   mdHash[:metadata][:dataQuality] = []
+   mdHash[:metadata][:dataQuality] << TDClass.build_dataQuality
+   mdHash[:metadata][:dataQuality] << TDClass.build_dataQuality
+
    # lineage []
    mdHash[:metadata][:resourceLineage] = []
    mdHash[:metadata][:resourceLineage] << TDClass.build_lineage
