@@ -1256,6 +1256,7 @@ class MdJsonHashWriter
    # data dictionary -------------------------
    def dataDictionary
       {
+         dictionaryId: 'dictionary ID',
          citation: {
             title: 'dictionary title',
             date: [

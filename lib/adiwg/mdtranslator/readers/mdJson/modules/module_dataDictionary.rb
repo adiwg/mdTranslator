@@ -38,6 +38,14 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   intDictionary = intMetadataClass.newDataDictionary
 
+                  # dictionary - id 
+                  if hDictionary.has_key?('dictionaryId')
+                     s = hDictionary['dictionaryId']
+                     if s != ''
+                        intDictionary[:dictionaryId] = s
+                     end
+                  end
+
                   # dictionary - description
                   if hDictionary.has_key?('description')
                      s = hDictionary['description']
