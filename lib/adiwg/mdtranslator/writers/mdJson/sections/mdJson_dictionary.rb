@@ -24,7 +24,7 @@ module ADIWG
                def self.build(hDictionary)
 
                   Jbuilder.new do |json|
-                     json.dictionaryId hDictionary[:dictionaryId] unless hDictionary[:dictionaryId].empty?
+                     json.dictionaryId hDictionary[:dictionaryId]
                      json.citation Citation.build(hDictionary[:citation]) unless hDictionary[:citation].empty?
                      json.description hDictionary[:description]
                      json.subject hDictionary[:subjects] unless hDictionary[:subjects].empty?
