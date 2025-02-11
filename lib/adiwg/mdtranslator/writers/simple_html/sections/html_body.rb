@@ -130,7 +130,6 @@ module ADIWG
                               end
                               @html.hr
                               @html.br
-                              @html.br
                            end
                         end
                      end
