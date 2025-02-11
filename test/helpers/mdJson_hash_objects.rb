@@ -223,6 +223,458 @@ class MdJsonHashWriter
       }
    end
 
+   # acquisition -----------------------------
+   def acquisition
+      {
+         scope: {
+            scopeCode: "scopeCode",
+            scopeDescription: [{
+               dataset: "dataset"
+            }],
+            scopeExtent: [{
+               temporalExtent: [{
+                  timePeriod: {
+                     id: "id",
+                     description: "description",
+                     identifier: {
+                        identifier: "identifier",
+                        namespace: "namespace"
+                     },
+                     periodName: [
+                        "periodName0",
+                        "periodName1"
+                     ],
+                     startDateTime: "2016-10-14T11:10:15.200-10:00",
+                     endDateTime: "2016-12-31",
+                     timeInterval: {
+                        interval: 9,
+                        units: "year"
+                     },
+                     duration: {
+                        years: 1,
+                        months: 1,
+                        days: 1,
+                        hours: 1,
+                        minutes: 1,
+                        seconds: 1
+                     }
+                  }
+               }]
+            }]
+         },
+         plan: [
+            {
+               planId: "plan ID",
+               planType: "linear",
+               status: "accepted",
+               citation: {
+                  title: "citation title"
+               },
+               planOperation: [],
+               satisfiedRequirement: []
+            }
+         ],
+         requirement: [
+            {
+               requirementId: "requirement ID",
+               citation: {
+                  title: "requirement citation title"
+               },
+               identifier: {
+                  identifier: "requirement identifier"
+               },
+               requestor: [
+                  {
+                     role: "role",
+                     roleExtent: [{
+                        temporalExtent: [{
+                           timePeriod: {
+                              id: "id",
+                              description: "description",
+                              identifier: {
+                                 identifier: "identifier",
+                                 namespace: "namespace"
+                              },
+                              periodName: [
+                                 "periodName0",
+                                 "periodName1"
+                              ],
+                              startDateTime: "2016-10-14T11:10:15.200-10:00",
+                              endDateTime: "2016-12-31",
+                              timeInterval: {
+                                 interval: 9.9,
+                                 units: "year"
+                              },
+                              duration: {
+                                 years: 1,
+                                 months: 1,
+                                 days: 1,
+                                 hours: 1,
+                                 minutes: 1,
+                                 seconds: 1
+                              }
+                           }
+                        }]
+                     }],
+                     party: [{
+                        contactId: "CID001"
+                     }]
+                  }
+               ],
+               recipient: [
+                  {
+                     role: "role",
+                     roleExtent: [{
+                        temporalExtent: [{
+                           timePeriod: {
+                              id: "id",
+                              description: "description",
+                              identifier: {
+                                 identifier: "identifier",
+                                 namespace: "namespace"
+                              },
+                              periodName: [
+                                 "periodName0",
+                                 "periodName1"
+                              ],
+                              startDateTime: "2016-10-14T11:10:15.200-10:00",
+                              endDateTime: "2016-12-31",
+                              timeInterval: {
+                                 interval: 9.9,
+                                 units: "year"
+                              },
+                              duration: {
+                                 years: 1,
+                                 months: 1,
+                                 days: 1,
+                                 hours: 1,
+                                 minutes: 1,
+                                 seconds: 1
+                              }
+                           }
+                        }]
+                     }],
+                     party: [{
+                        contactId: "CID003"
+                     }]
+                  }
+               ],
+               priority: "critical",
+               requestedDate: {
+                  requestedDateOfCollection: "2019-06-10",
+                  latestAcceptableDate: "2019-06-13"
+               },
+               expiryDate: "2019-06-10T15:50:00",
+               satisfiedPlan: [
+                  {
+                     planId: "plan ID",
+                     planType: "linear",
+                     status: "accepted",
+                     citation: {
+                        title: "citation title"
+                     },
+                     planOperation: [],
+                     satisfiedRequirement: []
+                  }
+               ]
+            }
+         ],
+         objective: [
+            {
+               objectiveId: "objective ID",
+               identifier: [
+                  {
+                     identifier: "objective identifier"
+                  }
+               ],
+               priority: "objective priority",
+               objectiveType: ["instantaneousCollection"],
+               function: [],
+               extent: [],
+               objectiveOccurrence: [],
+               pass: [],
+               sensingInstrument: []
+            }
+         ],
+         platform: [
+            {
+               platformId: "platform ID",
+               citation: {
+                  title: "platform citation title"
+               },
+               identifier: {
+                  identifier: "platform identifier"
+               },
+               description: "platform description",
+               sponsor: [],
+               instrument: [
+                  {
+                     instrumentId: "instrument ID",
+                     citation: [],
+                     identifier: {
+                        identifier: "instrument identifier"
+                     },
+                     instrumentType: "instrument type",
+                     description: "instrument description",
+                     mountedOn: {
+                        platformId: "platform ID",
+                        citation: {
+                           title: "platform citation title"
+                        },
+                        identifier: {
+                           identifier: "platform identifier"
+                        },
+                        description: "platform description",
+                        sponsor: [],
+                        instrument: [
+                           {
+                              instrumentId: "instrument ID",
+                              identifier: {
+                                 identifier: "instrument identifier"
+                              },
+                              instrumentType: "instrument type"
+                           }
+                        ],
+                        history: []
+                     },
+                     history: [],
+                     hostId: {
+                        identifier: "host instrument ID"
+                     }
+                  }
+               ],
+               history: []
+            }
+         ],
+         instrument: [
+            {
+               instrumentId: "instrument ID",
+               citation: [],
+               identifier: {
+                  identifier: "instrument identifier"
+               },
+               instrumentType: "instrument type"
+            }
+         ],
+         operation: [
+            { 
+            operationId: 'operation ID', 
+            description: 'operation description', 
+            citation: {
+               title: 'title'
+            },
+            identifier: {
+               identifier: 'identifier'
+            },
+            status: 'pending', 
+            operationType: 'real', 
+            objective: [
+               {
+                  objectiveId: 'objective ID', 
+                  identifier: [
+                  {
+                     identifier: 'objective identifier'
+                  }
+                  ],
+                  priority: 'objective priority', 
+                  objectiveType: [
+                  'instantaneousCollection'
+                  ],
+                  function: [],
+                  extent: [],
+                  objectiveOccurrence: [],
+                  pass: [],
+                  sensingInstrument: []
+               }
+            ],
+            plan: {
+               planId: 'plan ID', 
+               planType: 'linear', 
+               status: 'accepted', 
+               citation: {
+                  title: 'USGS US Topo Map Collection', 
+                  date: [
+                  {
+                     date: '2022', 
+                     dateType: 'publication'
+                  }
+                  ],
+                  responsibleParty: [
+                  {
+                     role: 'publisher', 
+                     party: [
+                        {
+                        contactId: 'CID002'
+                        }
+                     ]
+                  }
+                  ],
+                  presentationForm: [
+                  'map, raster digital data'
+                  ],
+                  onlineResource: [
+                  {
+                     uri: 'https://thor-f5.er.usgs.gov/ngtoc/metadata/waf/ustopo/geopdf/', 
+                     description: 'Link to the resource described in this citation'
+                  }
+                  ]
+               },
+               planOperation: [],
+               satisfiedRequirement: [
+                  {
+                  requirementId: 'requirement ID', 
+                  citation: {
+                     title: 'title'
+                  },
+                  identifier: {
+                     identifier: 'identifier'
+                  },
+                  requestor: [],
+                  recipient: [],
+                  priority: 'critical', 
+                  requestedDate: {
+                     requestedDateOfCollection: '2019-06-10T15:50:00', 
+                     latestAcceptableDate: '2019-06-10T15:50:00'
+                  },
+                  expiryDate: '2019-06-10T15:50:00', 
+                  satisfiedPlan: []
+                  }
+               ]
+            },
+            platform: [
+               {
+                  platformId: 'platform ID', 
+                  citation: {
+                  title: 'title'
+                  },
+                  identifier: {
+                  identifier: 'identifier'
+                  },
+                  description: 'platform description', 
+                  sponsor: [
+                  {
+                     role: 'role', 
+                     roleExtent: [
+                        {
+                        temporalExtent: [
+                           {
+                              timePeriod: {
+                              id: 'id', 
+                              description: 'description', 
+                              identifier: {
+                                 identifier: 'identifier', 
+                                 namespace: 'namespace'
+                              },
+                              periodName: [
+                                 'periodName0', 
+                                 'periodName1'
+                              ],
+                              startDateTime: '2016-10-14T11:10:15.200-10:00', 
+                              endDateTime: '2016-12-31', 
+                              timeInterval: {
+                                 interval: 9.9,
+                                 units: 'year'
+                              },
+                              duration: {
+                                 years: 1,
+                                 months: 1,
+                                 days: 1,
+                                 hours: 1,
+                                 minutes: 1,
+                                 seconds: 1
+                              }
+                              }
+                           }
+                        ]
+                        }
+                     ],
+                     party: [
+                        {
+                        contactId: 'CID002'
+                        }
+                     ]
+                  }
+                  ],
+                  instrument: [
+                  {
+                     instrumentId: 'instrument ID', 
+                     citation: {
+                        title: 'title'
+                     },
+                     identifier: {
+                        identifier: 'identifier'
+                     },
+                     instrumentType: 'instrument type'
+                  }
+                  ],
+                  history: []
+               }
+            ],
+            significantEvent: [
+               {
+                  eventId: 'event ID', 
+                  identifier: {
+                  identifier: 'identifier'
+                  },
+                  trigger: 'manual', 
+                  context: 'pass', 
+                  sequence: 'start', 
+                  time: '2019-06-10T16:07:00', 
+                  expectedObjective: [],
+                  relatedPass: {
+                  passId: 'pass ID', 
+                  identifier: {
+                     identifier: 'identifier'
+                  }
+                  },
+                  relatedSensor: []
+               }
+            ]
+            }
+         ],
+         event: [
+            {
+               eventId: "event ID",
+               identifier: {
+                  identifier: "event identifier"
+               },
+               trigger: "manual",
+               context: "pass",
+               sequence: "start",
+               time: "2019-06-10T16:07:00",
+               expectedObjective: [],
+               relatedPass: {
+                  passId: "pass ID",
+                  identifier: {
+                     identifier: "pass identifier"
+                  },
+                  extent: {},
+                  relatedEvent: []
+               },
+               relatedSensor: []
+            }
+         ],
+         pass: [
+            {
+               passId: "pass ID",
+               identifier: {
+                  identifier: "pass identifier"
+               },
+               extent: {},
+               relatedEvent: []
+            }
+         ],
+         environment: {
+            averageAirTemperature: 9.9,
+            maxRelativeHumidity: 9.9,
+            maxAltitude: 9.9,
+            meteorologicalConditions: "meteorological conditions",
+            solarAzimuth: 9.9,
+            solarElevation: 9.9
+         }
+      }
+   end
+
 
    # additional documentation ----------------
    def additionalDocumentation
@@ -1380,7 +1832,8 @@ class MdJsonHashWriter
          associatedResource: [],
          additionalDocumentation: [],
          funding: [],
-         dataQuality: []
+         dataQuality: [],
+         acquisition: []
       }
    end
 

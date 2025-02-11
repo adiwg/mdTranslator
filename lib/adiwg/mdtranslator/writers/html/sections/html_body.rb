@@ -20,6 +20,7 @@ require_relative 'html_additionalDocumentation'
 require_relative 'html_funding'
 require_relative 'html_dataDictionary'
 require_relative 'html_metadataRepository'
+require_relative 'html_acquisition'
 
 module ADIWG
    module Mdtranslator
@@ -47,6 +48,7 @@ module ADIWG
                      fundingClass = Html_Funding.new(@html)
                      dictionaryClass = Html_DataDictionary.new(@html)
                      repositoryClass = Html_Repository.new(@html)
+                     acquisitionClass = Html_Acquisition.new(@html)
 
                      # make sections of the internal data store convenient
                      hSchema = intObj[:schema]
@@ -61,6 +63,7 @@ module ADIWG
                      aFunding = intObj[:metadata][:funding]
                      aDictionaries = intObj[:dataDictionaries]
                      aRepositories = intObj[:metadataRepositories]
+                     aAcquisitions = intObj[:metadata][:acquisitions]
 
                      # set page title and logo
                      # side navigation
@@ -72,6 +75,7 @@ module ADIWG
                         @html.a(' Metadata', {'href' => '#body-metadataInfo', 'class' => 'btn navBtn', 'id' => 'metadataButton'})
                         @html.a(' Resource', {'href' => '#body-resourceInfo', 'class' => 'btn navBtn', 'id' => 'resourceButton'})
                         @html.a(' Quality', {'href' => '#body-dataQuality', 'class' => 'btn navBtn', 'id' => 'qualityButton'})
+                        @html.a(' Acquistion', {'href' => '#body-acquisition', 'class' => 'btn navBtn', 'id' => 'acquisitionButton'})
                         @html.a(' Lineage', {'href' => '#body-lineage', 'class' => 'btn navBtn', 'id' => 'lineageButton'})
                         @html.a(' Distribution', {'href' => '#body-distribution', 'class' => 'btn navBtn', 'id' => 'distributionButton'})
                         @html.a(' Associated', {'href' => '#body-associatedResource', 'class' => 'btn navBtn', 'id' => 'associatedButton'})
@@ -212,6 +216,21 @@ module ADIWG
                               end
                            end
                            @html.hr
+                        end
+                     end
+
+                     # acquisition section
+                     unless aAcquisitions.empty?
+                        @html.details do
+                           @html.summary('Acquisition', {'id' => 'body-acquisition', 'class' => 'h2'})
+                           aAcquisitions.each do |hAcquisition|
+                              @html.section(:class => 'block') do
+                                 @html.details do
+                                    @html.summary('Acquisition', {'class' => 'h3'})
+                                    acquisitionClass.writeHtml(hAcquisition)
+                                 end
+                              end
+                           end
                         end
                      end
 

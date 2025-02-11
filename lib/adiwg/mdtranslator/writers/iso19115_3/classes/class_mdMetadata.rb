@@ -27,6 +27,7 @@ require_relative 'class_spatialRepresentation'
 require_relative 'class_referenceSystem'
 require_relative 'class_featureCatalog'
 require_relative 'class_extension'
+require_relative 'class_acquisition'
 
 module ADIWG
    module Mdtranslator
@@ -64,6 +65,7 @@ module ADIWG
                   referenceSystemClass = MD_ReferenceSystem.new(@xml, @hResponseObj)
                   mdCatalogClass = MD_FeatureCatalogue.new(@xml, @hResponseObj)
                   extensionClass = MD_MetadataExtensionInformation.new(@xml, @hResponseObj)
+                  acquisitionClass = MI_AcquisitionInformation.new(@xml, @hResponseObj)
 
                   # create shortcuts to sections of internal object
                   hMetadata = intObj[:metadata]
@@ -73,6 +75,7 @@ module ADIWG
                   aDataQuality = hMetadata[:dataQuality]
                   aLineage = hMetadata[:lineageInfo]
                   aDictionaries = intObj[:dataDictionaries]
+                  aAcquisition = hMetadata[:acquisitions]
                   version = @hResponseObj[:translatorVersion]
 
                   # document head
@@ -415,6 +418,14 @@ module ADIWG
                      end
                      if hMaintenance.empty? && @hResponseObj[:writerShowTags]
                         @xml.tag!('mdb:metadataMaintenance')
+                     end
+
+                     aAcquisition.each do |hAcquisition|
+                        unless hAcquisition.empty?
+                           @xml.tag!('mdb:acquisitionInformation') do
+                              acquisitionClass.writeXML(hAcquisition)
+                           end
+                        end
                      end
 
                   end # mdb:MD_Metadata tag

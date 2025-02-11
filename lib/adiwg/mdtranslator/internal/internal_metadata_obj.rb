@@ -143,7 +143,8 @@ class InternalMetadata
          associatedResources: [],
          additionalDocuments: [],
          funding: [],
-         dataQuality: []
+         dataQuality: [],
+         acquisitions: []
       }
    end
 
@@ -158,6 +159,7 @@ class InternalMetadata
    # acquisition ----------------------------
    def newAcquisition
       {
+         scope: {},
          plans: [],
          requirements: [],
          objectives: [],
@@ -175,19 +177,23 @@ class InternalMetadata
          averageAirTemperature: nil,
          maxRelativeHumidity: nil,
          maxAltitude: nil,
-         meteorologicalConditions: nil
+         meteorologicalConditions: nil,
+         solarAzimuth: nil,
+         solarElevation: nil
+         
       }
    end
 
    def newEvent
       {
          eventId: nil,
+         identifier: {},
          trigger: nil,
          context: nil,
          sequence: nil,
          dateTime: nil,
          expectedObjectives: [],
-         relatedPass: nil,
+         relatedPass: {},
          relatedSensors: []
       }
    end
@@ -199,7 +205,29 @@ class InternalMetadata
          identifier: {},
          instrumentType: nil,
          description: nil,
-         mountedOn: nil
+         mountedOn: {},
+         histories: [],
+         hostId: {}
+      }
+   end
+
+   def newInstrumentationEvent
+      {
+         citations: [],
+         description: nil,
+         extent: {},
+         eventType: nil,
+         revisionHistories: [],
+      }
+   end
+
+   def newInstrumentationEventList
+      {
+         citation: {},
+         description: nil,
+         locale: {},
+         constraints: [],
+         instrumentationEvents: []
       }
    end
 
@@ -240,14 +268,15 @@ class InternalMetadata
    def newOperation
       {
          operationId: nil,
+         description: nil,
          citation: {},
          identifier: {},
          status: nil,
          operationType: nil,
          objectives: [],
-         parentOperations: nil,
+         parentOperation: {},
          childOperations: [],
-         plan: nil,
+         plan: {},
          platforms: [],
          significantEvents: []
       }
@@ -267,6 +296,14 @@ class InternalMetadata
       }
    end
 
+   def newRevision
+      {
+         description: nil,
+         responsibleParty: {},
+         dateInfo: []
+      }
+   end
+
    def newPlatform
       {
          platformId: nil,
@@ -274,7 +311,8 @@ class InternalMetadata
          identifier: {},
          description: nil,
          sponsors: [],
-         instruments: []
+         instruments: [],
+         history: []
       }
    end
 
@@ -541,6 +579,7 @@ class InternalMetadata
    # data dictionary ------------------------
    def newDataDictionary
       {
+         dictionaryId: nil,
          description: nil,
          subjects: [],
          citation: {},

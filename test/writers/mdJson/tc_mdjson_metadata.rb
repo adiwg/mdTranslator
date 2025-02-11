@@ -47,6 +47,11 @@ class TestWriterMdJsonMetadata < TestWriterMdJsonParent
    mdHash[:metadata][:funding] << TDClass.build_funding
    mdHash[:metadata][:funding] << TDClass.build_funding
 
+   # acquisition []
+   mdHash[:metadata][:acquisition] = []
+   mdHash[:metadata][:acquisition] << TDClass.build_acquisition
+   mdHash[:metadata][:acquisition] << TDClass.build_acquisition
+
    TDClass.removeEmptyObjects(mdHash)
 
    @@mdHash = mdHash
