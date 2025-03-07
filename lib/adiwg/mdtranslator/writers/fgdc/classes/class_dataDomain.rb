@@ -33,6 +33,7 @@ module ADIWG
                   end
                   if hDomain.empty?
                      @NameSpace.issueError(70, domainId)
+                     return
                   end
 
                   outContext = domainId
