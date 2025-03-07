@@ -226,12 +226,17 @@ module ADIWG
 
                         # contact - type (required)
                         if hSbContact.has_key?('type')
-                           hContact[:contactType] = hSbContact['type']
-                        end
-                        if hSbContact['type'].nil? || hSbContact['type'] == ''
+                           if hSbContact['type'].nil? || hSbContact['type'] == ''
+                              hContact[:contactType] = 'missing'
+                              hResponseObj[:readerExecutionMessages] << 'Contact type is missing'
+                              hResponseObj[:readerExecutionMessages] << "Contact type set to 'missing'"
+                           else
+                              hContact[:contactType] = hSbContact['type']
+                           end
+                        else
+                           hContact[:contactType] = 'missing'
                            hResponseObj[:readerExecutionMessages] << 'Contact type is missing'
-                           hResponseObj[:readerExecutionPass] = false
-                           return nil
+                           hResponseObj[:readerExecutionMessages] << "Contact type set to 'missing'"
                         end
 
                         # member of organization
