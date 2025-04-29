@@ -3,7 +3,7 @@
 
 # mdTranslator
 
-**mdtranslator** was written by the [Alaska Data Integration Working Group](http://www.adiwg.org) (ADIwg) to assist researchers with authoring both spatial and non-spatial metadata for projects and datasets.  Input to the mdtranslator is a JSON record conforming to the [mdJson-schemas](http://mdTools.adiwg.org).  The user can request the mdTranslator to translate the mdJson input into one or more established metadata standards.  The mdTranslator currently supports translation to ISO 19115-2, ISO 19110, HTML, and mdJson 2x.  The mdTranslator part of an open source architecture toolkit that allows developers to write additional readers and/or writers as may be required.
+**mdtranslator** was written by the [Alaska Data Integration Working Group](http://www.adiwg.org) (ADIwg) to assist researchers with authoring both spatial and non-spatial metadata for projects and datasets. Input to the mdtranslator is a JSON record conforming to the [mdJson-schemas](http://mdTools.adiwg.org). The user can request the mdTranslator to translate the mdJson input into one or more established metadata standards. The mdTranslator currently supports translation to ISO 19115-2, ISO 19110, HTML, and mdJson 2x. The mdTranslator part of an open source architecture toolkit that allows developers to write additional readers and/or writers as may be required.
 
 ## Installation
 
@@ -25,9 +25,17 @@ Or install it yourself as:
 
 ## Development
 
+**Note about version number**  
+The version should be updated in 2 locations:
+
+`version.json` & `lib/adiwg/mdtranslator/version.rb`
+
+The former is used during the tag/release action and the latter is used by the application itself. Ideally, there should be a test to confirm these are the same.
+
 ### Requirements
 
 Requires
+
 - [Ruby](https://www.ruby-lang.org/en/documentation/installation/)
 - bundler (`gem install bundler`)
 - rake (`gem install rake`)
