@@ -104,7 +104,7 @@ module ADIWG
                         # contact - member of organization
                         if contactType == 'person'
                            unless orgId.nil?
-                              unless hContact.include?(orgId)
+                              unless hContact[:memberOfOrgs].include?(orgId)
                                  hContact[:memberOfOrgs] << orgId
                               end
                            end
@@ -169,7 +169,7 @@ module ADIWG
                                  isSame = true
                                  isSame = false unless hAddress[:deliveryPoints].length == hOld[:deliveryPoints].length
                                  if hAddress[:deliveryPoints].length == hOld[:deliveryPoints].length
-                                    (1..hAddress[:deliveryPoints].length).each do |x|
+                                    (0...hAddress[:deliveryPoints].length).each do |x|
                                        isSame = false unless hAddress[:deliveryPoints][x] == hOld[:deliveryPoints][x]
                                     end
                                  end

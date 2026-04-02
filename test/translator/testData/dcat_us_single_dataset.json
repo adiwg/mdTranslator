@@ -1,0 +1,18 @@
+{
+  "@type": "dcat:Dataset",
+  "title": "Single Dataset Example",
+  "description": "A single DCAT-US dataset not wrapped in a catalog.",
+  "keyword": ["example", "test"],
+  "modified": "2024-06-01",
+  "publisher": {
+    "name": "Example Agency"
+  },
+  "contactPoint": {
+    "fn": "Alice Smith",
+    "hasEmail": "mailto:alice.smith@example.gov"
+  },
+  "identifier": "https://catalog.data.gov/dataset/single-001",
+  "accessLevel": "public",
+  "bureauCode": ["012:34"],
+  "programCode": ["012:001"]
+}

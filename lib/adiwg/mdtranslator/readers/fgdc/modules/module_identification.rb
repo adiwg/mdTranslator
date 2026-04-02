@@ -84,9 +84,11 @@ module ADIWG
 
                      # time period for single date, multi-date, and date range {resource timePeriod}
                      hTimePeriod = TimePeriod.unpack(xTimePeriod, hResponseObj)
-                     hResourceInfo[:timePeriod] = hTimePeriod unless hTimePeriod.nil?
-                     hResourceInfo[:timePeriod][:description] = current
-                     haveTimePeriod = true unless hTimePeriod.nil?
+                     unless hTimePeriod.nil?
+                        hResourceInfo[:timePeriod] = hTimePeriod
+                        hResourceInfo[:timePeriod][:description] = current
+                        haveTimePeriod = true
+                     end
 
                      # time period multi-date also placed in temporalExtent
                      axMultiple = xTimePeriod.xpath('./timeinfo/mdattim/sngdate')

@@ -101,5 +101,66 @@ class TestReaderFgdcContact < TestReaderFGDCParent
 
    end
 
+   # --- Bug 1 regression: hContact.include?(orgId) always returned false (Hash#include?
+   # tests keys not values), so the same org was appended to memberOfOrgs on every parse.
+   def test_contact_person_memberoforg_no_duplicates
+
+      TestReaderFGDCParent.set_xDoc(@@xDocPerson)
+      TestReaderFGDCParent.set_intObj
+      xContact = @@xDocPerson.xpath('./metadata/idinfo/ptcontac')
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+
+      # First parse: creates the person contact and links the org.
+      @@NameSpace.unpack(xContact, hResponse)
+
+      # Second parse: same contact already exists; org must not be added again.
+      hResponsibility = @@NameSpace.unpack(xContact, hResponse)
+      hParty = hResponsibility[:parties][0]
+      hContact = @@NameSpaceFgdc.get_contact_by_id(hParty[:contactId])
+
+      assert_equal 1, hContact[:memberOfOrgs].length
+
+   end
+
+   # Positive test: processing the same contact twice must not duplicate its addresses.
+   def test_contact_address_dedup_same_contact_twice
+
+      TestReaderFGDCParent.set_xDoc(@@xDocPerson)
+      TestReaderFGDCParent.set_intObj
+      xContact = @@xDocPerson.xpath('./metadata/idinfo/ptcontac')
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+
+      @@NameSpace.unpack(xContact, hResponse)
+      hResponsibility = @@NameSpace.unpack(xContact, hResponse)
+      hParty = hResponsibility[:parties][0]
+      hContact = @@NameSpaceFgdc.get_contact_by_id(hParty[:contactId])
+
+      # Should still be 2 distinct addresses, not 4.
+      assert_equal 2, hContact[:addresses].length
+
+   end
+
+   # --- Bug 2 regression: address deduplication used a 1-based range (1..length),
+   # so the first delivery point (index 0) was never compared. Two addresses that differ
+   # only in their first line were wrongly treated as duplicates.
+   def test_contact_address_dedup_only_first_line_differs
+
+      xDoc = TestReaderFGDCParent.get_XML('contact_addr_first_line.xml')
+      TestReaderFGDCParent.set_xDoc(xDoc)
+      TestReaderFGDCParent.set_intObj
+      xContact = xDoc.xpath('./metadata/idinfo/ptcontac')
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hResponsibility = @@NameSpace.unpack(xContact, hResponse)
+
+      hParty = hResponsibility[:parties][0]
+      hContact = @@NameSpaceFgdc.get_contact_by_id(hParty[:contactId])
+
+      # Both addresses must be stored because they differ in the first delivery point.
+      assert_equal 2, hContact[:addresses].length
+      assert_equal 'first delivery point A', hContact[:addresses][0][:deliveryPoints][0]
+      assert_equal 'first delivery point B', hContact[:addresses][1][:deliveryPoints][0]
+
+   end
+
 
 end

@@ -1,0 +1,28 @@
+{
+  "@context": "https://project-open-data.cio.gov/v1.1/schema/catalog.jsonld",
+  "@id": "https://www.agency.gov/data.json",
+  "@type": "dcat:Catalog",
+  "conformsTo": "https://project-open-data.cio.gov/v1.1/schema",
+  "dataset": [
+    {
+      "@type": "dcat:Dataset",
+      "title": "Types of Vegetables",
+      "description": "This dataset contains a list of vegetables.",
+      "keyword": ["vegetables", "nutrition"],
+      "modified": "2015-01-15",
+      "publisher": {
+        "@type": "org:Organization",
+        "name": "Widget Services"
+      },
+      "contactPoint": {
+        "@type": "vcard:Contact",
+        "fn": "Jane Doe",
+        "hasEmail": "mailto:jane.doe@agency.gov"
+      },
+      "identifier": "https://catalog.data.gov/dataset/vegetables-001",
+      "accessLevel": "public",
+      "bureauCode": ["010:86"],
+      "programCode": ["015:001"]
+    }
+  ]
+}

@@ -93,4 +93,31 @@ class TestReaderFgdcIdentification < TestReaderFGDCParent
 
    end
 
+   # --- Bug 3 regression: when TimePeriod.unpack returns nil (timeinfo present but
+   # contains no recognised date elements), the line
+   #   hResourceInfo[:timePeriod][:description] = current
+   # still ran against the initial empty hash {}, silently injecting a spurious
+   # :description key and making the timePeriod appear non-empty to downstream writers.
+   def test_identification_timePeriod_nil_no_description_leak
+
+      xDoc = TestReaderFGDCParent.get_XML('identification_invalid_timeperd.xml')
+      TestReaderFGDCParent.set_xDoc(xDoc)
+      TestReaderFGDCParent.set_intObj
+      intObj = TestReaderFGDCParent.get_intObj
+
+      xIn = xDoc.xpath('./metadata/idinfo')
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      @@NameSpace.unpack(xIn, intObj, hResponse)
+
+      hResourceInfo = intObj[:metadata][:resourceInfo]
+
+      # timePeriod must stay fully empty when parsing fails — no leaked :description key.
+      assert_empty hResourceInfo[:timePeriod]
+
+      # The missing-time-period warning must still be emitted.
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: FGDC reader: identification section time period is missing'
+
+   end
+
 end

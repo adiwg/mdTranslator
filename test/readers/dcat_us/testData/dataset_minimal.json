@@ -1,0 +1,17 @@
+{
+  "title": "Minimal Dataset",
+  "description": "A minimal DCAT-US dataset.",
+  "keyword": ["test"],
+  "modified": "2020-01-01",
+  "publisher": {
+    "name": "Test Agency"
+  },
+  "contactPoint": {
+    "fn": "John Smith",
+    "hasEmail": "mailto:john.smith@agency.gov"
+  },
+  "identifier": "https://catalog.data.gov/dataset/minimal-001",
+  "accessLevel": "public",
+  "bureauCode": ["001:01"],
+  "programCode": ["001:001"]
+}

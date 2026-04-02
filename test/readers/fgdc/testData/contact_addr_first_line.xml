@@ -1,0 +1,30 @@
+<metadata>
+  <idinfo>
+    <ptcontac>
+      <cntinfo>
+        <cntperp>
+          <cntper>address dedup test person</cntper>
+        </cntperp>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>first delivery point A</address>
+          <address>common second line</address>
+          <city>same city</city>
+          <state>same state</state>
+          <postal>same postal</postal>
+          <country>same country</country>
+        </cntaddr>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>first delivery point B</address>
+          <address>common second line</address>
+          <city>same city</city>
+          <state>same state</state>
+          <postal>same postal</postal>
+          <country>same country</country>
+        </cntaddr>
+        <cntvoice>907-555-0000</cntvoice>
+      </cntinfo>
+    </ptcontac>
+  </idinfo>
+</metadata>
